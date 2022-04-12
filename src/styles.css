@@ -47,6 +47,10 @@ input[type="number"] {
   justify-content: space-around;
 }
 
+.d-flex {
+  display:flex
+}
+
 .justify-center {
   display: flex;
   justify-content: center;
@@ -829,9 +833,7 @@ input::-webkit-inner-spin-button {
   top: 22px;
 }
 
-.login__login-password-row {
-  margin-top: 29px;
-}
+
                   
 .threeDotsBtn__trash-pause-img {
   margin-right: 3px;
@@ -1641,17 +1643,15 @@ input::-webkit-inner-spin-button {
   width: 456px;
 }
 
-.login__input-password {
-  width: 140px;
-  height: 25px;
-  border-radius: 5px;
-}
-
 .login__btn-google {
   width: 136px !important;
   height: 30px;
   border-radius: 4px;
   font-size: 13px;
+}
+
+.login__pwd-container {
+  marginTop:'29px'
 }
 
 .repetitionIntervalFields-p {
@@ -1681,9 +1681,15 @@ input::-webkit-inner-spin-button {
 
 }
 
-.login__input-username {
-  width: 140px; 
-  height: 25px; 
+.login__button {
+  width: 150px;
+  height: 30px;
+}
+
+.login__input {
+  width: 80%;
+  height: 25px;
+  padding: 3px;
   border-radius: 5px;
 }
 
