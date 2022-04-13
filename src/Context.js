@@ -25,6 +25,7 @@ export default function ContextProvider({ children }) {
   const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
   const [user, setUser] = useState(null)
+  const [login, setLogin] = useState(false)
 
 
 
@@ -165,7 +166,8 @@ export default function ContextProvider({ children }) {
     spinnerIsVisible, setSpinnerIsVisible,
     pauseIsActive, setPauseIsActive,
     trigger, setTrigger, 
-    user, setUser
+    user, setUser,
+    login, setLogin
 
      }} >
 

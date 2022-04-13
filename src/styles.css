@@ -51,6 +51,10 @@ input[type="number"] {
   display:flex
 }
 
+.marginTop75px {
+  margin-top: 75px;
+}
+
 .justify-center {
   display: flex;
   justify-content: center;
@@ -1267,6 +1271,26 @@ textarea.form-control:focus {
   cursor: pointer;
 }
 
+.marginAuto {
+  margin: auto;
+}
+
+.width100pc {
+  width: 100%;
+}
+
+.width100px {
+  width:100px;
+}
+
+.height100px {
+  height:100px;
+}
+
+.marginBottom15pc {
+  margin-bottom: 15%;
+}
+
 .containerStyling {
   border-bottom-left-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
@@ -1705,6 +1729,7 @@ input::-webkit-inner-spin-button {
 .login__button {
   height: 30px; 
   border-radius: 5px;
+  margin-left: 25px;
 }
 
 .login__input {
