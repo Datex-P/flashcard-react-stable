@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
+    "mongodb": "^4.5.0",
     "mongoose": "^6.2.10",
     "nodemailer": "^6.7.3",
     "react": "^17.0.0",

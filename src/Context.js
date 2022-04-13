@@ -6,6 +6,7 @@ export default function ContextProvider({ children }) {
 
   const [showProgressDiagram, setShowProgressDiagram] = useState(true);
   const [scrollbarVisible, setScrollbarVisible] = useState(true)
+  const [registerUser, setRegisterUser] = useState(false)
 
   const [trigger, setTrigger] = useState(null);
   const scroller = useRef();

@@ -85,15 +85,11 @@ input[type="number"] {
   justify-content: space-evenly;
 }
 
-
-
-
 .editBtnClickedStyling {
   top: -18px;
   position: relative;
   margin-left: 20px;
 }
-
 
 .menuContainer {
   z-index: 100;
@@ -154,6 +150,33 @@ input[type="checkbox"] {
   width: 151px; 
   left: 3px; 
   height: 0px;
+}
+
+ .login__container {
+   width: 250px;
+   margin:auto;
+  } 
+
+  /*asteriks means all children of 
+  login container have width 100% */
+
+ .login__container > * {
+   width: 100%;
+   justify-content: flex-end;
+   display: flex;
+
+ }
+
+.login__LoginInput > *{
+  width: 100%;
+  display: flex;
+  justify-content:flex-end;
+}
+
+.login__container > * > *:not(img) {
+  width: 80%;
+  justify-content: flex-end;
+  box-sizing: border-box;
 }
 
 .createFirstDeck-arrowDown::after {
@@ -973,12 +996,12 @@ input::-webkit-inner-spin-button {
   height: 75px !important;
 }
 
-.yearBoxContainer {
+/* .yearBoxContainer {
   display: flex;
   flex-wrap: wrap;
   width: 270px;
   height: 210px;
-}
+} */
 
 .deleteCardQuestionBox__showMessageAgain {
   width: 300px; 
@@ -1052,7 +1075,6 @@ color: white;
 }
 
 .hourlyBreakdown__hourly-breakdown{
-
   margin-top: 20px; 
   font-size: bold; 
   font-weight: bold;
@@ -1446,9 +1468,9 @@ textarea:enabled {
 
 .login__flashcardBackground-top {
   position: relative; 
-  left: -239px; 
+  /* left: -239px; 
   width: 193%; 
-  top: -36px;
+  top: -36px; */
 }
 
 .stats__study-breakdown {
@@ -1650,8 +1672,14 @@ input::-webkit-inner-spin-button {
   font-size: 13px;
 }
 
-.login__pwd-container {
-  marginTop:'29px'
+.login__field-distance {
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.login__loginInput-container {
+  top:350px;
+  position: relative;
 }
 
 .repetitionIntervalFields-p {
@@ -1669,21 +1697,14 @@ input::-webkit-inner-spin-button {
   margin-left: 5px !important; 
 }
 
-.login__login-password-container {
-  width: inherit;
-  position: absolute; 
-  top:380px;
-}
-
 .login__img-login-password {
   width: 16px; 
   margin-right: 9px;
-
 }
 
 .login__button {
-  width: 150px;
-  height: 30px;
+  height: 30px; 
+  border-radius: 5px;
 }
 
 .login__input {
@@ -1705,6 +1726,11 @@ input::-webkit-inner-spin-button {
   text-align: center;
   margin: 5px;
   margin-left: 21px;
+}
+
+.register__text {
+  margin-bottom: 20px;
+  font-size: 25px;
 }
 
 #tsparticles {
