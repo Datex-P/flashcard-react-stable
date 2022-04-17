@@ -3,13 +3,15 @@ import React, { useState, useContext, useEffect} from 'react';
 import { withRouter } from 'react-router-dom'
 import { Context } from '../../Context'
 import '../../styles.css'
-import Hexagons from  './Hexagons'
+import './settings.css'
+import Hexagon from  './Hexagons'
 import RepetitionIntervalFields from './RepetitionIntervalFields'
 import ColorScheme from './ColorScheme'
 
 import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow'
 import edit from '../../icons/edit.svg'
 import save from '../../icons/save.svg'
+//import ImgCont from './ImgCont'
 
 
 
@@ -42,6 +44,31 @@ function Settings({ history }) {
     setDataBase(newDataBase)
   }
 
+
+function ImgCont({hex=false}) {
+
+  function notHexagonal() {
+    setEditIsPossible(!editIsPossible)
+    setSaveOrEdit(!saveOrEdit)
+    saveTimeNumberChanges()
+  }
+
+  function hexagonal () {
+    setSaveOrEditGoal(!saveOrEditGoal)
+    setEditHex(!editHex)
+  }
+
+  return(
+      <img
+      src={saveOrEdit ? save : edit}
+      alt={saveOrEdit ? 'save' : 'edit'}
+      className= 'nonDraggableIcon'
+      style={{ outline: 'none' }}
+      onClick={hex? hexagonal: notHexagonal}
+      /> 
+  )
+}
+
   return (
 
     dataBase &&
@@ -50,26 +77,23 @@ function Settings({ history }) {
       show={true}
       setShow={setShow}
       title={
-
         <div
           style={{fontWeight: 'bold', fontSize: '22px'}}
           //className={'pos'}
         >
-
           Settings
        </div>
       } 
     >
-      <div className='settings__repetion-interval'
-      >
+      <div className='settings__repetiton-interval'>
           Change Repetition Interval
       </div>
-      <div className='d-flex justify-content-center'
+      <div className='justify-center'
       >
           <div className='border border-dark justify-center-align-center settings_repetition-container'
           >
               <div 
-                  className='justify-aroundCenter' 
+                  className='justify-around' 
                   style={{width: '280px'}}
               >
                   {
@@ -88,14 +112,19 @@ function Settings({ history }) {
                       />
                       )
                   }
-                </div>
+              </div>
               
           </div>
           <div 
               className='settings__save-or-edit-container'
               title='Click and change name buttons and repetition intervals for all decks.'
           >
-               <img
+           <ImgCont
+
+
+
+           /> 
+               {/* <img
                   src={saveOrEdit ? save : edit}
                   alt={saveOrEdit ? 'save' : 'edit'}
                   className= 'nonDraggableIcon'
@@ -105,63 +134,41 @@ function Settings({ history }) {
                           setSaveOrEdit(!saveOrEdit)
                           saveTimeNumberChanges()
                         }}
-              /> 
+                />  */}
           </div>
       </div>
-
-      <div className='settings__goal-settings'
-      >
-          Goal Settings
+      <div>
+          <div className='settings__goal-settings fontBold'>
+              <div className='settings__paddings'>Goal Settings</div>
+              <div className='settings__weekly-target settings__paddings'>Current Weekly Target</div>
+          </div>
+          <div className='justify-between-align-center border border-dark  settings__container-hexagon'
+          > 
+            {
+              Array(7).fill('').map((_, idx) =>
+                <Hexagon
+                    key={idx}
+                    idx={idx} 
+                    editHex={editHex} 
+                    setEditHex={setEditHex} 
+                    saveOrEditGoal={saveOrEditGoal} 
+                />
+              )
+            }
+       
+          </div>
+          <div className='settings__saveoredit'>
+            <ImgCont/>
+          </div>
+          <div className='settings__weekly-target justify-center'>
+            Target met: {dataBase.userPreferences.weeksInRow} weeks in a row
+          </div>
       </div>
-
-      <div className='settings__weekly-target'
-      >
-          Current Weekly Target
-      </div>
-
-      <div className='justify-between-align-center border border-dark  settings__container-hexagon'
-      >
-        {
-
-          Array(7).fill('').map((_, idx) =>
-
-            <Hexagons 
-                key={idx}
-                idx={idx} 
-                editHex={editHex} 
-                setEditHex={setEditHex} 
-                saveOrEditGoal={saveOrEditGoal} 
-            />
-          )
-        }
-      </div>
-      <div className='settings__saveoredit'
-      >
-         <img
-          src={editHex ? edit : save}
-          alt={saveOrEditGoal ? 'edit' : 'save'}
-          style={{ outline: 'none' }}
-          className= 'nonDraggableIcon'
-          
-          onClick={() => {
-            setSaveOrEditGoal(!saveOrEditGoal)
-            setEditHex(!editHex)
-          }}
-        /> 
-      </div>
-      <div className='settings__weekly-target justify-center'
-      >
-
-        Target met: {dataBase.userPreferences.weeksInRow} weeks in a row
-
-      </div>
-     
-
       <ColorScheme/>
-
-
     </BasicOrangeWindow>
   )
+
+
 }
 
 export default withRouter(Settings)

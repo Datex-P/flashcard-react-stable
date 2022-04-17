@@ -18,11 +18,15 @@ export default function App() {
      >
       <Router>
 
-       {user?<LandingPage /> : <Redirect to='./login'/>}
-       {/* {registerUser?<LandingPage /> : <Redirect to='./register'/>} */}
+        {/* {user?<LandingPage /> : <Redirect to='./login'/>} */}
+        {/* {registerUser?<LandingPage /> : <Redirect to='./register'/>} */}
         {/* <LandingPage/> */}
-        {/* <Login/> */}
-        <Switch>               
+      {/* {registerUser?<Register path='register'/>: <Login path='login' />} */}
+         
+        <Switch>                      
+          <Route path='/login'>
+            <Login />  
+          </Route>
           <Route path='/stats'>
             <Stats />
           </Route>
@@ -30,16 +34,17 @@ export default function App() {
             <Settings
             />
           </Route>
-          {!user &&
+          {/* {!user &&
           <Route path ='/login' >
             <Login setUser={setUser}/>
           </Route>
-          }
-          {/* <Route path ='/register' >
+          } */}
+           <Route path ='/register' >
             <Register/>
-          </Route> */}
+          </Route> 
           {/*when user is not set, display login, otherwise hide it*/}
           <Route path='/' exact>
+          <Redirect to='/login'/>
           </Route>
 
           <Route path='/logout'>

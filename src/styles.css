@@ -24,9 +24,6 @@ input[type="number"] {
   font-weight: bold;
 }
 
-
-
-
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -102,16 +99,6 @@ input[type="number"] {
   width: 440px;
 }
 
-
-/* .menuContainer {
-  width: 100%;
-  margin-top: 1px;
-  position: relative;
-  height: 20px;
-} */
-
-
-
 #createFirstDeck {
   top: 233px;
   position: absolute;
@@ -166,18 +153,22 @@ input[type="checkbox"] {
 
  .login__container > * {
    width: 100%;
-   justify-content: flex-end;
-   display: flex;
-
  }
+
+ .mb-20px {
+   margin-bottom: 20px
+ }
+ 
+ .login__container > * > *{
+  width: 100%;
+}
 
 .login__LoginInput > *{
   width: 100%;
-  display: flex;
   justify-content:flex-end;
 }
 
-.login__container > * > *:not(img) {
+.login__container > * > * >*:not(img):not(button) {
   width: 80%;
   justify-content: flex-end;
   box-sizing: border-box;
@@ -457,13 +448,6 @@ input::-webkit-inner-spin-button {
   height: 52px;
 }
 
-.settings__saveoredit {
-  position: absolute; 
-  top: 232px; 
-  right: 50px; 
-  cursor: pointer;
-}
-
 .noandyes-inner {
   width: 75%;
 }
@@ -512,13 +496,6 @@ input::-webkit-inner-spin-button {
   overflow: hidden auto !important;
 }
 
-.settings__weekly-target {
-  font-weight: bold;
-  font-size: 13px;
-  text-align: center;
-  margin-bottom: 2px;
-}
-
 .showRepeatBtnInner {
   border: 1px solid grey;
   padding: 12px;
@@ -526,36 +503,10 @@ input::-webkit-inner-spin-button {
   width: 88%;
 }
 
-.settings__weekly-target {
-  width: 190px;
-  margin-top: 5px;
-  height: 20px;
-  font-size: 14px;
-  font-weight: normal;
-  margin: auto;
-  position: relative;
-  top: 1px;
-}
-
-.colorscheme {
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 2px;
-}
-
 .questionAnswerStyling {
   font-weight: bold;
   margin-left: 19px;
   margin-bottom: 10px;
-}
-
-.settings_repetition-container {
-  padding: 1px;
-  border-radius: 5px;
-  position: relative;
-  width: 300px;
-  height: 88px;
 }
 
 .redCross {
@@ -793,15 +744,6 @@ input::-webkit-inner-spin-button {
   top: -2px;
   left: 26px;
 }
-
-.colorscheme-container {
-  border-radius: 5px;
-  padding: 5px;
-  width: 215px;
-  margin-top: 10px;
-  margin: auto;
-}
-
 .number {
   width: 100px;
   position: absolute;
@@ -874,13 +816,6 @@ input::-webkit-inner-spin-button {
   left: 346px;
   top: -31px; 
   background: 'rgb(90, 170, 149)'
-}
-
-.settings__save-or-edit-container {
-  position: absolute;
-  right: 11px;
-  top: 77px;
-  cursor: pointer;
 }
 
 .progressBar {
@@ -1287,6 +1222,10 @@ textarea.form-control:focus {
   height:100px;
 }
 
+.height70px {
+  height:70px;
+}
+
 .marginBottom15pc {
   margin-bottom: 15%;
 }
@@ -1343,25 +1282,6 @@ textarea.form-control:focus {
   margin: 3px;
   padding: 3px;
   transform: rotate(90deg);
-}
-
-.settings__container-hexagon {
-  border-radius: 5px;
-  position: relative;
-  padding-left: 8px;
-  margin: auto;
-  padding-right: 14px;
-  padding-bottom: 3px;
-  width: 211px;
-  height: 66px;
-}
-
-.settings__goal-settings {
-  font-weight: bold;
-  font-size: 17px;
-  margin-top: 25px;
-  text-align: center;
-  margin-bottom: 7px;
 }
 
 .repetitionIntervalTextFields {
@@ -1646,13 +1566,6 @@ input::-webkit-inner-spin-button {
   transition: all 0.3s ease-in 0s;
 }
 
-.settings__repetition-interval {
-  font-weight: bold;
-  font-size: 17px;
-  text-align: center;
-  margin-bottom: 8px;
-}
-
 .timeAndProgress__monthly-goal {
   height: 27px;
   font-size: 13px;
@@ -1665,8 +1578,6 @@ input::-webkit-inner-spin-button {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px;
 }
-
-
 
 .menuContainer__modalbody {
   position: relative;
@@ -1698,7 +1609,6 @@ input::-webkit-inner-spin-button {
 
 .login__field-distance {
   margin-top: 15px;
-  margin-left: 5px;
 }
 
 .login__loginInput-container {
@@ -1730,6 +1640,20 @@ input::-webkit-inner-spin-button {
   height: 30px; 
   border-radius: 5px;
   margin-left: 25px;
+  width: 80%;
+}
+.login__google {
+  width: 80%;
+}
+
+.login__google > * {
+  width: 100%
+}
+
+
+.login__button-container {
+  margin-top:15px;
+  height:75px;
 }
 
 .login__input {
@@ -1737,6 +1661,7 @@ input::-webkit-inner-spin-button {
   height: 25px;
   padding: 3px;
   border-radius: 5px;
+  z-index: 5;
 }
 
 .login__btn-facebook {

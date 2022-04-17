@@ -10,12 +10,12 @@ function Facebook ({setUser}) {
               appId={`${facebookID}`}
               style={{
                 backgroundColor: "#4267b2",
-                marginTop: "15px",
                 color: "#fff",
                 fontSize: "13px",
                 padding: "12px 24px",
                 border: "none",
                 borderRadius: "4px",
+                width:"80%"
               }}
               onSuccess={(response) => {
                 // console.log('Login Success!', response);

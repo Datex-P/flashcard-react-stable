@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import '../../styles.css'
+import './settings.css'
 import { Context } from '../../Context'
 
 export default function ColorScheme () {
@@ -16,12 +17,8 @@ export default function ColorScheme () {
 
   return (
    <>
-    <div className='colorscheme'
-    >
-        Colorscheme
-    </div>
-
-      <div className='colorscheme-container justify-between-align-center border border-dark'
+    <div className='settings__colorscheme'>Colorscheme</div>
+      <div className='settings__colorscheme-container justify-between-align-center border border-dark'
       >
         {
           ['light', 'dark', 'default'].map((comp,index) =>
@@ -41,14 +38,7 @@ export default function ColorScheme () {
             </React.Fragment>
           )
         }
-      </div>
+        </div>
       </>
-
-
-
-
-
-
-
   )
 }

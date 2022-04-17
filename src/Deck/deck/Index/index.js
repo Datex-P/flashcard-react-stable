@@ -112,7 +112,7 @@ export default function Deck({
           <Card.Title
             className="index-card-title justify-between-align-center position-relative"
           >
-              <DeckOrCardName
+              <DeckOrCardName 
                 bg={bg}
                 nameOfTopDeck={nameOfTopDeck}
                 editButtonClicked={editButtonClicked}
