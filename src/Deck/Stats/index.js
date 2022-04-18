@@ -6,7 +6,8 @@ import AddQuestionsToDeck from './AddQuestionsToDeck'
 import QuestAnswerTrainOverv from './QuestAnswerTrainOverv'
 import DeckOrCardName from  './DeckOrCardName'
 import DeleteCardQuestionBox from  './DeleteCardQuestionBox';
-//import playimg from '../../icons/play.svg'
+import Paused from './Paused'
+import AddQuestions from './AddQuestions'
 
 
 
@@ -71,6 +72,16 @@ export default function Deck({ deck, checked, setChecked,
     setActive(1)
   }
 
+  function handleInput(e) {
+    if (e.target.value.length>25) {
+                        
+      alert('Deckname can not be longer than 25 characters')
+    } else {
+      // if (!dataBase.DeckNames[index].paused) {                      
+        setNameOfTopDeck(e.target.value)}
+        // }
+    }
+
  
   function handleActive(i){
     setActive(i)
@@ -86,15 +97,13 @@ export default function Deck({ deck, checked, setChecked,
         style={style} 
         className='newDeckContainer flexColumn position-absolute '
     >
-      <Card.Body 
-          className='justify-center-align-center flex-column'
+      <Card.Body className='justify-center-align-center flex-column'
       >
 
         <Card.Title 
             className='justify-between-align-center position-relative'
             style={{width:'126px', left: '-5px', top: '-12px'}}
         >
-
         {
          editButtonClicked?
 
@@ -108,33 +117,16 @@ export default function Deck({ deck, checked, setChecked,
                 setActive={setActive}
                 className='deckOrCardNameStyling'
             />
-
-               :
-        
+               :        
             <input 
                   ref = {input} 
                   className= 'addToDeckInput'
                   style={{top: data.length === 0? '-69px': 'default'}}
                   value = {nameOfTopDeck}
-                  onChange={(e)=>{
-                
-                        if (e.target.value.length>25) {
-                        
-                          alert('Deckname can not be longer than 25 characters')
-                        } else {
-
-                          // if (!dataBase.DeckNames[index].paused) {
-                        
-                            setNameOfTopDeck(e.target.value)}
-                            // }
-
-                        }
-                    }
+                  onChange={(e)=>{handleInput(e)}}
             />
 
          }
-     
-
           <ThreeDotsBtn
               name={name}
               text={'deck'}
@@ -204,93 +196,16 @@ export default function Deck({ deck, checked, setChecked,
            {
             data.length === 0?
               
-
-            <div 
-                  className='deckPausedContainer'
-                  style={{left: '84px', textAlign: 'center'}}
-              >          
-
-                  <div 
-                  > 
-                        
-                  Click the <span className= 'plusInfoMessage'
-                            >+
-                            </span> button
-                  </div>
-                  <div>
-                        to add questions to the deck
-                  </div>
-              </div>
-
+            <AddQuestions/>
               :
-              <>
-          <div
-              className='divStyling align-center' 
-              style={{opacity: paused? '0': '1'}}
-              >
-                To Study:   
-
-                <input 
-                    type='number' 
-                    className='inputStyling' 
-                    min='10'
-                    max='30'
-                    disabled
-                >   
-
-                </input>
-
-          </div>
-        
-           </>
+              <Paused paused={paused}/>
           } 
-
           {
-            paused?
-
-              <div 
-                  className='deckPausedContainer'
-                  style={{background: colors[index % 5]}}
-              >
-                  <div>
-                      
-                  </div>
-
-                  <div className='align-center'
-                  > 
-                        Press:
-                    
-                    <button 
-                        className='btn-play'
-                        onClick={()=>{
-                                    handlePause()
-                                
-                        }}
-                    >
-
-                        <img 
-                            //src={playimg}
-                            alt='play' 
-                            style={{margin: '6px', cursor: 'pointer'}}                         
-                      />
-
-                    </button>
-                    
-                  </div>
-                  <div 
-                  >
-                        to unpause the Deck. Paused decks don't count to the study goal.
-                  </div>
-              </div>
-
-              : 
-
-              null
+            paused &&
+          <Paused index={index} handlePause={handlePause}/>
           }
-
           {
-            name && data.length !== 0?
-          
+            name && data.length !== 0 &&          
             <div 
                 className='divStyling align-center'  
                 style={{opacity: paused? '0': '1'}}
@@ -298,9 +213,6 @@ export default function Deck({ deck, checked, setChecked,
 
                 {'Decksize:'.padEnd(10, '⠀')}   {data.length}        
             </div>
-            :
-            null
-
           }
       
         </div>

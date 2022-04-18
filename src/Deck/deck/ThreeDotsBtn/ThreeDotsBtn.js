@@ -12,7 +12,7 @@ import playimg from '../../../icons/play.svg'
 
 
 function ThreeDotsBtn({    
-                        edit=false,trash=false,pause=false,reset=false,
+                        icons,reset=false,
                         className, 
                         editBtnClicked, //is the editBtn in the main Question/Answer Overview
                         data,
@@ -33,7 +33,8 @@ function ThreeDotsBtn({
     dataBase, setDataBase,
     editButtonClicked,
   } = useContext(Context);
-
+  
+  let {edit=false,trash=false,pause=false} = icons;
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
   const [pauseIsActive, setPauseIsActive] = useState(true)
   const [threeDotsOpen, setThreeDotsOpen] = useState(showFromParent);

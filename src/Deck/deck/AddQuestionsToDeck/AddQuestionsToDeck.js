@@ -3,7 +3,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal} from 'react-bootstrap'
 import { Context } from '../../../Context';
 import '../../../styles.css'
-//import redCross from '../../../icons/redCross.svg'
+import closeWindow from "../../../icons/closeWindow.svg";
+
 import AlertComponent from './AlertComponent'
 
 export default function AddQuestionsToDeck({ index, name, 
@@ -113,27 +114,27 @@ export default function AddQuestionsToDeck({ index, name,
             onClick={() => setShow(false)}
           >
 
-            {/* <img
-              //src={redCross}
+            <img
+              src={closeWindow}
               alt='redCross'
+              style={{width:'16px', height:'16px'}}
               className='nonDraggableIcon'
-            /> */}
+            /> 
           </button>
 
         </Modal.Header>
         <Modal.Body >
 
         <AlertComponent 
-                  card={card}
-                  setCard={setCard}
-                  newCardAdded={newCardAdded} 
+            card={card}
+            setCard={setCard}
+            newCardAdded={newCardAdded} 
         />
 
           <button
             onClick={addToDeck}
             className='generalButtonStyling addToDeckButton'
           >
-
             Add to Deck
           </button>
 

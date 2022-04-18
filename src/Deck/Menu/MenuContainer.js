@@ -45,7 +45,7 @@ export default function MenuContainer() {
                   setMenuOpen(false);
                 }}
               >
-                {/* <Icons
+                 <Icons
                   icons={[
                     {
                       src: statsIcon,
@@ -80,7 +80,7 @@ export default function MenuContainer() {
                       },
                     },
                   ]}
-                /> */}
+                /> 
               </div>
             </Modal.Body>
           </Modal>

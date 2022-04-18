@@ -480,12 +480,15 @@ input::-webkit-inner-spin-button {
   /*specifies the width etc. of basic orange window*/
   background-color: rgba(200, 168, 115) !important;
   border-radius: 20px !important;
-  height: 544px;
+  /* height: 544px; */
+  height:57%;
   width: 374px !important;
   margin-top: 90px !important;
   margin: auto;
   border: 2px solid black !important;
   top: 25px;
+  position: absolute;
+  z-index: 2;
 }
 
 
@@ -1583,89 +1586,11 @@ input::-webkit-inner-spin-button {
   width: inherit;
 }
 
-.login__google-container {
-  position: absolute;
-  top: 600px;
-  width: 456px;
-}
-
-.login__btn-google {
-  width: 136px !important;
-  height: 30px;
-  border-radius: 4px;
-  font-size: 13px;
-}
-
-.login__field-distance {
-  margin-top: 15px;
-}
-
-.login__loginInput-container {
-  top:350px;
-  position: relative;
-}
 
 .repetitionIntervalFields-p {
   border-radius: 5px; 
   width: 72px;
 }
-/* 
-.login__btn-google div {
-  padding: 4px !important;
-  padding-left: 12px !important;
-}
-
-.login__btn-google span {
-  padding: 13px 10px 10px 10px !important;
-  margin-left: 5px !important; 
-}
-
-.login__img-login-password {
-  width: 16px; 
-  margin-right: 9px;
-}
-
-.login__button {
-  height: 30px; 
-  border-radius: 5px;
-  margin-left: 25px;
-  width: 80%;
-}
-.login__google {
-  width: 80%;
-}
-
-.login__google > * {
-  width: 100%
-}
-
-
-.login__button-container {
-  margin-top:15px;
-  height:75px;
-}
-
-.login__input {
-  width: 80%;
-  height: 25px;
-  padding: 3px;
-  border-radius: 5px;
-  z-index: 5;
-}
-
-.login__btn-facebook {
-  display: inline-block;
-  font-size: 13px;
-  width: 136px;
-  height: 30px;
-  border-radius: 4px;
-  background: #3b5998;
-  color: white;
-  border: 0px transparent;
-  text-align: center;
-  margin: 5px;
-  margin-left: 21px;
-} */
 
 .register__text {
   margin-bottom: 20px;

@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap";
-// import redCross from "../../../icons/redCross.svg";
+import closeWindow from "../../../icons/closeWindow.svg";
 import React, { useContext } from "react";
 import InputCheckbox from "./InputCheckbox";
 import { Context } from "../../../Context";
@@ -41,7 +41,7 @@ export default function BasicOrangeWindow({
               fontSize: "16px",
               marginLeft: "12px",
               height: "24px",
-              width: "240px",
+              width: "240px"
             }}
           >
             {title}
@@ -92,11 +92,11 @@ export default function BasicOrangeWindow({
               }
             }}
           >
-              {/* <img 
+               <img 
                   className="nonDraggableIcon" 
-                  src={redCross} 
+                  src={closeWindow} 
                   alt="redCross" 
-              /> */}
+              /> 
           </button>
         </Modal.Header>
 

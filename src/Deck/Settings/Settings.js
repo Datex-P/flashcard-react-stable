@@ -120,11 +120,8 @@ function ImgCont({hex=false}) {
               title='Click and change name buttons and repetition intervals for all decks.'
           >
            <ImgCont
-
-
-
            /> 
-               {/* <img
+                <img
                   src={saveOrEdit ? save : edit}
                   alt={saveOrEdit ? 'save' : 'edit'}
                   className= 'nonDraggableIcon'
@@ -134,7 +131,7 @@ function ImgCont({hex=false}) {
                           setSaveOrEdit(!saveOrEdit)
                           saveTimeNumberChanges()
                         }}
-                />  */}
+                />  
           </div>
       </div>
       <div>
@@ -154,8 +151,7 @@ function ImgCont({hex=false}) {
                     saveOrEditGoal={saveOrEditGoal} 
                 />
               )
-            }
-       
+            }   
           </div>
           <div className='settings__saveoredit'>
             <ImgCont/>
@@ -167,8 +163,6 @@ function ImgCont({hex=false}) {
       <ColorScheme/>
     </BasicOrangeWindow>
   )
-
-
 }
 
 export default withRouter(Settings)

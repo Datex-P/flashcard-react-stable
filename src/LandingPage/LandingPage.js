@@ -56,21 +56,10 @@ export default function DeckContainer() {
       <Container
         className="align-items-center landingpage__cont "
         style={{
-          // backgroundColor:
-          //   styles.backgroundColor[dataBase.userPreferences.backgroundColor],
-          backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
+           //backgroundColor:  styles.backgroundColor[dataBase.userPreferences.backgroundColor],
+        //  backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
         }}
       >
-       <CreateNewDeck         
-              style={{ position: "absolute", zIndex: "40" }}
-              close={() => {
-                setDecksAreVisible(true);
-                setAddNewDeckWindow(false);
-                setShowProgressDiagram(true);
-              }}
-            />
-       
-
         <Row className="posRelative">
           {decksAreVisible ? (
             <div className="firstRowStyling">
@@ -154,14 +143,14 @@ export default function DeckContainer() {
 
           <div className='row__createNewDeck-container'
           >
-            {/* <CreateNewDeck         
+             <CreateNewDeck         
               style={{ position: "absolute", zIndex: "40" }}
               close={() => {
                 setDecksAreVisible(true);
                 setAddNewDeckWindow(false);
                 setShowProgressDiagram(true);
               }}
-            /> */}
+            /> 
           </div>
         </Row>
       </Container>

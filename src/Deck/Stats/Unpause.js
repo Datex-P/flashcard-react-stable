@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-//import playimg from "../../icons/play.svg";
+import playimg from "../../icons/play.svg";
 import { Context } from "../../Context";
 
 function Unpause({index}) {
@@ -35,7 +35,7 @@ function Unpause({index}) {
         }}
       >
         <img
-          //src={playimg}
+          src={playimg}
           alt="play"
           className='paused__img-play'
         />

@@ -56,9 +56,7 @@ export default function RepetitionIntervalFields(
 
               {'<'}
           </div>
-          <form
-              style={{width:'34px'}}
-          >
+          <form style={{width:'34px'}}>
 
               <input 
                   className={style.inputCustom}

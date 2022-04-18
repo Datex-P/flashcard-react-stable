@@ -139,10 +139,9 @@ export default function CreateNewDeck({
         </select>
       </Modal.Body>
 
-      <div className="createNewDeck__cancel-ok justify-between"
-      >
-        <Button/>
-        <Button/>
+      <div className="createNewDeck__cancel-ok justify-between">
+        <Button setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
+        <Button  setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
       </div>
     </Modal>
   );

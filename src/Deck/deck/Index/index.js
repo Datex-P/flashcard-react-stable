@@ -74,7 +74,6 @@ export default function Deck({
     let newDataBase = { ...dataBase };
     //newDataBase.DeckNames[index].deleted = true; //index where delete starts second para is delete count
 
-    
      newDataBase.DeckNames.splice(index,1)
     
     if (newDataBase.DeckNames.filter(item=>!item.deleted).length === 0) {
@@ -135,13 +134,14 @@ export default function Deck({
               showFromParent={threeDotsMenuOpen}
               setShowFromParent={setThreeDotsMenuOpen}
               index={index}
-              paused={paused}
+              icons={{paused,edit:!paused,trash:!paused}}
+              //paused={paused}
               bg={style.background}
               nameOfTopDeck={nameOfTopDeck}
               setNameOfTopDeck={setNameOfTopDeck}
-              edit={!paused}
+              //edit={!paused}
               pause
-              trash={!paused}
+              //trash={!paused}
               input={input}
               threeDotsContainer={{
                 position: "fixed",

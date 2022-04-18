@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { Context } from "../Context"; 
 
-export default function Button ({ok=false}) {
+export default function Button ({ok=false, setInputField, addNewDeckName, close}) {
 
   const {
     addNewDeckWindow, 
@@ -15,6 +15,9 @@ export default function Button ({ok=false}) {
     setShowProgressDiagram, 
   } = useContext(Context);
 
+
+  const okRef = useRef()
+  const cancelRef = useRef()
 
   function cancelHandler() {
     (() => {
@@ -39,7 +42,7 @@ export default function Button ({ok=false}) {
       <button
         className="okCancelButtonColor okCancelButton"
         key={ok? 'Ok':'Cancel'}
-        ref={ok? 'Ok':'Cancel'}
+        ref={ok? okRef: cancelRef}
         onClick={() => {
           ok?
             okHandler()
