@@ -3,13 +3,12 @@ import {withRouter} from 'react-router-dom'
 import {Context} from '../../../Context';
 
 import useOutsideAlerter from './useOutsideAlerter'
-
-// import trashimg from '../../../icons/trash.svg'
-// import pauseimg from '../../../icons/pause.svg'
-// import editimg from '../../../icons/edit.svg'
-// import resetimg from '../../../icons/reset.svg'
-// import saveimg from '../../../icons/save.svg'
-// import playimg from '../../../icons/play.svg'
+import trashimg from '../../../icons/trash.svg'
+import pauseimg from '../../../icons/pause.svg'
+import editimg from '../../../icons/edit.svg'
+import resetimg from '../../../icons/reset.svg'
+import saveimg from '../../../icons/save.svg'
+import playimg from '../../../icons/play.svg'
 
 
 function ThreeDotsBtn({    
@@ -149,15 +148,13 @@ function ThreeDotsBtn({
               <button 
                   className='threeDotsBtn__btn align-center  p-1 '
                   onClick={handleEdit} 
-              >
-                      
-                  {/* <img 
+              >                     
+                   <img 
                       alt='edit' 
                       style={{ marginRight: '3px' }}              
                       className={ blinkingSaveIcon ? 'blinkingIcon':'' } 
                       src={ editButtonClicked? editimg: saveimg } 
-                  />  */}
-
+                  />  
                 {text}
 
               </button>
@@ -178,13 +175,11 @@ function ThreeDotsBtn({
                           borderRadius: dataBase.DeckNames[index]?.paused? '5px': null
                         }}
               >
-
-                  {/* <img 
+                   <img 
                       alt='pause' 
                       className='threeDotsBtn__trash-pause-img'
                       src={ !dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
-                  /> */}
-
+                  /> 
                   {text}
 
               </button>
@@ -200,11 +195,11 @@ function ThreeDotsBtn({
                     setThreeDotsOpen(false)
                 }}
               >
-                {/* <img 
+                <img 
                       src={trashimg} 
                       alt='trash' 
                       className='threeDotsBtn__trash-pause-img'
-                /> */}
+                /> 
 
                 {text}
 
@@ -218,11 +213,11 @@ function ThreeDotsBtn({
                   onClick={resetEvent}
               >
 
-                {/* <img 
+                 <img 
                     src={resetimg} 
                     alt='reset'
                     className='threeDotsBtn__reset-img' 
-                /> */}
+                /> 
 
                 {text}
               </button>

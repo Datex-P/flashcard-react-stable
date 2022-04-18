@@ -4,6 +4,7 @@ import flashcard from "../icons/flashcard-design-new.png";
 import usersSolid from "../icons/users.svg";
 import keysSolid from "../icons/keys.svg";
 import "../styles.css";
+import './login.css';
 import ParticleBackground from "./Particles/ParticlesBackground";
 import Button from "./Button";
 import Facebook from "./Facebook";
@@ -81,22 +82,26 @@ function Login() {
                 <div>This field is required</div>
               )}
             </div>
-          </div>
-         
+          </div>     
           <div className='login__button-container flex-column justify-between'>
-            <Button
-              // style={{ zIndex: "10" }}
-              // onClick={console.log("hello her")}
-              login
-            />
             <Button />
           </div>
         </form>
-
         <div className='height100px login__field-distance flex-column justify-between align-center'>
-          <Facebook setUser={setUser} />
-          {/* <Google/> */}
+          <div>Or login with:</div>
+          <div className='d-flex'>
+            <Facebook setUser={setUser} />
+            {/* <Google/> */}
+          </div>
         </div>
+        <span className='mt-10px'>
+          Not a member?
+          <a 
+            href='/register' 
+            className='login__text-dec-none login__col-navajowhite ml-10px'>
+          Sign up now
+          </a>
+        </span>
       </div>
     </div>
     // </ParticleBackground>

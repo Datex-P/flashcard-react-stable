@@ -27,6 +27,9 @@ export default function App() {
           <Route path='/login'>
             <Login />  
           </Route>
+          <Route path='/main'>
+            <LandingPage />  
+          </Route>
           <Route path='/stats'>
             <Stats />
           </Route>

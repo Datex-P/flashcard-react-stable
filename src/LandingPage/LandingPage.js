@@ -1,6 +1,7 @@
 import React, { useEffect, useContext} from "react";
 import { Context } from "../Context"; 
 import { Container, Row, Spinner } from "react-bootstrap";
+import './landingpage.css'
 
 import Deck from "../Deck/deck/Index/index";
 import CreateNewDeck from "./CreateNewDeck";
@@ -53,13 +54,21 @@ export default function DeckContainer() {
     <>
       <MenuContainer />
       <Container
-        className="align-items-center containerStyling"
+        className="align-items-center landingpage__cont "
         style={{
           // backgroundColor:
           //   styles.backgroundColor[dataBase.userPreferences.backgroundColor],
           backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
         }}
       >
+       <CreateNewDeck         
+              style={{ position: "absolute", zIndex: "40" }}
+              close={() => {
+                setDecksAreVisible(true);
+                setAddNewDeckWindow(false);
+                setShowProgressDiagram(true);
+              }}
+            />
        
 
         <Row className="posRelative">
@@ -145,14 +154,14 @@ export default function DeckContainer() {
 
           <div className='row__createNewDeck-container'
           >
-            <CreateNewDeck         
+            {/* <CreateNewDeck         
               style={{ position: "absolute", zIndex: "40" }}
               close={() => {
                 setDecksAreVisible(true);
                 setAddNewDeckWindow(false);
                 setShowProgressDiagram(true);
               }}
-            />
+            /> */}
           </div>
         </Row>
       </Container>

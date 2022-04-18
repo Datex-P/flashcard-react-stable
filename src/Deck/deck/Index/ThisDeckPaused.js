@@ -1,5 +1,5 @@
 import React, { useContext}  from 'react';
-// import playimg from "../../../icons/play.svg";
+import playimg from "../../../icons/play.svg";
 import { Context } from "../../../Context";
 
 
@@ -33,11 +33,11 @@ export default function ThisDeckPaused ({index}) {
               handlePause();
             }}
           >
-            {/* <img
+            <img
               src={playimg}
               alt="play"
               className='paused__img-play'
-            /> */}
+            /> 
           </button>
         </div>
         <div className="paused__countToStudyGoal">

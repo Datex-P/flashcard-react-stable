@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { Context } from "../Context"; 
+import Button from './Button.js'
 
 export default function CreateNewDeck({
   close
@@ -140,30 +141,8 @@ export default function CreateNewDeck({
 
       <div className="createNewDeck__cancel-ok justify-between"
       >
-        {["Cancel", "Ok"].map((el) => (
-          <button
-            className="okCancelButtonColor okCancelButton"
-            key={el}
-            ref={el==='Ok'? Ok:Cancel}
-            onClick={() => {
-              el === "Cancel"
-                ? (() => {
-                  close();
-                  setInputField("");
-
-                  if (dataBase.DeckNames.length === 0) {
-                  
-                    setArrowDown(true);
-                    setDecksAreVisible(false);
-
-                  }
-                })()
-                : addNewDeckName();
-            }}
-          >
-            {el}
-          </button>
-        ))}
+        <Button/>
+        <Button/>
       </div>
     </Modal>
   );

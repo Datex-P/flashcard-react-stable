@@ -1,0 +1,83 @@
+
+.login__btn-google div {
+  padding: 4px !important;
+  padding-left: 12px !important;
+}
+
+.login__btn-google span {
+  padding: 13px 10px 10px 10px !important;
+  margin-left: 5px !important; 
+}
+
+.login__img-login-password {
+  width: 16px; 
+  margin-right: 9px;
+}
+
+.login__button {
+  height: 30px; 
+  border-radius: 5px;
+  margin-left: 25px;
+  width: 80%;
+}
+.login__google {
+  width: 80%;
+}
+
+.login__google > * {
+  width: 100%
+}
+
+
+.login__button-container {
+  margin-top:15px;
+  height:75px;
+}
+
+.login__input {
+  width: 80%;
+  height: 25px;
+  padding: 3px;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.login__choose-name {
+  text-align: center;
+  margin-left: 10px;
+  margin-bottom: 7px;
+}
+
+.mb-25px {
+  margin-bottom: 25px;
+}
+
+.mt-10px {
+  margin-top: 10px;
+}
+
+.ml-10px {
+  margin-left: 10px;
+}
+
+.login__col-navajowhite {
+  color: navajowhite;
+}
+
+.login__text-dec-none {
+  text-decoration: none;
+}
+
+.login__btn-facebook {
+  display: inline-block;
+  font-size: 13px;
+  width: 136px;
+  height: 30px;
+  border-radius: 4px;
+  background: #3b5998;
+  color: white;
+  border: 0px transparent;
+  text-align: center;
+  margin: 5px;
+  margin-left: 21px;
+}

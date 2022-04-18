@@ -12,14 +12,14 @@ export default function Button ({login=false}) {
     <button
       className='login__button justify-center-align-center'
       onClick={() => {
-            login? setRegister(true):
-            history.push("/register");
+           // login? setRegister(true):
+           // history.push("/register");
             //setLogin(true)
             
       }}
       type='submit'
     >
-        {login? 'Login': 'Sign Up'}
+        Login
     </button>
   )
 }
