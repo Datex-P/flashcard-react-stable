@@ -1048,6 +1048,9 @@ margin-bottom: 20px;
   width: 175px;
 }
 
+.height50vh {
+  height: '50vh';
+}
 
 .pieDiagramContainer {
   width: 80px;

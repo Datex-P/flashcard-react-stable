@@ -95,8 +95,6 @@ export default function ContextProvider({ children }) {
         day: 4
       },
       studied: [new Date()],
-
-
     };
 
     for (let i = 100; i < 103; i++) {
@@ -118,9 +116,6 @@ export default function ContextProvider({ children }) {
           })
         }
       };
-
-    
-
       dB.DeckNames.push(
         {
           name:`Litera${i}`,
@@ -134,10 +129,8 @@ export default function ContextProvider({ children }) {
           skipPausedCards: 0,
           pauseMode:false,   //when active the pause switch can be clicked in question answers when cards are paused
           editModeActive:false //when editModeActive is true, pause switch can t be clicked
-
         }
-
-      );
+       );
       dB.active++
     }
     setDataBase(dB)
