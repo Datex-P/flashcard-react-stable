@@ -16,22 +16,19 @@ export default function ThisDeckPaused ({index}) {
    
   }
   return (
-  <div
+      <div
         className="deckEmptyAndPausedContainer justify-evenly-align-center flex-column"
         style={{ background: colors[index % 5] }}
       >
         <div>
-          This deck is paused.
+        This deck is paused.
         </div>
 
-        <div className='align-center'
-        >
+        <div className='align-center'>
           Press:
           <button
             className="btn-play justify-center-align-center"
-            onClick={() => {
-              handlePause();
-            }}
+            onClick={handlePause}
           >
             <img
               src={playimg}
@@ -45,4 +42,4 @@ export default function ThisDeckPaused ({index}) {
         </div>
       </div>
   )
-          }
+}

@@ -84,6 +84,7 @@ export default function CreateNewDeck({close}) {
   
 
   return (
+    <div className='row__createNewDeck-container'>
     <Modal
       show={addNewDeckWindow}
       backdrop="static"
@@ -106,10 +107,7 @@ export default function CreateNewDeck({close}) {
             onChangeHandler(event)    
           }}
         />
-         
-        {
-          <div className='createNewDeck__too-short-or-long'
-          >
+          <div className='createNewDeck__too-short-or-long'>
             {
             `${
               dataBase.DeckNames.map(a=>a.name).includes(inputField)?
@@ -119,8 +117,7 @@ export default function CreateNewDeck({close}) {
               ''
               }`
             }
-          </div>
-        }
+          </div>     
         <select className="createNewDeck__select-options">
           <option>option 1</option>
           <option>option 2</option>
@@ -131,8 +128,9 @@ export default function CreateNewDeck({close}) {
       </Modal.Body>
       <div className="createNewDeck__cancel-ok justify-between">
         <Button setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
-        <Button  setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
+        <Button  ok setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
       </div>
     </Modal>
+    </div>
   );
 }

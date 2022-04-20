@@ -75,12 +75,10 @@ function RenderDays() {
             }
           }}
         >
-          {showTodaysProg && day.cardsStudied ? (
+          {showTodaysProg && day.cardsStudied && 
             <div
               className='render-days__todayStudyInfo'
-              style={{
-                left: right+'px'
-              }}
+              style={{left: right+'px'}}
               ref={innerStat}
             >
               {day.day}
@@ -94,7 +92,7 @@ function RenderDays() {
                 {day.cardsStudied} card${day.cardsStudied !== 1 ? "s" : ""}`
               </div>
             </div>
-          ) : null}
+          }
         </div>
       ))}
     </div>

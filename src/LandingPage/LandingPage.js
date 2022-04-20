@@ -24,7 +24,6 @@ export default function DeckContainer() {
     showProgressDiagram, setShowProgressDiagram, //diagram that is visible on the top right corner
     setAddNewDeckWindow,
     spinnerIsVisible, setSpinnerIsVisible //loading sign that appears when database loads
-
   } = useContext(Context);
 
 
@@ -121,17 +120,13 @@ export default function DeckContainer() {
             }
             </div>
           ) 
-          : arrowDown ? (
+          : arrowDown && 
             <StartFirstDeck/>
-           
-          ) : null}
-
-
+         }
           {
             showProgressDiagram &&
           <ShowProgressD/>
-          }
-         
+          }      
         </Row>
 
         <Row className='justify-content-center'>
@@ -141,23 +136,17 @@ export default function DeckContainer() {
             onClick={createDeckHandler}
           >
             Create Deck
-          </button>
-
-          <div className='row__createNewDeck-container'>
-             <CreateNewDeck         
-              style={{ position: "absolute", zIndex: "40" }}
-              close={closeHandler()}
-            /> 
-          </div>
+          </button>  
+          <CreateNewDeck
+            style={{ position: "absolute", zIndex: "40" }}
+            close={closeHandler}
+          />    
         </Row>
       </Container>
     </>
   ) : (
     // 'database empty'
-    <div
-      className="justify-center-align-center"
-      style={{ height: "50vh" }}
-    >
+    <div className="justify-center-align-center height50vh">
       <Spinner animation="grow" />
     </div>
   );
