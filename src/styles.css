@@ -1051,9 +1051,9 @@ margin-bottom: 20px;
 
 .pieDiagramContainer {
   width: 80px;
-  right: 37px;
+  /* right: 37px;
   top: -76px;
-  position: absolute;
+  position: absolute; */
 }
 
 #createDeck .modal-content {
@@ -1322,7 +1322,6 @@ textarea:enabled {
   z-index: 4;
   padding: 2px;
   position: absolute;
-  top: 630px;
   width: 217px;
   height: 30px;
   outline: none !important;
@@ -1460,11 +1459,7 @@ textarea:enabled {
 
 .firstRowStyling {
   /*the positioning of all the decks*/
-  position: relative;
   padding: 50px;
-  width: 400px;
-  margin-left: 30px;
-  margin-top: 77px;
 }
 
 input::-webkit-outer-spin-button,

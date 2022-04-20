@@ -3,9 +3,7 @@ import { Modal } from "react-bootstrap";
 import { Context } from "../Context"; 
 import Button from './Button.js'
 
-export default function CreateNewDeck({
-  close
-}) {
+export default function CreateNewDeck({close}) {
 
   const {
     addNewDeckWindow, 
@@ -82,10 +80,8 @@ export default function CreateNewDeck({
             }
 
           }, 800)
-
     }
   
-
 
   return (
     <Modal
@@ -95,16 +91,13 @@ export default function CreateNewDeck({
       id="createDeck"
       centered
     >
-      <Modal.Header
-      >
-          <Modal.Title
-          >
+      <Modal.Header>
+          <Modal.Title>
             Name for new deck
           </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body className="align-center flex-column"
-      >
+      <Modal.Body className="align-center flex-column">
         <input
           id="inputField"
           ref={inputRef}
@@ -128,9 +121,7 @@ export default function CreateNewDeck({
             }
           </div>
         }
-
-        <select className="createNewDeck__select-options"
-        >
+        <select className="createNewDeck__select-options">
           <option>option 1</option>
           <option>option 2</option>
           <option>option 3</option>
@@ -138,7 +129,6 @@ export default function CreateNewDeck({
           <option>option 5</option>
         </select>
       </Modal.Body>
-
       <div className="createNewDeck__cancel-ok justify-between">
         <Button setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
         <Button  setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>

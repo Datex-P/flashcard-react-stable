@@ -35,6 +35,16 @@ export default function DeckContainer() {
     }, 2000);
   }, []);
 
+  function colorHandler () {
+    colors.map((i, k, ar) => {
+      if (active === k) {
+        return ar[ar.length % (k || 1)];
+      } else {
+        return i;
+      }
+    })
+  }
+
 
   function createDeckHandler () {
     if (!editButtonClicked) {
@@ -48,11 +58,16 @@ export default function DeckContainer() {
     }
   }
 
+  function closeHandler () {
+    setDecksAreVisible(true);
+    setAddNewDeckWindow(false);
+    setShowProgressDiagram(true);
+  }
+
   
 
   return !spinnerIsVisible && dataBase ? (
     <>
-      <MenuContainer />
       <Container
         className="align-items-center landingpage__cont "
         style={{
@@ -60,6 +75,7 @@ export default function DeckContainer() {
         //  backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
         }}
       >
+      <MenuContainer />
         <Row className="posRelative">
           {decksAreVisible ? (
             <div className="firstRowStyling">
@@ -88,22 +104,8 @@ export default function DeckContainer() {
                           deck={deck}
                           transform={`rotate(${-accum.index * 2}deg)`}
                           zIndex={0}
-                          bg={colors.map((i, k, ar) => {
-                            if (active === k) {
-                              return ar[ar.length % (k || 1)];
-                            } else {
-                              return i;
-                            }
-                          })}
-                          background={
-                            colors.map((i, k, ar) => {
-                              if (active === k) {
-                                return ar[ar.length % (k || 1)];
-                              } else {
-                                return i;
-                              }
-                            })[index % colors.length]
-                          }
+                          bg={colorHandler}
+                          background={colorHandler}
                         />
                       );
                     }
@@ -141,15 +143,10 @@ export default function DeckContainer() {
             Create Deck
           </button>
 
-          <div className='row__createNewDeck-container'
-          >
+          <div className='row__createNewDeck-container'>
              <CreateNewDeck         
               style={{ position: "absolute", zIndex: "40" }}
-              close={() => {
-                setDecksAreVisible(true);
-                setAddNewDeckWindow(false);
-                setShowProgressDiagram(true);
-              }}
+              close={closeHandler()}
             /> 
           </div>
         </Row>
