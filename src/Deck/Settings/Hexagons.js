@@ -17,42 +17,32 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
     setShowDay(true)
   }
 
+  function srcHandler () {
+    return idx <= dataBase.userPreferences.days ? 
+    hexagonGreen : hexagonWhite
+  }
+
   return (
     
-    <div className='hexagons justify-center-align-center flex-column'
-    >
-
+    <div className='hexagons justify-center-align-center flex-column'>
       {
+        editHex?
         <img
-          style={{ cursor: editHex ? 'default' : 'pointer' }}
-      
+          style={{ cursor: 'default'}}     
           draggable={false}
-          src={
-              idx <= dataBase.userPreferences.days ? 
-              
-              hexagonGreen 
-              : 
-              hexagonWhite
-          }
+          src={srcHandler()}
           alt='hexagon'
-          onClick={() => { 
-                setEditHex(true) 
-                }}
-          onMouseEnter={
-              editHex ? 
-
-              () => { } 
-              : 
-              setIndex
-              }
-          onMouseLeave={
-              editHex ? 
-
-              () => { } 
-              : 
-              () => { setShowDay(false) 
-          }}
-
+          onClick={setEditHex(true)}
+        />
+        :
+        <img
+          style={{cursor: 'pointer'}}     
+          draggable={false}
+          src={srcHandler()}
+          alt='hexagon'
+          onClick={setEditHex(true) }
+          onMouseEnter={setIndex(true)}
+          onMouseLeave={setShowDay(false)}
         />
       }
       {
@@ -61,12 +51,8 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
           (showDay || idx === dataBase.userPreferences.days)) || idx === dataBase.userPreferences.days) 
         &&
             
-        <div className='hexagons__editHex'
-        >
-
-            <div className='hexagons__blackArrow'>
-            </div>
-            
+        <div className='hexagons__editHex'>
+            <div className='hexagons__blackArrow'></div>           
             <span className='fontBold'
             >
                 {

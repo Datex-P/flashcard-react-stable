@@ -1,0 +1,27 @@
+.stats__ButtonLeftAndRight__year {
+  width: 33px;
+  cursor: default; 
+  margin: 5px;
+  margin-top:  1px;
+}
+
+.stats__ButtonLeftAndRight__signs {
+  width: 33px;
+  cursor: pointer;
+  height: 20px;
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.stats__DeleteCardQuestionBox__cont {
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+.stats__BasicOrangeWindow__cont {
+  width: 70%;
+  height: 50%;
+}

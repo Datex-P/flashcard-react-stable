@@ -45,7 +45,7 @@ function Settings({ history }) {
   }
 
 
-function ImgCont({hex=false}) {
+function ImgContainer({hex=false}) {
 
   function notHexagonal() {
     setEditIsPossible(!editIsPossible)
@@ -119,7 +119,7 @@ function ImgCont({hex=false}) {
               className='settings__save-or-edit-container'
               title='Click and change name buttons and repetition intervals for all decks.'
           >
-           <ImgCont
+           <ImgContainer
            /> 
                 <img
                   src={saveOrEdit ? save : edit}
@@ -154,7 +154,7 @@ function ImgCont({hex=false}) {
             }   
           </div>
           <div className='settings__saveoredit'>
-            <ImgCont/>
+            <ImgContainer/>
           </div>
           <div className='settings__weekly-target justify-center'>
             Target met: {dataBase.userPreferences.weeksInRow} weeks in a row

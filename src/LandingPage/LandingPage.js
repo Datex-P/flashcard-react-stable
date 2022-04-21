@@ -133,14 +133,14 @@ export default function DeckContainer() {
           <button
             className='row__btn-create-deck'
             style={{ cursor: !editButtonClicked ? "default" : "pointer" }}
-            onClick={createDeckHandler}
+            onClick={<CreateNewDeck/>}
           >
             Create Deck
           </button>  
-          <CreateNewDeck
+          {/* <CreateNewDeck
             style={{ position: "absolute", zIndex: "40" }}
             close={closeHandler}
-          />    
+          />     */}
         </Row>
       </Container>
     </>

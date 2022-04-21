@@ -13,8 +13,8 @@ export default function ThisDeckPaused ({index}) {
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].paused = true;
     setDataBase(newDataBase);
-   
   }
+  
   return (
       <div
         className="deckEmptyAndPausedContainer justify-evenly-align-center flex-column"

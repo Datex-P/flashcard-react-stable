@@ -1,10 +1,11 @@
-import React, { useState} from 'react';
+import React, { useContext} from 'react';
 import style from './style.module.css'
+import { Context } from '../../Context'
 
 
 
 
-export default function RepetitionIntervalFields(
+function RepetitionIntervalFields(
                                       { data: { name, amount, unit }, 
                                       editIsPossible, index, 
                                       userTimePreferences, setUserTimePreferences,
@@ -47,12 +48,9 @@ export default function RepetitionIntervalFields(
 
   return (
     
-    <div className='p-2 flex-column justify-center-align-center' 
-    >
-      <div  className='repetitionIntervalFields-p border border-dark justify-center' 
-      >
-          <div style={{ marginRight: '4px' }}
-          >
+    <div className='p-2 flex-column justify-center-align-center'>
+      <div  className='repetitionIntervalFields-p border border-dark justify-center' >
+          <div style={{ marginRight: '4px' }}>
 
               {'<'}
           </div>
@@ -73,11 +71,8 @@ export default function RepetitionIntervalFields(
             
               />
           </form>
-
             {
-              <div className='fontBold'
-              >
-                
+              <div className='fontBold'>              
                 {unit}
               </div>
             }
@@ -103,3 +98,20 @@ export default function RepetitionIntervalFields(
 
 }
 
+// export default Repetition(){
+
+//   const { dataBase, setDataBase,setShowProgressDiagram } = useContext(Context)
+
+//   return(
+// <div 
+//                   className='justify-around' 
+//                   style={{width: '280px'}}
+//               >
+//                   {
+//                     dataBase &&
+                      
+//                       dataBase.userTimePreferences.map((col, k) =>
+//                       RepetitionIntervalFields
+//                   }
+//   </div>)
+// }
