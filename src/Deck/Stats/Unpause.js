@@ -7,7 +7,6 @@ function Unpause({index}) {
 
   const { dataBase, setDataBase } = useContext(Context);
 
-
   function handlePause(index) { 
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].paused = true;
@@ -16,8 +15,6 @@ function Unpause({index}) {
   }
 
   let colors = ["#ffcdb2", "#ffb4a2", "#e5989b", "#b5838d", "#6d6875"];
-
-
 
   return (
     <div
@@ -30,9 +27,7 @@ function Unpause({index}) {
       Press:
       <button
         className="btn-play justify-center-align-center"
-        onClick={() => {
-          handlePause();
-        }}
+        onClick={handlePause}
       >
         <img
           src={playimg}

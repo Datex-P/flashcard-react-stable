@@ -16,44 +16,41 @@ export default function NoAndYes ({
 }) {
 
   const { dataBase, setDataBase, setShowRepeatBtn} = useContext(Context)
+
+  function yesHandler() {
+    trashEvent()
+    deleteCurrentCard()
+    setShowRepeatBtn(false)
+    setShowAnswerBtn(true)
+    setEditBtnClicked(false)
+
+  if(pauseCardinQuestionAnswer){
+    let newDataBase = { ...dataBase }
+    dataBase.DeckNames[index].data[randomQuestion].paused = true
+    setDataBase(newDataBase)
+  }
+}
+
   return (
-    <div className='deleteCardQuestionBox-modal-footer justify-around-align-center' 
-    >
-      <div className='justify-around noandyes-inner'
-      >
-      {
-        ['No', 'Yes'].map(el =>
-                            <div 
-                                key={el}
-                                className='deleteContainerNoAndYes justify-center-align-center'
-                                onClick={() => {
-                                  if (el === 'Yes') {
-                                    trashEvent()
-                                    deleteCurrentCard()
-                                    setShowRepeatBtn(false)
-                                    setShowAnswerBtn(true)
-                                    setEditBtnClicked(false)
-                              
-
-                                  if(pauseCardinQuestionAnswer){
-
-                                    let newDataBase = { ...dataBase }
-
-                                    dataBase.DeckNames[index].data[randomQuestion].paused = true
-                                    setDataBase(newDataBase)
-                                  
-                                  }
-                                  }
-
-                                  deleteWindow()
-                                  setPauseOrDeleteText(true)
-                                }}
-                            >
-
-                              {el}
-                            </div>
-                            )
-      }
+    <div className='deleteCardQuestionBox-modal-footer justify-around-align-center'>
+      <div className='justify-around noandyes-inner'>
+        {
+          ['No', 'Yes'].map(el =>
+            <div 
+                key={el}
+                className='deleteContainerNoAndYes justify-center-align-center'
+                onClick={() => {
+                    if (el === 'Yes') {
+                        yesHandler()
+                    }
+                    deleteWindow()
+                    setPauseOrDeleteText(true)
+                }}
+              >
+                {el}
+            </div>
+          )
+        }
       </div>
     </div>
   )

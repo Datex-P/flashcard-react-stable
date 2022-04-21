@@ -42,9 +42,7 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
 
   return (
 
-
-    <div
-    >
+    <div>
       <input type="checkbox" name="onoffswitch"
         className="onoffswitch-checkbox myonoffswitch"
         id="myonoffswitch"

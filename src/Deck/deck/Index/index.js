@@ -100,17 +100,12 @@ export default function Deck({
         className="newDeckContainer flexColumn position-absolute "
       >
      
-        <Card.Body className="justify-center-align-center flex-column"
-        >
+        <Card.Body className="justify-center-align-center flex-column">
         <NameLongOrShort 
             nameTooLongOrShort={nameTooLongOrShort} 
             nameOfTopDeck={nameOfTopDeck}
         />
-        
-
-          <Card.Title
-            className="index-card-title justify-between-align-center position-relative"
-          >
+          <Card.Title className="index-card-title justify-between-align-center position-relative">
               <DeckOrCardName 
                 bg={bg}
                 nameOfTopDeck={nameOfTopDeck}
@@ -153,20 +148,16 @@ export default function Deck({
                 border: paused ? "none" : "1px solid black",
                 backgroundColor: paused ? "black" : "white",
               }}
-              editEvent={() => {
-              
+              editEvent={() => {   
                 setThreeDotsMenuOpen(false);
-                setEditButtonClicked(!editButtonClicked);
-               
-
+                setEditButtonClicked(!editButtonClicked);             
               }}
               pauseEvent={(index)=>{
                 handlePause(index)
               }}
               trashEvent={
                 dataBase.checkboxClicked
-                  ? () => {
-                      deleteDeck();
+                  ? () => {deleteDeck();
                       // handleActive(active - 1);
                     }
                   : () => {
@@ -176,7 +167,6 @@ export default function Deck({
               }
             />
                 }
-
             {trash && showDeleteWindow && !paused && (
               <DeleteCardQuestionBox
                 pauseOrDelete="Delete"
@@ -192,7 +182,6 @@ export default function Deck({
               />
             )}
           </Card.Title>
-
                 <Paused
                   data={data}
                   index={index}
@@ -200,8 +189,7 @@ export default function Deck({
                   paused={paused}
                   name={name}
                   style={style}
-                />
-         
+                />        
           <QuestAnswerTrainOverv
             name={name}
             index={index}
@@ -209,7 +197,6 @@ export default function Deck({
             paused={paused}
            
           />
-
           {active === index && (
        
             <AddQuestionsToDeck

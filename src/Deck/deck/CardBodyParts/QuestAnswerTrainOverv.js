@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Context } from "../../../Context";
-import { Button, FormControl, Alert } from "react-bootstrap";
+import { Button, FormControl} from "react-bootstrap";
 import editimg from "../../../icons/edit.svg";
-
+import CardModified from './CardModified'
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import BasicOrangeWindow from "../BasicOrangeWindow/BasicOrangeWindow";
 import DeleteCardQuestionBox from "../DeleteCardQuestionBox/DeleteCardQuestionBox";
@@ -10,7 +10,7 @@ import SaveAndDiscard from "./SaveAndDiscard";
 import RepeatBtn from "./RepeatBtn";
 import PauseModeHandler from './PauseModeHandler'
 import OpenDeckBtn from './OpenDeckBtn';
-
+import QuestionAnswerForm from './QuestionAnswerForm'
 
 export default function QuestAnswerTrainOverv({
         createDeckButtonIsVisible,
@@ -181,14 +181,12 @@ export default function QuestAnswerTrainOverv({
 
   return (
     <>
-
       <OpenDeckBtn 
           data = {data}
           generateRandom = {generateRandom}
           paused = {paused}
       />
       
-
       {deckLengthNotZero && !paused && (
         <BasicOrangeWindow
           show={show}
@@ -250,7 +248,7 @@ export default function QuestAnswerTrainOverv({
 
           {data[randomQuestion] && (
             <>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <p className="questionAnswerStyling">Question</p>
 
                 <FormControl
@@ -263,7 +261,13 @@ export default function QuestAnswerTrainOverv({
                   className="formControlIn"
                   ref={inputRef}
                 />
-              </div>
+              </div> */}
+              <QuestionAnswerForm 
+              card={card}
+              editBtnClicked={editBtnClicked}
+              changeHandler={changeHandler}
+              inputRef
+              />
 
               {showAnswerBtn && (
                 <Button
@@ -281,19 +285,15 @@ export default function QuestAnswerTrainOverv({
               {dataBase.DeckNames[index].pauseMode &&
 
               <PauseModeHandler
-
                 generateRandom={generateRandom}
                 index = {index}
                 randomQuestion={randomQuestion}
-
               />
               } 
 
               {showRepeatBtn && (
                 <div className="justify-center">
-                  <div
-                    className="justify-between px-3 showRepeatBtnInner"
-                  >
+                  <div className="justify-between px-3 showRepeatBtnInner">
                     {dataBase.userTimePreferences.map((col, index) => (
                       <RepeatBtn
                         btn={col.name}
@@ -309,36 +309,17 @@ export default function QuestAnswerTrainOverv({
                   </div>
                 </div>
               )}
-
-              {cardModified ? (
-                <div
-                  className="justify-center-align-center"
-                  style={{ height: "52px" }}
-                >
-                  <Alert
-                    variant="success"
-                    style={{ width: "145px", height: "35px" }}
-                  >
-                    Card was modified.
-                  </Alert>
-                </div>
-              ) : null}
-              {!showAnswerBtn && (
-                <div className="mt-4">
-                  <p className="questionAnswerStyling">Answer</p>
-
-                  <FormControl
-                    as="textarea"
-                    aria-label="With textarea"
-                    value={card.answer}
-                    disabled={!editBtnClicked}
-                    name="answer"
-                    onChange={changeHandler}
-                    className="formControlIn"
-                  />
-                </div>
-              )}
-
+              {cardModified && 
+                <CardModified/>
+              }
+              {!showAnswerBtn && 
+                <QuestionAnswerForm 
+                  card={card}
+                  editBtnClicked={editBtnClicked}
+                  changeHandler={changeHandler}
+                  inputRef
+              />
+              }
               {editBtnClicked && 
                   <SaveAndDiscard
                     generateRandom={generateRandom}

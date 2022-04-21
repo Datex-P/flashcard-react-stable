@@ -5,39 +5,33 @@ import { Context } from "../../../Context";
 export default function PauseModeHandler({generateRandom, index, randomQuestion}) {
 
   const { dataBase, setDataBase} = useContext(Context)
+
+  function unpauseHandler () {
+    let newDataBase = { ...dataBase };
+    newDataBase.DeckNames[index].data.filter(
+      (item) => item.paused
+    )[randomQuestion].paused = false;
+    setDataBase(newDataBase);
+    generateRandom();
+  }
   
   return (
     <>
-        <div className='pauseModeHandler'
-        >
+        <div className='pauseModeHandler'>
           {/* <img src={pauseimg} alt={"pause"} /> */}
-          <span style={{ marginLeft: "7px" }}>mode</span>
+          <span className='ml-7px'>mode</span>
         </div>
-
-        <div className="justify-center"
-        >
-          <div
-            className="justify-around"
-            style={{ width: "300px" }}
-          >
+        <div className="justify-center">
+          <div className="justify-around width300px">
             <div
               className="unpauseAndKeepPausedButton showAnswerButton justify-center"
-              onClick={() => {
-                let newDataBase = { ...dataBase };
-                newDataBase.DeckNames[index].data.filter(
-                  (item) => item.paused
-                )[randomQuestion].paused = false;
-                setDataBase(newDataBase);
-                generateRandom();
-              }}
+              onClick={unpauseHandler}
             >
               Unpause card
             </div>
             <div
               className="unpauseAndKeepPausedButton showAnswerButton justify-center"
-              onClick={() => {
-                generateRandom();
-              }}
+              onClick={generateRandom}
             >
               Keep paused
             </div>

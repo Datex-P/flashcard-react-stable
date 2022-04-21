@@ -19,6 +19,20 @@ export default function BasicOrangeWindow({
 
   const {dataBase, setDataBase, setShowRepeatBtn} = useContext(Context);
 
+
+  function buttonHandler () {
+    setShow(false);
+    setEdit(false);
+    setShowRepeatBtn(false);
+    setShowAnswerBtn(true);
+    setEditBtnClicked(false);
+    if (index) {
+    let newDataBase = {...dataBase}
+    newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
+    setDataBase(newDataBase)
+    }
+
+  }
   return (
     <Modal
       key={index}
@@ -73,24 +87,12 @@ export default function BasicOrangeWindow({
                 
               />
             }
-
           </div>
 
           {menu}
           <button
             className="redCross justify-center-align-center"
-            onClick={() => {
-              setShow(false);
-              setEdit(false);
-              setShowRepeatBtn(false);
-              setShowAnswerBtn(true);
-              setEditBtnClicked(false);
-              if (index) {
-              let newDataBase = {...dataBase}
-              newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
-              setDataBase(newDataBase)
-              }
-            }}
+            onClick={buttonHandler}
           >
                <img 
                   className="nonDraggableIcon" 

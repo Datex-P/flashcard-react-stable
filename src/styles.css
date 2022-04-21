@@ -756,15 +756,6 @@ input::-webkit-inner-spin-button {
   font-size: 14px;
 }
 
-.calendarButtons {
-  width: 20px !important;
-  height: 20px;
-  background-color: grey;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-}
 
 .selected svg {
   fill: green;
@@ -992,6 +983,18 @@ color: white;
   top: 20px;
   font-size: 13px;
   left: 14px;
+}
+
+.width300px {
+  width:300px;
+}
+
+.width140px {
+  width:140px;
+}
+
+.ml-7px {
+  margin-left: 7px;
 }
 
 .paused__img-play {

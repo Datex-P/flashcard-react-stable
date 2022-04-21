@@ -100,13 +100,9 @@ export default function AddQuestionsToDeck({ index, name,
         }
 
       >
-        <Modal.Header className='border-bottom-0'
-        >
-          <Modal.Title style={{fontSize: '16px'}}
-          >
-
+        <Modal.Header className='border-bottom-0'>
+          <Modal.Title style={{fontSize: '16px'}}>
             Deck: {name}
-
           </Modal.Title>
 
           <button

@@ -146,7 +146,6 @@ export default function TimeAndProgress() {
             }}
           ></div>
         </div>
-
         <div
           style={{
             position: "absolute",
@@ -168,7 +167,6 @@ function Row({ time, previousWidthVar, widthVar }) {
   return (
     <div className='d-flex'>
       <div className='time justify-center'>{time}</div>
-
       <div className='progressBar'>
         <div
           style={{

@@ -99,38 +99,31 @@ function ThreeDotsBtn({
     setPauseIsActive(savePausedState)
 
     dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
-
     //let key = newDataBase.DeckNames.findIndex(deck=>deck.name === name)
    // newDataBase.DeckNames[key].paused = true //does not work for some reason
     setDataBase(newDataBase)
    // setEditButtonClicked(true)
     setThreeDotsOpen(false)
-    //setNameOfTopDeck(name)
-    
+    //setNameOfTopDeck(name)  
   }
 
 
   return (
     <>
     {
-      dataBase?.DeckNames?.[index]?.paused || editBtnClicked ?
+      (!dataBase?.DeckNames?.[index]?.paused || !editBtnClicked) &&
     
-      null
-         :
-      <div style={threeDotsContainer}
-      >
+      <div style={threeDotsContainer}>
         <div 
             className='rotateLittleModal' 
             onClick={
                 editButtonClicked? 
-
-                handleClick                
+                handleClick()                
                   : 
                 ()=>{} 
             } 
-          >
-                  ...
-       
+        >
+                  ... 
         </div>
 
         {
@@ -143,8 +136,7 @@ function ThreeDotsBtn({
           >
 
             {
-              edit&& 
-              data?.length !==0 &&
+              edit&& data?.length !==0 &&
 
               <button 
                   className='threeDotsBtn__btn align-center  p-1 '
@@ -157,14 +149,11 @@ function ThreeDotsBtn({
                       src={ editButtonClicked? editimg: saveimg } 
                   />  
                 {text}
-
               </button>
             }
 
             {
-              pause && 
-              data?.length !==0 &&
-
+              pause && data?.length !==0 &&
 
               <button 
                   className='threeDotsBtn__btn align-center  p-1 '
@@ -174,7 +163,7 @@ function ThreeDotsBtn({
                           borderLeft: dataBase.DeckNames[index]?.paused? '1px solid black': null,
                           borderRight: dataBase.DeckNames[index]?.paused? '1px solid black': null,
                           borderRadius: dataBase.DeckNames[index]?.paused? '5px': null
-                        }}
+                  }}
               >
                    <img 
                       alt='pause' 
@@ -182,7 +171,6 @@ function ThreeDotsBtn({
                       src={ !dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
                   /> 
                   {text}
-
               </button>
             }
 
@@ -197,13 +185,11 @@ function ThreeDotsBtn({
                 }}
               >
                 <img 
-                      src={trashimg} 
-                      alt='trash' 
-                      className='threeDotsBtn__trash-pause-img'
+                  src={trashimg} 
+                  alt='trash' 
+                  lassName='threeDotsBtn__trash-pause-img'
                 /> 
-
                 {text}
-
               </button>
             }
             {
@@ -219,14 +205,12 @@ function ThreeDotsBtn({
                     alt='reset'
                     className='threeDotsBtn__reset-img' 
                 /> 
-
                 {text}
               </button>
             }
           </div>
         }
       </div>   
- 
     }
     </>
   );
