@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Context } from "../Context";
+import React from "react";
+import { useForm } from "react-hook-form";
 import flashcard from "../icons/flashcard-design-new.png";
 import usersSolid from "../icons/users.svg";
 import keysSolid from "../icons/keys.svg";
@@ -7,12 +7,9 @@ import "../styles.css";
 import './login.css';
 import ParticleBackground from "./Particles/ParticlesBackground";
 import Button from "./Button";
-import Facebook from "./Facebook";
-// import Google from './Google'
-import { useForm } from "react-hook-form";
+import LoginWithSignUp from './LoginWithSignUp/LoginWithSignUp'
 
-function Login() {
-  const { setUser } = useContext(Context);
+function Login({ setUser}) {
   const {register,handleSubmit,formState: { errors }} = useForm();
 
   const onSubmit = (data) => console.log(data);
@@ -87,21 +84,7 @@ function Login() {
             <Button />
           </div>
         </form>
-        <div className='height100px login__field-distance flex-column justify-between align-center'>
-          <div>Or login with:</div>
-          <div className='d-flex'>
-            <Facebook setUser={setUser} />
-            {/* <Google/> */}
-          </div>
-        </div>
-        <span className='mt-10px'>
-          Not a member?
-          <a 
-            href='/register' 
-            className='login__text-dec-none login__col-navajowhite ml-10px'>
-          Sign up now
-          </a>
-        </span>
+        <LoginWithSignUp setUser={setUser}/>      
       </div>
     </div>
     // </ParticleBackground>

@@ -7,12 +7,9 @@ import './settings.css'
 import Hexagon from  './Hexagons'
 import RepetitionIntervalFields from './RepetitionIntervalFields'
 import ColorScheme from './ColorScheme'
-
 import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow'
 import edit from '../../icons/edit.svg'
 import save from '../../icons/save.svg'
-//import ImgCont from './ImgCont'
-
 
 
 function Settings({ history }) {
@@ -62,13 +59,17 @@ function ImgContainer({hex=false}) {
       <img
       src={saveOrEdit ? save : edit}
       alt={saveOrEdit ? 'save' : 'edit'}
-      className= 'nonDraggableIcon'
-      style={{ outline: 'none' }}
+      className= 'nonDraggableIcon settings__outline-none'
       onClick={hex? hexagonal: notHexagonal}
       /> 
   )
 }
 
+// function imgHandler(){
+//       setEditIsPossible(!editIsPossible)
+//       setSaveOrEdit(!saveOrEdit)
+//       saveTimeNumberChanges()
+// }
   return (
 
     dataBase &&
@@ -88,14 +89,9 @@ function ImgContainer({hex=false}) {
       <div className='settings__repetiton-interval'>
           Change Repetition Interval
       </div>
-      <div className='justify-center'
-      >
-          <div className='border border-dark justify-center-align-center settings_repetition-container'
-          >
-              <div 
-                  className='justify-around' 
-                  style={{width: '280px'}}
-              >
+      <div className='justify-center'>
+          <div className='border border-dark justify-center-align-center settings_repetition-container'>
+              <div className='justify-around settings_width280px' >
                   {
                     dataBase &&
                       
@@ -121,17 +117,12 @@ function ImgContainer({hex=false}) {
           >
            <ImgContainer
            /> 
-                <img
+                {/* <img
                   src={saveOrEdit ? save : edit}
                   alt={saveOrEdit ? 'save' : 'edit'}
-                  className= 'nonDraggableIcon'
-                  style={{ outline: 'none' }}
-                  onClick={() => {
-                          setEditIsPossible(!editIsPossible)
-                          setSaveOrEdit(!saveOrEdit)
-                          saveTimeNumberChanges()
-                        }}
-                />  
+                  className= 'nonDraggableIcon settings__outline-none'
+                  onClick={imgHandler}
+                />   */}
           </div>
       </div>
       <div>
@@ -139,8 +130,7 @@ function ImgContainer({hex=false}) {
               <div className='settings__paddings'>Goal Settings</div>
               <div className='settings__weekly-target settings__paddings'>Current Weekly Target</div>
           </div>
-          <div className='justify-between-align-center border border-dark  settings__container-hexagon'
-          > 
+          <div className='justify-between-align-center border border-dark  settings__container-hexagon'> 
             {
               Array(7).fill('').map((_, idx) =>
                 <Hexagon

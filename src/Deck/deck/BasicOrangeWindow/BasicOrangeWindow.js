@@ -31,8 +31,22 @@ export default function BasicOrangeWindow({
     newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
     setDataBase(newDataBase)
     }
-
   }
+
+  function mouseEnterHandler () {
+    if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0 && !dataBase.DeckNames[index].editModeActive) {
+      document
+      .querySelector(".onoffswitch-label")
+      .classList.add("pointer");
+    }
+  }
+
+  function mouseLeaveHandler () {
+    if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0) {
+      document.querySelector(".onoffswitch-label").classList.remove("pointer");
+  }
+  }
+
   return (
     <Modal
       key={index}
@@ -46,10 +60,8 @@ export default function BasicOrangeWindow({
         backgroundColor: "rgba(0, 0, 0, 0.6)",
       }}
     >
-      <div className='innerModalContainer'
-      >
-        <Modal.Header className="border-bottom-0"
-        >
+      <div className='innerModalContainer'>
+        <Modal.Header className="border-bottom-0">
           <Modal.Title
             style={{
               fontSize: "16px",
@@ -63,45 +75,29 @@ export default function BasicOrangeWindow({
 
           <div
             className="onoffswitch"
-            onMouseEnter={() => {
-              if (
-                dataBase.DeckNames[index].data.filter((x) => x.paused === true)
-                  .length > 0 && !dataBase.DeckNames[index].editModeActive
-              ) {
-                document
-                  .querySelector(".onoffswitch-label")
-                  .classList.add("pointer");
-              }
-            }}
-            onMouseLeave={() => {
-              if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0) {
-                  document.querySelector(".onoffswitch-label").classList.remove("pointer");
-              }
-            }}
+            onMouseEnter={mouseEnterHandler}
+            onMouseLeave={mouseLeaveHandler}
           >
             {mainBox &&
               <InputCheckbox
                 index={index}
                 generateRandom={generateRandom}
-                setShowAnswerBtn={setShowAnswerBtn}
-                
+                setShowAnswerBtn={setShowAnswerBtn}                
               />
             }
           </div>
-
           {menu}
           <button
             className="redCross justify-center-align-center"
             onClick={buttonHandler}
           >
-               <img 
-                  className="nonDraggableIcon" 
-                  src={closeWindow} 
-                  alt="redCross" 
-              /> 
+            <img 
+              className="nonDraggableIcon" 
+              src={closeWindow} 
+              alt="redCross" 
+            /> 
           </button>
         </Modal.Header>
-
         <Modal.Body>
             {children}
         </Modal.Body>

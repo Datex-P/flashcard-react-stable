@@ -8,7 +8,7 @@ import closeWindow from "../../../icons/closeWindow.svg";
 import AlertComponent from './AlertComponent'
 
 export default function AddQuestionsToDeck({ index, name, 
-  show, setShow}) {
+  show, setShow, setScrollbarVisible}) {
 
   const [card, setCard] = useState({ question: '', answer: '' })
   const [newCardAdded, setNewCardAdded] = useState(false);
@@ -17,7 +17,6 @@ export default function AddQuestionsToDeck({ index, name,
     dataBase, setDataBase, 
     editButtonClicked, 
     setShowProgressDiagram,
-    setScrollbarVisible
   } = useContext(Context);
 
 

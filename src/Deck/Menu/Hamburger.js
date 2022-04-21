@@ -9,8 +9,10 @@ function Hamburger({
   const { editButtonClicked, showProgressDiagram, setShowProgressDiagram} = useContext(Context);
 
   function triggerDiagramAndState() {
-    setMenuOpen(!menuOpen);
-    setShowProgressDiagram(!showProgressDiagram);
+    if(editButtonClicked) {
+      setMenuOpen(!menuOpen);
+      setShowProgressDiagram(!showProgressDiagram);
+    }
   }
 
   return (
@@ -19,21 +21,19 @@ function Hamburger({
       style={{ cursor: !editButtonClicked ? "default" : "pointer" }} //cursor is default when edit input field is activated
     >
       <div style={{ fontSize: "18px" }}>Menu</div>
-      <div
-        className='
-        hamburger__menu-icon-container
-         align-center flex-column'
-        onClick={() => (!editButtonClicked ? null : triggerDiagramAndState())}
+      <div 
+        className='hamburger__menu-icon-containeralign-center flex-column'
+        onClick={triggerDiagramAndState}
       >
         <div
-          className={"menuIcon " + (menuOpen ? "transPlus" : " ")}
+          className={'menuIcon' + (menuOpen ? 'transPlus' : '')}
           style={{ top: menuOpen ? "8px" : "0px" }}
         ></div>
 
         {!menuOpen && <div className={"menuIcon sec"}></div>}
 
         <div
-          className={"menuIcon " + (menuOpen ? "transMinus" : " ")}
+          className={'menuIcon' + (menuOpen ? 'transMinus' : '')}
           style={{ top: menuOpen ? "8px" : "16px" }}
         ></div>
       </div>

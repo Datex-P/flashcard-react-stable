@@ -35,9 +35,9 @@ export default function DeckOrCardName({
       (
     <div 
         className='deckOrCardNameContainer'
-        style={{ background: bg}}
+        style={{background: bg}}
     >
-              {name}
+      {name}
          
     </div>
       ):(

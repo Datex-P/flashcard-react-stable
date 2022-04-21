@@ -1,8 +1,11 @@
 
-import React, {  useContext} from "react";
+import React, {  useContext, useState, useRef} from "react";
 import { Context } from "../Context"; 
 
 function Scrollbar() {
+
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const scroller = useRef();
 
   function handleActive(i) {
     setActive(i);
@@ -21,9 +24,6 @@ function Scrollbar() {
     setActive,
     changeDeckNameOpen, 
     dataBase,setDataBase, 
-    scroller,
-    setScrollPosition
-
   } = useContext(Context);
 
   return (
@@ -39,7 +39,7 @@ function Scrollbar() {
         scrollHandler(event);
       }
     }}
-  >
+    >
     <div className='scrollbar-inner'></div>
   </div>
   )

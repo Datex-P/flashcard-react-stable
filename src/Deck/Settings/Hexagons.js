@@ -24,7 +24,7 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
 
   return (
     
-    <div className='hexagons justify-center-align-center flex-column'>
+    <div className='settings__hexagons justify-center-align-center flex-column'>
       {
         editHex?
         <img

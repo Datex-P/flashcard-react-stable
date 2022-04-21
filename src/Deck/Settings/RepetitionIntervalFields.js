@@ -1,11 +1,8 @@
-import React, { useContext} from 'react';
+import React, {useState} from 'react';
 import style from './style.module.css'
-import { Context } from '../../Context'
 
 
-
-
-function RepetitionIntervalFields(
+export default function RepetitionIntervalFields(
                                       { data: { name, amount, unit }, 
                                       editIsPossible, index, 
                                       userTimePreferences, setUserTimePreferences,

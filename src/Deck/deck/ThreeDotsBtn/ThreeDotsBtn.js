@@ -29,10 +29,7 @@ function ThreeDotsBtn({
                       }) 
 
 {
-  const {
-    dataBase, setDataBase,
-    editButtonClicked,
-  } = useContext(Context);
+  const {dataBase, setDataBase,editButtonClicked} = useContext(Context);
   
   let {edit=false,trash=false,pause=false} = icons;
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
@@ -40,10 +37,16 @@ function ThreeDotsBtn({
   const [threeDotsOpen, setThreeDotsOpen] = useState(showFromParent);
  
 
+  function trashHandler() {
+    trashEvent()
+    setThreeDotsOpen(false)
+  }
 
   const handleClick = () => {
-    setThreeDotsOpen(!threeDotsOpen);
-    // setShowFromParent(!show)
+    if(editButtonClicked) {
+      setThreeDotsOpen(!threeDotsOpen);
+      // setShowFromParent(!show)
+    }
 
   };
 
@@ -80,7 +83,7 @@ function ThreeDotsBtn({
   function handleEdit() {
     editEvent() 
     if(type==='card'){
-      handleClick()
+      setThreeDotsOpen(!threeDotsOpen)
     }
     // !editName && setShow(false) 
     // other way of writing it
@@ -90,9 +93,7 @@ function ThreeDotsBtn({
     }
   }
   
-
   function handlePause () {
-  
     //pauseEvent(index)
     let newDataBase = {...dataBase}
     let savePausedState = !pauseIsActive
@@ -116,16 +117,10 @@ function ThreeDotsBtn({
       <div style={threeDotsContainer}>
         <div 
             className='rotateLittleModal' 
-            onClick={
-                editButtonClicked? 
-                handleClick()                
-                  : 
-                ()=>{} 
-            } 
+            onClick={handleClick}
         >
                   ... 
         </div>
-
         {
           threeDotsOpen && 
           
@@ -134,7 +129,6 @@ function ThreeDotsBtn({
             style={style}
             className={`ml-2 rounded mt-2 ${className}`}
           >
-
             {
               edit&& data?.length !==0 &&
 
@@ -143,27 +137,19 @@ function ThreeDotsBtn({
                   onClick={handleEdit} 
               >                     
                    <img 
-                      alt='edit' 
-                      style={{ marginRight: '3px' }}              
-                      className={ blinkingSaveIcon ? 'blinkingIcon':'' } 
-                      src={ editButtonClicked? editimg: saveimg } 
+                      alt='edit'              
+                      className={`mr3px ${blinkingSaveIcon ? 'blinkingIcon':''}`} 
+                      src={editButtonClicked? editimg: saveimg } 
                   />  
                 {text}
               </button>
             }
-
             {
               pause && data?.length !==0 &&
 
               <button 
-                  className='threeDotsBtn__btn align-center  p-1 '
-                  onClick={()=>handlePause(index)}
-                  style={{
-                          borderTop: '1px solid black', borderBottom: '1px solid black' ,
-                          borderLeft: dataBase.DeckNames[index]?.paused? '1px solid black': null,
-                          borderRight: dataBase.DeckNames[index]?.paused? '1px solid black': null,
-                          borderRadius: dataBase.DeckNames[index]?.paused? '5px': null
-                  }}
+                  className={`threeDotsBtn_btn_pause threeDotsBtn__btn align-center  p-1 ${dataBase.DeckNames[index]?.paused? 'threeDotsBtn__conditional': ''} `}
+                  onClick={handlePause(index)}
               >
                    <img 
                       alt='pause' 
@@ -173,16 +159,12 @@ function ThreeDotsBtn({
                   {text}
               </button>
             }
-
             {
               trash && 
               
               <button 
                 className='threeDotsBtn__btn align-center  p-1'
-                onClick={() => {
-                    trashEvent()
-                    setThreeDotsOpen(false)
-                }}
+                onClick={trashHandler}
               >
                 <img 
                   src={trashimg} 
@@ -199,7 +181,6 @@ function ThreeDotsBtn({
                   className='threeDotsBtn__btn align-center outline-none p-1'
                   onClick={resetEvent}
               >
-
                  <img 
                     src={resetimg} 
                     alt='reset'

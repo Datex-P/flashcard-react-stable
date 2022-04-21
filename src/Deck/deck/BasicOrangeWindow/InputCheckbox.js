@@ -50,12 +50,8 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
         onChange={handleChecked}
         value='10'
       />
-
-
       <label className="onoffswitch-label" htmlFor="myonoffswitch"
-       onClick={() => {
-         switchOnOrOff()
-       }}
+       onClick={switchOnOrOff}
       >
         <span className="onoffswitch-inner"></span>
         <span className="onoffswitch-switch justify-center-align-center"

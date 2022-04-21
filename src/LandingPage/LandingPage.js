@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect, useContext, useState} from "react";
 import { Context } from "../Context"; 
 import { Container, Row, Spinner } from "react-bootstrap";
 import './landingpage.css'
@@ -12,18 +12,20 @@ import Scrollbar from './Scrollbar'
 import StartFirstDeck from './StartFirstDeck'
 
 export default function DeckContainer() {
-  
+  const [addNewDeckWindow, setAddNewDeckWindow] = useState(false);
+  const [spinnerIsVisible, setSpinnerIsVisible] = useState(true); //spinner that is shown when application loads
+  const [scrollbarVisible, setScrollbarVisible] = useState(true)
+  const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
+  const [showProgressDiagram, setShowProgressDiagram] = useState(true);
+  const [arrowDown, setArrowDown] = useState(true);
+
   const {
     active, 
-    arrowDown, setArrowDown, //arrow that is visible when there are no decks created so far
+   // arrowDown, setArrowDown, //arrow that is visible when there are no decks created so far
     colors, //colors array for the decks
     dataBase, 
-    decksAreVisible, setDecksAreVisible,
     editButtonClicked, 
-    scrollbarVisible, //scrollbar dissapears when settings or stats page are opened
-    showProgressDiagram, setShowProgressDiagram, //diagram that is visible on the top right corner
-    setAddNewDeckWindow,
-    spinnerIsVisible, setSpinnerIsVisible //loading sign that appears when database loads
+   // setAddNewDeckWindow,
   } = useContext(Context);
 
 
@@ -86,7 +88,9 @@ export default function DeckContainer() {
                         <Deck
                           key={index}
                           index={index}
+                          setDecksAreVisible={setDecksAreVisible}
                           deck={deck}
+                          setArrowDown={setArrowDown}
                           transform={`rotate(0deg)`}
                           zIndex={2}
                           background={colors[active % colors.length]}
@@ -99,7 +103,8 @@ export default function DeckContainer() {
                         <Deck
                           key={index}
                           index={index}
-                          setDeck
+                          setArrowDown={setArrowDown}
+                          setDecksAreVisible={setDecksAreVisible}
                           deck={deck}
                           transform={`rotate(${-accum.index * 2}deg)`}
                           zIndex={0}
@@ -130,17 +135,22 @@ export default function DeckContainer() {
         </Row>
 
         <Row className='justify-content-center'>
-          <button
+          {/* <button
             className='row__btn-create-deck'
             style={{ cursor: !editButtonClicked ? "default" : "pointer" }}
             onClick={<CreateNewDeck/>}
           >
             Create Deck
-          </button>  
-          {/* <CreateNewDeck
+          </button>   */}
+          <CreateNewDeck
+            addNewDeckWindow={addNewDeckWindow}
             style={{ position: "absolute", zIndex: "40" }}
             close={closeHandler}
-          />     */}
+            setArrowDown={setArrowDown}
+            setScrollbarVisible={setScrollbarVisible}
+            decksAreVisible={decksAreVisible}
+            setDecksAreVisible={setDecksAreVisible}
+          />    
         </Row>
       </Container>
     </>

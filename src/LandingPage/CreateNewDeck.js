@@ -3,16 +3,17 @@ import { Modal } from "react-bootstrap";
 import { Context } from "../Context"; 
 import Button from './Button.js'
 
-export default function CreateNewDeck({close}) {
+export default function CreateNewDeck({close, 
+  addNewDeckWindow, 
+  setDecksAreVisible,
+  setArrowDown,
+  setScrollbarVisible // scrollbar dissapear when stats or settings are open
+}) {
 
   const {
-    addNewDeckWindow, 
     setActive, 
-    setArrowDown, 
     colors, //colors array for the decks
     dataBase, setDataBase, 
-    setDecksAreVisible,
-    setScrollbarVisible,
     setShowProgressDiagram, 
   } = useContext(Context);
 
@@ -127,8 +128,8 @@ export default function CreateNewDeck({close}) {
         </select>
       </Modal.Body>
       <div className="createNewDeck__cancel-ok justify-between">
-        <Button setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
-        <Button  ok setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
+        <Button setArrowDown={setArrowDown} setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
+        <Button setArrowDown={setArrowDown} ok setInputField={setInputField} close={close} addNewDeckName={addNewDeckName}/>
       </div>
     </Modal>
     </div>

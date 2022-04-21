@@ -6,16 +6,19 @@ import "../../../styles.css";
 import NameLongOrShort from './NameLongOrShort'
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
 import AddQuestionsToDeck from "../AddQuestionsToDeck/AddQuestionsToDeck";
-import QuestAnswerTrainOverv from "../CardBodyParts/QuestAnswerTrainOverv";
+import QuestAnswerTrainOverv from "../QuestionAnswerTrainOverv/QuestAnswerTrainOverv";
 
 import DeckOrCardName from "./DeckOrCardName";
 import DeleteCardQuestionBox from "../DeleteCardQuestionBox/DeleteCardQuestionBox";
-import Paused from './Paused'
+import Paused from './Paused/Paused'
 
 export default function Deck({
    deck,
    index,
    bg,
+   setArrowDown,
+   setDecksAreVisible,
+   setScrollbarVisible,
    ...style
 }) {
  
@@ -29,15 +32,14 @@ export default function Deck({
   const [nameTooLongOrShort, setNameTooLongOrShort] = useState(false) //if true deckname is too long or too short
   const [showDeleteWindow, setShowDeleteWindow] = useState(true); //if true and triggered the delete window with yes and no button is shown
   const [trash, setTrash] = useState(false);
+  const [pauseIsActive, setPauseIsActive] = useState(true);
 
 
   const {
     active, setActive, 
-    setArrowDown,
     dataBase, setDataBase, 
     editButtonClicked, setEditButtonClicked, 
-    setChangeDeckNameOpen,
-    setDecksAreVisible
+    setChangeDeckNameOpen
   } = useContext(Context);
 
   //const [index, setIndex] = useState(0);
@@ -118,8 +120,7 @@ export default function Deck({
                 setNameTooLongOrShort={setNameTooLongOrShort}
                 className="deckOrCardNameStyling"
               />
-         
-            
+           
             {
               deckNameLengthRight &&
             <ThreeDotsBtn
@@ -195,12 +196,14 @@ export default function Deck({
             index={index}
             data={data}
             paused={paused}
-           
+            setPauseIsActive={setPauseIsActive}
+            pauseIsActive={pauseIsActive}
           />
           {active === index && (
        
             <AddQuestionsToDeck
               background={style.background}
+              setScrollbarVisible={setScrollbarVisible}
               name={name}
               index={index}
               show={show}

@@ -1,35 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const Context = React.createContext(null)
 
 export default function ContextProvider({ children }) {
 
-  const [showProgressDiagram, setShowProgressDiagram] = useState(true);
   const [scrollbarVisible, setScrollbarVisible] = useState(true)
-  const [registerUser, setRegisterUser] = useState(false)
-
-  const [trigger, setTrigger] = useState(null);
-  const scroller = useRef();
-  const [arrowDown, setArrowDown] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState(0)
-
+  //const [trigger, setTrigger] = useState(null);
   const [changeDeckNameOpen, setChangeDeckNameOpen] = useState(false); //input field to change deckname is open
   const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
-  const [pauseIsActive, setPauseIsActive] = useState(true);
-  
   const [active, setActive] = useState(0);
-  const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true
-  const [spinnerIsVisible, setSpinnerIsVisible] = useState(true); //spinner that is shown when application loads
-  
-  const [addNewDeckWindow, setAddNewDeckWindow] = useState(false);
-  const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
-  const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
-  const [user, setUser] = useState(null)
-  const [login, setLogin] = useState(false)
-
-
-
-
   const [dataBase, setDataBase] = useState(null);
 
   const [styles, setStyles] = useState({
@@ -142,26 +121,13 @@ export default function ContextProvider({ children }) {
     
     value={{ 
     active, setActive,
-    arrowDown, setArrowDown,
-    addNewDeckWindow, setAddNewDeckWindow,
     colors,
     changeDeckNameOpen, setChangeDeckNameOpen,
     dataBase, setDataBase, 
-    decksAreVisible, setDecksAreVisible,
     editButtonClicked, setEditButtonClicked, 
-    styles, setStyles,
-    showProgressDiagram, setShowProgressDiagram, 
-    scroller,
     scrollbarVisible, setScrollbarVisible, 
-    scrollPosition, setScrollPosition, 
-    showAnswerBtn, setShowAnswerBtn,
-    showRepeatBtn, setShowRepeatBtn,
-    spinnerIsVisible, setSpinnerIsVisible,
-    pauseIsActive, setPauseIsActive,
-    trigger, setTrigger, 
-    user, setUser,
-    login, setLogin
-
+    styles, setStyles,
+   // trigger, setTrigger, 
      }} >
 
       {children}

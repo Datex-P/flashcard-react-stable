@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
-import { Context } from "../Context";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 
 export default function Button ({login=false}) {
   
   let history = useHistory();
-  const {setRegister, setLogin} = useContext(Context);
   
   return (
     <button

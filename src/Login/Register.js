@@ -9,11 +9,16 @@ import ParticleBackground from './Particles/ParticlesBackground';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
-function Register () {
+function Register ({setUser}) {
   
-  const {setRegister, setUser} = useContext(Context)
+  const {setRegister} = useContext(Context)
   const {register,handleSubmit,formState: { errors }} = useForm();
   const history = useHistory();
+
+  function signUpHandler () {
+    setRegister(false) 
+    setUser(true)
+  }
  
     return (
       // <ParticleBackground>
@@ -73,9 +78,7 @@ function Register () {
               </a>
               <button 
                   className='login__button justify-center-align-center' 
-                  onClick={()=>{setRegister(false) 
-                                setUser(true)
-                  }}
+                  onClick={signUpHandler}
                 >
                   Sign Up
               </button>

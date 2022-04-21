@@ -15,6 +15,23 @@
   padding-bottom: 5px;
 }
 
+.settings__hexagons {
+  width: 16px;
+  height: 21px;
+  position: relative;
+  margin: 3px;
+  padding: 3px;
+  transform: rotate(90deg);
+}
+
+.settings_width280px {
+  width: 280px;
+}
+
+.settings__outline-none {
+  outline: none;
+}
+
 .settings__weekly-target {
   font-weight: normal;
   font-size: var(--smaller-font)

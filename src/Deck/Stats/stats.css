@@ -16,6 +16,20 @@
   padding: 10px;
 }
 
+.stats__header {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.stats__study-breakdown {
+  width: 179px;
+  text-align: center;
+  margin: auto;
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 3px;
+}
+
 .stats__DeleteCardQuestionBox__cont {
   margin-bottom: 10px;
   border: 1px solid black;
