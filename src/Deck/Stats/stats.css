@@ -16,9 +16,40 @@
   padding: 10px;
 }
 
+.stats__hourlyBreakdown__hourly-breakdown{
+  margin-top: 20px; 
+  font-size: bold; 
+  font-weight: bold;
+}
+
+.stats__hourlyBreakdown__month-container {
+  width: 270px;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1px 5px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.stats__hourlyBreakdown__input {
+cursor: pointer; 
+margin-top: 10px; 
+margin-bottom: 20px;
+}
+
 .stats__header {
   font-size: 22px;
   font-weight: bold;
+}
+
+.stats__calendar {
+  margin-top: 10px;
+  margin-bottom: 3px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .stats__study-breakdown {

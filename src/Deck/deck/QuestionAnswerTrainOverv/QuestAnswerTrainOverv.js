@@ -11,6 +11,7 @@ import RepeatButtons from "./RepeatButtons";
 import PauseModeHandler from './PauseModeHandler'
 import OpenDeckBtn from './OpenDeckBtn';
 import QuestionAnswerForm from './QuestionAnswerForm'
+import '../deck.css'
 
 export default function QuestAnswerTrainOverv({
         createDeckButtonIsVisible,
@@ -43,9 +44,8 @@ export default function QuestAnswerTrainOverv({
 
   const {
     dataBase, setDataBase, 
-    setShowProgressDiagram
-      } = useContext(Context);
-
+    setShowProgressDiagram,
+    } = useContext(Context);
 
   useEffect(() => {
     if (editBtnClicked) {
@@ -149,7 +149,7 @@ export default function QuestAnswerTrainOverv({
     } else {
       clearInterval(timer);
       setShowProgressDiagram(true);
-      // console.log('oh you delete me')
+       console.log('oh you delete me')
     }
     //return function () {clearInterval(timeLeft)}
     // eslint-disable-next-line

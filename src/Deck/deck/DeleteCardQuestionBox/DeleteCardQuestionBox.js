@@ -56,7 +56,7 @@ export default function DeleteCardQuestionBox({ card,
         >
             <Modal.Title>
                 <div 
-                  className='deleteCardQuestionBox-modal-title justify-center-align-center '           
+                  className='height100pc width100pc justify-center-align-center '           
                 >
                   <div>
                       {/* {

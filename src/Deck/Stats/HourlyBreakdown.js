@@ -12,13 +12,13 @@ export default function HourlyBreakdown() {
 
   return (
     <div className='align-center flex-column'>
-      <div className='hourlyBreakdown__hourly-breakdown'>Hourly Breakdown</div>
+      <div className='stats__hourlyBreakdown__hourly-breakdown'>Hourly Breakdown</div>
 
-      <div className='hourlyBreakdown__month-container justify-evenly'>
+      <div className='stats__hourlyBreakdown__month-container justify-evenly'>
         {['1 month', '3 month', '12 month'].map((comp, index) => (
           <React.Fragment key={index}>
             <input
-              className='hourlyBreakdown__input'
+              className='stats__hourlyBreakdown__input'
               name='breakdownIntervals'
               type='radio'
               // title = `Change background color of main menu to ${comp}.`

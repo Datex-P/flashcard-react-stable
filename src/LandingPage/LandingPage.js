@@ -79,7 +79,7 @@ export default function DeckContainer() {
       <MenuContainer />
         <Row className="posRelative">
           {decksAreVisible ? (
-            <div className="firstRowStyling">
+            <div className="p-50px">
               <div style={{ position: "absolute", left: "10px" }}>
                 {Array.isArray(dataBase.DeckNames) && dataBase.DeckNames.reduce(
                   (accum, deck, index) => {
@@ -135,13 +135,14 @@ export default function DeckContainer() {
         </Row>
 
         <Row className='justify-content-center'>
-          {/* <button
+           <button
             className='row__btn-create-deck'
             style={{ cursor: !editButtonClicked ? "default" : "pointer" }}
-            onClick={<CreateNewDeck/>}
+            onClick={createDeckHandler}
           >
             Create Deck
-          </button>   */}
+          </button> 
+         
           <CreateNewDeck
             addNewDeckWindow={addNewDeckWindow}
             style={{ position: "absolute", zIndex: "40" }}
@@ -151,6 +152,7 @@ export default function DeckContainer() {
             decksAreVisible={decksAreVisible}
             setDecksAreVisible={setDecksAreVisible}
           />    
+          
         </Row>
       </Container>
     </>

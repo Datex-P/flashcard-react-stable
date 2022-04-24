@@ -7,7 +7,7 @@ function CreateFirstDeck() {
       <div id="createFirstDeck">
         Start and create your first deck
       </div>
-      <div className="posRelative createFirstDeck-arrowDown-container">
+      <div className="posRelative mt-150px">
         <div className="createFirstDeck-arrowDown"></div>
       </div>
   </div>

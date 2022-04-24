@@ -2,7 +2,7 @@
 import React from 'react';
 import {FormControl} from 'react-bootstrap'
 import CardAddedOrInput from './CardAddedOrInput'
-
+import '../deck.css'
 
 function AlertComponent({card, setCard, newCardAdded}) {
 

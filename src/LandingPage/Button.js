@@ -1,7 +1,9 @@
 import React, { useContext,useRef, } from "react";
 import { Context } from "../Context"; 
 
-export default function Button ({ok=false, setInputField, addNewDeckName, close}) {
+export default function Button ({ok=false, setInputField, 
+  addNewDeckName,
+   close}) {
 
   const {
     setArrowDown, 
@@ -29,7 +31,7 @@ export default function Button ({ok=false, setInputField, addNewDeckName, close}
         className='okCancelButtonColor okCancelButton'
         key={'Ok'}
         ref={okRef}
-        onClick={addNewDeckName()}
+        onClick={addNewDeckName}
       >
         Ok
       </button>

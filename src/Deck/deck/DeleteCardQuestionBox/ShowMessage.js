@@ -15,9 +15,9 @@ export default function ShowMessage() {
   return (
 
       <div className='deleteCardQuestionBox__showMessageAgain justify-center'>
-          <div style={{width: '40px'}}>
+          <div className='width40px'>
               <input 
-                  className='deleteCardQuestionBox-input'
+                  className='width45px'
                   type='checkbox' 
                   onChange={handleCheckbox}
               /> 

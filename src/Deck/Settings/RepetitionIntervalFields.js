@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import style from './style.module.css'
 
 
-export default function RepetitionIntervalFields(
+ export default function RepetitionIntervalFields(
                                       { data: { name, amount, unit }, 
                                       editIsPossible, index, 
                                       userTimePreferences, setUserTimePreferences,
@@ -46,7 +46,7 @@ export default function RepetitionIntervalFields(
   return (
     
     <div className='p-2 flex-column justify-center-align-center'>
-      <div  className='repetitionIntervalFields-p border border-dark justify-center' >
+      <div  className='settings__intervalFields-p border border-dark justify-center' >
           <div style={{ marginRight: '4px' }}>
 
               {'<'}
@@ -80,35 +80,40 @@ export default function RepetitionIntervalFields(
             type='text'
             disabled={!editIsPossible}
             onChange={handleInputText}
-            className='repetitionIntervalTextFields'
+            className='settings__interval-textFields'
             maxLength = '8'
             minLength = '3'
             style={{
-                    cursor: editIsPossible ? 'pointer' : 'default',
-                    backgroundColor: saveOrEdit? '#545863': 'grey'
+              cursor: editIsPossible ? 'pointer' : 'default',
+              backgroundColor: saveOrEdit? '#545863': 'grey'
                   }}
           />
       </form>
 
     </div>
   )
+ }
 
-}
+//  export default Repetition(){
 
-// export default Repetition(){
+//   <div className='settings__repetiton-interval'>
+//           Change Repetition Interval
+//       </div>
+//       <div className='justify-center'>
+//           <div className='border border-dark justify-center-align-center settings_repetition-container'>
+//               <div className='justify-around settings_width280px' ></div>
 
-//   const { dataBase, setDataBase,setShowProgressDiagram } = useContext(Context)
-
-//   return(
-// <div 
-//                   className='justify-around' 
-//                   style={{width: '280px'}}
-//               >
-//                   {
-//                     dataBase &&
-                      
-//                       dataBase.userTimePreferences.map((col, k) =>
-//                       RepetitionIntervalFields
-//                   }
-//   </div>)
-// }
+// //   const { dataBase, setDataBase,setShowProgressDiagram } = useContext(Context)
+   
+//    return(
+//  <div 
+//                    className='justify-around' 
+//                    style={{width: '280px'}}
+//                >
+//                    {
+//                      dataBase &&                      
+//                        dataBase.userTimePreferences.map((col, k) =>
+//                        RepetitionIntervalFields
+//                    }
+//    </div>)
+//  }

@@ -13,20 +13,15 @@ import {Context} from '../../Context'
       onClick={()=>{
             setShowProgressDiagram(false)
             history.push('/'+href)
-            }} 
-    
+      }}   
       >
-
       <img 
           src={src} 
           alt={alt} 
           style={{ width: '20px' }} 
           className='nonDraggableIcon'                                              
-      />
-      
-      <Nav.Link 
-          
-      > 
+      />    
+      <Nav.Link > 
           {href} 
       </Nav.Link>
 

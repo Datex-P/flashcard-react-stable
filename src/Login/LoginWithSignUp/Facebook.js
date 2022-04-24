@@ -1,6 +1,6 @@
 import FacebookLogin from "@greatsumini/react-facebook-login";
 import env from "../../env.json";
-
+import { useHistory } from "react-router-dom";
 let facebookID = env.Facebook_ID;
 
 function Facebook ({setUser}) {
@@ -13,6 +13,7 @@ const result = elements.filter(callback)
       result.innerHTML = 'Facebook'
 
 console.log(result)
+let history = useHistory();
 
   return (
 
@@ -25,12 +26,11 @@ console.log(result)
                 padding: "12px 24px",
                 border: "none",
                 borderRadius: "4px",
-                width:"80%"
+                position:'relative',
+                zIndex:'4'
               }}
               onSuccess={(response) => {
-                // console.log('Login Success!', response);
-                //  setUser(true)
-                // <LandingPage/>
+                // history.push("/main")
               }}
               onFail={(error) => {
                 console.log("Login Failed!", error);

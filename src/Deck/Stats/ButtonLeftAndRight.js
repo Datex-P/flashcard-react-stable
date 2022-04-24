@@ -14,7 +14,7 @@ function ButtonLeftAndRight() {
 
   return (
     <div className='flex-column'>
-      <div className='justify-center-align-center innerRenderDays'>
+      <div className='justify-center-align-center mt--10px'>
         {[year, "<", ">"].map((el, index) =>
           el === year ? (
             <div

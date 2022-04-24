@@ -22,50 +22,47 @@ export default function AddQuestionsToDeck({ index, name,
 
 
 
-  function addToDeck() {
+  // function addToDeck() {
 
-    let newDataBase = { ...dataBase }
-    newDataBase.DeckNames[index].data.push(card)
-    setDataBase(newDataBase)
-    setNewCardAdded(true)
+  //   let newDataBase = { ...dataBase }
+  //   newDataBase.DeckNames[index].data.push(card)
+  //   setDataBase(newDataBase)
+  //   setNewCardAdded(true)
 
-    if (card.question.trim().length !== 0 && card.answer.trim().length !== 0) {
-      setTimeout(() => {
-        setCard({ question: '', answer: '' })
-        setNewCardAdded(false)
-      }, 650)
-    }
-  }
+  //   if (card.question.trim().length !== 0 && card.answer.trim().length !== 0) {
+  //     setTimeout(() => {
+  //       setCard({ question: '', answer: '' })
+  //       setNewCardAdded(false)
+  //     }, 650)
+  //   }
+  // }
 
-  function plusHandler () {
+  // function plusHandler () {
 
-      if(dataBase.DeckNames[index]?.paused || !editButtonClicked) {
-        return null
-      } else {
-        setShow(true)
-        setShowProgressDiagram(false)
-        setScrollbarVisible(false)
-      }
-    }
+  //     if(dataBase.DeckNames[index]?.paused || !editButtonClicked) {
+  //       return null
+  //     } else {
+  //       setShow(true)
+  //       setShowProgressDiagram(false)
+  //       setScrollbarVisible(false)
+  //     }
+  //   }
 
-
-
-
-  useEffect(() => {
+   useEffect(() => {
    
-    if (show) {
-     setShowProgressDiagram(false)
+  //   if (show) {
+  //    setShowProgressDiagram(false)
 
-    } else {
-      setShowProgressDiagram(true)
-      if (dataBase.DeckNames.length === 1 || dataBase.DeckNames.length === 0) {
-        setScrollbarVisible(false)
-      } else {
-        setScrollbarVisible(true)
-      }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [show]);
+  //   } else {
+  //     setShowProgressDiagram(true)
+  //     if (dataBase?.DeckNames?.length === 1 || dataBase?.DeckNames?.length === 0) {
+  //       setScrollbarVisible(false)
+  //     } else {
+  //       setScrollbarVisible(true)
+  //     }
+  //   }
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [show]);
 
 
   useEffect(() => {
@@ -79,14 +76,14 @@ export default function AddQuestionsToDeck({ index, name,
     <div>
       <button
         className='AddQuestionsToDeck-btn-plus justify-center-align-center outline-none'
-        style={{
-          cursor: dataBase.DeckNames[index]?.paused || !editButtonClicked ? 'default' : 'pointer'
+        style={{cursor: dataBase.DeckNames[index]?.paused || 
+                        !editButtonClicked ? 'default' : 'pointer'
         }}
 
-        onClick={plusHandler}
+     //   onClick={plusHandler}
       >
         +
-      </button>
+      </button> 
 
       <Modal
         show={show}
@@ -108,7 +105,6 @@ export default function AddQuestionsToDeck({ index, name,
             className='redCross justify-center-align-center'
             onClick={() => setShow(false)}
           >
-
             <img
               src={closeWindow}
               alt='redCross'
@@ -118,7 +114,7 @@ export default function AddQuestionsToDeck({ index, name,
           </button>
 
         </Modal.Header>
-        <Modal.Body >
+        <Modal.Body > 
 
         <AlertComponent 
             card={card}
@@ -127,13 +123,13 @@ export default function AddQuestionsToDeck({ index, name,
         />
 
           <button
-            onClick={addToDeck}
+          //   onClick={addToDeck}
             className='generalButtonStyling addToDeckButton'
           >
             Add to Deck
           </button>
 
-        </Modal.Body>
+         </Modal.Body> 
 
       </Modal>
 

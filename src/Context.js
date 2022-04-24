@@ -10,6 +10,7 @@ export default function ContextProvider({ children }) {
   const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
   const [active, setActive] = useState(0);
   const [dataBase, setDataBase] = useState(null);
+  const [showProgressDiagram, setShowProgressDiagram] = useState(false)
 
   const [styles, setStyles] = useState({
     backgroundColor: {
@@ -126,6 +127,7 @@ export default function ContextProvider({ children }) {
     dataBase, setDataBase, 
     editButtonClicked, setEditButtonClicked, 
     scrollbarVisible, setScrollbarVisible, 
+    showProgressDiagram, setShowProgressDiagram,
     styles, setStyles,
    // trigger, setTrigger, 
      }} >

@@ -15,17 +15,17 @@ function Login({ setUser}) {
   const onSubmit = (data) => console.log(data);
 
   return (
-    // <ParticleBackground>
+  <ParticleBackground>
     <div className='login'>
       <div className='align-center flex-column login__container'>
-        <div className='d-flex width100pc marginTop75px marginBottom15pc'>
+        <div className='justify-center width100pc mt-75px marginBottom15pc'>
           <img
             src={flashcard}
             alt='flashcard'
             className='width100px height100px'
           />
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className='zIndex-5' onSubmit={handleSubmit(onSubmit)}>
           <div className= "login__LoginInput flex-column mb-20px">
             <div>
               <img
@@ -46,10 +46,10 @@ function Login({ setUser}) {
             </div>
             <div>
               {errors?.login?.type === "pattern" && (
-                <div>Only alphanumeric characters allowed</div>
+                <div className='ml-30px'>Only alphanumeric characters allowed</div>
               )}
               {errors?.login?.type === "required" && (
-                <div>This field is required</div>
+                <div className='ml-30px'>This field is required</div>
               )}
             </div>
           </div>
@@ -73,10 +73,10 @@ function Login({ setUser}) {
             </div>
             <div>
               {errors?.password?.type === "pattern" && (
-                <div>Must be a number, written in dot notation like 10.0.</div>
+                <div className='ml-30px mt-5px'>Must be a number, written in dot notation like 10.0.</div>
               )}
               {errors?.password?.type === "required" && (
-                <div>This field is required</div>
+                <div className='ml-30px mt-5px'>This field is required</div>
               )}
             </div>
           </div>     
@@ -87,7 +87,7 @@ function Login({ setUser}) {
         <LoginWithSignUp setUser={setUser}/>      
       </div>
     </div>
-    // </ParticleBackground>
+  </ParticleBackground>
   );
 }
 

@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom'
 import { Context } from '../../Context'
 import '../../styles.css'
 import './settings.css'
-import Hexagon from  './Hexagons'
+import Hexagon from './Hexagons'
 import RepetitionIntervalFields from './RepetitionIntervalFields'
 import ColorScheme from './ColorScheme'
 import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow'
@@ -17,17 +17,17 @@ function Settings({ history }) {
   const [saveOrEdit, setSaveOrEdit] = useState(false)
   const [saveOrEditGoal, setSaveOrEditGoal] = useState(false)
   const [editHex, setEditHex] = useState(true)
-  
-  const { dataBase, setDataBase,setShowProgressDiagram } = useContext(Context)
+
+  const { dataBase, setDataBase, setShowProgressDiagram } = useContext(Context)
   const [userTimePreferences, setUserTimePreferences] = useState({})
 
   useEffect(() => {
     setUserTimePreferences(dataBase?.userTimePreferences || {})
   }, [dataBase?.userTimePreferences])
 
-    useEffect(()=>{
-      setShowProgressDiagram(false)
-    },[])
+  useEffect(() => {
+    setShowProgressDiagram(false)
+  }, [])
 
   function setShow() {
     history.push('/')
@@ -42,34 +42,34 @@ function Settings({ history }) {
   }
 
 
-function ImgContainer({hex=false}) {
+  function ImgContainer({ hex = false }) {
 
-  function notHexagonal() {
-    setEditIsPossible(!editIsPossible)
-    setSaveOrEdit(!saveOrEdit)
-    saveTimeNumberChanges()
-  }
+    function notHexagonal() {
+      setEditIsPossible(!editIsPossible)
+      setSaveOrEdit(!saveOrEdit)
+      saveTimeNumberChanges()
+    }
 
-  function hexagonal () {
-    setSaveOrEditGoal(!saveOrEditGoal)
-    setEditHex(!editHex)
-  }
+    function hexagonal() {
+      setSaveOrEditGoal(!saveOrEditGoal)
+      setEditHex(!editHex)
+    }
 
-  return(
+    return (
       <img
-      src={saveOrEdit ? save : edit}
-      alt={saveOrEdit ? 'save' : 'edit'}
-      className= 'nonDraggableIcon settings__outline-none'
-      onClick={hex? hexagonal: notHexagonal}
-      /> 
-  )
-}
+        src={saveOrEdit ? save : edit}
+        alt={saveOrEdit ? 'save' : 'edit'}
+        className='nonDraggableIcon settings__outline-none'
+        onClick={hex ? hexagonal : notHexagonal}
+      />
+    )
+  }
 
-// function imgHandler(){
-//       setEditIsPossible(!editIsPossible)
-//       setSaveOrEdit(!saveOrEdit)
-//       saveTimeNumberChanges()
-// }
+  // function imgHandler(){
+  //       setEditIsPossible(!editIsPossible)
+  //       setSaveOrEdit(!saveOrEdit)
+  //       saveTimeNumberChanges()
+  // }
   return (
 
     dataBase &&
@@ -79,79 +79,85 @@ function ImgContainer({hex=false}) {
       setShow={setShow}
       title={
         <div
-          style={{fontWeight: 'bold', fontSize: '22px'}}
-          //className={'pos'}
+          style={{ fontWeight: 'bold', fontSize: '22px' }}
+        //className={'pos'}
         >
           Settings
-       </div>
-      } 
+        </div>
+      }
     >
       <div className='settings__repetiton-interval'>
-          Change Repetition Interval
+        Change Repetition Interval
       </div>
       <div className='justify-center'>
-          <div className='border border-dark justify-center-align-center settings_repetition-container'>
-              <div className='justify-around settings_width280px' >
-                  {
-                    dataBase &&
-                      
-                      dataBase.userTimePreferences.map((col, k) =>
+        <Container>
+          {
+            dataBase &&
 
-                      <RepetitionIntervalFields
-                          key={k} 
-                          index={k} 
-                          data={col} 
-                          saveOrEdit={saveOrEdit}
-                          editIsPossible={editIsPossible} 
-                          userTimePreferences={userTimePreferences} 
-                          setUserTimePreferences={setUserTimePreferences} 
-                      />
-                      )
-                  }
-              </div>
-              
-          </div>
-          <div 
-              className='settings__save-or-edit-container'
-              title='Click and change name buttons and repetition intervals for all decks.'
-          >
-           <ImgContainer
-           /> 
-                {/* <img
+            dataBase.userTimePreferences.map((col, k) =>
+
+              <RepetitionIntervalFields
+                key={k}
+                index={k}
+                data={col}
+                saveOrEdit={saveOrEdit}
+                editIsPossible={editIsPossible}
+                userTimePreferences={userTimePreferences}
+                setUserTimePreferences={setUserTimePreferences}
+              />
+            )
+          }</Container>
+        <div
+          className='settings__save-or-edit-container'
+          title='Click and change name buttons and repetition intervals for all decks.'
+        >
+          <ImgContainer
+          />
+          {/* <img
                   src={saveOrEdit ? save : edit}
                   alt={saveOrEdit ? 'save' : 'edit'}
                   className= 'nonDraggableIcon settings__outline-none'
                   onClick={imgHandler}
                 />   */}
-          </div>
+        </div>
       </div>
       <div>
-          <div className='settings__goal-settings fontBold'>
-              <div className='settings__paddings'>Goal Settings</div>
-              <div className='settings__weekly-target settings__paddings'>Current Weekly Target</div>
-          </div>
-          <div className='justify-between-align-center border border-dark  settings__container-hexagon'> 
-            {
-              Array(7).fill('').map((_, idx) =>
-                <Hexagon
-                    key={idx}
-                    idx={idx} 
-                    editHex={editHex} 
-                    setEditHex={setEditHex} 
-                    saveOrEditGoal={saveOrEditGoal} 
-                />
-              )
-            }   
-          </div>
-          <div className='settings__saveoredit'>
-            <ImgContainer/>
-          </div>
-          <div className='settings__weekly-target justify-center'>
-            Target met: {dataBase.userPreferences.weeksInRow} weeks in a row
-          </div>
+        <div className='settings__goal-settings fontBold'>
+          <div className='settings__paddings'>Goal Settings</div>
+          <div className='settings__weekly-target settings__paddings'>Current Weekly Target</div>
+        </div>
+        <div className='justify-between-align-center border border-dark  settings__container-hexagon'>
+          {
+            Array(7).fill('').map((_, idx) =>
+              <Hexagon
+                key={idx}
+                idx={idx}
+                editHex={editHex}
+                setEditHex={setEditHex}
+                saveOrEditGoal={saveOrEditGoal}
+              />
+            )
+          }
+        </div>
+        <div className='settings__saveoredit'>
+          <ImgContainer />
+        </div>
+        <div className='settings__weekly-target justify-center'>
+          Target met: {dataBase.userPreferences.weeksInRow} weeks in a row
+        </div>
       </div>
-      <ColorScheme/>
+      <ColorScheme />
     </BasicOrangeWindow>
+  )
+}
+
+function Container({ children }) {
+  return (
+    <div className='border border-dark justify-center-align-center settings_repetition-container'>
+      <div className='justify-around settings_width280px' >
+        {children}
+      </div>
+    </div>
   )
 }
 

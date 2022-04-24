@@ -8,9 +8,8 @@ function CardAddedOrInput({ card }) {
   }
   return (
 
-    <div className='cardAddedOrInInput justify-center-align-center'
+    <div className='height52px justify-center-align-center'
     >
-
       <Alert
         //when question or answer is empty, show a warning message
         variant={result() ? "success" : "danger"}

@@ -88,3 +88,20 @@
   margin-top: 10px;
   margin: auto;
 }
+
+.settings__intervalFields-p {
+  border-radius: 5px; 
+  width: 72px;
+}
+
+.settings__interval-textFields {
+  width: 72px;
+  height: 27px;
+  padding-left: 7px;
+  background-color: grey;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  text-align: center;
+}

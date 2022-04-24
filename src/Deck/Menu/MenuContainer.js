@@ -3,7 +3,6 @@ import { Modal } from "react-bootstrap";
 import Hamburger from "./Hamburger";
 import "../../styles.css";
 import { Context } from "../../Context";
-
 import Icon from "./Icon";
 import settingsIcon from "../../icons/settings.svg";
 import statsIcon from "../../icons/stats.svg";
