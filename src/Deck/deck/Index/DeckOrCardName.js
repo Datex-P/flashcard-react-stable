@@ -34,7 +34,7 @@ export default function DeckOrCardName({
     {editButtonClicked?
       (
     <div 
-        className='deckOrCardNameContainer'
+        className='deck__deckOrCardName'
         style={{background: bg}}
     >
       {name}

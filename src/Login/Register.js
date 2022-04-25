@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../Context";
-import "../styles.css";
+import "../styles.scss";
 import "./login.css";
 // import flashcard from "../icons/flashcard.svg"; old flashcard design
 import flashcard from "../icons/flashcard-design-new.png";
@@ -29,7 +29,7 @@ function Register({ setUser }) {
     <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
-          <div className='justify-center width100pc mt-75px marginBottom15pc'>
+          <div className='justify-center width100pc mt-75px mb-15pc'>
             <img
               src={flashcard}
               alt='flashcard'

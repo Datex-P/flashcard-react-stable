@@ -1,22 +1,23 @@
 import React, { useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import Hamburger from "./Hamburger";
-import "../../styles.css";
+import "../../styles.scss";
 import { Context } from "../../Context";
 import Icon from "./Icon";
 import settingsIcon from "../../icons/settings.svg";
 import statsIcon from "../../icons/stats.svg";
 import logoutIcon from "../../icons/logout.svg";
+import ShowProgressD from "../../LandingPage/ShowProgressDiagram";
 
 
-export default function MenuContainer() {
+export default function MenuContainer({showProgressDiagram,setShowProgressDiagram}) {
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
   const { dataBase, styles, editButtonClicked } = useContext(Context);
   const handleClose = () => setMenuOpen(false); // closes the Menu when handleclos is triggered
 
   return (
     <div
-      className='mx-auto menuContainer'
+      className='mx-auto menuContainer justify-between'
       style={{
         backgroundColor:
           dataBase &&
@@ -28,7 +29,7 @@ export default function MenuContainer() {
         setMenuOpen={setMenuOpen}
       />
 
-      {menuOpen && editButtonClicked ? (
+      {menuOpen && editButtonClicked && (
         <>
           <Modal
             menuOpen={menuOpen}
@@ -39,7 +40,7 @@ export default function MenuContainer() {
           >
             <Modal.Body className='p-0 menuContainer__modalbody'>
               <div
-                className='menuStyling nonDraggableIcon'
+                className='menuStyling marginAuto nonDraggableIcon'
                 onClick={() => {
                   setMenuOpen(false);
                 }}
@@ -84,7 +85,11 @@ export default function MenuContainer() {
             </Modal.Body>
           </Modal>
         </>
-      ) : null}
+      )}
+      {
+            showProgressDiagram &&
+          <ShowProgressD/>
+          } 
     </div>
   );
 }

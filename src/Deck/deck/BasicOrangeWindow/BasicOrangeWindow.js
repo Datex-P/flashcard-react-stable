@@ -36,14 +36,14 @@ export default function BasicOrangeWindow({
   function mouseEnterHandler () {
     if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0 && !dataBase.DeckNames[index].editModeActive) {
       document
-      .querySelector(".onoffswitch-label")
+      .querySelector(".deck__onOffSwitch-label")
       .classList.add("pointer");
     }
   }
 
   function mouseLeaveHandler () {
     if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0) {
-      document.querySelector(".onoffswitch-label").classList.remove("pointer");
+      document.querySelector(".deck__onOffSwitch-label").classList.remove("pointer");
   }
   }
 
@@ -74,7 +74,7 @@ export default function BasicOrangeWindow({
           </Modal.Title>
 
           <div
-            className="onoffswitch"
+            className="deck__onOffSwitch"
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
           >

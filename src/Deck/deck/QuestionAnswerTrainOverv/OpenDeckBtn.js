@@ -31,6 +31,7 @@ export default function OpenDeckBtn ({data, paused, generateRandom}) {
       style={{
         backgroundColor: !editButtonClicked ? "rgb(108, 117, 125)" : "grey",
         cursor: paused || data.length === 0 || !editButtonClicked ? "default": "pointer",
+        marginTop:'22px',
         opacity: paused || data.length === 0 ? "0" : "1" //open deck button is not visible when length is zero
       }}
     >

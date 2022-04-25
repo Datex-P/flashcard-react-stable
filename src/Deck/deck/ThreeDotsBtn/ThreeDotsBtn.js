@@ -133,7 +133,7 @@ function ThreeDotsBtn({
               edit&& data?.length !==0 &&
 
               <button 
-                  className='threeDotsBtn__btn align-center  p-1 '
+                  className='deck__threeDotsBtn__btn align-center  p-1 '
                   onClick={handleEdit} 
               >                     
                    <img 
@@ -148,12 +148,12 @@ function ThreeDotsBtn({
               pause && data?.length !==0 &&
 
               <button 
-                  className={`threeDotsBtn_btn_pause threeDotsBtn__btn align-center  p-1 ${dataBase.DeckNames[index]?.paused? 'threeDotsBtn__conditional': ''} `}
+                  className={`deck__threeDotsBtn_btn_pause deck__threeDotsBtn__btn align-center  p-1 ${dataBase.DeckNames[index]?.paused? 'deck__threeDotsBtn__conditional': ''} `}
                   onClick={handlePause(index)}
               >
                    <img 
                       alt='pause' 
-                      className='threeDotsBtn__trash-pause-img'
+                      className='mr-3px'
                       src={ !dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
                   /> 
                   {text}
@@ -163,13 +163,13 @@ function ThreeDotsBtn({
               trash && 
               
               <button 
-                className='threeDotsBtn__btn align-center  p-1'
+                className='deck__threeDotsBtn__btn align-center  p-1'
                 onClick={trashHandler}
               >
                 <img 
                   src={trashimg} 
                   alt='trash' 
-                  lassName='threeDotsBtn__trash-pause-img'
+                  className='mr-3px'
                 /> 
                 {text}
               </button>
@@ -178,13 +178,13 @@ function ThreeDotsBtn({
               reset &&
               
               <button 
-                  className='threeDotsBtn__btn align-center outline-none p-1'
+                  className='deck__threeDotsBtn__btn align-center outline-none p-1'
                   onClick={resetEvent}
               >
                  <img 
                     src={resetimg} 
                     alt='reset'
-                    className='threeDotsBtn__reset-img' 
+                    className='deck__threeDotsBtn__reset-img' 
                 /> 
                 {text}
               </button>
@@ -196,5 +196,5 @@ function ThreeDotsBtn({
     </>
   );
 }
-//export default ThreeDotsBtn
+
 export default  withRouter(ThreeDotsBtn)

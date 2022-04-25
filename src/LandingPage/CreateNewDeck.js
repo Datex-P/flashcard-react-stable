@@ -1,11 +1,16 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Row } from "react-bootstrap";
 import { Context } from "../Context"; 
 import Button from './Button.js'
 
+
+
+
 export default function CreateNewDeck({close, 
   addNewDeckWindow, 
-  setDecksAreVisible,
+  decksAreVisible,
+  editButtonClicked,
+  createDeckHandler,
   setArrowDown,
   setScrollbarVisible // scrollbar dissapear when stats or settings are open
 }) {
@@ -38,7 +43,6 @@ export default function CreateNewDeck({close,
 
     let newDataBase = { ...dataBase };
 
-   
       let index = newDataBase.DeckNames.push({
         name: inputField,
         data: [],
@@ -65,14 +69,12 @@ export default function CreateNewDeck({close,
     function onChangeHandler (event) {
       setInputField(event.target.value)
 
-      setTimeout(()=>{
-            
+      setTimeout(()=>{           
             if (event.target.value.length  > 3 && event.target.value.length < 11) {
                
               Ok.current.disabled = false;
               Ok.current.classList.add('okCancelButtonColor');           
               setNameTooShortOrLong(false)
-
             } else { 
               setNameTooShortOrLong(true)
               Ok.current.disabled = true
@@ -91,7 +93,17 @@ export default function CreateNewDeck({close,
     }
 
   return (
-    <div className='mt-40px'>
+    <Row className='justify-center mt-350px'>
+      {decksAreVisible&&
+      <button
+        className='row__btn-create-deck'
+        style={{cursor: !editButtonClicked ? "default" : "pointer"}}
+        onClick={createDeckHandler}
+      >
+          Create Deck
+      </button> 
+      } 
+      <div className='mt-40px'>
       <Modal
         show={addNewDeckWindow}
         backdrop="static"
@@ -104,7 +116,6 @@ export default function CreateNewDeck({close,
               Name for new deck
             </Modal.Title>
         </Modal.Header>
-
         <Modal.Body className="align-center flex-column">
           <input
              id="inputField"
@@ -120,7 +131,7 @@ export default function CreateNewDeck({close,
                 dataBase.DeckNames.map(a=>a.name).includes(inputField)?
                 'name exists':
                 nameTooShortOrLong && inputField.length<4? 'too short':
-                nameTooShortOrLong &&  inputField.length>11? 'too long':
+                nameTooShortOrLong && inputField.length>11? 'too long':
                 ''
                 }`
               }
@@ -133,20 +144,23 @@ export default function CreateNewDeck({close,
             <option>option 5</option>
           </select>
         </Modal.Body>
-        <div className="createNewDeck__cancel-ok justify-between">
-           <Button setArrowDown={setArrowDown} 
-          setInputField={setInputField} 
-          addNewDeckName={addNewDeckName}
-          close={close}  
-       />
-          <Button setArrowDown={setArrowDown} ok 
-          setInputField={setInputField}
-          addNewDeckName={addNewDeckName}
-           close={close} 
-       
+        <div className="width57pc marginAuto posRelative justify-between">
+           <Button 
+            setArrowDown={setArrowDown} 
+            setInputField={setInputField} 
+            addNewDeckName={addNewDeckName}
+            close={close}  
+          />
+          <Button 
+            setArrowDown={setArrowDown} 
+            setInputField={setInputField}
+            addNewDeckName={addNewDeckName}
+            close={close} 
+            ok 
           /> 
         </div>
       </Modal> 
-    </div>
+     </div>
+    </Row>
   );
 }

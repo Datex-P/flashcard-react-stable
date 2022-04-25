@@ -13,3 +13,12 @@
   font-size: 13px; 
   margin-left: 5px;
 }
+
+.showProgressDiagram {
+  width: 48px; 
+  height: 27px;
+  /* position: absolute;
+  left: 346px;
+  top: -31px;  */
+  background: 'rgb(90, 170, 149)'
+}

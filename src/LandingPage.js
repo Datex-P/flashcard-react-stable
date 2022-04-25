@@ -6,7 +6,8 @@ import './landingpage.css'
 import Deck from "../Deck/deck/Index/index";
 import CreateNewDeck from "./CreateNewDeck";
 import MenuContainer from '../Deck/Menu/MenuContainer'
-// import ShowProgressD from "./ShowProgressDiagram";
+
+import ShowProgressD from "./ShowProgressDiagram";
 import Scrollbar from './Scrollbar'
 import StartFirstDeck from './StartFirstDeck'
 
@@ -20,11 +21,9 @@ export default function DeckContainer() {
 
   const {
     active, 
-   // arrowDown, setArrowDown, //arrow that is visible when there are no decks created so far
     colors, //colors array for the decks
     dataBase, 
-    editButtonClicked, 
-   // setAddNewDeckWindow,
+    editButtonClicked
   } = useContext(Context);
 
 
@@ -41,15 +40,12 @@ export default function DeckContainer() {
         return ar[ar.length % (k || 1)];
       } else {
         return i;
-      }
-    })
-  }
+      }})
+    }
 
   function createDeckHandler () {
-    if (!editButtonClicked) {
+    if (editButtonClicked) {
       //editButtonClicked is set to true by default
-    } else {
-   
       setAddNewDeckWindow(true); //open the pop up to add a new deck
       setDecksAreVisible(false); // all the decks in the back are not visible
       setShowProgressDiagram(false);
@@ -63,21 +59,12 @@ export default function DeckContainer() {
     setShowProgressDiagram(true);
   }
 
-                      //    background={colors[active % colors.length]}
-  const specialObj = {
-      showProgressDiagram: showProgressDiagram,
-      setShowProgressDiagram:setShowProgressDiagram,
-      setArrowDown: setArrowDown,
-      setDecksAreVisible:setDecksAreVisible,
-  }
-
   return !spinnerIsVisible && dataBase ? (
     <>
       <Container
         className="align-items-center landingpage__cont "
         style={{
-           //backgroundColor:  styles.backgroundColor[dataBase.userPreferences.backgroundColor],
-        //  backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
+           //backgroundColor:  styles.backgroundColor[dataBase.userPreferences.backgroundColor]
         }}
       >
       <MenuContainer showProgressDiagram={showProgressDiagram}
@@ -86,23 +73,22 @@ export default function DeckContainer() {
         <Row className="posRelative justify-between width100pc">
           {decksAreVisible ? (
             <div className='p-50px'>
-              <div className='posAbsolute left-40px'>
+              <div className='justify-center left-40px'>
                 {Array.isArray(dataBase.DeckNames) && dataBase.DeckNames.reduce(
                   (accum, deck, index) => {
                     if (active === index) {
                       accum.arr.push(
                         <Deck
                           key={index}
-                          // showProgressDiagram={showProgressDiagram}
-                          // setShowProgressDiagram={setShowProgressDiagram}
+                          showProgressDiagram={showProgressDiagram}
+                          setShowProgressDiagram={setShowProgressDiagram}
                           index={index}
-                          //setDecksAreVisible={setDecksAreVisible}
+                          setDecksAreVisible={setDecksAreVisible}
                           deck={deck}
-                          // setArrowDown={setArrowDown}
+                          setArrowDown={setArrowDown}
                           transform={`rotate(0deg)`}
                           zIndex={2}
                           background={colors[active % colors.length]}
-                           {...specialObj}
                         />
                       );
                     } else {
@@ -112,16 +98,15 @@ export default function DeckContainer() {
                         <Deck
                           key={index}
                           index={index}
-                          // setArrowDown={setArrowDown}
-                          // setDecksAreVisible={setDecksAreVisible}
-                          // showProgressDiagram={showProgressDiagram}
-                          // setShowProgressDiagram={setShowProgressDiagram}
+                          setArrowDown={setArrowDown}
+                          setDecksAreVisible={setDecksAreVisible}
+                          showProgressDiagram={showProgressDiagram}
+                          setShowProgressDiagram={setShowProgressDiagram}
                           deck={deck}
                           transform={`rotate(${-accum.index * 2}deg)`}
                           zIndex={0}
                           bg={colorHandler}
                           background={colorHandler}
-                          {...specialObj}
                         />
                       );
                     }
@@ -133,25 +118,26 @@ export default function DeckContainer() {
        
               {scrollbarVisible &&
                 //scrollbar gets hidden when there is only one deck
-                <Scrollbar/>              
+                <Scrollbar    />              
             }
             </div>
           ) 
           : arrowDown && 
             <StartFirstDeck/>
-         }    
-        </Row>  
+         }     
+        </Row>
+        <Row className='justify-center mt-350px'>
           <CreateNewDeck
             addNewDeckWindow={addNewDeckWindow}
-            editButtonClicked={editButtonClicked}
-            createDeckHandler={createDeckHandler}
-            className='posAbsolute zIndex-5'
+            className='justify-center zIndex-5'
             close={closeHandler}
+            createDeckHandler={createDeckHandler}
             setArrowDown={setArrowDown}
             setScrollbarVisible={setScrollbarVisible}
             decksAreVisible={decksAreVisible}
-            setDecksAreVisible={setDecksAreVisible}
-          />                   
+          />    
+          
+         </Row> 
       </Container>
     </>
   ) : (

@@ -6,30 +6,22 @@ function CardAddedOrInput({ card }) {
   function result(){
     return card.question.trim().length !== 0 && card.answer.trim().length !== 0
   }
+  
   return (
 
-    <div className='height52px justify-center-align-center'
-    >
+    <div className='height52px justify-center-align-center'>
       <Alert
         //when question or answer is empty, show a warning message
         variant={result() ? "success" : "danger"}
-        style={{
-          width: result ? '140px' : '100px',
-          height: '35px'
-        }}
+        className={`height35px ${result? 'width140px':'width100px'}`}
       >
         {
           result() ?
-            <div style={{ width: '140px' }}>
-              Card added to Deck.
-            </div>
+            <div className='width140px'>Card added to Deck.</div>
             :
-            <div style={{ width: '120px', height: '35px' }}>
-              Input needed.
-            </div>
+            <div className='width120px height35px'>Input needed.</div>
         }
       </Alert>
-
     </div>
   )
 }

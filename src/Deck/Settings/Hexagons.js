@@ -51,8 +51,8 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
           (showDay || idx === dataBase.userPreferences.days)) || idx === dataBase.userPreferences.days) 
         &&
             
-        <div className='hexagons__editHex'>
-            <div className='hexagons__blackArrow'></div>           
+        <div className='settings__editHex'>
+            <div className='settings__blackArrow'></div>           
             <span className='fontBold'
             >
                 {

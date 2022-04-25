@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { Context } from "../../../Context";
 import { Card } from "react-bootstrap";
-import "../../../styles.css";
+import "../../../styles.scss";
 
 import NameLongOrShort from './NameLongOrShort'
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
@@ -17,6 +17,7 @@ export default function Deck({
    index,
    bg,
    setArrowDown,
+   showProgressDiagram, setShowProgressDiagram,
    setDecksAreVisible,
    setScrollbarVisible,
    ...style
@@ -102,7 +103,7 @@ export default function Deck({
         className="newDeckContainer flexColumn position-absolute "
       >
      
-        <Card.Body className="justify-center-align-center flex-column">
+        <Card.Body className="justify-center-align-center flex-column mt-48px">
         <NameLongOrShort 
             nameTooLongOrShort={nameTooLongOrShort} 
             nameOfTopDeck={nameOfTopDeck}
@@ -144,7 +145,7 @@ export default function Deck({
                 right: "50px",
                 top: "18px",
               }}
-              className="threeDotsBtnIndex"
+              className="deck__threeDotsBtnIndex"
               style={{
                 border: paused ? "none" : "1px solid black",
                 backgroundColor: paused ? "black" : "white",

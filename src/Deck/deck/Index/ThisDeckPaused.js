@@ -23,7 +23,6 @@ export default function ThisDeckPaused ({index}) {
         <div>
         This deck is paused.
         </div>
-
         <div className='align-center'>
           Press:
           <button

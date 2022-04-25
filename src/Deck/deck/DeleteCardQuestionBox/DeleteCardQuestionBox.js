@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import '../../../styles.css'
+import '../../../styles.scss'
 import NoAndYes from './NoAndYes'
 // import resetimg from '../../../icons/reset.svg'
 // import questionMark from '../../../icons/questionMark.svg'
@@ -10,23 +10,22 @@ import ShowMessage from './ShowMessage'
 export default function DeleteCardQuestionBox({ card, 
   pauseOrDelete,deleteWindow, 
   trashEvent, 
-                                                setShowAnswerBtn=()=>{},
-                                                setEditBtnClicked=()=>{},
-                                                showDeleteWindow,
-                                                deleteCurrentCard=()=>{},
-                                                resetQuestionText=false,
-                                                showMessageAgain= false,
-                                                 pauseCardinQuestionAnswer=false,
-                                                 randomQuestion,
-                                                 index,
-                                                 setPauseOrDeleteText=()=>{}
+  setShowAnswerBtn=()=>{},
+  setEditBtnClicked=()=>{},
+  showDeleteWindow,
+  deleteCurrentCard=()=>{},
+  resetQuestionText=false,
+  showMessageAgain= false,
+  pauseCardinQuestionAnswer=false,
+  randomQuestion,
+  index,
+  // setPauseOrDeleteText=()=>{}
                                               }) 
   
 {
 
   return (
  
-    
       <Modal
         show={showDeleteWindow}
         onHide={deleteWindow}
@@ -55,9 +54,7 @@ export default function DeleteCardQuestionBox({ card,
             closeButton 
         >
             <Modal.Title>
-                <div 
-                  className='height100pc width100pc justify-center-align-center '           
-                >
+                <div className='height100pc width100pc justify-center-align-center'>
                   <div>
                       {/* {
                         resetQuestionText? 
@@ -75,32 +72,26 @@ export default function DeleteCardQuestionBox({ card,
 
                       } */}
                   </div>
-
                   <div>  
-                      {
-                        resetQuestionText? 
-                                          'Reset progress'
-                                            :
-                                          `${pauseOrDelete} ${card}`
-                      }
+                    {
+                    resetQuestionText? 
+                    'Reset progress':`${pauseOrDelete} ${card}`
+                    }
                   </div>
               </div>
             </Modal.Title>
         </Modal.Header>
-
         <Modal.Body 
             className='justify-center-align-center' 
         >
-
             {
-              resetQuestionText?  'Do you want to reset the stats?'
-                                       : 
-                                  `Do you want to ${pauseOrDelete.toLowerCase()} this ${card} ?` 
+              resetQuestionText?  
+              'Do you want to reset the stats?'
+                    : 
+                `Do you want to ${pauseOrDelete.toLowerCase()} this ${card} ?` 
             }
         </Modal.Body>
-
         <Modal.Footer>
- 
             <NoAndYes
                 trashEvent={trashEvent}
                 deleteCurrentCard={deleteCurrentCard}
@@ -114,12 +105,9 @@ export default function DeleteCardQuestionBox({ card,
         </Modal.Footer>
 
         {!showMessageAgain&&
-        
-        <ShowMessage />
-          
+               
+        <ShowMessage />         
           }
-     
-
       </Modal>
   );
 }

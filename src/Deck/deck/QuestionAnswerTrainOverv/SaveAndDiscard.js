@@ -6,6 +6,8 @@ export default function saveAndDiscard({
   setCardModified,
   discardEvent,
 }) {
+
+  
   function saveHandler() {
     generateRandom();
     saveEvent();
@@ -13,7 +15,7 @@ export default function saveAndDiscard({
   }
 
   return (
-    <div className='d-flex justify-content-center'>
+    <div className='d-flex justify-center'>
       <div className='saveAndDiscard justify-aroundCenter flex-column'>
         <div>Save changes?</div>
         <div className='justify-between width140px'>
@@ -21,11 +23,7 @@ export default function saveAndDiscard({
             <div
               className={`saveAndDiscardButtonStyling justify-aroundCenter ${el}Btn`}
               onClick={
-                el === "Save"
-                  ? saveHandler()
-                  : () => {
-                      discardEvent();
-                    }
+              el === "Save"? saveHandler(): () => {discardEvent()}
               }
               key={index}
             >

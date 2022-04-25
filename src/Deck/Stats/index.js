@@ -144,7 +144,7 @@
 //               trash={!paused}
 //               input={input}
 //               threeDotsContainer= {{position: 'fixed', right: '50px', top: '18px'}}
-//               className='threeDotsBtnIndex'
+//               className='deck__threeDotsBtnIndex'
 //               style= {{border: paused? 'none': '1px solid black',
 //                       backgroundColor: paused? 'black': 'white'
 //                       }}

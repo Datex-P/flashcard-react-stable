@@ -249,7 +249,7 @@ export default function QuestAnswerTrainOverv({
           {data[randomQuestion] && (
             <>
               {/* <div className="mb-4">
-                <p className="questionAnswerStyling">Question</p>
+                <p className="deck__questionAnswer">Question</p>
 
                 <FormControl
                   as="textarea"

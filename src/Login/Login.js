@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import flashcard from "../icons/flashcard-design-new.png";
 import usersSolid from "../icons/users.svg";
 import keysSolid from "../icons/keys.svg";
-import "../styles.css";
+import "../styles.scss";
 import './login.css';
 import ParticleBackground from "./Particles/ParticlesBackground";
 import Button from "./Button";
@@ -18,27 +18,30 @@ function Login({ setUser}) {
   <ParticleBackground>
     <div className='login'>
       <div className='align-center flex-column login__container'>
-        <div className='justify-center width100pc mt-75px marginBottom15pc'>
+        <div className='justify-center width100pc mt-75px mb-15pc'>
           <img
             src={flashcard}
             alt='flashcard'
-            className='width100px height100px'
+            className='width100px  height100px'
           />
         </div>
-        <form className='zIndex-5' onSubmit={handleSubmit(onSubmit)}>
+        <form className='zIndex-5 width12rem' onSubmit={handleSubmit(onSubmit)}>
           <div className= "login__LoginInput flex-column mb-20px">
             <div>
-              <img
-                src={usersSolid}
+              {/* <img
+                //src={usersSolid}
                 alt='click to enter user name'
-                className='login__img-login-password'
-              />
+                className='login__img-login-password login__icon'
+              /> */}
               <input
                 // value='xyz'
                 // value={this.state.login}
                 // onChange={e=>this.setState({login:e.target.value})}
                 id='login'
-                className='login__input'
+                style={{paddingLeft: '25px', backgroundColor:'powderblue',
+                border: '1px solid black', 
+                boxShadow: '0px 1px black'}}
+                className='login__input login__icon__user pl-25px'
                 {...register("login", {
                   required: "true", pattern: /[a-zA-Z0-9]/,
                 })}
@@ -55,17 +58,19 @@ function Login({ setUser}) {
           </div>
           <div className= "login__LoginInput flex-column">
             <div>
-              <img
+              {/* <img
                 src={keysSolid}
                 alt='click to enter user name'
                 className='login__img-login-password'
-              />
+              /> */}
               <input
                 // value='xyz'
                 // value={this.state.login}
                 // onChange={e=>this.setState({login:e.target.value})}
                 id='password'
-                className='login__input'
+                type='password'
+                style={{paddingLeft: '25px', border: '1px solid black', boxShadow: '0px 1px black'}}
+                className='login__input login__icon__keys pl-25px'
                 {...register("password", {
                   required: "true", pattern: /(?<=^| )\d+\.\d+(?=$| )/,
                 })}

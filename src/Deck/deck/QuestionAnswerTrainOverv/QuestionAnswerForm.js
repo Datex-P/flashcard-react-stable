@@ -3,17 +3,17 @@ import {FormControl} from "react-bootstrap";
 function QuestionAnswerForm({card, editBtnClicked, changeHandler, inputRef=false}) {
   return (
     <div className="mt-4">
-                  <p className="questionAnswerStyling">Answer</p>
-                  <FormControl
-                    as="textarea"
-                    aria-label="With textarea"
-                    value={card.answer}
-                    disabled={!editBtnClicked}
-                    name="answer"
-                    onChange={changeHandler}
-                    className="formControlIn"
-                    ref={inputRef}
-                  />
+        <p className="deck__questionAnswer">Answer</p>
+        <FormControl
+            as="textarea"
+            aria-label="With textarea"
+            value={card.answer}
+            disabled={!editBtnClicked}
+            name="answer"
+            onChange={changeHandler}
+            className="formControlIn"
+            ref={inputRef}
+        />
                 </div>
   )
 }

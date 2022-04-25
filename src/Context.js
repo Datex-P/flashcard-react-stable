@@ -5,7 +5,6 @@ export const Context = React.createContext(null)
 export default function ContextProvider({ children }) {
 
   const [scrollbarVisible, setScrollbarVisible] = useState(true)
-  //const [trigger, setTrigger] = useState(null);
   const [changeDeckNameOpen, setChangeDeckNameOpen] = useState(false); //input field to change deckname is open
   const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
   const [active, setActive] = useState(0);
@@ -118,19 +117,18 @@ export default function ContextProvider({ children }) {
   
   return (
 
-    <Context.Provider 
-    
-    value={{ 
-    active, setActive,
-    colors,
-    changeDeckNameOpen, setChangeDeckNameOpen,
-    dataBase, setDataBase, 
-    editButtonClicked, setEditButtonClicked, 
-    scrollbarVisible, setScrollbarVisible, 
-    showProgressDiagram, setShowProgressDiagram,
-    styles, setStyles,
-   // trigger, setTrigger, 
-     }} >
+    <Context.Provider  
+      value={{ 
+        active, setActive,
+        colors,
+        changeDeckNameOpen, setChangeDeckNameOpen,
+        dataBase, setDataBase, 
+        editButtonClicked, setEditButtonClicked, 
+        scrollbarVisible, setScrollbarVisible, 
+        showProgressDiagram, setShowProgressDiagram,
+        styles, setStyles,
+        }} 
+     >
 
       {children}
 

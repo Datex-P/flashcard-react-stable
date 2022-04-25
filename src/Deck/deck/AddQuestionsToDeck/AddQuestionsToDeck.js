@@ -2,9 +2,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Modal} from 'react-bootstrap'
 import { Context } from '../../../Context';
-import '../../../styles.css'
+import '../../../styles.scss'
 import closeWindow from "../../../icons/closeWindow.svg";
-
 import AlertComponent from './AlertComponent'
 
 export default function AddQuestionsToDeck({ index, name, 
@@ -14,13 +13,10 @@ export default function AddQuestionsToDeck({ index, name,
   const [newCardAdded, setNewCardAdded] = useState(false);
 
   const { 
-    dataBase, setDataBase, 
+    dataBase,
     editButtonClicked, 
     setShowProgressDiagram,
   } = useContext(Context);
-
-
-
 
   // function addToDeck() {
 
@@ -37,16 +33,20 @@ export default function AddQuestionsToDeck({ index, name,
   //   }
   // }
 
-  // function plusHandler () {
+  function hideHandler () {
+    setShow(false)
+    setShowProgressDiagram(true)
+  }
 
-  //     if(dataBase.DeckNames[index]?.paused || !editButtonClicked) {
-  //       return null
-  //     } else {
-  //       setShow(true)
-  //       setShowProgressDiagram(false)
-  //       setScrollbarVisible(false)
-  //     }
-  //   }
+  function plusHandler () {
+
+      if(!dataBase?.DeckNames[index]?.paused || editButtonClicked) {
+        
+        setShow(true)
+        setShowProgressDiagram(false)
+        setScrollbarVisible(false)
+      }
+    }
 
    useEffect(() => {
    
@@ -79,61 +79,47 @@ export default function AddQuestionsToDeck({ index, name,
         style={{cursor: dataBase.DeckNames[index]?.paused || 
                         !editButtonClicked ? 'default' : 'pointer'
         }}
-
-     //   onClick={plusHandler}
+        onClick={plusHandler}
       >
         +
       </button> 
-
-      <Modal
-        show={show}
-        contentClassName={'mod'}
-        backdrop='static'
-        onHide={() => {
-        setShow(false)
-        setShowProgressDiagram(true)
-        }
-        }
-
-      >
-        <Modal.Header className='border-bottom-0'>
-          <Modal.Title style={{fontSize: '16px'}}>
-            Deck: {name}
-          </Modal.Title>
-
-          <button
-            className='redCross justify-center-align-center'
-            onClick={() => setShow(false)}
-          >
-            <img
-              src={closeWindow}
-              alt='redCross'
-              style={{width:'16px', height:'16px'}}
-              className='nonDraggableIcon'
-            /> 
-          </button>
-
-        </Modal.Header>
-        <Modal.Body > 
-
-        <AlertComponent 
-            card={card}
-            setCard={setCard}
-            newCardAdded={newCardAdded} 
-        />
-
-          <button
-          //   onClick={addToDeck}
-            className='generalButtonStyling addToDeckButton'
-          >
-            Add to Deck
-          </button>
-
-         </Modal.Body> 
-
-      </Modal>
-
+      <div className='marginAuto'>
+        <Modal
+          show={show}
+          contentClassName={'mod'}
+          backdrop='static'
+          onHide={hideHandler}
+        >
+          <Modal.Header className='border-bottom-0'>
+            <Modal.Title className='justify-between'>
+              <span className='align-center'>Deck: {name}</span>
+              <button
+                className='redCross pointer'
+                onClick={() => setShow(false)}
+              >
+              <img
+                src={closeWindow}
+                alt='redCross'
+                className='nonDraggableIcon width16px height16px'
+              /> 
+              </button>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body > 
+          <AlertComponent 
+              card={card}
+              setCard={setCard}
+              newCardAdded={newCardAdded} 
+          />
+            <button
+            //   onClick={addToDeck}
+              className='generalButtonStyling deck__addToDeck mt-20px ml-21px'
+            >
+              Add to Deck
+            </button>
+          </Modal.Body> 
+        </Modal>
+      </div>
     </div>
-
   )
 }

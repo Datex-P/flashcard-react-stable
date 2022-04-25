@@ -14,7 +14,7 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
 
   function handleChecked (e) {
     if(dataBase.DeckNames[index].editModeActive) {
-    document.getElementById('myonoffswitch').checked = false
+    document.getElementById('mydeck__onOffSwitch').checked = false
     }
   }
 
@@ -43,18 +43,18 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
   return (
 
     <div>
-      <input type="checkbox" name="onoffswitch"
-        className="onoffswitch-checkbox myonoffswitch"
-        id="myonoffswitch"
+      <input type="checkbox" name="deck__onOffSwitch"
+        className="deck__onOffSwitch-checkbox mydeck__onOffSwitch"
+        id="mydeck__onOffSwitch"
         tabIndex="0"
         onChange={handleChecked}
         value='10'
       />
-      <label className="onoffswitch-label" htmlFor="myonoffswitch"
+      <label className="deck__onOffSwitch-label" htmlFor="mydeck__onOffSwitch"
        onClick={switchOnOrOff}
       >
-        <span className="onoffswitch-inner"></span>
-        <span className="onoffswitch-switch justify-center-align-center"
+        <span className="deck__onOffSwitch-inner"></span>
+        <span className="deck__onOffSwitch-switch justify-center-align-center"
         >
           {`${cardsPaused()}`}
         </span>

@@ -17,9 +17,26 @@
 .login__button {
   height: 30px; 
   border-radius: 5px;
-  margin-left: 25px;
-  width: 80%;
+  width: 100%;
+  background: sandybrown;
+  color: white;
+  box-shadow: 2px 2px black;
+  border: 0px;
 }
+
+.login__icon__user {
+  /* padding-left: 25px !important; */
+  background: url("../icons/users.svg") no-repeat left;
+  background-size: 20px;
+}
+.login__icon__keys {
+  /* padding-left: 25px !important; */
+  background: url("../icons/keys.svg") no-repeat left;
+  background-size: 20px;
+}
+
+
+
 
 .login__google > * {
   width: 100%;

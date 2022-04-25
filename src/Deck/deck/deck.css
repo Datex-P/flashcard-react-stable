@@ -1,5 +1,135 @@
-.questionAnswerStyling {
+.deck__questionAnswer {
   font-weight: bold;
   margin-left: 19px;
   margin-bottom: 10px;
+}
+
+.deck__deckOrCardName {
+  width: 127px;
+  padding-left: 7px;
+  border-radius: 5px;
+  height: 30px;
+  position: relative;
+  top: -21px;
+  left: 5px;
+}
+
+.deck__onOffSwitch {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  width: 81px;
+  right: 338px;
+}
+
+.deck__onOffSwitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.deck__onOffSwitch-label {
+  display: block;
+  overflow: hidden;
+  width: 81px;
+  height: 25px;
+  border: 1px solid #1f1e1e;
+  border-radius: 14px;
+  position: absolute;
+  right: 110px;
+}
+
+.deck__onOffSwitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.deck__onOffSwitch-inner:before,
+.deck__onOffSwitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 23px;
+  padding: 0;
+  line-height: 23px;
+  font-size: 14px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.deck__onOffSwitch-inner:before {
+  content: "Paused";
+  padding-left: 7px;
+  background-color: #faf8f5;
+  color: #999999;
+}
+
+.deck__onOffSwitch-inner:after {
+  content: "Paused";
+  padding-right: 7px;
+  padding-top: 1px;
+  background-color: rgba(200, 168, 115);
+  color: #ffffff;
+  text-align: right;
+  font-size: 12px;
+}
+
+.deck__onOffSwitch-switch {
+  display: block;
+  width: 17px;
+  height: 17px;
+  margin: 4px;
+  font-size: 14px;
+  text-align: center;
+  background: #ffffff;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 53px;
+  border: 1px solid #1f1e1e;
+  border-radius: 14px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.deck__onOffSwitch-checkbox:checked + .deck__onOffSwitch-label .deck__onOffSwitch-inner {
+  margin-left: 0px;
+}
+
+.deck__onOffSwitch-checkbox:checked + .deck__onOffSwitch-label .deck__onOffSwitch-switch {
+  right: 0px;
+}
+
+.deck__threeDotsBtn__conditional {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 5px;
+}
+
+.deck__addToDeck {
+    width: 110px;
+    height: 32px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.deck__threeDotsBtn_btn_pause {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.deck__threeDotsBtn__btn {
+  background-color: white !important;
+  border: none;
+  color: black !important;
+  outline:none;
+}
+
+.deck__threeDotsBtn__btn:hover {
+  background-color: #a39171 !important;
+  outline:none;
 }
