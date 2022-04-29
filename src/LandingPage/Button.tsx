@@ -1,19 +1,20 @@
 import React, { useContext,useRef, } from "react";
 import { Context } from "../Context"; 
 
-export default function Button ({ok=false, setInputField, 
-  addNewDeckName,
+export default function Button ({ok=false, 
+  setInputField, 
+ // addNewDeckName,
+  setArrowDown,
    close}) {
 
   const {
-    setArrowDown, 
     dataBase, 
     setDecksAreVisible, 
   } = useContext(Context);
 
 
-  const okRef = useRef()
-  const cancelRef = useRef()
+  const okRef = useRef<HTMLButtonElement>(null)
+  const cancelRef = useRef<HTMLButtonElement>(null)
 
   function cancelHandler () {
     close();
@@ -31,7 +32,7 @@ export default function Button ({ok=false, setInputField,
         className='okCancelButtonColor okCancelButton'
         key={'Ok'}
         ref={okRef}
-        onClick={addNewDeckName}
+      //  onClick={addNewDeckName}
       >
         Ok
       </button>

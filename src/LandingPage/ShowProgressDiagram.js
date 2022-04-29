@@ -11,18 +11,15 @@ function ShowProgressD() {
 
   return (
     <>   
-      <div 
-        className='showProgressDiagram posRelative'
-        style={{left:'200px', top:'45px'}}
-      >
+      <div className='showProgressDiagram posRelative top-50px left-180px'>
         <div className='fontBold'> 
             Goal
         </div>
         <div className='showProgressDiagram__percentages'>
-          {
-            `${parseInt((dataBase.deckCompleted * 100) /
-                Object.keys(dataBase.DeckNames).length)} %`
-          }
+          {/* {
+            `${parseInt((dataBase?.deckCompleted * 100) /
+                Object.keys(dataBase?.DeckNames).length)} %`
+          } */}
           </div>
         </div>
         <div className='width80px'>

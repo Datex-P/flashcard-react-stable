@@ -1,15 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../../styles.scss";
-
 import { Context } from "../../Context";
 
-export default function TimeAndProgress() {
+
+interface itemProps {
+  openHistory: string[];
+}
+
+interface TimeObj { 6: number[]; 12: number[]; 18: number[]; 24: number[]; }
+
+const TimeAndProgress: React.FC = () => {
   let studyGoal = 80;
 
-  const { dataBase } = useContext(Context);
+  const {dataBase} = useContext(Context);
   const [currentProgress, setCurrentProgress] = useState(0);
   const [widthAdjusted, setWidthAdjusted] = useState(0);
-  const [timeObj, setTimeObj] = useState({});
+  const [timeObj, setTimeObj] = useState<TimeObj>({} as TimeObj);
 
   
   useEffect(() => {
@@ -20,11 +26,11 @@ export default function TimeAndProgress() {
     //   || 0);
     setCurrentProgress(currentProgress);
 
-    let firstVal = [];
+    let firstVal: number[] = [];
     if (dataBase?.DeckNames) {
     for (let deckItem of dataBase?.DeckNames) {
       firstVal.push(
-        deckItem.data.filter(
+        deckItem?.data?.filter(
           (item) =>
             item.openHistory &&
             item.openHistory.filter(
@@ -34,25 +40,25 @@ export default function TimeAndProgress() {
         )
       );
       var secVal = deckItem.data.filter(
-        (item) =>
+        (item:itemProps) =>
           item.openHistory &&
           item.openHistory.filter(
-            (item) =>
+            (item:string) =>
               new Date(item).getHours() < 18 && new Date(item).getHours() > 12
           ).length
       );
       var thirdVal = deckItem.data.filter(
-        (item) =>
+        (item: itemProps) =>
           item.openHistory &&
           item.openHistory.filter(
-            (item) =>
+            (item:string) =>
               new Date(item).getHours() < 24 && new Date(item).getHours() > 18
           ).length
       );
       var fourthVal = deckItem.data.filter(
-        (item) =>
+        (item: itemProps) =>
           item.openHistory &&
-          item.openHistory.filter((item) => new Date(item).getHours() < 6)
+          item.openHistory.filter((item:string) => new Date(item).getHours() < 6)
             .length
       );
     }
@@ -70,9 +76,11 @@ export default function TimeAndProgress() {
   }, [dataBase]);
 
   function renderLines() {
-    let arr = [];
+    let arr:any = [];
+    //change type of arr
     let previousWidthVar = 0;
     for (let i = 6; i <= 24; i += 6) {
+     if (timeObj !== null ) {
       if (i in timeObj) {
         let widthVar = ((timeObj[i] || 0) / studyGoal) * 100;
         previousWidthVar += widthVar;
@@ -103,7 +111,7 @@ export default function TimeAndProgress() {
                 previousWidthVar={previousWidthVar}
                 widthVar={widthVar}
                 time={
-                  <div className='timeAndProgStyling'>
+                  <div className='timesAndProgress_times'>
                     {"0" + i} - {i + 6}
                   </div>
                 }
@@ -125,6 +133,7 @@ export default function TimeAndProgress() {
           }
         }
       }
+    }
     }
     return arr;
   }
@@ -180,3 +189,5 @@ function Row({ time, previousWidthVar, widthVar }) {
     </div>
   );
 }
+
+export default TimeAndProgress

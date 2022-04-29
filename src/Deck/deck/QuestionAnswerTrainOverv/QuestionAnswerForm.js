@@ -12,7 +12,7 @@ function QuestionAnswerForm({card, editBtnClicked, changeHandler, inputRef=false
             name="answer"
             onChange={changeHandler}
             className="formControlIn"
-            ref={inputRef}
+          //  ref={inputRef}
         />
                 </div>
   )

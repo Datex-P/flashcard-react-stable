@@ -60,7 +60,7 @@ export default function BasicOrangeWindow({
         backgroundColor: "rgba(0, 0, 0, 0.6)",
       }}
     >
-      <div className='innerModalContainer'>
+      <div className='innerModalContainer posRelative top-20px'>
         <Modal.Header className="border-bottom-0">
           <Modal.Title
             style={{
@@ -72,7 +72,6 @@ export default function BasicOrangeWindow({
           >
             {title}
           </Modal.Title>
-
           <div
             className="deck__onOffSwitch"
             onMouseEnter={mouseEnterHandler}
@@ -88,11 +87,12 @@ export default function BasicOrangeWindow({
           </div>
           {menu}
           <button
-            className="redCross justify-center-align-center"
+            className="redCross basic_button_positioning posAbsolute justify-center-align-center"
             onClick={buttonHandler}
           >
             <img 
               className="nonDraggableIcon" 
+              style={{width:'16px', height:'16px'}}
               src={closeWindow} 
               alt="redCross" 
             /> 

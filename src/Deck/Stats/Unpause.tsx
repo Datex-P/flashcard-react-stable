@@ -1,13 +1,24 @@
 import React, {useContext} from 'react'
-import playimg from "../../icons/play.svg";
+// import playimg from "../../icons/play.svg";
+
+// https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript
+const playimg = require("../../icons/play.svg") as string;
 import { Context } from "../../Context";
 
-function Unpause({index}) {
+interface UnpauseProps {
+  index:number
+}
+
+// BudgetOverview: React.FC<BudgetProps> = ({budgets}: BudgetProps) => {
+
+const Unpause: React.FC<UnpauseProps> = ({index}) => {
 
 
   const { dataBase, setDataBase } = useContext(Context);
 
-  function handlePause(index) { 
+  // type MouseHandler = (event?: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => void
+
+  const handlePause = (index) =>{ 
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].paused = true;
     setDataBase(newDataBase);

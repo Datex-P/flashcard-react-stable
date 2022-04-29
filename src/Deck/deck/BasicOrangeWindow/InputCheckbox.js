@@ -39,7 +39,6 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
     } }
   }
 
-
   return (
 
     <div>

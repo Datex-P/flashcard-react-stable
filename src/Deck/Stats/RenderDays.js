@@ -50,7 +50,7 @@ function RenderDays() {
 
 
   return (
-    <div className="render-days__year-box-container"
+    <div className="d-flex render-days__year-box-container"
      onClick={(e)=>{    
        let outer = e.currentTarget.getBoundingClientRect()
    
@@ -86,8 +86,7 @@ function RenderDays() {
                 Time:
               </div>
               <div className='render-days__review-container'
-              >
-                
+              >               
                 Review:`${day.cardsStudied !== 1 ? "s" : ""}: $
                 {day.cardsStudied} card${day.cardsStudied !== 1 ? "s" : ""}`
               </div>

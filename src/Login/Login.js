@@ -38,9 +38,6 @@ function Login({ setUser}) {
                 // value={this.state.login}
                 // onChange={e=>this.setState({login:e.target.value})}
                 id='login'
-                style={{paddingLeft: '25px', backgroundColor:'powderblue',
-                border: '1px solid black', 
-                boxShadow: '0px 1px black'}}
                 className='login__input login__icon__user pl-25px'
                 {...register("login", {
                   required: "true", pattern: /[a-zA-Z0-9]/,

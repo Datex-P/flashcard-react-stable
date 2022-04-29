@@ -33,6 +33,7 @@ export default function AddQuestionsToDeck({ index, name,
   //   }
   // }
 
+  
   function hideHandler () {
     setShow(false)
     setShowProgressDiagram(true)
@@ -49,6 +50,13 @@ export default function AddQuestionsToDeck({ index, name,
     }
 
    useEffect(() => {
+    if (document.querySelector('.modal-dialog')) {
+      let elem = document.getElementsByClassName('modal-dialog')
+       elem[0].style.display='flex'
+       elem[0].style.justifyContent = 'center'
+      console.log(elem, 'elem here')
+    }
+  
    
   //   if (show) {
   //    setShowProgressDiagram(false)

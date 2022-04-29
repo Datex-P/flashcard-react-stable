@@ -26,7 +26,6 @@ export default function HourlyBreakdown() {
               checked={dataBase?.hourlyBreakdown === comp} //how to combine checked and handleColor accurately?
               onChange={handleMonths}
             />
-
             <label style={{ margin: '5px' }}>{comp}</label>
           </React.Fragment>
         ))}

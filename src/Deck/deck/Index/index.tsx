@@ -17,8 +17,8 @@ export default function Deck({
    index,
    bg,
    setArrowDown,
-   showProgressDiagram, setShowProgressDiagram,
    setDecksAreVisible,
+   showProgressDiagram, setShowProgressDiagram,
    setScrollbarVisible,
    ...style
 }) {
@@ -197,8 +197,10 @@ export default function Deck({
             index={index}
             data={data}
             paused={paused}
+            setDecksAreVisible={setDecksAreVisible}
             setPauseIsActive={setPauseIsActive}
             pauseIsActive={pauseIsActive}
+            setScrollbarVisible={setScrollbarVisible}
           />
           {active === index && (
        

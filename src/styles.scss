@@ -46,13 +46,41 @@ input[type="number"] {
   font-weight: bold;
 }
 
+.font-18px {
+  font-size: 18px;
+}
+
 .cursor {
   cursor: pointer;
 }
 
-.left {
+/*positioning following from here*/
+
+.left-40px {
   left: 40px;
 }
+
+.left-180px {
+  left: 180px;
+}
+
+.top-8px {
+  top:8px;
+}
+
+.top-16px {
+  top:16px;
+}
+
+.top-20px {
+  top:20px;
+}
+
+.top-50px {
+  top: 50px;
+}
+
+/*<-- top left right positioning until here*/
 
 .pointer {
   cursor: pointer !important;
@@ -179,6 +207,10 @@ input[type="number"] {
 
 .height35px {
   height:35px;
+}
+
+.height100px {
+  height: 100px;
 }
 
 .width40px {
@@ -491,7 +523,7 @@ input[type="checkbox"] {
   transform: rotate(135deg);
 }
 
-.rotateLittleModal {
+.threeDotsCont {
   transform: rotate(90deg) !important;
   font-weight: bold !important;
   font-size: 23px !important;
@@ -501,8 +533,9 @@ input[type="checkbox"] {
 }
 
 .modNew {
-  background-color: transparent !important;
+  // background-color: transparent !important;
   border: none !important;
+  background-color: burlywood;
   margin: 0 auto;
   padding: 0px !important;
   width: 99% !important;
@@ -574,13 +607,12 @@ input::-webkit-inner-spin-button {
 }
 
 .menuStyling {
-  display: flex;
   cursor: pointer;
   background-color: #dcc9b6;
   border: 3px black solid;
   border-radius: 5px;
   margin-top: 1px;
-  width: 321px;
+  width: 250px;
 }
 
 .form {
@@ -643,14 +675,11 @@ input::-webkit-inner-spin-button {
   /*specifies the width etc. of basic orange window*/
   background-color: rgba(200, 168, 115) !important;
   border-radius: 20px !important;
-  /* height: 544px; */
-  height:57%;
+  height: 544px;
   width: 374px !important;
   margin-top: 90px !important;
   margin: auto;
   border: 2px solid black !important;
-  top: 25px;
-  position: absolute;
   z-index: 2;
 }
 
@@ -868,7 +897,6 @@ input::-webkit-inner-spin-button {
 }
 
 .render-days__year-box-container {
-  display: flex;
   flex-wrap: wrap;
   width: 270px;
   height: 210px;
@@ -910,13 +938,6 @@ input::-webkit-inner-spin-button {
   width: 56px;
   padding: 1px;
   border-radius: 2px;
-}
-
-.yearBoxContainer {
-  display: flex;
-  flex-wrap: wrap;
-  width: 270px;
-  height: 210px;
 }
 
 .day {
@@ -977,6 +998,8 @@ input::-webkit-inner-spin-button {
 .repeat-btn__button {
   width: 65px;
   height: 27px;
+  background: #545863 !important;
+  border-radius: 5px;
 }
 
 .modal-open .modal {
@@ -1037,6 +1060,17 @@ input::-webkit-inner-spin-button {
 #createDeck .modal-header {
   height: 33px;
 }
+
+.mod .modal-dialog {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content:center
+}
+
 
 .btn-play {
   border: 1px solid black;
@@ -1186,12 +1220,6 @@ input::-webkit-inner-spin-button {
   overflow: hidden;
 }
 
-.deck__threeDotsBtn__reset-img {
-  margin-right: 3px;
-  width: 23px;
-  height: 23px;
-}
-
 #inputField {
   width: 78%;
   margin-top: 3px;
@@ -1253,8 +1281,6 @@ textarea.form-control:focus {
   justify-content: center !important;
   left: 6px;
 }
-
-
 
 @-webkit-keyframes arrow {
   0%,

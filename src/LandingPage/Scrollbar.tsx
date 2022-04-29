@@ -5,9 +5,9 @@ import { Context } from "../Context";
 function Scrollbar() {
 
   const [scrollPosition, setScrollPosition] = useState(0)
-  const scroller = useRef();
+  const scroller = useRef<HTMLInputElement>(null);
 
-  function handleActive(i) {
+  function handleActive(i:number) {
     setActive(i);
     let newDataBase = { ...dataBase };
     newDataBase.active = i;
@@ -15,7 +15,7 @@ function Scrollbar() {
   }
 
     
-  function scrollHandler(e) {
+  function scrollHandler(e:any) {
     let position = e.target.scrollTop;
     setScrollPosition(position);
   }
@@ -33,7 +33,8 @@ function Scrollbar() {
     onScroll={(event) => {
       if (!changeDeckNameOpen) {
         let step = (1000 - 220) / (dataBase.DeckNames.length - 1);
-        let index = Math.floor(event.target.scrollTop / step);
+        const scroll = (event.target as HTMLElement).scrollTop
+        let index = Math.floor(scroll / step);
         handleActive(index);
         // console.log(index + "actual handle active index");
         scrollHandler(event);

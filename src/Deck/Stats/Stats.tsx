@@ -11,7 +11,7 @@ import HourlyBreakdown from "./HourlyBreakdown";
 import DeleteCardQuestionBox from "../deck/DeleteCardQuestionBox/DeleteCardQuestionBox";
 
 
-function Stats({ history }) {
+function Stats({ history }:any) {
   const { dataBase, setShowProgressDiagram, setDataBase } = useContext(Context);
   const [showDeleteFrame, setShowDeleteFrame] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -68,7 +68,7 @@ function Stats({ history }) {
                 trashEvent={() => {
                   let DeckNames = [...dataBase.DeckNames]
                   DeckNames.forEach(deckItem=>
-                    deckItem.data.forEach(item=> item.openHistory&&delete item.openHistory)
+                    deckItem.data.forEach(item => item?.openHistory&&delete item?.openHistory)
                   )
                   setDataBase({...dataBase,DeckNames})
                 }}

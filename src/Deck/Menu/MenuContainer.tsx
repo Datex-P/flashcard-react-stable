@@ -4,24 +4,28 @@ import Hamburger from "./Hamburger";
 import "../../styles.scss";
 import { Context } from "../../Context";
 import Icon from "./Icon";
-import settingsIcon from "../../icons/settings.svg";
-import statsIcon from "../../icons/stats.svg";
-import logoutIcon from "../../icons/logout.svg";
 import ShowProgressD from "../../LandingPage/ShowProgressDiagram";
+const settingsIcon = require("../../icons/settings.svg") as string;
+const statsIcon = require("../../icons/stats.svg") as string;
+const logoutIcon = require("../../icons/logout.svg") as string;
 
 
-export default function MenuContainer({showProgressDiagram,setShowProgressDiagram}) {
+export default function MenuContainer({showProgressDiagram,setShowProgressDiagram}:any) {
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
-  const { dataBase, styles, editButtonClicked } = useContext(Context);
-  const handleClose = () => setMenuOpen(false); // closes the Menu when handleclos is triggered
+  const { dataBase, styles,
+     editButtonClicked
+     } = useContext(Context);
+  const handleClose = () => {setMenuOpen(false)
+  console.log('I got clicked')
+  }; // closes the Menu when handleclos is triggered
 
   return (
     <div
       className='mx-auto menuContainer justify-between'
       style={{
-        backgroundColor:
-          dataBase &&
-          styles.backgroundColor[dataBase.userPreferences.backgroundColor],
+        // backgroundColor:
+        //   dataBase &&
+        //   styles.backgroundColor[dataBase.userPreferences.backgroundColor],
       }}
     >
       <Hamburger
@@ -29,21 +33,19 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
         setMenuOpen={setMenuOpen}
       />
 
-      {menuOpen && editButtonClicked && (
-        <>
+       {menuOpen && editButtonClicked && 
+         <div style={{ position:'absolute', width:'200px',height:'200px'}}> 
           <Modal
-            menuOpen={menuOpen}
-            onHide={handleClose}
-            contentClassName={"modNew"}
+             show={menuOpen}
+            // onHide={handleClose}
+             contentClassName={"modNew"}
             dialogClassName='align-items-start  pl-3'
-            centered
+            // centered
           >
             <Modal.Body className='p-0 menuContainer__modalbody'>
               <div
-                className='menuStyling marginAuto nonDraggableIcon'
-                onClick={() => {
-                  setMenuOpen(false);
-                }}
+                className='menuStyling height100px z-Index5 marginAuto nonDraggableIcon'
+                onClick={handleClose}
               >
                  <Icons
                   icons={[
@@ -84,8 +86,8 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
               </div>
             </Modal.Body>
           </Modal>
-        </>
-      )}
+         </div> 
+      }
       {
             showProgressDiagram &&
           <ShowProgressD/>

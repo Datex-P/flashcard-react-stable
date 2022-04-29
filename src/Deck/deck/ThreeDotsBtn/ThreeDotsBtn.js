@@ -13,6 +13,9 @@ import playimg from '../../../icons/play.svg'
 
 function ThreeDotsBtn({    
                         icons,reset=false,
+                        edit=false,
+                        trash=false,
+                        pause=false,
                         className, 
                         editBtnClicked, //is the editBtn in the main Question/Answer Overview
                         data,
@@ -30,12 +33,10 @@ function ThreeDotsBtn({
 
 {
   const {dataBase, setDataBase,editButtonClicked} = useContext(Context);
-  
-  let {edit=false,trash=false,pause=false} = icons;
+  //let {edit=false,trash=false,pause=false} = icons;
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
   const [pauseIsActive, setPauseIsActive] = useState(true)
   const [threeDotsOpen, setThreeDotsOpen] = useState(showFromParent);
- 
 
   function trashHandler() {
     trashEvent()
@@ -47,7 +48,6 @@ function ThreeDotsBtn({
       setThreeDotsOpen(!threeDotsOpen);
       // setShowFromParent(!show)
     }
-
   };
 
   const ref = useRef(null)
@@ -108,7 +108,6 @@ function ThreeDotsBtn({
     //setNameOfTopDeck(name)  
   }
 
-
   return (
     <>
     {
@@ -116,7 +115,7 @@ function ThreeDotsBtn({
     
       <div style={threeDotsContainer}>
         <div 
-            className='rotateLittleModal' 
+            className='threeDotsCont posAbsolute' 
             onClick={handleClick}
         >
                   ... 

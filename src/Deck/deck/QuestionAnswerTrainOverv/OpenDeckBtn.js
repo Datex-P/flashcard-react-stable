@@ -2,7 +2,11 @@ import React, {useContext} from 'react'
 import { Button} from "react-bootstrap";
 import { Context } from "../../../Context";
 
-export default function OpenDeckBtn ({data, paused, generateRandom}) {
+export default function OpenDeckBtn ({data, 
+  paused, generateRandom,
+  setDecksAreVisible,
+  setScrollbarVisible
+}) {
 
 
   const {
@@ -11,13 +15,15 @@ export default function OpenDeckBtn ({data, paused, generateRandom}) {
     setShowProgressDiagram //progressDiagram is shown in the back of main 
   } = useContext(Context);
 
-  function openDeck () {
+  function openDeckHandler () {
     if(!paused ||  editButtonClicked) {
       generateRandom();
       let newDataBase = { ...dataBase };
       newDataBase.openedToday = true;
       setShowProgressDiagram(false); //progress diagram gets why not at this place??
       setDataBase(newDataBase);
+      setScrollbarVisible(false)
+     // setDecksAreVisible(false)
     }
   }
 
@@ -27,7 +33,7 @@ export default function OpenDeckBtn ({data, paused, generateRandom}) {
       variant="secondary"
       className="openDeck"
       size="sm"
-      onClick={openDeck}
+      onClick={openDeckHandler}
       style={{
         backgroundColor: !editButtonClicked ? "rgb(108, 117, 125)" : "grey",
         cursor: paused || data.length === 0 || !editButtonClicked ? "default": "pointer",

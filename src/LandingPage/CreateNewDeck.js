@@ -1,37 +1,54 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Modal, Row } from "react-bootstrap";
 import { Context } from "../Context"; 
-import Button from './Button.js'
+import Button from './Button'
+
+// interface CreateNewDeckProps {
+//   addNewDeckWindow?: boolean, 
+//   decksAreVisible: boolean,
+//   editButtonClicked: boolean,
+//   createDeckHandler: ()=>void,
+//   setArrowDown: (arg0: boolean)=>void,
+//   setDecksAreVisible: (arg0: boolean)=>void, 
+//   setScrollbarVisible: (arg0: boolean)=>void,
+//   close: any
+// }
 
 
 
 
-export default function CreateNewDeck({close, 
+export default function CreateNewDeck({
   addNewDeckWindow, 
+  createDeckHandler,
+  close, 
   decksAreVisible,
   editButtonClicked,
-  createDeckHandler,
   setArrowDown,
+  setDecksAreVisible,
   setScrollbarVisible // scrollbar dissapear when stats or settings are open
-}) {
+}
+// :CreateNewDeckProps
+) {
 
   const {
-    setActive, 
-    colors, //colors array for the decks
-    dataBase, setDataBase, 
-    setShowProgressDiagram, 
+     setActive, 
+     colors, //colors array for the decks
+   //  dataBase, setDataBase, 
+     setShowProgressDiagram, 
   } = useContext(Context);
 
    const [inputField, setInputField] = useState('');
    const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
 
-  const inputRef = useRef(null);
-  const Ok = useRef(null);
-  const Cancel = useRef(null);
 
+
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const okRef = useRef<HTMLInputElement | null>(null);
+ 
   useEffect(() => {
     if (addNewDeckWindow) {
-      inputRef.current.focus();
+      inputRef?.current?.focus();
       setShowProgressDiagram(false);
     } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,57 +56,74 @@ export default function CreateNewDeck({close,
 
 
 
-  function addNewDeckName() {
+  // function addNewDeckName() {
 
-    let newDataBase = { ...dataBase };
+  //   let newDataBase = { ...dataBase };
 
-      let index = newDataBase.DeckNames.push({
-        name: inputField,
-        data: [],
-        cardsToday: 0,
-        color: colors[Object.keys(dataBase.DeckNames).length % colors.length],
-        paused: false,
-        thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
-        skipPausedCards: 0,
-        pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
-        editModeActive: false, //when editModeActive is true, pause switch can t be clicked 
-      });
+  //     let index = newDataBase.DeckNames.push({
+  //       name: inputField,
+  //       data: [],
+  //       cardsToday: 0,
+  //       color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
+  //       paused: false,
+  //       thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+  //       skipPausedCards: 0,
+  //       pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
+  //       editModeActive: false, //when editModeActive is true, pause switch can t be clicked 
+  //     });
 
-      if (dataBase.DeckNames.length === 1 || dataBase.DeckNames.length === 0) {
-        setScrollbarVisible(false)   //scrollbar on the side is not visible when zero or only one deck on the stack
-      } else {
-        setScrollbarVisible(true)
-      }
-      setActive(index - 1);
-      setInputField("");
-      setDataBase(newDataBase);
-      close();
+  //     if (dataBase?.DeckNames?.length === 1 || dataBase?.DeckNames?.length === 0) {
+  //       setScrollbarVisible(false)   //scrollbar on the side is not visible when zero or only one deck on the stack
+  //     } else {
+  //       setScrollbarVisible(true)
+  //     }
+  //     setActive(index - 1);
+  //     setInputField("");
+  //     setDataBase(newDataBase);
+  //     close();
+  //   }
+
+    function onChangeHandler (event:any) {
+      let {target} = event
+     // let value = ReactEvent.Form.target(event)
+     if (target){
+       setInputField(event.target.value)
     }
-
-    function onChangeHandler (event) {
-      setInputField(event.target.value)
 
       setTimeout(()=>{           
             if (event.target.value.length  > 3 && event.target.value.length < 11) {
-               
-              Ok.current.disabled = false;
-              Ok.current.classList.add('okCancelButtonColor');           
+              if (okRef !== null && okRef.current) {
+              okRef.current.disabled = false
+              okRef.current.classList.add('okCancelButtonColor');           
               setNameTooShortOrLong(false)
-            } else { 
+              }
+            } else if (okRef.current){ 
               setNameTooShortOrLong(true)
-              Ok.current.disabled = true
-              Ok.current.classList.remove('okCancelButtonColor');
+              okRef.current.disabled = true
+              okRef?.current?.classList.remove('okCancelButtonColor');
             }
           }, 800)
     }
 
-  if(document.getElementById('createDeck')) {
-    /*give parent element of createDeck appropriate Styling*/
-    let element = document.getElementById('createDeck').parentElement
-    element.style.display = 'flex'
-    element.style.justifyContent = 'center'
-    element.style.alignItems = 'center'
-    element.style.height = '500px'
+  const createDeckElem = window.document.getElementById('createDeck')
+  if (createDeckElem) {
+  var createDeckElement = createDeckElem.parentElement
+  }
+  //https://stackoverflow.com/questions/55588968/type-error-object-is-possibly-null-ts2531-for-window-document
+  // let check = false
+  
+  // if(createDeckElement) {
+  //   var createDeckParent = createDeckElement.parentElement
+  //   check = true
+  // }
+  // if (createDeckElement) {
+  // createDeckParent = createDeckElement.parentElement
+  // }
+  if (createDeckElement) { 
+    createDeckElement.style.display = 'flex'
+    createDeckElement.style.justifyContent = 'center'
+    createDeckElement.style.alignItems = 'center'
+    createDeckElement.style.height = '500px'
     }
 
   return (
@@ -121,19 +155,19 @@ export default function CreateNewDeck({close,
              id="inputField"
              ref={inputRef}
              value={inputField}
-             onChange={(event) => {
-              onChangeHandler(event)    
+             onChange={(event:any) => {
+              onChangeHandler(event)
              }}
           />
             <div className='createNewDeck__too-short-or-long'>
               {
-              `${
-                dataBase.DeckNames.map(a=>a.name).includes(inputField)?
-                'name exists':
-                nameTooShortOrLong && inputField.length<4? 'too short':
-                nameTooShortOrLong && inputField.length>11? 'too long':
-                ''
-                }`
+              // `${
+              //   dataBase?.DeckNames?.map(a=>a.name).includes(inputField)?
+              //   'name exists':
+              //   nameTooShortOrLong && inputField.length<4? 'too short':
+              //   nameTooShortOrLong && inputField.length>11? 'too long':
+              //   ''
+              //   }`
               }
             </div>     
           <select className="createNewDeck__select-options">
@@ -148,13 +182,13 @@ export default function CreateNewDeck({close,
            <Button 
             setArrowDown={setArrowDown} 
             setInputField={setInputField} 
-            addNewDeckName={addNewDeckName}
+          //  addNewDeckName={addNewDeckName}
             close={close}  
           />
           <Button 
             setArrowDown={setArrowDown} 
             setInputField={setInputField}
-            addNewDeckName={addNewDeckName}
+           // addNewDeckName={addNewDeckName}
             close={close} 
             ok 
           /> 

@@ -7,6 +7,9 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "@types/bootstrap": "^5.1.10",
+    "@types/react": "^18.0.7",
+    "@types/react-dom": "^18.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "mongodb": "^4.5.0",
@@ -22,6 +25,7 @@
     "react-scripts": "5.0.0",
     "react-tsparticles": "^1.43.1",
     "sass": "^1.50.1",
+    "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -29,6 +33,7 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "tsc:w": "tsc -w",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "nodemon": "^2.0.15"
   }
 }

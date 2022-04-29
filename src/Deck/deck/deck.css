@@ -110,6 +110,11 @@
   border-radius: 5px;
 }
 
+.deck__basic_button_positioning {
+  right: 10px;
+  top: 0px;
+}
+
 .deck__addToDeck {
     width: 110px;
     height: 32px;
@@ -132,4 +137,10 @@
 .deck__threeDotsBtn__btn:hover {
   background-color: #a39171 !important;
   outline:none;
+}
+
+.deck__threeDotsBtn__reset-img {
+  margin-right: 3px;
+  width: 23px;
+  height: 23px;
 }

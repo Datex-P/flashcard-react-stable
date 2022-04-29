@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export const Context = React.createContext(null)
 
-export default function ContextProvider({ children }) {
+export const Context = React.createContext(null as any)
 
-  const [scrollbarVisible, setScrollbarVisible] = useState(true)
+export default function ContextProvider({ children }:any) {
+
+  const [scrollbarVisible, setScrollbarVisible] = useState(true);  
   const [changeDeckNameOpen, setChangeDeckNameOpen] = useState(false); //input field to change deckname is open
   const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
   const [active, setActive] = useState(0);
-  const [dataBase, setDataBase] = useState(null);
+  const [dataBase, setDataBase] = useState<any>([]);
   const [showProgressDiagram, setShowProgressDiagram] = useState(false)
 
-  const [styles, setStyles] = useState({
-    backgroundColor: {
-      light: ' #86a873',
-      dark: '#5aaaff',
-      default: 'rgb(90, 170, 149)'
-    }
-  });
+  // const [styles, setStyles] = useState({
+  //   backgroundColor: {
+  //     light: ' #86a873',
+  //     dark: '#5aaaff',
+  //     default: 'rgb(90, 170, 149)'
+  //   }
+  // });
 
-  // 
-  let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+  // // 
+   let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+
 
   useEffect(() => {
-    let dB = {
+    let dB:any = {
 
       DeckNames: [],
       active:2,
@@ -77,7 +79,7 @@ export default function ContextProvider({ children }) {
     };
 
     for (let i = 100; i < 103; i++) {
-      let arr = [];
+      let arr:{}[] = [];
 
       for (let i = 1; i < 5; i++) {
         
@@ -126,7 +128,7 @@ export default function ContextProvider({ children }) {
         editButtonClicked, setEditButtonClicked, 
         scrollbarVisible, setScrollbarVisible, 
         showProgressDiagram, setShowProgressDiagram,
-        styles, setStyles,
+     //   styles, setStyles,
         }} 
      >
 

@@ -1,5 +1,5 @@
 import React, { useContext}  from 'react';
-import playimg from "../../../icons/play.svg";
+ import playimg from "../../../icons/play-button.svg";
 import { Context } from "../../../Context";
 
 

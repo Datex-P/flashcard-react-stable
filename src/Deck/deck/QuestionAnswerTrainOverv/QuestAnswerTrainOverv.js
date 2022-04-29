@@ -15,6 +15,8 @@ import '../deck.css'
 
 export default function QuestAnswerTrainOverv({
         createDeckButtonIsVisible,
+        setDecksAreVisible,
+        setScrollbarVisible,
         setPauseIsActive,
         pauseIsActive,
         data,
@@ -37,7 +39,7 @@ export default function QuestAnswerTrainOverv({
   const [card, setCard] = useState({ answer: "", question: "" });
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
   const [mainBox] = useState(true);
-  const inputRef = useRef(null);
+  //const inputRef = useRef(null);
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
   const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
   
@@ -48,9 +50,9 @@ export default function QuestAnswerTrainOverv({
     } = useContext(Context);
 
   useEffect(() => {
-    if (editBtnClicked) {
-      inputRef.current.focus();
-    }
+    // if (editBtnClicked) {
+    //   inputRef.current.focus();
+    // }
   }, [editBtnClicked]);
 
   function handlePause() {
@@ -149,7 +151,6 @@ export default function QuestAnswerTrainOverv({
     } else {
       clearInterval(timer);
       setShowProgressDiagram(true);
-       console.log('oh you delete me')
     }
     //return function () {clearInterval(timeLeft)}
     // eslint-disable-next-line
@@ -185,8 +186,9 @@ export default function QuestAnswerTrainOverv({
           data = {data}
           generateRandom = {generateRandom}
           paused = {paused}
-      />
-      
+          setDecksAreVisible={setDecksAreVisible}
+          setScrollbarVisible={setScrollbarVisible}
+      />      
       {deckLengthNotZero && !paused && (
         <BasicOrangeWindow
           show={show}
@@ -201,7 +203,7 @@ export default function QuestAnswerTrainOverv({
           title={`Deck: ${name}`}
           showFromParent={threeDotsMenuOpen}
           menu={
-            dataBase.DeckNames[index].pauseMode ? null : (
+            dataBase?.DeckNames[index]?.pauseMode ? null : (
               <ThreeDotsBtn
                 text={"card"}
                 editButtonClicked={true}
@@ -266,7 +268,7 @@ export default function QuestAnswerTrainOverv({
                 card={card}
                 editBtnClicked={editBtnClicked}
                 changeHandler={changeHandler}
-                inputRef
+               // inputRef
               />
 
               {showAnswerBtn && (
@@ -306,7 +308,7 @@ export default function QuestAnswerTrainOverv({
                   card={card}
                   editBtnClicked={editBtnClicked}
                   changeHandler={changeHandler}
-                  inputRef
+                  // inputRef
               />
               }
               {editBtnClicked && 
