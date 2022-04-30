@@ -3,9 +3,10 @@ import { Context } from "../Context";
 
 export default function Button ({ok=false, 
   setInputField, 
+  setHideCreateDeckBtn,
  // addNewDeckName,
   setArrowDown,
-   close}) {
+  closeHandler}) {
 
   const {
     dataBase, 
@@ -17,8 +18,9 @@ export default function Button ({ok=false,
   const cancelRef = useRef<HTMLButtonElement>(null)
 
   function cancelHandler () {
-    close();
+    closeHandler();
     setInputField('');
+    setHideCreateDeckBtn(false)
   
     if (dataBase.DeckNames.length === 0) {     
         setArrowDown(true);
@@ -32,6 +34,7 @@ export default function Button ({ok=false,
         className='okCancelButtonColor okCancelButton'
         key={'Ok'}
         ref={okRef}
+        onClick={()=>setHideCreateDeckBtn(false)}
       //  onClick={addNewDeckName}
       >
         Ok

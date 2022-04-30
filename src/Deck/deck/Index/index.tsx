@@ -20,6 +20,7 @@ export default function Deck({
    setDecksAreVisible,
    showProgressDiagram, setShowProgressDiagram,
    setScrollbarVisible,
+   setHideCreateDeckBtn, 
    ...style
 }) {
  
@@ -193,6 +194,7 @@ export default function Deck({
                   style={style}
                 />        
           <QuestAnswerTrainOverv
+          setHideCreateDeckBtn={setHideCreateDeckBtn}
             name={name}
             index={index}
             data={data}
@@ -205,6 +207,7 @@ export default function Deck({
           {active === index && (
        
             <AddQuestionsToDeck
+              setHideCreateDeckBtn={setHideCreateDeckBtn}
               background={style.background}
               setScrollbarVisible={setScrollbarVisible}
               name={name}

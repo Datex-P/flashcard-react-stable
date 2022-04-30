@@ -17,6 +17,7 @@ export default function QuestAnswerTrainOverv({
         createDeckButtonIsVisible,
         setDecksAreVisible,
         setScrollbarVisible,
+        setHideCreateDeckBtn,
         setPauseIsActive,
         pauseIsActive,
         data,
@@ -186,6 +187,7 @@ export default function QuestAnswerTrainOverv({
           data = {data}
           generateRandom = {generateRandom}
           paused = {paused}
+          setHideCreateDeckBtn={setHideCreateDeckBtn}
           setDecksAreVisible={setDecksAreVisible}
           setScrollbarVisible={setScrollbarVisible}
       />      
@@ -194,8 +196,10 @@ export default function QuestAnswerTrainOverv({
           show={show}
           setShow={setShow}
           generateRandom={generateRandom}
+          setHideCreateDeckBtn={setHideCreateDeckBtn}
           mainBox={mainBox}
           index={index}
+          setScrollbarVisible={setScrollbarVisible}
           id="questionAnswerOverview"
           setEditBtnClicked={setEditBtnClicked}
           createDeckButtonIsVisible={createDeckButtonIsVisible}
@@ -283,7 +287,6 @@ export default function QuestAnswerTrainOverv({
                   Show answer
                 </Button>
               )}
-
               {dataBase.DeckNames[index].pauseMode &&
 
               <PauseModeHandler
@@ -330,7 +333,6 @@ export default function QuestAnswerTrainOverv({
                     }}
                   />
               }
-
               {trash && showDeleteWindow && 
                 <DeleteCardQuestionBox
                   card="card"

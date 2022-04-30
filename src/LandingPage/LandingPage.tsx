@@ -16,6 +16,7 @@ import StartFirstDeck from './StartFirstDeck'
   const [decksAreVisible, setDecksAreVisible] = useState<boolean>(true); //decks are shown on the deck stack if this is set to true  
   const [showProgressDiagram, setShowProgressDiagram] = useState<boolean>(true);
   const [arrowDown, setArrowDown] = useState<boolean>(true);
+  const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
 
   const {
     active, 
@@ -54,6 +55,7 @@ import StartFirstDeck from './StartFirstDeck'
       setShowProgressDiagram(false);
       setArrowDown(false); //create new deck and arrow down not visible
     }
+    setHideCreateDeckBtn(true) //the button create Deck gets hidden
   }
 
   function closeHandler () {
@@ -94,6 +96,7 @@ import StartFirstDeck from './StartFirstDeck'
                       accum.arr.push(
                         <Deck
                           key={index}
+                          setHideCreateDeckBtn={setHideCreateDeckBtn}
                           index={index}
                           deck={deck}
                           transform={`rotate(0deg)`}
@@ -113,6 +116,7 @@ import StartFirstDeck from './StartFirstDeck'
                           deck={deck}
                           transform={`rotate(${-accum.index * 2}deg)`}
                           zIndex={0}
+                          setHideCreateDeckBtn={setHideCreateDeckBtn}
                           bg={colorHandler}
                           background={colorHandler}
                           {...deckProps}
@@ -135,13 +139,14 @@ import StartFirstDeck from './StartFirstDeck'
          }    
         </Row>  
           <CreateNewDeck
+            hideCreateDeckBtn={hideCreateDeckBtn}
+            setHideCreateDeckBtn={setHideCreateDeckBtn}
             addNewDeckWindow={addNewDeckWindow}
             createDeckHandler={createDeckHandler}
-            close={closeHandler}
+            closeHandler={closeHandler}
             decksAreVisible={decksAreVisible}
             editButtonClicked={editButtonClicked}
-            // className='posAbsolute zIndex-5'
-             setArrowDown={setArrowDown}
+            setArrowDown={setArrowDown}
             setScrollbarVisible={setScrollbarVisible}
             setDecksAreVisible={setDecksAreVisible}
           />                   

@@ -20,11 +20,11 @@ import Button from './Button'
 export default function CreateNewDeck({
   addNewDeckWindow, 
   createDeckHandler,
-  close, 
-  decksAreVisible,
+  closeHandler, 
+  hideCreateDeckBtn, setHideCreateDeckBtn,
+  decksAreVisible, setDecksAreVisible,
   editButtonClicked,
   setArrowDown,
-  setDecksAreVisible,
   setScrollbarVisible // scrollbar dissapear when stats or settings are open
 }
 // :CreateNewDeckProps
@@ -128,7 +128,7 @@ export default function CreateNewDeck({
 
   return (
     <Row className='justify-center mt-350px'>
-      {decksAreVisible&&
+      {hideCreateDeckBtn === false &&
       <button
         className='row__btn-create-deck'
         style={{cursor: !editButtonClicked ? "default" : "pointer"}}
@@ -153,7 +153,7 @@ export default function CreateNewDeck({
         <Modal.Body className="align-center flex-column">
           <input
              id="inputField"
-             ref={inputRef}
+            // ref={inputRef}
              value={inputField}
              onChange={(event:any) => {
               onChangeHandler(event)
@@ -183,13 +183,15 @@ export default function CreateNewDeck({
             setArrowDown={setArrowDown} 
             setInputField={setInputField} 
           //  addNewDeckName={addNewDeckName}
-            close={close}  
+            closeHandler={closeHandler}  
+            setHideCreateDeckBtn={setHideCreateDeckBtn}
           />
           <Button 
             setArrowDown={setArrowDown} 
             setInputField={setInputField}
            // addNewDeckName={addNewDeckName}
-            close={close} 
+           closeHandler={closeHandler} 
+           setHideCreateDeckBtn={setHideCreateDeckBtn}
             ok 
           /> 
         </div>

@@ -7,7 +7,7 @@ import closeWindow from "../../../icons/closeWindow.svg";
 import AlertComponent from './AlertComponent'
 
 export default function AddQuestionsToDeck({ index, name, 
-  show, setShow, setScrollbarVisible}) {
+  show, setShow, setScrollbarVisible, setHideCreateDeckBtn}) {
 
   const [card, setCard] = useState({ question: '', answer: '' })
   const [newCardAdded, setNewCardAdded] = useState(false);
@@ -32,17 +32,20 @@ export default function AddQuestionsToDeck({ index, name,
   //     }, 650)
   //   }
   // }
+  // function hideHandler () {
+  //   setShow(false)
+  //   setShowProgressDiagram(true)
+  //   setHideCreateDeckBtn(false)
 
-  
-  function hideHandler () {
-    setShow(false)
-    setShowProgressDiagram(true)
-  }
+  // }
+
+  // plusHandler gets triggered when User clicks on plus Icon
+  // is deactivated when the deck is paused, so User has to unpause
+  //the deck to add cards to the deck
 
   function plusHandler () {
-
       if(!dataBase?.DeckNames[index]?.paused || editButtonClicked) {
-        
+        setHideCreateDeckBtn(true)
         setShow(true)
         setShowProgressDiagram(false)
         setScrollbarVisible(false)
@@ -56,8 +59,6 @@ export default function AddQuestionsToDeck({ index, name,
        elem[0].style.justifyContent = 'center'
       console.log(elem, 'elem here')
     }
-  
-   
   //   if (show) {
   //    setShowProgressDiagram(false)
 
@@ -74,13 +75,16 @@ export default function AddQuestionsToDeck({ index, name,
 
 
   useEffect(() => {
-
     setTimeout(() => { setNewCardAdded(false) }, 650)
   }, [newCardAdded]);
 
+  function closeHandler () {
+    setShow(false)
+    setHideCreateDeckBtn(false)
+    setShowProgressDiagram(true)
+  }
 
   return (
-
     <div>
       <button
         className='AddQuestionsToDeck-btn-plus justify-center-align-center outline-none'
@@ -96,14 +100,14 @@ export default function AddQuestionsToDeck({ index, name,
           show={show}
           contentClassName={'mod'}
           backdrop='static'
-          onHide={hideHandler}
+         // onHide={hideHandler}
         >
           <Modal.Header className='border-bottom-0'>
             <Modal.Title className='justify-between'>
               <span className='align-center'>Deck: {name}</span>
               <button
                 className='redCross pointer'
-                onClick={() => setShow(false)}
+                onClick={closeHandler}
               >
               <img
                 src={closeWindow}

@@ -1,49 +1,69 @@
-import env from "../src/env.json";
+//import env from "../src/env.json";
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose =require("mongoose");
+const morgan = require('morgan');
 require('dotenv').config()
+const nodemailer = require("nodemailer");
 const cors = require('cors')
 const express = require('express');
 const app = express();
+const Flashcard = require('./models/flashcards')
 // const DataBase = require('./models/database')
 app.use(cors())
 app.use(express.json())
 
 //const mongoose = require('mongoose');
 // const token = require('jsonwebtoken')
-const nodemailer = require("nodemailer");
-const { MongoClient } = require("mongodb");
-let mongoID = env.Mongo_ID;
+//const { MongoClient } = require("mongodb");
 
-// async..await is not allowed in global scope, must use a wrapper
-async function main () {
-
-  const uri= `${mongoID}`
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  const client = new MongoClient(uri)
-  try{
-  await client.connect();
-  await listDatabases(client)
-  console.log(client.isConnected(), 'mongo client connected')
-  } catch(e) {
-    console.error(e)
-  } finally {
-    await client.close()
-  }
-}
-main().catch(console.error)
-
-function listDatabases(client) {
-  const databasesList = client.db().admin.listDatabases()
-  console.log('databases')
-  databasesList.databases.forEach(db=>{
-    console.log(`-${db.name}`)
+//this part works asynchronously
+app.get('/register2', (req, res)=> {
+  const flashcard= new Flashcard ({
+    title:'new flashcard',
+    snippet: 'about my',
+    body:'more about'
   })
-}
-listDatabases()
+  flashcard.save()
+  .then((result)=>{
+    res.send(result)
+  }).catch((err)=>{
+    console.log(err)
+  })
+})
 
+
+
+
+//const dbURI = process.env.MONGO_URL;
+const dbURI = "mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/flashcard?retryWrites=true&w=majority"
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+.then((result)=> app.listen(3000))
+.catch((err)=>console.log(err))
+
+
+
+
+// console.log(mongoID, 'mongoID here')
+
+// const uri = mongoID
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   //const collection = client.db("test").collection("devices");
+//   //function listDatabases(client) {
+//     const collection = client.db("flashcard").collection("flashcard");
+//     let res = collection.find({})
+//     res.forEach(i=>console.log(i))
+//  // }
+//   //listDatabases()
+//   // perform actions on the collection object
+
+//   //client.close();
+// });
 
 // async function main() {
+
+
+
 
 //   const uri= "mongodb+srv://flashcard:flashcard123@cluster0.7fwjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 //   // Generate test SMTP service account from ethereal.email
@@ -131,4 +151,4 @@ listDatabases()
 // connect to mongo
 //const dbURI = process.env.MONGO_URL;
 //mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology:true }).then((result)=>console.log('connected')).catch((err)=>console.log(err));
-app.listen(4000, ()=>console.log('server is running'))
+//app.listen(4000, ()=>console.log('server is running'))

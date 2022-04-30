@@ -8,6 +8,8 @@ export default function BasicOrangeWindow({
               children,
               index,
               generateRandom,
+              setScrollbarVisible,
+              setHideCreateDeckBtn,
               show,setShow,
               mainBox,
               menu,
@@ -20,12 +22,14 @@ export default function BasicOrangeWindow({
   const {dataBase, setDataBase, setShowRepeatBtn} = useContext(Context);
 
 
-  function buttonHandler () {
+  function redCrossHandler () {
     setShow(false);
     setEdit(false);
-    setShowRepeatBtn(false);
+    setHideCreateDeckBtn(false) //createDeckBtn is shown again
+    //setShowRepeatBtn(false);
     setShowAnswerBtn(true);
     setEditBtnClicked(false);
+    setScrollbarVisible(true);
     if (index) {
     let newDataBase = {...dataBase}
     newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
@@ -88,7 +92,7 @@ export default function BasicOrangeWindow({
           {menu}
           <button
             className="redCross basic_button_positioning posAbsolute justify-center-align-center"
-            onClick={buttonHandler}
+            onClick={redCrossHandler}
           >
             <img 
               className="nonDraggableIcon" 

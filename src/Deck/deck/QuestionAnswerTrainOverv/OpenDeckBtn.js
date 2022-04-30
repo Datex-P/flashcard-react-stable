@@ -5,7 +5,8 @@ import { Context } from "../../../Context";
 export default function OpenDeckBtn ({data, 
   paused, generateRandom,
   setDecksAreVisible,
-  setScrollbarVisible
+  setScrollbarVisible,
+  setHideCreateDeckBtn
 }) {
 
 
@@ -23,7 +24,7 @@ export default function OpenDeckBtn ({data,
       setShowProgressDiagram(false); //progress diagram gets why not at this place??
       setDataBase(newDataBase);
       setScrollbarVisible(false)
-     // setDecksAreVisible(false)
+      setHideCreateDeckBtn(true) //create Deck Btn gets hidden
     }
   }
 
