@@ -38,7 +38,7 @@ export default function NoAndYes ({
           ['No', 'Yes'].map(el =>
             <div 
                 key={el}
-                className='deleteContainerNoAndYes justify-center-align-center'
+                className='deck__deleteContainerNoAndYes justify-center-align-center'
                 onClick={() => {
                     if (el === 'Yes') {
                         yesHandler()

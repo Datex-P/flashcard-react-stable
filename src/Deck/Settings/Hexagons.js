@@ -18,7 +18,7 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
   }
 
   function srcHandler () {
-    return idx <= dataBase.userPreferences.days ? 
+    return idx <= dataBase?.userPreferences?.days ? 
     hexagonGreen : hexagonWhite
   }
 
@@ -32,7 +32,7 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
           draggable={false}
           src={srcHandler()}
           alt='hexagon'
-          onClick={setEditHex(true)}
+          onClick={()=>setEditHex(true)}
         />
         :
         <img
@@ -40,15 +40,15 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
           draggable={false}
           src={srcHandler()}
           alt='hexagon'
-          onClick={setEditHex(true) }
-          onMouseEnter={setIndex(true)}
-          onMouseLeave={setShowDay(false)}
+          onClick={()=>setEditHex(true) }
+          onMouseEnter={()=>setIndex(true)}
+          onMouseLeave={()=>setShowDay(false)}
         />
       }
       {
         ((editHex && 
           
-          (showDay || idx === dataBase.userPreferences.days)) || idx === dataBase.userPreferences.days) 
+          (showDay || idx === dataBase?.userPreferences?.days)) || idx === dataBase?.userPreferences?.days) 
         &&
             
         <div className='settings__editHex'>
@@ -56,7 +56,7 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
             <span className='fontBold'
             >
                 {
-                  idx <= dataBase.userPreferences.days ? 
+                  idx <= dataBase?.userPreferences?.days ? 
 
                       `${idx + 1}` 
                         : 

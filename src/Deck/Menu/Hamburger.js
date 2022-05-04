@@ -26,10 +26,10 @@ function Hamburger({
         className='zIndex-5 hamburger__menu-icon-container width100px align-center flex-column'
         onClick={triggerDiagramAndState}
       >
-        <div className={`menuIcon ${menuOpen ? 'transPlus top-8px' : ''}`}
+        <div className={`menuIcon ${menuOpen ? 'menu__transPlus top-8px' : ''}`}
         ></div>
-        {!menuOpen && <div className={"menuIcon sec"}></div>}
-        <div className={`menuIcon ${menuOpen ? 'transMinus top-8px' : 'top-16px'}`}
+        {!menuOpen && <div className={"menuIcon top-8px"}></div>}
+        <div className={`menuIcon ${menuOpen ? 'menu__transMinus top-8px' : 'top-16px'}`}
         ></div>
       </div>
     </div>

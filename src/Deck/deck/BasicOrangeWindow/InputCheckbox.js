@@ -49,7 +49,7 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
         onChange={handleChecked}
         value='10'
       />
-      <label className="deck__onOffSwitch-label" htmlFor="mydeck__onOffSwitch"
+      <label className="deck__onOffSwitch-label posAbsolute" htmlFor="mydeck__onOffSwitch"
        onClick={switchOnOrOff}
       >
         <span className="deck__onOffSwitch-inner"></span>

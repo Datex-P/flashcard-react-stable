@@ -87,7 +87,7 @@ export default function AddQuestionsToDeck({ index, name,
   return (
     <div>
       <button
-        className='AddQuestionsToDeck-btn-plus justify-center-align-center outline-none'
+        className='deck__addToDeck__btn_plus justify-center-align-center outline-none'
         style={{cursor: dataBase.DeckNames[index]?.paused || 
                         !editButtonClicked ? 'default' : 'pointer'
         }}
@@ -98,12 +98,14 @@ export default function AddQuestionsToDeck({ index, name,
       <div className='marginAuto'>
         <Modal
           show={show}
-          contentClassName={'mod'}
+          contentClassName={'modAddToDeck'}
           backdrop='static'
          // onHide={hideHandler}
         >
           <Modal.Header className='border-bottom-0'>
-            <Modal.Title className='justify-between'>
+            <Modal.Title className='justify-between mod-title'
+            //style={{width:'90%', marginLeft:'20px'}}
+            >
               <span className='align-center'>Deck: {name}</span>
               <button
                 className='redCross pointer'
@@ -125,7 +127,7 @@ export default function AddQuestionsToDeck({ index, name,
           />
             <button
             //   onClick={addToDeck}
-              className='generalButtonStyling deck__addToDeck mt-20px ml-21px'
+              className='deck_add_btn deck__addToDeck mt-20px ml-21px'
             >
               Add to Deck
             </button>

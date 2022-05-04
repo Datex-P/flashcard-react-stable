@@ -60,13 +60,13 @@ export default function DeleteCardQuestionBox({ card,
                         resetQuestionText? 
                           <img 
                               src={resetQuestionText? resetimg: flashcards} 
-                              className='justify-center-align-center flashCardsStyling' 
+                              className='justify-center-align-center width26px deck__DeleteCardQuestionBox__img' 
                               alt='reset'                         
                           />
                           :
                           <img 
                               src={flashcards} 
-                              className='justify-center-align-center flashCardsStyling' 
+                              className='justify-center-align-center width26px deck__DeleteCardQuestionBox__img' 
                               alt='flashcards'                         
                           />
 

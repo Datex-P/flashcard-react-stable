@@ -32,10 +32,56 @@
   margin-bottom: 20px;
 }
 
+.stats__progressBar {
+  background-color: black;
+  padding: 3px;
+  height: 16px;
+  width: 146px;
+  margin-left: 46px;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.stats__currentProgress {
+  background-color: orange;
+  color: black;
+  height: 10px;
+}
+
+.stats__breakdownContainer {
+  width: 280px;
+  border: 1px solid black;
+  height: 190px;
+  position: relative;
+  margin: auto;
+  padding: 4px;
+  padding-top: 10px;
+  border-radius: 3px;
+}
+
 .stats__hourlyBreakdown__input {
-cursor: pointer; 
-margin-top: 10px; 
-margin-bottom: 20px;
+  cursor: pointer; 
+  margin-top: 10px; 
+  margin-bottom: 20px;
+}
+
+.stats__resetButtonStyling {
+  position: absolute;
+  top: 17px;
+  right: 26px;
+  z-index: 2000;
+  background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.stats__studyGoal {
+  margin-left: 10px;
+  border: 1px solid black;
+  width: 81px;
+  padding-left: 3px;
+  height: 24px;
+  border-radius: 2px;
 }
 
 .stats__header {

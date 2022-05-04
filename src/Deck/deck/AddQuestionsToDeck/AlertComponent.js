@@ -14,26 +14,26 @@ function AlertComponent({ card, setCard, newCardAdded }) {
   return (
     <>
       <div className='mb-2'>
-        <p className='deck__questionAnswer'>Question</p>
+        <p className='deck__questionAnswer fontBold'>Question</p>
         <FormControl
           as='textarea'
           aria-label='With textarea'
           value={card.question}
           name='question'
           onChange={changeHandler}
-          className='formControlIn'
+          className='deck__formControl'
         />
         {newCardAdded && <CardAddedOrInput card={card} />}
       </div>
       <div className={`${newCardAdded? 'mt-60px': ''}`}>
-        <p className='deck__questionAnswer'>Answer</p>
+        <p className='deck__questionAnswer fontBold'>Answer</p>
         <FormControl
           as='textarea'
           aria-label='With textarea'
           value={card.answer}
           name='answer'
           onChange={changeHandler}
-          className='formControlIn'
+          className='deck__formControl'
         />
       </div>
     </>

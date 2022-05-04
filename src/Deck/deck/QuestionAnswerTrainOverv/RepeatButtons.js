@@ -17,8 +17,8 @@ function RepeatBtn({label, btn, onClick,showAnswerBtn,
   
   return (
 
-    <div className='text-center'>
-       <div className='font-weight-bold'>
+    <div className='flex-column align-center'>
+       <div className='fontBold'>
           {label}
       </div>
       <Button 
@@ -42,8 +42,8 @@ return (
           onClick={repeatHandler}
           />
         ))}
-                  </div>  
-    </div>
+    </div>  
+  </div>
 )
 }
 

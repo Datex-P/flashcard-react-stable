@@ -18,7 +18,7 @@ function Stats({ history }:any) {
   const [show, setShow] = useState(false);
  
   function setShowFunc() {
-    history.push("/");
+    history.push("/main");
     setShowProgressDiagram(true);
   }
 
@@ -26,6 +26,14 @@ function Stats({ history }:any) {
     setShowProgressDiagram(false);
     // eslint-disable-next-line
   }, []);
+
+  function trashEventHandler() {
+      let DeckNames = [...dataBase.DeckNames]
+      DeckNames.forEach(deckItem=>
+        deckItem.data.forEach(item => item?.openHistory&&delete item?.openHistory)
+      )
+      setDataBase({...dataBase,DeckNames})
+  }
 
   return (
     <div className='stats__BasicOrangeWindow__cont'>
@@ -36,7 +44,7 @@ function Stats({ history }:any) {
         menu={
           <ThreeDotsBtn
             text={"stats"}
-            className="resetButtonStyling"
+            className="stats__resetButtonStyling"
             editButtonClicked
             resetEvent={() => {
               setShow(!show);
@@ -65,13 +73,7 @@ function Stats({ history }:any) {
                 setChecked={setChecked}
                 showDeleteWindow={showDeleteFrame}
                 deleteWindow={() => setShowDeleteFrame(false)}
-                trashEvent={() => {
-                  let DeckNames = [...dataBase.DeckNames]
-                  DeckNames.forEach(deckItem=>
-                    deckItem.data.forEach(item => item?.openHistory&&delete item?.openHistory)
-                  )
-                  setDataBase({...dataBase,DeckNames})
-                }}
+                trashEvent={trashEventHandler()}
                 onHide={() => {}}
               />
             )}
@@ -83,7 +85,7 @@ function Stats({ history }:any) {
           </div>
           <HourlyBreakdown />
         </div>
-        <div style={{ width: "200px" }}></div>
+        <div className='width200px'></div>
         <TimeAndProgress />
       </BasicOrangeWindow>
     </div>

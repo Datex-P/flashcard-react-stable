@@ -18,7 +18,7 @@ function Paused({data, index, paused, name, setShow, style}) {
       }
       {name && data.length !== 0 &&
         <div
-          className="divStyling align-center"
+          className="deck__container align-center"
           style={{ opacity: paused ? "0" : "1" }}
         >
           {"Decksize:".padEnd(10, "⠀")} {data.length}

@@ -1,5 +1,4 @@
 
-
 export default function DeckOrCardName({ 
           bg, 
           editButtonClicked, 
@@ -43,7 +42,7 @@ export default function DeckOrCardName({
       ):(
         <input
             ref={input}
-            className="addToDeckInput"
+            className="deck__addToDeckInput"
             value={nameOfTopDeck}
             onChange={handleChangeName}
         />

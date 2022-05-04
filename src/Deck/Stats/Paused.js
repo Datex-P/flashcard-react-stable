@@ -18,7 +18,7 @@ export default function Paused ({handlePause, index}){
         Press:
     
     <button 
-        className='btn-play'
+        className='deck__btn-play'
         onClick={()=>{
                     handlePause()
                 

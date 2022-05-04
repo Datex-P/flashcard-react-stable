@@ -101,9 +101,8 @@ export default function Deck({
       
       <Card
         style={style}
-        className="newDeckContainer flexColumn position-absolute "
-      >
-     
+        className="deck__card_cont flexColumn position-absolute "
+      >    
         <Card.Body className="justify-center-align-center flex-column mt-48px">
         <NameLongOrShort 
             nameTooLongOrShort={nameTooLongOrShort} 
@@ -120,7 +119,7 @@ export default function Deck({
                 setThreeDotsMenuOpen={setThreeDotsMenuOpen}
                 setDeckNameLengthRight={setDeckNameLengthRight}
                 setNameTooLongOrShort={setNameTooLongOrShort}
-                className="deckOrCardNameStyling"
+                className="deck__deckOrCardName"
               />
            
             {
@@ -193,19 +192,18 @@ export default function Deck({
                   name={name}
                   style={style}
                 />        
-          <QuestAnswerTrainOverv
-          setHideCreateDeckBtn={setHideCreateDeckBtn}
-            name={name}
-            index={index}
-            data={data}
-            paused={paused}
-            setDecksAreVisible={setDecksAreVisible}
-            setPauseIsActive={setPauseIsActive}
-            pauseIsActive={pauseIsActive}
-            setScrollbarVisible={setScrollbarVisible}
-          />
-          {active === index && (
-       
+              <QuestAnswerTrainOverv
+                setHideCreateDeckBtn={setHideCreateDeckBtn}
+                name={name}
+                index={index}
+                data={data}
+                paused={paused}
+                setDecksAreVisible={setDecksAreVisible}
+                setPauseIsActive={setPauseIsActive}
+                pauseIsActive={pauseIsActive}
+                setScrollbarVisible={setScrollbarVisible}
+              />
+          {active === index && (      
             <AddQuestionsToDeck
               setHideCreateDeckBtn={setHideCreateDeckBtn}
               background={style.background}

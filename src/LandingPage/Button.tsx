@@ -31,7 +31,7 @@ export default function Button ({ok=false,
   return (
       ok? (
       <button
-        className='okCancelButtonColor okCancelButton'
+        className='landing__okCancelButton'
         key={'Ok'}
         ref={okRef}
         onClick={()=>setHideCreateDeckBtn(false)}
@@ -43,7 +43,7 @@ export default function Button ({ok=false,
       :
       ( 
       <button
-        className='okCancelButtonColor okCancelButton'
+        className='landing__okCancelButton'
         key={'Cancel'}
         ref={cancelRef}
         onClick={cancelHandler}

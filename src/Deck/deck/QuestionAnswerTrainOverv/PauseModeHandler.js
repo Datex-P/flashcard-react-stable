@@ -20,20 +20,20 @@ export default function PauseModeHandler({
 
   return (
     <>
-      <div className='pauseModeHandler'>
+      <div className='deck__pauseModeHandler posAbsolute'>
         <img src={pauseimg} alt={"pause"} />
         <span className='ml-7px'>mode</span>
       </div>
       <div className='justify-center'>
         <div className='justify-around width300px'>
           <div
-            className='unpauseAndKeepPausedButton showAnswerButton justify-center'
+            className='unpauseAndKeepPausedButton deck__showAnswerButton align-center'
             onClick={unpauseHandler}
           >
             Unpause card
           </div>
           <div
-            className='unpauseAndKeepPausedButton showAnswerButton justify-center'
+            className='unpauseAndKeepPausedButton deck__showAnswerButton align-center'
             onClick={generateRandom}
           >
             Keep paused

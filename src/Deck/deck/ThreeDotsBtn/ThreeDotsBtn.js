@@ -115,7 +115,7 @@ function ThreeDotsBtn({
     
       <div style={threeDotsContainer}>
         <div 
-            className='threeDotsCont posAbsolute' 
+            className='deck__threeDotsCont posAbsolute deck__posQuestionAnswer' 
             onClick={handleClick}
         >
                   ... 

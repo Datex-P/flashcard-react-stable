@@ -139,25 +139,18 @@ const TimeAndProgress: React.FC = () => {
   }
 
   return (
-    <div className='diagramHourlyBreakdownContainer justify-around flex-column'>
+    <div className='stats__breakdownContainer justify-around flex-column'>
       <div className='d-flex'>
-        <div className='timeAndProgress__monthly-goal justify-center-align-center studyGoalStyling'>
+        <div className='timeAndProgress__monthly-goal justify-center-align-center stats__studyGoal'>
           Monthly Goal
         </div>
-
-        <div className='progressBar' style={{ marginLeft: "21px" }}>
-          <div
-            style={{
-              backgroundColor: "orange",
-              color: "black",
-              height: "10px",
-              width: `${currentProgress}%`,
-            }}
+        <div className='stats__progressBar ml-21px'>
+          <div className='stats__currentProgress'
+               style={{width: `${currentProgress}%`}}
           ></div>
         </div>
-        <div
+        <div className='posAbsolute'
           style={{
-            position: "absolute",
             top: "2px",
             left: `${widthAdjusted}px`,
             fontSize: "13px",
@@ -166,7 +159,6 @@ const TimeAndProgress: React.FC = () => {
           {currentProgress.toFixed(0)}%
         </div>
       </div>
-
       {renderLines()}
     </div>
   );

@@ -12,13 +12,13 @@ export default function DeckNotEmpty({ index, paused, style }) {
 
   return (
     <div
-      className='divStyling align-center'
+      className='deck__container align-center'
       style={{ opacity: paused ? "0" : "1" }}
     >
       To Study:
       <input
         type='number'
-        className='inputStyling'
+        className='deck__container_input'
         style={{ background: paused ? style.background : "none" }}
         value={dataBase.DeckNames[index].toStudyValue || 0}
         onChange={handleToStudy}

@@ -30,7 +30,7 @@ function Settings({ history }) {
   }, [])
 
   function setShow() {
-    history.push('/')
+    history.push('/main')
     setShowProgressDiagram(true)
   }
 
@@ -75,13 +75,11 @@ function Settings({ history }) {
     dataBase &&
 
     <BasicOrangeWindow
+      settings
       show={true}
       setShow={setShow}
       title={
-        <div
-          style={{ fontWeight: 'bold', fontSize: '22px' }}
-        //className={'pos'}
-        >
+        <div className='fontBold font-22px'>
           Settings
         </div>
       }
@@ -92,9 +90,9 @@ function Settings({ history }) {
       <div className='justify-center'>
         <Container>
           {
-            dataBase &&
+            dataBase?.userTimePreferences &&
 
-            dataBase.userTimePreferences.map((col, k) =>
+            dataBase?.userTimePreferences.map((col, k) =>
 
               <RepetitionIntervalFields
                 key={k}
@@ -143,7 +141,8 @@ function Settings({ history }) {
           <ImgContainer />
         </div>
         <div className='settings__weekly-target justify-center'>
-          Target met: {dataBase.userPreferences.weeksInRow} weeks in a row
+          {/* Target met: {dataBase.userPreferences.weeksInRow} weeks in a row */}
+          Target met : 0 weeks in a row.
         </div>
       </div>
       <ColorScheme />

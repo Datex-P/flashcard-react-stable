@@ -6,26 +6,30 @@ import {Context} from '../../Context'
  function Icon({ src, alt, href, style = null,history }) {
   const {setShowProgressDiagram} = useContext(Context)
 
+  function clickHandler () {
+    setShowProgressDiagram(false)
+    history.push('/'+href)
+    if (href === 'settings') {
+      console.log('settings here huray')
+    }
+  }
+
   return (
-    <div
-      style={{ ...style, display: 'flex' }}
+    <span
+      style={{ ...style}}
       className='iconContainer'
-      onClick={()=>{
-            setShowProgressDiagram(false)
-            history.push('/'+href)
-      }}   
+      onClick={clickHandler}   
       >
       <img 
-          src={src} 
-          alt={alt} 
-          style={{ width: '20px' }} 
-          className='nonDraggableIcon'                                              
+        src={src} 
+        alt={alt} 
+        style={{width: '20px'}} 
+        className='nonDraggableIcon'                                              
       />    
       <Nav.Link > 
           {href} 
       </Nav.Link>
-
-    </div>
+    </span>
   )
 }
 

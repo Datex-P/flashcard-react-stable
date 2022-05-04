@@ -37,7 +37,7 @@ function Register({ setUser }) {
             />
           </div>
           <div className='flex-column align-center mb-25px'>
-            <div className='register__text'>Register</div>
+            <div className='login__register__text'>Register</div>
             <div>Create an Account</div>
           </div>
           <div className='align-center flex-column'>

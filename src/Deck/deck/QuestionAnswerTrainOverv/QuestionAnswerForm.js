@@ -1,9 +1,9 @@
 import {FormControl} from "react-bootstrap";
 
-function QuestionAnswerForm({card, editBtnClicked, changeHandler, inputRef=false}) {
+function QuestionAnswerForm({answer=false,card, editBtnClicked, changeHandler, inputRef=false}) {
   return (
     <div className="mt-4">
-        <p className="deck__questionAnswer">Answer</p>
+        <p className="deck__questionAnswer fontBold">{answer?'Answer':'Question'}</p>
         <FormControl
             as="textarea"
             aria-label="With textarea"
@@ -11,10 +11,10 @@ function QuestionAnswerForm({card, editBtnClicked, changeHandler, inputRef=false
             disabled={!editBtnClicked}
             name="answer"
             onChange={changeHandler}
-            className="formControlIn"
+            className="deck__formControl"
           //  ref={inputRef}
         />
-                </div>
+     </div>
   )
 }
 

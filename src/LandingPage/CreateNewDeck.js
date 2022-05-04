@@ -159,7 +159,8 @@ export default function CreateNewDeck({
               onChangeHandler(event)
              }}
           />
-            <div className='createNewDeck__too-short-or-long'>
+            <div 
+            className='createNewDeck__too-short-or-long posAbsolute'>
               {
               // `${
               //   dataBase?.DeckNames?.map(a=>a.name).includes(inputField)?
@@ -168,6 +169,10 @@ export default function CreateNewDeck({
               //   nameTooShortOrLong && inputField.length>11? 'too long':
               //   ''
               //   }`
+           //name nameTooShortOrLong && inputField.length<4
+               inputField.length<4? 'too short':
+               inputField.lenth>11? 'too long':
+               ''
               }
             </div>     
           <select className="createNewDeck__select-options">

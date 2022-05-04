@@ -33,8 +33,7 @@ export default function App() {
             <Stats />
           </Route>
           <Route path='/settings'>
-            <Settings
-            />
+            <Settings/>
           </Route>
           {/* {!user &&
           <Route path ='/login' >
@@ -48,7 +47,6 @@ export default function App() {
           <Route path='/' exact>
           <Redirect to='/login'/>
           </Route>
-
           <Route path='/logout'>
           </Route>
         </Switch>

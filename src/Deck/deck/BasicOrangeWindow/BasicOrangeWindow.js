@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import closeWindow from "../../../icons/closeWindow.svg";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import InputCheckbox from "./InputCheckbox";
 import { Context } from "../../../Context";
 
@@ -13,12 +13,15 @@ export default function BasicOrangeWindow({
               show,setShow,
               mainBox,
               menu,
+              settings=false,
               setShowAnswerBtn = () => {},
               setEdit = () => {},
               setEditBtnClicked = () => {},
               title
 }) {
 
+
+  console.log(settings, 'setings here')
   const {dataBase, setDataBase, setShowRepeatBtn} = useContext(Context);
 
 
@@ -38,7 +41,7 @@ export default function BasicOrangeWindow({
   }
 
   function mouseEnterHandler () {
-    if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0 && !dataBase.DeckNames[index].editModeActive) {
+    if (dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0 && !dataBase.DeckNames[index].editModeActive) {
       document
       .querySelector(".deck__onOffSwitch-label")
       .classList.add("pointer");
@@ -46,17 +49,26 @@ export default function BasicOrangeWindow({
   }
 
   function mouseLeaveHandler () {
-    if (dataBase.DeckNames[index].data.filter((x) => x.paused === true).length > 0) {
+    if (dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0) {
       document.querySelector(".deck__onOffSwitch-label").classList.remove("pointer");
+    }
   }
-  }
+
+  useEffect(() => {
+    if (settings){
+      if (document.querySelector('.modal-dialog')) {
+        let elem = document.getElementsByClassName('modal-dialog')
+        elem[0].style.padding='28px'
+        }
+    }
+  }, [settings]);
 
   return (
     <Modal
       key={index}
       show={show}
       onHide={() => setShow(false)}
-      contentClassName={"mod"}
+      contentClassName={settings? 'settings-layout':"mod"}
       backdrop="static"
       style={{
         left: "-160px !important",
@@ -64,7 +76,7 @@ export default function BasicOrangeWindow({
         backgroundColor: "rgba(0, 0, 0, 0.6)",
       }}
     >
-      <div className='innerModalContainer posRelative top-20px'>
+      <div className='deck__modal_cont posRelative top-20px'>
         <Modal.Header className="border-bottom-0">
           <Modal.Title
             style={{
@@ -91,7 +103,7 @@ export default function BasicOrangeWindow({
           </div>
           {menu}
           <button
-            className="redCross basic_button_positioning posAbsolute justify-center-align-center"
+            className="redCross deck__basic_button_positioning posAbsolute justify-center-align-center"
             onClick={redCrossHandler}
           >
             <img 

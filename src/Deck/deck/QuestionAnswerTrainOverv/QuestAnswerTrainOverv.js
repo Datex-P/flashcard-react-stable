@@ -18,8 +18,7 @@ export default function QuestAnswerTrainOverv({
         setDecksAreVisible,
         setScrollbarVisible,
         setHideCreateDeckBtn,
-        setPauseIsActive,
-        pauseIsActive,
+        pauseIsActive, setPauseIsActive,
         data,
         index,
         name,
@@ -181,6 +180,15 @@ export default function QuestAnswerTrainOverv({
     setCard({ ...card, [name]: value });
   }
 
+  function editHandler () {
+      setShowAnswerBtn(false);
+      setEditBtnClicked(true);
+      setShowRepeatBtn(false);
+      let newDataBase = { ...dataBase };
+      newDataBase.DeckNames[index].editModeActive = true;
+      setDataBase(newDataBase);
+  }
+
   return (
     <>
       <OpenDeckBtn 
@@ -212,7 +220,7 @@ export default function QuestAnswerTrainOverv({
                 text={"card"}
                 editButtonClicked={true}
                 editBtnClicked={editBtnClicked}
-                className="threeDotsInQuestionAnswerStyling"
+                className="deck__threeDotsInQuestAnsw posAbsolute"
                 threeDotsContainer={{ position: "default" }}
                 paused={paused}
                 setShowFromParent={setThreeDotsMenuOpen}
@@ -221,14 +229,7 @@ export default function QuestAnswerTrainOverv({
                 pause
                 trash
                 type="card"
-                editEvent={() => {
-                  setShowAnswerBtn(false);
-                  setEditBtnClicked(true);
-                  setShowRepeatBtn(false);
-                  let newDataBase = { ...dataBase };
-                  newDataBase.DeckNames[index].editModeActive = true;
-                  setDataBase(newDataBase);
-                }}
+                editEvent={editHandler}
                 pauseEvent={() => {
                   handlePause();
                   setTrash(true);
@@ -245,17 +246,16 @@ export default function QuestAnswerTrainOverv({
           }
         >
           {editBtnClicked && (
-            <div className='editBtnClickedStyling align-center'
+            <div className='deck__editBtn align-center posRelative'
             >
               {/* <img alt="edit" src={editimg} /> */}
-              <span style={{ marginLeft: "3px" }}>mode</span>
+              <span className='ml-3px'>mode</span>
             </div>
           )}
-
           {data[randomQuestion] && (
             <>
               {/* <div className="mb-4">
-                <p className="deck__questionAnswer">Question</p>
+                <p className="deck__questionAnswer fontBold">Question</p>
 
                 <FormControl
                   as="textarea"
@@ -264,7 +264,7 @@ export default function QuestAnswerTrainOverv({
                   disabled={!editBtnClicked}
                   name="question"
                   onChange={changeHandler}
-                  className="formControlIn"
+                  className="deck__formControl"
                   ref={inputRef}
                 />
               </div> */}
@@ -278,7 +278,7 @@ export default function QuestAnswerTrainOverv({
               {showAnswerBtn && (
                 <Button
                   variant="secondary"
-                  className="p-1 showAnswer my-5 justify-center-align-center"
+                  className="p-1 deck__showAnswer mt-20px my-5 justify-center-align-center"
                   onClick={() => {
                     setShowAnswerBtn(false);
                     setShowRepeatBtn(true);
@@ -308,6 +308,7 @@ export default function QuestAnswerTrainOverv({
               }
               {!showAnswerBtn && 
                 <QuestionAnswerForm 
+                  answer
                   card={card}
                   editBtnClicked={editBtnClicked}
                   changeHandler={changeHandler}
@@ -319,16 +320,11 @@ export default function QuestAnswerTrainOverv({
                     generateRandom={generateRandom}
                     setCardModified={setCardModified}
                     cardModified={cardModified}
-                    saveEvent={() => {
+                    saveEvent={saveHandler}
+                    discardEvent={discardHandler}
+                    refresh={()=>{
                       setShowAnswerBtn(true);
                       setEditBtnClicked(false);
-                      saveHandler();
-                      editModeActive();
-                    }}
-                    discardEvent={() => {
-                      setShowAnswerBtn(true);
-                      setEditBtnClicked(false);
-                      discardHandler();
                       editModeActive();
                     }}
                   />

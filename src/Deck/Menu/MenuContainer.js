@@ -5,9 +5,12 @@ import "../../styles.scss";
 import { Context } from "../../Context";
 import Icon from "./Icon";
 import ShowProgressD from "../../LandingPage/ShowProgressDiagram";
-const settingsIcon = require("../../icons/settings.svg") as string;
-const statsIcon = require("../../icons/stats.svg") as string;
-const logoutIcon = require("../../icons/logout.svg") as string;
+import settingsIcon from '../../icons/settings.svg';
+import statsIcon from '../../icons/stats.svg'
+import logoutIcon from '../../icons/logout.svg'
+// const settingsIcon = require("../../icons/settings.svg") as string;
+// const statsIcon = require("../../icons/stats.svg") as string;
+// const logoutIcon = require("../../icons/logout.svg") as string;
 
 
 export default function MenuContainer({showProgressDiagram,setShowProgressDiagram}:any) {
@@ -18,7 +21,7 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
   const handleClose = () => {setMenuOpen(false)
   console.log('I got clicked')
   }; // closes the Menu when handleclos is triggered
-
+console.log(logoutIcon, 'logiuticon')
   return (
     <div
       className='mx-auto menuContainer justify-between'
@@ -32,9 +35,8 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
-
        {menuOpen && editButtonClicked && 
-         <div style={{ position:'absolute', width:'200px',height:'200px'}}> 
+        <div className='posAbsolute width200px height200px'> 
           <Modal
              show={menuOpen}
             // onHide={handleClose}
@@ -43,8 +45,8 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
             // centered
           >
             <Modal.Body className='p-0 menuContainer__modalbody'>
-              <div
-                className='menuStyling height100px z-Index5 marginAuto nonDraggableIcon'
+              <div 
+                className='menu__cont z-Index5 marginAuto nonDraggableIcon'
                 onClick={handleClose}
               >
                  <Icons
@@ -57,6 +59,7 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
                         width: "calc(100% / 3)",
                         padding: "3px",
                         paddingLeft: "15px",
+                        textDecoration:'none'
                       },
                     },
                     {
@@ -69,6 +72,7 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
                         borderLeft: "2px solid black",
                         borderRight: "2px solid black",
                         paddingLeft: "15px",
+                        textDecoration: 'none'
                       },
                     },
                     {
@@ -79,10 +83,11 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
                         width: "calc(100% / 3)",
                         padding: "3px",
                         paddingLeft: "15px",
+                        textDecoration: 'none'
                       },
                     },
                   ]}
-                /> 
+                />  
               </div>
             </Modal.Body>
           </Modal>

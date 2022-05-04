@@ -5,7 +5,7 @@ export default function AddQuestions () {
       className='deckPausedContainer'
       style={{left: '84px', textAlign: 'center'}}
     >          
-      <div> Click the <span className= 'plusInfoMessage'>+</span> button</div>
+      <div> Click the <span className= 'deck__plusInfoMessage'>+</span> button</div>
       <div>to add questions to the deck</div>
     </div>
   )

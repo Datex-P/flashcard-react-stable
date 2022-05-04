@@ -5,7 +5,7 @@ export default function NameOrShort({nameOfTopDeck, nameTooLongOrShort}) {
     <>
       {
         nameTooLongOrShort &&
-          <div className='tooLongOrShort'>
+          <div className='deck__tooLongOrShort posAbsolute'>
           {`${nameOfTopDeck.length>11? 
           'Too long' 
                 : 

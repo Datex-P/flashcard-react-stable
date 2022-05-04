@@ -29,7 +29,7 @@ function Scrollbar() {
   return (
     <div
     ref={scroller}
-    className="scrollbar"
+    className="landing__scrollbar"
     onScroll={(event) => {
       if (!changeDeckNameOpen) {
         let step = (1000 - 220) / (dataBase.DeckNames.length - 1);

@@ -1,5 +1,5 @@
 import React, { useContext}  from 'react';
- import playimg from "../../../icons/play-button.svg";
+ import Playimg from "../../../icons/PlayButton";
 import { Context } from "../../../Context";
 
 
@@ -17,7 +17,7 @@ export default function ThisDeckPaused ({index}) {
   
   return (
       <div
-        className="deckEmptyAndPausedContainer justify-evenly-align-center flex-column"
+        className="deck__deckEmptyAndPausedContainer justify-evenly-align-center flex-column"
         style={{ background: colors[index % 5] }}
       >
         <div>
@@ -26,17 +26,15 @@ export default function ThisDeckPaused ({index}) {
         <div className='align-center'>
           Press:
           <button
-            className="btn-play justify-center-align-center"
+            className="deck__btn-play justify-center-align-center"
             onClick={handlePause}
           >
-            <img
-              src={playimg}
-              alt="play"
+            <Playimg
               className='paused__img-play'
             /> 
           </button>
         </div>
-        <div className="paused__countToStudyGoal">
+        <div className="deck__countToStudyGoal posRelative">
           It doesn't count to the study goal.
         </div>
       </div>

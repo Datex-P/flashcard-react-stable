@@ -12,13 +12,13 @@ export default function ContextProvider({ children }:any) {
   const [dataBase, setDataBase] = useState<any>([]);
   const [showProgressDiagram, setShowProgressDiagram] = useState(false)
 
-  // const [styles, setStyles] = useState({
-  //   backgroundColor: {
-  //     light: ' #86a873',
-  //     dark: '#5aaaff',
-  //     default: 'rgb(90, 170, 149)'
-  //   }
-  // });
+  const [styles, setStyles] = useState({
+    backgroundColor: {
+      light: ' #86a873',
+      dark: '#5aaaff',
+      default: 'rgb(90, 170, 149)'
+    }
+  });
 
   // // 
    let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];

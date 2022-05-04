@@ -1,4 +1,3 @@
-
 .login__btn-google div {
   padding: 4px !important;
   padding-left: 12px !important;
@@ -25,6 +24,11 @@
   cursor:pointer;
 }
 
+.login__register__text {
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
 .login__icon__user {
   /* padding-left: 25px !important; */
   background: url("../icons/users.svg") no-repeat left;
@@ -36,6 +40,8 @@
   background: url("../icons/keys.svg") no-repeat left;
   background-size: 20px;
   background-position: 2% 42%;
+  border: 1px solid black;
+  box-shadow: 0px 1px black;
 }
 
 

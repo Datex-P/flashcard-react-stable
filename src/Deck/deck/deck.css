@@ -14,6 +14,90 @@
   left: 5px;
 }
 
+.deck__countToStudyGoal {
+  width: 191px;
+  top: 20px;
+  font-size: 13px;
+  left: 14px;
+}
+
+.deck__add_btn {
+  width: 63px;
+  height: 24px;
+  background-color: grey;
+  color: white !important;
+  cursor: pointer !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  border: none !important;
+}
+
+.deck__threeDotsCont {
+  transform: rotate(90deg) !important;
+  font-weight: bold !important;
+  font-size: 23px !important;
+  cursor: pointer;
+  margin-right: 28px;
+  height: 24px;
+}
+
+.deck__deleteContainerNoAndYes {
+  border: 2px solid grey;
+  color: grey;
+  width: 60px;
+  height: 35px;
+  border-radius: 12px;
+}
+
+.deck__saveAndDiscard {
+  width: 166px;
+  padding: 4px;
+  height: 71px;
+  top: 345px;
+  position: absolute;
+  border: 1px grey solid;
+  border-radius: 5px;
+}
+
+.deck__DeleteCardQuestionBox__img {
+  width: 26px;
+  height: fit-content;
+  margin-right: 20px;
+}
+
+.deck__showAnswer {
+  background-color: grey;
+  outline: none;
+  width: 32%;
+  height: 32px;
+  padding: 0 !important;
+  position: relative;
+  left: 12px;
+}
+
+.deck__saveAndDiscardBtn {
+  width: 65px;
+  height: 27px;
+  cursor: pointer !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  border: none !important;
+  font-size: 14px;
+}
+
+.deck__deckempty {
+  height: 90px;
+  width: 122px;
+}
+
+.deck__container_input {
+  width: 43px;
+  height: 33px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
 .deck__onOffSwitch {
   user-select: none;
   -webkit-user-select: none;
@@ -36,8 +120,8 @@
   height: 25px;
   border: 1px solid #1f1e1e;
   border-radius: 14px;
-  position: absolute;
   right: 110px;
+  top: 0px;
 }
 
 .deck__onOffSwitch-inner {
@@ -52,7 +136,7 @@
   display: block;
   float: left;
   width: 50%;
-  height: 23px;
+  height: 26px;
   padding: 0;
   line-height: 23px;
   font-size: 14px;
@@ -112,7 +196,21 @@
 
 .deck__basic_button_positioning {
   right: 10px;
-  top: 0px;
+  top: 3px;
+}
+
+.deck__plusInfoMessage {
+  height: 24px;
+  width: 24px;
+  margin-left: 9px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.deck__posQuestionAnswer {
+  right: 20px;
+  top: -1px
 }
 
 .deck__addToDeck {
@@ -120,6 +218,8 @@
     height: 32px;
     padding: 5px;
     box-sizing: border-box;
+    color: white;
+    background: grey;
 }
 
 .deck__threeDotsBtn_btn_pause {
@@ -139,8 +239,173 @@
   outline:none;
 }
 
+.deck__openDeck {
+  outline: none !important;
+  width: 110px;
+  padding: 5px;
+  color: white !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  border: none !important;
+}
+
+.deck__openDeck:hover {
+  background-color: #545863 !important;
+}
+
+.deck__btn-play {
+  border: 1px solid black;
+  height: 26px;
+  width: 29px;
+  outline: none !important;
+  border-radius: 12px;
+  padding-left: 8px;
+  margin-left: 8px;
+}
+
+.deck__modal_cont {
+  width: 98% !important;
+  height: 95% !important;
+  margin: auto !important;
+  overflow: hidden auto !important;
+}
+
+.deck__card_cont {
+  height: 206px;
+  width: 310px;
+  padding: 10px 0px 0px 0px;
+  margin: 10px 0 0 20px;
+  background-color: #dcc9b6;
+  position: absolute;
+  transform-origin: 0px 215px;
+}
+
+.deck__addToDeck__btn_plus {
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: grey;
+  position: absolute;
+  left: -20px;
+  top: 173px;
+  z-index: 100 !important;
+  border: none !important;
+}
+
+.deckEmptyAndPausedContainer {
+  padding: 5px;
+  width: 152px;
+  position: absolute;
+  top: 45px;
+  left: 75px !important;
+  height: 111px;
+  border-radius: 5px;
+}
+
+.deck__openDeck:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.deck__deckOrCardName {
+    width: 159px;
+    height: 73px;
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    left: 6px;
+}
+
 .deck__threeDotsBtn__reset-img {
   margin-right: 3px;
   width: 23px;
   height: 23px;
+}
+
+.deck__editBtn {
+  top: -18px;
+  margin-left: 20px;
+}
+
+.deck__formControl {
+  width: 93% !important;
+  height: 93px !important;
+  position: relative;
+  left: 10px;
+  outline: none !important;
+}
+
+.deck__addToDeckInput {
+  width: 129px;
+
+  border-radius: 5px;
+  padding-left: 5px;
+  position: relative;
+  left: 10px;
+  top: -23px;
+  height: 26px;
+  outline: none;
+  z-index: 2;
+}
+
+.deck__showAnswerButton {
+  background-color: grey;
+  color: white;
+  width: 105px;
+  height: 35px;
+  margin-left: 7px;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.deck__container {
+  /*shown on the main page to study, to review etc*/
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid black;
+  background-color: white;
+  width: 125px;
+  padding: 4px;
+  padding-left: 10px;
+  height: 26px;
+  margin-bottom: 10px;
+}
+
+.deck__deckEmpty {
+  left: 84px; 
+  text-align: center;
+}
+
+.deck__pauseModeHandler {
+  left: 37px; 
+  top: -15px;
+}
+
+.deck__tooLongOrShort {
+  z-index: 10;
+  width: 100px;
+  left: 235px;
+  top: 22px;
+}
+
+.deck__threeDotsInQuestAnsw {
+  top: 14px;
+  right: 19px;
+  height: 98px;
+  z-index: 2000;
+  background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.deck__threeDotsBtnIndex {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  z-index: 2000;
+  background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
 }
