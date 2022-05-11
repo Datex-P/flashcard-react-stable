@@ -12,16 +12,13 @@ export default function DeckOrCardName({
 
   function handleChangeName(e){
 
-    if (e.target.value.length >3 && e.target.value.length <12) {
-     
+    if (e.target.value.length >3 && e.target.value.length <12) {    
      setDeckNameLengthRight(true)
      setThreeDotsMenuOpen(true)
-     setNameTooLongOrShort(false)
-     
+     setNameTooLongOrShort(false)    
     } else {
       setNameTooLongOrShort(true)
       setDeckNameLengthRight(false)
-
     }
       setNameOfTopDeck(e.target.value);
   }
@@ -33,7 +30,7 @@ export default function DeckOrCardName({
     {editButtonClicked?
       (
     <div 
-        className='deck__deckOrCardName'
+        className='deck__deckOrCardName justify-center posRelative'
         style={{background: bg}}
     >
       {name}

@@ -65,6 +65,46 @@
   margin-bottom: 20px;
 }
 
+.stats__dateDiagram {
+  width: 90px;
+  height: 50px;
+  position: absolute;
+  top: 125px;
+  left: 131px;
+  text-align: center;
+}
+
+.stats__row {
+  background-color: 'orange';
+}
+
+.stats__study-info {
+  width: 133px !important;
+  height: 86px;
+}
+
+.stats__year-box {
+  flex-wrap: wrap;
+  width: 270px;
+  height: 210px;
+}
+
+.stats__time {
+  /*used in stats for the border of the individual times*/
+  margin-left: 11px;
+  border: 1px solid black;
+  width: 56px;
+  padding: 1px;
+  border-radius: 2px;
+}
+
+
+.stats__timesAndProgress_times {
+  padding-left: 3px;
+  height: 21px;
+  font-size: 14px;
+}
+
 .stats__resetButtonStyling {
   position: absolute;
   top: 17px;

@@ -11,6 +11,8 @@ function Facebook ({setUser}) {
 
 const result = elements.filter(callback)
       result.innerHTML = 'Facebook'
+      console.log(result, 'result here')
+    //  result.classList.add('facebook')
 
 console.log(result)
 let history = useHistory();

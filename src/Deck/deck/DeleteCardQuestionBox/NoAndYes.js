@@ -33,7 +33,7 @@ export default function NoAndYes ({
 
   return (
     <div className='deleteCardQuestionBox-modal-footer justify-around-align-center'>
-      <div className='justify-around noandyes-inner'>
+      <div className='justify-around deck__noyes_inner'>
         {
           ['No', 'Yes'].map(el =>
             <div 

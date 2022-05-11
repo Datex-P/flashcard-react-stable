@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import Hamburger from "./Hamburger";
 import "../../styles.scss";
+import './menu.css'
 import { Context } from "../../Context";
 import Icon from "./Icon";
 import ShowProgressD from "../../LandingPage/ShowProgressDiagram";
@@ -15,16 +16,14 @@ import logoutIcon from '../../icons/logout.svg'
 
 export default function MenuContainer({showProgressDiagram,setShowProgressDiagram}:any) {
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
-  const { dataBase, styles,
-     editButtonClicked
-     } = useContext(Context);
+  const { dataBase, styles,editButtonClicked} = useContext(Context);
   const handleClose = () => {setMenuOpen(false)
   console.log('I got clicked')
   }; // closes the Menu when handleclos is triggered
 console.log(logoutIcon, 'logiuticon')
   return (
     <div
-      className='mx-auto menuContainer justify-between'
+      className='mx-auto menu__cont justify-between'
       style={{
         // backgroundColor:
         //   dataBase &&
@@ -44,7 +43,7 @@ console.log(logoutIcon, 'logiuticon')
             dialogClassName='align-items-start  pl-3'
             // centered
           >
-            <Modal.Body className='p-0 menuContainer__modalbody'>
+            <Modal.Body className='p-0 menu__modalbody posRelative'>
               <div 
                 className='menu__cont z-Index5 marginAuto nonDraggableIcon'
                 onClick={handleClose}
@@ -92,9 +91,9 @@ console.log(logoutIcon, 'logiuticon')
             </Modal.Body>
           </Modal>
          </div> 
-      }
+        }
       {
-            showProgressDiagram &&
+        showProgressDiagram &&
           <ShowProgressD/>
           } 
     </div>

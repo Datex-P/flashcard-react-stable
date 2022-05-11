@@ -8,14 +8,14 @@ export default function DeckEmpty({ setShow }) {
         <div>
           Press:
           <span
-            className='paused__container_img-plus'
+            className='ml-10px cursorPointer'
             onClick={() => setShow(true)}
           >
             <img src={plusimg} alt='plus' />
           </span>
         </div>
       </div>
-      <div className='paused__addCardsToDeck'>to add cards to the deck.</div>
+      <div className='deck__paused__addCardsToDeck posAbsolute'>to add cards to the deck.</div>
     </div>
   );
 }

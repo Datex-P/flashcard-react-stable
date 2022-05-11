@@ -18,18 +18,20 @@ function Hamburger({
 
   return (
     <div
-      className='menu mt-15px align-center flex-column p-3'
-      style={{ cursor: !editButtonClicked ? "default" : "pointer" }} //cursor is default when edit input field is activated
+      className='menu__menu mt-15px align-center flex-column p-3'
+      style={{cursor: editButtonClicked ? 'pointer': 'default'}} //cursor is default when edit input field is activated
     >
       <div className='font-18px'>Menu</div>
       <div 
-        className='zIndex-5 hamburger__menu-icon-container width100px align-center flex-column'
+        className='zIndex-5 menu__icon-cont posAbsolute width100px align-center flex-column'
         onClick={triggerDiagramAndState}
       >
-        <div className={`menuIcon ${menuOpen ? 'menu__transPlus top-8px' : ''}`}
+        <div className={`menu__menuIcon ${menuOpen ? 'menu__transPlus top-8px' : ''}`}
         ></div>
-        {!menuOpen && <div className={"menuIcon top-8px"}></div>}
-        <div className={`menuIcon ${menuOpen ? 'menu__transMinus top-8px' : 'top-16px'}`}
+        {!menuOpen && 
+        <div className={"menu__menuIcon top-8px"}></div>
+        }
+        <div className={`menu__menuIcon ${menuOpen ? 'menu__transMinus top-8px' : 'top-16px'}`}
         ></div>
       </div>
     </div>

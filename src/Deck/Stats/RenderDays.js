@@ -3,7 +3,6 @@ import { Context } from "../../Context";
 
 function RenderDays() {
 
-
   const [year] = useState(new Date().getFullYear());
   const [days, setDays] = useState([]);
   const {dataBase} = useContext(Context);
@@ -47,48 +46,46 @@ function RenderDays() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year,dataBase?.DeckNames]);
 
+  function clickHandler(e, day) {
+    let inner= e.target.getBoundingClientRect();
+           
+                if((outer.right - inner.right) < 126){
+                  setRight(outer.right - inner.right - 126)    
+                }   
+            if (day.cardsStudied) {
+              setShowTodaysProg(true);
+            }
+  }
 
 
   return (
-    <div className="d-flex render-days__year-box-container"
-     onClick={(e)=>{    
+    <div 
+      className="d-flex stats__year-box"
+      onClick={(e)=>{    
        let outer = e.currentTarget.getBoundingClientRect()
-   
         setOuter(outer)
        }}
      >
       {days.map((day, index) => (
         <div
           key={index}
-          className={`day ${day.cardsStudied ? 'pointer' : ''}`}
-          style={{ backgroundColor: day.cardsStudied ? 'red' : '' }}
-          onClick={(e) => {
-            let inner= e.target.getBoundingClientRect();
-           
-                if((outer.right - inner.right) < 126){
-                  setRight(outer.right - inner.right - 126)    
-                }
-          
-            if (day.cardsStudied) {
-              setShowTodaysProg(true);
-
-            }
-          }}
+          className={`day ${day?.cardsStudied ? 'pointer' : ''}`}
+          style={{backgroundColor: day?.cardsStudied ? 'red' : '' }}
+          onClick={(e, day)=>clickHandler(e, day)}
         >
           {showTodaysProg && day.cardsStudied && 
             <div
-              className='render-days__todayStudyInfo'
+              className='stats__study-info posAbsolute top-20px'
               style={{left: right+'px'}}
               ref={innerStat}
             >
               {day.day}
-              <div className='render-days__time'>
+              <div className='top-30px posAbsolute'>
                 Time:
               </div>
-              <div className='render-days__review-container'
-              >               
+              <div className='top-56px posAbsolute'>               
                 Review:`${day.cardsStudied !== 1 ? "s" : ""}: $
-                {day.cardsStudied} card${day.cardsStudied !== 1 ? "s" : ""}`
+                {day.cardsStudied} card${day.cardsStudied !== 1 ? 's' : ''}`
               </div>
             </div>
           }

@@ -1,43 +1,27 @@
-import playimg from '../../icons/play.svg'
-let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+import playimg from "../../icons/play.svg";
+import { useContext } from "react";
+import { Context } from "../Context";
 
+export default function Paused({ handlePause, index }) {
+  const {
+    colors, //colors array for the decks
+  } = useContext(Context);
 
-export default function Paused ({handlePause, index}){
-  
-  return(
-  <div 
-  className='deckPausedContainer'
-  style={{background: colors[index % 5]}}
->
-  <div>
-      
-  </div>
-
-  <div className='align-center'
-  > 
-        Press:
-    
-    <button 
-        className='deck__btn-play'
-        onClick={()=>{
-                    handlePause()
-                
-        }}
+  return (
+    <div
+      className='deckPausedContainer'
+      style={{ background: colors[index % 5] }}
     >
-
-        <img 
-            src={playimg}
-            alt='play' 
-            style={{margin: '6px', cursor: 'pointer'}}                         
-      />
-
-    </button>
-    
-  </div>
-  <div 
-  >
+      <div></div>
+      <div className='align-center'>
+        Press:
+        <button className='deck__btn-play' onClick={handlePause()}>
+          <img src={playimg} alt='play' className='m-6px cursorPointer' />
+        </button>
+      </div>
+      <div>
         to unpause the Deck. Paused decks don't count to the study goal.
-  </div>
-</div>
-  )
+      </div>
+    </div>
+  );
 }

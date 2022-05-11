@@ -24,7 +24,7 @@ export default function ColorScheme () {
           ['light', 'dark', 'default'].map((comp,index) =>
             <React.Fragment key={index}>
               <input 
-                style={{ cursor: 'pointer' }}
+                className='cursorPointer'
                 name='backgroundColor'
                 type='radio'
                 // title = `Change background color of main menu to ${comp}.`

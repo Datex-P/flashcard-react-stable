@@ -4,7 +4,7 @@ function CreateFirstDeck() {
   
   return (
     <div id="arrow">
-      <div id="createFirstDeck">
+      <div id="landing__createFirstDeck">
         Start and create your first deck
       </div>
       <div className="posRelative mt-150px">

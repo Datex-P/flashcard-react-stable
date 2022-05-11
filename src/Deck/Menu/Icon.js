@@ -17,14 +17,13 @@ import {Context} from '../../Context'
   return (
     <span
       style={{ ...style}}
-      className='iconContainer'
+      className='menu__icon-container'
       onClick={clickHandler}   
-      >
+    >
       <img 
         src={src} 
         alt={alt} 
-        style={{width: '20px'}} 
-        className='nonDraggableIcon'                                              
+        className='nonDraggableIcon width20px'                                              
       />    
       <Nav.Link > 
           {href} 

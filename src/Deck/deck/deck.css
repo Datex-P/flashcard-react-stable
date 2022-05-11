@@ -9,7 +9,6 @@
   padding-left: 7px;
   border-radius: 5px;
   height: 30px;
-  position: relative;
   top: -21px;
   left: 5px;
 }
@@ -47,6 +46,23 @@
   width: 60px;
   height: 35px;
   border-radius: 12px;
+}
+
+.deck__deleteContainerNoAndYes:hover {
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+}
+
+.deck__questionMark {
+    width: 40px;
+    position: absolute;
+}
+
+.deck__index-card-title {
+  width: 151px; 
+  left: 3px; 
+  height: 0px;
 }
 
 .deck__saveAndDiscard {
@@ -253,6 +269,30 @@
   background-color: #545863 !important;
 }
 
+.deck__settings-layout {
+  background-color: rgba(200, 168, 115) !important;
+  border-radius: 20px !important;
+  height: 544px;
+  width: 374px !important;
+  border: 2px solid black !important;
+}
+
+.deck__showRepeat {
+  border: 1px solid grey;
+  padding: 12px;
+  border-radius: 5px;
+  width: 88%;
+}
+
+.deck__paused__addCardsToDeck {
+  font-size: 13px;
+  top: 110px;
+}
+
+.deck__noyes_inner {
+  width: 75%;
+}
+
 .deck__btn-play {
   border: 1px solid black;
   height: 26px;
@@ -309,15 +349,6 @@
   border: none !important;
 }
 
-.deck__deckOrCardName {
-    width: 159px;
-    height: 73px;
-    position: relative !important;
-    display: flex !important;
-    justify-content: center !important;
-    left: 6px;
-}
-
 .deck__threeDotsBtn__reset-img {
   margin-right: 3px;
   width: 23px;
@@ -335,6 +366,9 @@
   position: relative;
   left: 10px;
   outline: none !important;
+  padding-left: 10px;
+  padding-top: 2px;
+  box-sizing: border-box;
 }
 
 .deck__addToDeckInput {
@@ -398,6 +432,17 @@
   background-color: white;
   border: 1px solid black;
   overflow: hidden;
+}
+
+.deck__blinkingIcon {
+  animation: blinker 1.3s linear infinite;
+  animation-iteration-count: 2;
+}
+
+.deck__unpause-keepPaused {
+  cursor: pointer;
+  width: 113px;
+  padding: 7px;
 }
 
 .deck__threeDotsBtnIndex {

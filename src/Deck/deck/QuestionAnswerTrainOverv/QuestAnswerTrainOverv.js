@@ -97,7 +97,6 @@ export default function QuestAnswerTrainOverv({
           //if card was not opend before  a new array is made
           newDataBase.DeckNames[index].data[newRandomQuestion].openHistory = [];
         }
-
         newDataBase.DeckNames[index].data[newRandomQuestion].openHistory.push(
        //   new Date()
        new Date('May 26, 2021')
@@ -169,6 +168,12 @@ export default function QuestAnswerTrainOverv({
     setDataBase(newDataBase);
   }
 
+  function refreshHandler() {
+    setShowAnswerBtn(true);
+    setEditBtnClicked(false);
+    editModeActive();
+  }
+
   function saveHandler() {
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].data[randomQuestion] = card;
@@ -189,6 +194,19 @@ export default function QuestAnswerTrainOverv({
       setDataBase(newDataBase);
   }
 
+  function trashHandler () {  
+    setTrash(true);
+    setPauseOrDeleteText(false);
+    setShowDeleteWindow(true);
+    setShowAnswerBtn(true);
+  }
+
+  function pauseEventHandler () {
+    handlePause();
+    setTrash(true);
+    setShowDeleteWindow(true);
+  }
+
   return (
     <>
       <OpenDeckBtn 
@@ -201,6 +219,7 @@ export default function QuestAnswerTrainOverv({
       />      
       {deckLengthNotZero && !paused && (
         <BasicOrangeWindow
+          questionViewActive
           show={show}
           setShow={setShow}
           generateRandom={generateRandom}
@@ -215,13 +234,13 @@ export default function QuestAnswerTrainOverv({
           title={`Deck: ${name}`}
           showFromParent={threeDotsMenuOpen}
           menu={
-            dataBase?.DeckNames[index]?.pauseMode ? null : (
+            !dataBase?.DeckNames[index]?.pauseMode &&
               <ThreeDotsBtn
                 text={"card"}
                 editButtonClicked={true}
                 editBtnClicked={editBtnClicked}
                 className="deck__threeDotsInQuestAnsw posAbsolute"
-                threeDotsContainer={{ position: "default" }}
+                threeDotsContainer={{position: "default"}}
                 paused={paused}
                 setShowFromParent={setThreeDotsMenuOpen}
                 index={index}
@@ -230,25 +249,14 @@ export default function QuestAnswerTrainOverv({
                 trash
                 type="card"
                 editEvent={editHandler}
-                pauseEvent={() => {
-                  handlePause();
-                  setTrash(true);
-                  setShowDeleteWindow(true);
-                }}
-                trashEvent={() => {
-                  setTrash(true);
-                  setPauseOrDeleteText(false);
-                  setShowDeleteWindow(true);
-                  setShowAnswerBtn(true);
-                }}
+                pauseEvent={pauseEventHandler}
+                trashEvent={trashHandler}
               />
-            )
           }
         >
           {editBtnClicked && (
-            <div className='deck__editBtn align-center posRelative'
-            >
-              {/* <img alt="edit" src={editimg} /> */}
+            <div className='deck__editBtn align-center posRelative'>
+               <img alt="edit" src={editimg} /> 
               <span className='ml-3px'>mode</span>
             </div>
           )}
@@ -274,7 +282,6 @@ export default function QuestAnswerTrainOverv({
                 changeHandler={changeHandler}
                // inputRef
               />
-
               {showAnswerBtn && (
                 <Button
                   variant="secondary"
@@ -313,7 +320,7 @@ export default function QuestAnswerTrainOverv({
                   editBtnClicked={editBtnClicked}
                   changeHandler={changeHandler}
                   // inputRef
-              />
+                />
               }
               {editBtnClicked && 
                   <SaveAndDiscard
@@ -322,11 +329,7 @@ export default function QuestAnswerTrainOverv({
                     cardModified={cardModified}
                     saveEvent={saveHandler}
                     discardEvent={discardHandler}
-                    refresh={()=>{
-                      setShowAnswerBtn(true);
-                      setEditBtnClicked(false);
-                      editModeActive();
-                    }}
+                    refresh={refreshHandler}
                   />
               }
               {trash && showDeleteWindow && 

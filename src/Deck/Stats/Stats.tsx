@@ -57,7 +57,7 @@ function Stats({ history }:any) {
       >
         <div>
           <div className='stats__study-breakdown'>Today's study breakdown</div>
-          <div className='dateDiagramPos'>
+          <div className='stats__dateDiagram'>
             {!dataBase?.openedToday
               ? 'No cards studied today'
               :  `Data from: ${new Date().toLocaleDateString().replace(/\//g,'.')}`         

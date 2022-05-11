@@ -128,7 +128,7 @@ export default function ContextProvider({ children }:any) {
         editButtonClicked, setEditButtonClicked, 
         scrollbarVisible, setScrollbarVisible, 
         showProgressDiagram, setShowProgressDiagram,
-     //   styles, setStyles,
+        styles, setStyles,
         }} 
      >
 

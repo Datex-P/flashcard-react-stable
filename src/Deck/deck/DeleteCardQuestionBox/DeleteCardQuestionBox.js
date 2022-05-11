@@ -40,12 +40,12 @@ export default function DeleteCardQuestionBox({ card,
 {/* 
             <img 
                 src={questionMark} 
-               className='deleteCardQuestionBox__question-mark questionMark1'        
+               className='deck__question-mark questionMark1'        
                  alt='questionMark' 
             />
             <img 
               src={questionMark} 
-              className='deleteCardQuestionBox__question-mark questionMark2'
+              className='deck__question-mark questionMark2'
                alt='questionMark'              
             /> */}
 

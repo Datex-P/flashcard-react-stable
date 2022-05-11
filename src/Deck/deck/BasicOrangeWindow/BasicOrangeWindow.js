@@ -14,16 +14,14 @@ export default function BasicOrangeWindow({
               mainBox,
               menu,
               settings=false,
+              questionViewActive=false,
               setShowAnswerBtn = () => {},
               setEdit = () => {},
               setEditBtnClicked = () => {},
               title
 }) {
 
-
-  console.log(settings, 'setings here')
-  const {dataBase, setDataBase, setShowRepeatBtn} = useContext(Context);
-
+  const {dataBase, setDataBase} = useContext(Context);
 
   function redCrossHandler () {
     setShow(false);
@@ -68,12 +66,12 @@ export default function BasicOrangeWindow({
       key={index}
       show={show}
       onHide={() => setShow(false)}
-      contentClassName={settings? 'settings-layout':"mod"}
+      contentClassName={settings? 'marginAuto zIndex-5 deck__settings-layout':"mod"}
       backdrop="static"
       style={{
-        left: "-160px !important",
-        right: "45px !important",
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        left: '-160px !important',
+        right: '45px !important',
+        backgroundColor: questionViewActive?'':'rgba(0, 0, 0, 0.6)',
       }}
     >
       <div className='deck__modal_cont posRelative top-20px'>
@@ -107,8 +105,7 @@ export default function BasicOrangeWindow({
             onClick={redCrossHandler}
           >
             <img 
-              className="nonDraggableIcon" 
-              style={{width:'16px', height:'16px'}}
+              className="nonDraggableIcon width16px height16px" 
               src={closeWindow} 
               alt="redCross" 
             /> 

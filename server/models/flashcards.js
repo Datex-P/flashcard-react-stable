@@ -1,25 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-//schema defines structure of document
-//model surrounds it 
+const User = new Schema({
+  name: {type: String, required: true},
+ // email: {type: String, required: false, unique: true},
+  password: {type: String, required: true},
+ // verified: {type: String, required: false}
+}, {collection: 'user-data'}
+)
 
-const flashcardSchema = new Schema({
-  title: {
-    type:String,
-    required: true
-  },
-  snippet: {
-    type:String,
-    required: true
-  },
-  body: {
-    type:String,
-    required:true
-  }
-}, {timestamps:true});
+const model = mongoose.model('UserData', User)
+ module.exports = model
 
-const Flashcard = mongoose.model('Flashcard', flashcardSchema)
-module.exports = Flashcard;
+ //module helps you to directly access
+ //and interact with mongoose
 
-//timestamps automatically creates timestamps

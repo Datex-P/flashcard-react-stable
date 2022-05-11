@@ -46,6 +46,9 @@ input[type="number"] {
   font-weight: bold;
 }
 
+.font-13px {
+  font-size:13px;
+}
 .font-18px {
   font-size: 18px;
 }
@@ -54,18 +57,29 @@ input[type="number"] {
   font-size: 22px;
 }
 
-.cursor {
-  cursor: pointer;
+.text-center {
+  text-align: center;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
 /*positioning following from here*/
 
 .left-40px {
   left: 40px;
 }
 
+.left-84px {
+  left: 84px;
+}
+
 .left-180px {
   left: 180px;
+}
+
+.top-2px {
+  top:2px;
 }
 
 .top-8px {
@@ -80,8 +94,16 @@ input[type="number"] {
   top:20px;
 }
 
+.top-30px {
+  top:30px;
+}
+
 .top-50px {
   top: 50px;
+}
+
+.top-56px {
+  top: 56px;
 }
 
 /*<-- top left right positioning until here*/
@@ -108,8 +130,20 @@ input[type="number"] {
   padding-left: 30px;
 }
 
+.m-5px {
+  margin: 5px;
+}
+
+.m-6px {
+  margin: 6px;
+}
+
 .ml-3px {
   margin-left: 3px;
+}
+
+.ml-10px {
+  margin-left:10px;
 }
 
 .mt--10px {
@@ -225,12 +259,24 @@ input[type="number"] {
   height:16px;
 }
 
+.height27px {
+  height: 27px;
+}
+
 .height35px {
   height:35px;
 }
 
+.height75px {
+  height: 75px;
+}
+
 .height100px {
   height: 100px;
+}
+
+.width20px {
+  width:20px;
 }
 
 .width26px {
@@ -245,8 +291,16 @@ input[type="number"] {
   width: 45px
 }
 
+.width50pc {
+  width: 50%;
+}
+
 .width57pc {
   width: 57%;
+}
+
+.width75pc {
+  width: 75%;
 }
 
 .width80px {
@@ -283,6 +337,10 @@ input[type="number"] {
 
 .width12rem {
   width:12rem;
+}
+
+.height10px {
+  height: 10px;
 }
 
 .height35px {
@@ -386,21 +444,6 @@ input[type="number"] {
 
 /*<--all flex combinations*/
 
-.menuContainer {
-  z-index: 100;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  width: 400px;
-  padding-left:20px;
-}
-
-#createFirstDeck {
-  top: 233px;
-  position: absolute;
-  font-weight: bold;
-  font-size: 16px;
-}
-
 button:focus,
 input:focus,
 textarea:focus,
@@ -413,14 +456,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.index-card-title {
-  width: 151px; 
-  left: 3px; 
-  height: 0px;
-}
-
-
-
 .nav-link,
 .nav-link:visited,
 .nav-link:active,
@@ -429,58 +464,10 @@ input[type="checkbox"] {
   color: black;
 }
 
-.timesAndProgress_times {
-  padding-left: 3px;
-  height: 21px;
-  font-size: 14px;
-}
-
-.dateDiagramPos {
-  width: 90px;
-  height: 50px;
-  position: absolute;
-  top: 125px;
-  left: 131px;
-  text-align: center;
-}
-
-// .iconContainer:hover{
-//   background-color: #a39171
-// }
-
-.iconContainer{
-  cursor: pointer;
-  background-color: #dcc9b6;
-}
-
-.menuIcon {
-  font-weight: bold;
-  border: 2px black solid;
-  width: 32%;
-  margin-bottom: 3px;
-  border-radius: 12px;
-  position: absolute;
-  transition: 1s all;
-  background-color: black;
-}
-
 .deleteCardQuestionBox-modal-footer {
   width: 100%; 
   height: 14px;
 }
-
-.hamburger__menu-icon-container {
-    position: absolute;
-    width: 87px;
-    top: 59px;
-}
-
-.menu {
-  width: fit-content;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
 
 .modNew {
   // background-color: transparent !important;
@@ -489,12 +476,6 @@ input[type="checkbox"] {
   margin: 0 auto;
   padding: 0px !important;
   width: 99% !important;
-}
-
-.paused__addCardsToDeck {
-  font-size: 13px;
-  position: absolute;
-  top: 110px;
 }
 
 .SaveBtn {
@@ -514,15 +495,6 @@ input[type="checkbox"] {
 .DiscardBtn:hover {
   background-color: #721c24;
   color: white;
-}
-
-.paused__container_img-plus {
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.customDialog {
-  left: 100px;
 }
 
 input::-webkit-outer-spin-button,
@@ -558,14 +530,6 @@ a {
   resize: none;
 }
 
-.noandyes-inner {
-  width: 75%;
-}
-
-.cardBod {
-  border: 2px solid grey !important;
-}
-
 .mod {
   /*specifies the width etc. of basic orange window*/
   background-color: rgba(200, 168, 115) !important;
@@ -591,23 +555,6 @@ a {
   z-index: 2;
 }
 
-.settings-layout {
-  background-color: rgba(200, 168, 115) !important;
-  border-radius: 20px !important;
-  height: 544px;
-  width: 374px !important;
-  margin: auto;
-  border: 2px solid black !important;
-  z-index: 2;
-}
-
-.showRepeatBtnInner {
-  border: 1px solid grey;
-  padding: 12px;
-  border-radius: 5px;
-  width: 88%;
-}
-
 .redCross {
   background-color: transparent !important;
   cursor:pointer;
@@ -619,17 +566,6 @@ a {
 .redCross:active {
   background: #b07d62;
   border-radius: 50%;
-}
-
-.deleteContainerNoAndYes:hover {
-  background-color: grey;
-  color: white;
-  cursor: pointer;
-}
-
-.blinkingIcon {
-  animation: blinker 1.3s linear infinite;
-  animation-iteration-count: 2;
 }
 
 .form-control {
@@ -646,21 +582,6 @@ a {
   cursor: pointer !important;
   background-color: grey /*important;*/;
 }
-
-.render-days__time {
-  position: absolute;
-  top: 30px;
-}
-
-.createNewDeck {
-  height: 160px;
-  width: 280px;
-  background-color: rgba(200, 168, 115, 0.95);
-  top: 166px;
-  position: absolute;
-  border-radius: 5px;
-}
-
 
 /* width */
 ::-webkit-scrollbar {
@@ -691,21 +612,6 @@ a {
 
 .selected svg {
   fill: green;
-}
-
-.render-days__year-box-container {
-  flex-wrap: wrap;
-  width: 270px;
-  height: 210px;
-}
-
-.time {
-  /*used in stats for the border of the individual times*/
-  margin-left: 11px;
-  border: 1px solid black;
-  width: 56px;
-  padding: 1px;
-  border-radius: 2px;
 }
 
 .day {
@@ -741,12 +647,6 @@ a {
 
 #deleteWindow .modal-footer {
   height: 55px !important;
-}
-
-.unpauseAndKeepPausedButton {
-  cursor: pointer;
-  width: 113px;
-  padding: 7px;
 }
 
 //outcommented because of settings window
@@ -835,10 +735,6 @@ a {
   justify-content:center
 }
 
-.settings-layout .modal-dialog {
-  color:'blue'
-}
-
 .paused__img-play {
   margin: 6px; 
   cursor: pointer;
@@ -882,32 +778,12 @@ a {
   width: 247px;
   height: 160px;
   background-color: rgba(200, 168, 115) !important;
-  /* align-items: center; */
   margin: auto;
-  /* margin-bottom: 470px;
-  top: 32px; */
-}
-
-.createNewDeck__select-options {
-  width: 79%;
-  height: 24px;
-  border-radius: 5px;
-  padding-left: 3px;
-  outline: none;
-  cursor: pointer;
+  padding: 15px;
 }
 
 .bar {
   background: red !important;
-}
-
-.stylesNewDeck {
-  background-color: rgba(200, 168, 115, 0.95) !important;
-  position: absolute !important;
-  left: 36% !important;
-  width: 507px !important;
-  top: 20% !important;
-  height: 100% !important;
 }
 
 .modal-footer {
@@ -949,7 +825,6 @@ textarea.form-control:focus {
   padding: 5px !important;
 }
 
-
 @-webkit-keyframes arrow {
   0%,
   100% {
@@ -979,37 +854,6 @@ textarea:enabled {
   outline: none !important;
 }
 
-.row__btn-create-deck {
-  /*background color of create deck button*/
-  z-index: 4;
-  padding: 2px;
-  position: absolute;
-  width: 217px;
-  height: 30px;
-  outline: none !important;
-  background-color: #545863 !important;
-  color: white !important;
-  border-radius: 5px !important;
-  border: none !important;
-}
-
-.render-days__todayStudyInfo {
-  width: 133px !important;
-  height: 86px;
-  position: absolute;
-  top: 20px;
-}
-
-.render-days__review-container {
-  position: absolute;
-  top: 56px;
-}
-
-.deleteCardQuestionBox__question-mark {
-  width: 40px;
-  position: absolute;
-}
-
 .questionMark1 {
   top: -47px;
   right: -10px;
@@ -1024,17 +868,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: auto;
   opacity: 1;
-}
-
-.timeAndProgress__monthly-goal {
-  height: 27px;
-  font-size: 13px;
-}
-
-.menuContainer__modalbody {
-  position: relative;
-  top: 42px;
-  left: 10px;
 }
 
 #tsparticles {

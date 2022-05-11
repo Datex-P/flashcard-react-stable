@@ -91,7 +91,7 @@ const TimeAndProgress: React.FC = () => {
               key='1'
               previousWidthVar={previousWidthVar}
               widthVar={widthVar}
-              time={<div className='timesAndProgress_times'>{"18 - 24"}</div>}
+              time={<div className='stats__timesAndProgress_times'>{"18 - 24"}</div>}
             />
           );
         } else if (i === 24) {
@@ -100,7 +100,7 @@ const TimeAndProgress: React.FC = () => {
               key='2'
               previousWidthVar={previousWidthVar}
               widthVar={widthVar}
-              time={<div className='timesAndProgress_times'>{"24 - 06"}</div>}
+              time={<div className='stats__timesAndProgress_times'>{"24 - 06"}</div>}
             />
           );
         } else if (i <= 12) {
@@ -111,7 +111,7 @@ const TimeAndProgress: React.FC = () => {
                 previousWidthVar={previousWidthVar}
                 widthVar={widthVar}
                 time={
-                  <div className='timesAndProgress_times'>
+                  <div className='stats__timesAndProgress_times'>
                     {"0" + i} - {i + 6}
                   </div>
                 }
@@ -124,7 +124,7 @@ const TimeAndProgress: React.FC = () => {
                 previousWidthVar={previousWidthVar}
                 widthVar={widthVar}
                 time={
-                  <div className='timesAndProgress_times'>
+                  <div className='stats__timesAndProgress_times'>
                     {"12"} - {"18"}
                   </div>
                 }
@@ -141,20 +141,18 @@ const TimeAndProgress: React.FC = () => {
   return (
     <div className='stats__breakdownContainer justify-around flex-column'>
       <div className='d-flex'>
-        <div className='timeAndProgress__monthly-goal justify-center-align-center stats__studyGoal'>
+        <div className='height27px font-13px justify-center-align-center stats__studyGoal'>
           Monthly Goal
         </div>
         <div className='stats__progressBar ml-21px'>
-          <div className='stats__currentProgress'
-               style={{width: `${currentProgress}%`}}
+          <div 
+            className='stats__currentProgress'
+            style={{width: `${currentProgress}%`}}
           ></div>
         </div>
-        <div className='posAbsolute'
-          style={{
-            top: "2px",
-            left: `${widthAdjusted}px`,
-            fontSize: "13px",
-          }}
+        <div 
+          className='posAbsolute font-13px top-2px'
+          style={{left: `${widthAdjusted}px`}}
         >
           {currentProgress.toFixed(0)}%
         </div>
@@ -167,14 +165,12 @@ const TimeAndProgress: React.FC = () => {
 function Row({ time, previousWidthVar, widthVar }) {
   return (
     <div className='d-flex'>
-      <div className='time justify-center'>{time}</div>
+      <div className='stats__time justify-center'>{time}</div>
       <div className='progressBar'>
-        <div
+        <div className='stats__row height10px'
           style={{
             marginLeft: `${previousWidthVar}%`,
-            backgroundColor: "orange",
-            width: `${widthVar}%`,
-            height: "10px",
+            width: `${widthVar}%`
           }}
         ></div>
       </div>

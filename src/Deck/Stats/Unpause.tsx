@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 // import playimg from "../../icons/play.svg";
 import { Context } from "../../Context";
-import Playimg from "../../icons/PlayButton";
+//import Playimg from "../../icons/PlayButton";
 
 // https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript
 //const playimg = require("../../icons/play-button.svg") as string;
@@ -46,7 +46,7 @@ const Unpause: React.FC<UnpauseProps> = ({index}) => {
           alt="play"
           className='paused__img-play'
         /> */}
-        <Playimg/>
+        {/* <Playimg/> */}
       </button>
     </div>
     <div className="deck__countToStudyGoal posRelative">

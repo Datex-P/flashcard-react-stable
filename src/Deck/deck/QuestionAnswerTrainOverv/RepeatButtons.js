@@ -33,7 +33,7 @@ function RepeatBtn({label, btn, onClick,showAnswerBtn,
 }
 return (
   <div className="justify-center">
-    <div className="justify-between px-3 showRepeatBtnInner">
+    <div className="justify-between px-3 deck__showRepeat">
       {dataBase.userTimePreferences.map((col, index) => (
         <RepeatBtn
           btn={col.name}

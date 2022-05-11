@@ -9,13 +9,16 @@ import MenuContainer from '../Deck/Menu/MenuContainer'
 import Scrollbar from './Scrollbar'
 import StartFirstDeck from './StartFirstDeck'
 
+import jwt_decode from "jwt-decode"
+import {useHistory} from 'react-router-dom'
+
  const LandingPage = () => {
-  const [addNewDeckWindow, setAddNewDeckWindow] = useState<boolean>(false);
-  const [spinnerIsVisible, setSpinnerIsVisible] = useState<boolean>(true); //spinner that is shown when application loads
-  const [scrollbarVisible, setScrollbarVisible] = useState<boolean>(true)
-  const [decksAreVisible, setDecksAreVisible] = useState<boolean>(true); //decks are shown on the deck stack if this is set to true  
-  const [showProgressDiagram, setShowProgressDiagram] = useState<boolean>(true);
-  const [arrowDown, setArrowDown] = useState<boolean>(true);
+  const [addNewDeckWindow, setAddNewDeckWindow] = useState(false);
+  const [spinnerIsVisible, setSpinnerIsVisible] = useState(true); //spinner that is shown when application loads
+  const [scrollbarVisible, setScrollbarVisible] = useState(true)
+  const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
+  const [showProgressDiagram, setShowProgressDiagram] = useState(true);
+  const [arrowDown, setArrowDown] = useState(true);
   const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
 
   const {
@@ -25,7 +28,32 @@ import StartFirstDeck from './StartFirstDeck'
     editButtonClicked
   } = useContext(Context);
 
+  const history = useHistory()
 
+
+  async function dosome() {
+    
+    const req = await fetch('/http://localhost:4000/register', {
+      headers:  {'x-access-token': localStorage.getItem('token')
+    }
+    })
+    const data = req.json()
+    console.log(data)
+  }
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if (token) {
+      const user = jwt_decode(token)
+    //  console.log(user)
+      if (!user) {
+          localStorage.removeItem('token')
+          history.replace('/login')
+      } else {
+        dosome()
+      }
+    }
+  },[])
  
 
   // useEffect(() => {

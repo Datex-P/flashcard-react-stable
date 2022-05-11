@@ -14,15 +14,11 @@ import Button from './Button'
 //   close: any
 // }
 
-
-
-
 export default function CreateNewDeck({
   addNewDeckWindow, 
   createDeckHandler,
   closeHandler, 
   hideCreateDeckBtn, setHideCreateDeckBtn,
-  decksAreVisible, setDecksAreVisible,
   editButtonClicked,
   setArrowDown,
   setScrollbarVisible // scrollbar dissapear when stats or settings are open
@@ -33,15 +29,12 @@ export default function CreateNewDeck({
   const {
      setActive, 
      colors, //colors array for the decks
-   //  dataBase, setDataBase, 
+     dataBase, setDataBase, 
      setShowProgressDiagram, 
   } = useContext(Context);
 
    const [inputField, setInputField] = useState('');
    const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
-
-
-
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const okRef = useRef<HTMLInputElement | null>(null);
@@ -83,7 +76,7 @@ export default function CreateNewDeck({
   //     close();
   //   }
 
-    function onChangeHandler (event:any) {
+    function onChangeHandler (event) {
       let {target} = event
      // let value = ReactEvent.Form.target(event)
      if (target){
@@ -97,7 +90,8 @@ export default function CreateNewDeck({
               okRef.current.classList.add('okCancelButtonColor');           
               setNameTooShortOrLong(false)
               }
-            } else if (okRef.current){ 
+            // } else if (okRef.current){ needed for typescript,did not work
+            } else { 
               setNameTooShortOrLong(true)
               okRef.current.disabled = true
               okRef?.current?.classList.remove('okCancelButtonColor');
@@ -128,10 +122,10 @@ export default function CreateNewDeck({
 
   return (
     <Row className='justify-center mt-350px'>
-      {hideCreateDeckBtn === false &&
+      {!hideCreateDeckBtn &&
       <button
-        className='row__btn-create-deck'
-        style={{cursor: !editButtonClicked ? "default" : "pointer"}}
+        className='landing__row__btn-create-deck posAbsolute'
+        style={{cursor: editButtonClicked ? 'pointer' : 'default'}}
         onClick={createDeckHandler}
       >
           Create Deck
@@ -155,27 +149,23 @@ export default function CreateNewDeck({
              id="inputField"
             // ref={inputRef}
              value={inputField}
-             onChange={(event:any) => {
+             onChange={(event) => {
               onChangeHandler(event)
              }}
           />
             <div 
             className='createNewDeck__too-short-or-long posAbsolute'>
               {
-              // `${
-              //   dataBase?.DeckNames?.map(a=>a.name).includes(inputField)?
-              //   'name exists':
-              //   nameTooShortOrLong && inputField.length<4? 'too short':
-              //   nameTooShortOrLong && inputField.length>11? 'too long':
-              //   ''
-              //   }`
-           //name nameTooShortOrLong && inputField.length<4
-               inputField.length<4? 'too short':
-               inputField.lenth>11? 'too long':
-               ''
+               `${
+                 dataBase?.DeckNames?.map(a=>a.name).includes(inputField)?
+                 'name exists':
+                 nameTooShortOrLong && inputField.length<4? 'too short':
+                 nameTooShortOrLong && inputField.length>11? 'too long':
+                 ''
+                 }`
               }
             </div>     
-          <select className="createNewDeck__select-options">
+          <select className="landing__select__options">
             <option>option 1</option>
             <option>option 2</option>
             <option>option 3</option>

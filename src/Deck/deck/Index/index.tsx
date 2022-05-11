@@ -108,7 +108,7 @@ export default function Deck({
             nameTooLongOrShort={nameTooLongOrShort} 
             nameOfTopDeck={nameOfTopDeck}
         />
-          <Card.Title className="index-card-title justify-between-align-center position-relative">
+          <Card.Title className="deck__index-card-title justify-between-align-center position-relative">
               <DeckOrCardName 
                 bg={bg}
                 nameOfTopDeck={nameOfTopDeck}
@@ -119,7 +119,7 @@ export default function Deck({
                 setThreeDotsMenuOpen={setThreeDotsMenuOpen}
                 setDeckNameLengthRight={setDeckNameLengthRight}
                 setNameTooLongOrShort={setNameTooLongOrShort}
-                className="deck__deckOrCardName"
+                className="deck__deckOrCardName justify-center posRelative"
               />
            
             {

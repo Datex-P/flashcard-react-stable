@@ -12,6 +12,46 @@
   transform: rotate(135deg);
 }
 
+.menu__cont {
+  z-index: 100;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 400px;
+  padding-left:20px;
+}
+
+.menuContainer__modalbody {
+  top: 42px;
+  left: 10px;
+}
+
+.menu__icon-container{
+  cursor: pointer;
+  background-color: #dcc9b6;
+}
+
+.menu__icon-cont {
+  width: 87px;
+  top: 59px;
+}
+
 .menu__transMinus {
   transform: rotate(-135deg);
+}
+
+.menu__menuIcon {
+  font-weight: bold;
+  border: 2px black solid;
+  width: 32%;
+  margin-bottom: 3px;
+  border-radius: 12px;
+  position: absolute;
+  transition: 1s all;
+  background-color: black;
+}
+
+.menu__menu {
+  width: fit-content;
+  font-weight: bold;
+  margin-left: 10px;
 }
