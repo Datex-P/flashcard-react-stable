@@ -281,7 +281,7 @@
   border: 1px solid grey;
   padding: 12px;
   border-radius: 5px;
-  width: 88%;
+  width: 80%;
 }
 
 .deck__paused__addCardsToDeck {
@@ -413,8 +413,8 @@
 }
 
 .deck__pauseModeHandler {
-  left: 37px; 
-  top: -15px;
+  left: 17px; 
+  top: 30px;
 }
 
 .deck__tooLongOrShort {
@@ -443,6 +443,7 @@
   cursor: pointer;
   width: 113px;
   padding: 7px;
+  height:23px;
 }
 
 .deck__threeDotsBtnIndex {

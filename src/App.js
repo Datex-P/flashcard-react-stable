@@ -6,6 +6,7 @@ import Login from './Login/Login'
 import Register from './Login/Register'
 import Settings from './Deck/Settings/Settings'
 import Stats from './Deck/Stats/Stats'
+import ForgotPassword from './Login/ForgotPassword'
 
 
 export default function App() {
@@ -40,6 +41,9 @@ export default function App() {
             <Login setUser={setUser}/>
           </Route>
           } */}
+           <Route path ='/forgotpassword' >
+            <ForgotPassword/>
+           </Route>
            <Route path ='/register' >
             <Register setUser={setUser}/>
           </Route> 

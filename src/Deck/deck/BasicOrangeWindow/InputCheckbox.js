@@ -8,7 +8,6 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
 
 
   function cardsPaused() {
-
     return dataBase.DeckNames[index].data.filter(x => x.paused === true).length || 0
   }
 
@@ -19,42 +18,42 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
   }
 
   function switchOnOrOff () {
-    if(!dataBase.DeckNames[index].editModeActive) {
+    if(!dataBase?.DeckNames[index]?.editModeActive) {
 
       if (dataBase.DeckNames[index].data.filter(x => x.paused === true).length === 0) {
-    
+        return
       } else {
       
-          if(dataBase.DeckNames[index].pauseMode) {
+          if (dataBase.DeckNames[index].pauseMode) {
           dataBase.DeckNames[index].pauseMode=false
           setDataBase(newDataBase)
-          setShowAnswerBtn(true)
-    
-        }  else {
+          setShowAnswerBtn(true)    
+          }else{
           dataBase.DeckNames[index].pauseMode=true
           setDataBase(newDataBase)
-          setShowAnswerBtn(false)
+        //  setShowAnswerBtn(false)
           generateRandom()
       }  
     } }
   }
 
   return (
-
     <div>
-      <input type="checkbox" name="deck__onOffSwitch"
+      <input 
+        type="checkbox" 
+        name="deck__onOffSwitch"
         className="deck__onOffSwitch-checkbox mydeck__onOffSwitch"
         id="mydeck__onOffSwitch"
         tabIndex="0"
         onChange={handleChecked}
         value='10'
       />
-      <label className="deck__onOffSwitch-label posAbsolute" htmlFor="mydeck__onOffSwitch"
-       onClick={switchOnOrOff}
+      <label 
+        className="deck__onOffSwitch-label posAbsolute" htmlFor="mydeck__onOffSwitch"
+        onClick={switchOnOrOff}
       >
         <span className="deck__onOffSwitch-inner"></span>
-        <span className="deck__onOffSwitch-switch justify-center-align-center"
-        >
+        <span className="deck__onOffSwitch-switch justify-center-align-center">
           {`${cardsPaused()}`}
         </span>
       </label>

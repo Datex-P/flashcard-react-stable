@@ -282,8 +282,10 @@ export default function QuestAnswerTrainOverv({
                 changeHandler={changeHandler}
                // inputRef
               />
-              {showAnswerBtn && (
-                <Button
+              {showAnswerBtn && 
+               !dataBase?.DeckNames[index]?.pauseMode &&
+              (            
+               <Button
                   variant="secondary"
                   className="p-1 deck__showAnswer mt-20px my-5 justify-center-align-center"
                   onClick={() => {
@@ -292,10 +294,9 @@ export default function QuestAnswerTrainOverv({
                   }}
                 >
                   Show answer
-                </Button>
+                </Button> 
               )}
-              {dataBase.DeckNames[index].pauseMode &&
-
+              {dataBase?.DeckNames[index]?.pauseMode &&
               <PauseModeHandler
                 generateRandom={generateRandom}
                 index = {index}
@@ -303,6 +304,7 @@ export default function QuestAnswerTrainOverv({
               />
               } 
               {showRepeatBtn && 
+                !dataBase.DeckNames[index].pauseMode &&
                 <RepeatButtons 
                   showAnswerBtn={showAnswerBtn}
                   setShowAnswerBtn={setShowAnswerBtn}

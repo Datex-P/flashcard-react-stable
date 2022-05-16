@@ -2,7 +2,7 @@ import {FormControl} from "react-bootstrap";
 
 function QuestionAnswerForm({answer=false,card, editBtnClicked, changeHandler, inputRef=false}) {
   return (
-    <div className="mt-4">
+    <div className="mt-40px mb-30px">
         <p className="deck__questionAnswer fontBold">{answer?'Answer':'Question'}</p>
         <FormControl
             as="textarea"

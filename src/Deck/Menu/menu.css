@@ -5,19 +5,11 @@
   border-radius: 5px;
   margin-top: 1px;
   width: 280px;
-  height: 27px;
+  height: 30px;
 }
 
 .menu__transPlus {
   transform: rotate(135deg);
-}
-
-.menu__cont {
-  z-index: 100;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  width: 400px;
-  padding-left:20px;
 }
 
 .menuContainer__modalbody {
@@ -28,6 +20,10 @@
 .menu__icon-container{
   cursor: pointer;
   background-color: #dcc9b6;
+}
+
+.menu__icon-container:hover {
+  background:#545863
 }
 
 .menu__icon-cont {

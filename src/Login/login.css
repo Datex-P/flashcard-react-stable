@@ -18,7 +18,7 @@
 }
 
 .login__email-transform {
-  transform:translate(-77px, 27px);
+  transform:translate(8px, 27px);
 }
 
 .login__link {
@@ -75,7 +75,7 @@
 }
 
 .login__input {
-  width: 78%;
+  width: 90%;
   height: 25px;
   padding: 3px;
   border-radius: 5px;
@@ -95,6 +95,8 @@
 .login__col-navajowhite {
   color: navajowhite;
 }
+
+
 
 .login__text-dec-none {
   text-decoration: none;

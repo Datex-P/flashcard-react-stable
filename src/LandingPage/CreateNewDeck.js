@@ -36,8 +36,8 @@ export default function CreateNewDeck({
    const [inputField, setInputField] = useState('');
    const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const okRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef(null);
+  const okRef = useRef(null);
  
   useEffect(() => {
     if (addNewDeckWindow) {
@@ -121,7 +121,7 @@ export default function CreateNewDeck({
     }
 
   return (
-    <Row className='justify-center mt-350px'>
+    <Row className='justify-center mt-290px'>
       {!hideCreateDeckBtn &&
       <button
         className='landing__row__btn-create-deck posAbsolute'

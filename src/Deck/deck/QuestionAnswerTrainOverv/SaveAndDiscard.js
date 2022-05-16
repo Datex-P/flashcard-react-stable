@@ -16,6 +16,11 @@ export default function saveAndDiscard({
     setCardModified(true);
   }
 
+  function discardHandler() {
+    discardEvent()
+    refresh()
+  }
+
   return (
     <div className='d-flex justify-center'>
       <div className='width166px deck__saveAndDiscard justify-aroundCenter flex-column'>
@@ -24,9 +29,7 @@ export default function saveAndDiscard({
           {["Discard", "Save"].map((el, index) => (
             <div
               className={`deck__saveAndDiscardBtn justify-aroundCenter ${el}Btn`}
-              onClick={
-              el === "Save"? saveHandler(): () => {discardEvent();refresh()}
-              }
+              onClick={el === "Save"? saveHandler(): discardHandler()}
               key={index}
             >
               {el}

@@ -19,13 +19,14 @@ import {useHistory} from 'react-router-dom'
   const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
   const [showProgressDiagram, setShowProgressDiagram] = useState(true);
   const [arrowDown, setArrowDown] = useState(true);
-  const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
+  
 
   const {
     active, 
     colors, //colors array for the decks
     dataBase, 
-    editButtonClicked
+    editButtonClicked,
+    hideCreateDeckBtn, setHideCreateDeckBtn
   } = useContext(Context);
 
   const history = useHistory()
@@ -64,7 +65,7 @@ import {useHistory} from 'react-router-dom'
   // }, []);
 
   function colorHandler () {
-    colors.map((i:string, k:number, ar:string[]) => {
+    colors.map((i, k, ar) => {
       if (active === k) {
         return ar[ar.length % (k || 1)];
       } else {
@@ -73,7 +74,7 @@ import {useHistory} from 'react-router-dom'
     })
   }
 
-  function createDeckHandler ():any {
+  function createDeckHandler () {
     if (!editButtonClicked) {
       //editButtonClicked is set to true by default
     } else {
@@ -111,15 +112,17 @@ import {useHistory} from 'react-router-dom'
         //  backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
         }}
       >
-      <MenuContainer showProgressDiagram={showProgressDiagram}
+      <MenuContainer 
+        showProgressDiagram={showProgressDiagram}
         setShowProgressDiagram={setShowProgressDiagram}
+        hideCreateDeckBtn={hideCreateDeckBtn}
       />
         <Row className="posRelative justify-between width100pc">
           {decksAreVisible ? (
             <div className='p-50px'>
               <div className='posAbsolute left-40px'>
                 {dataBase?.DeckNames && Array.isArray(dataBase.DeckNames) && dataBase.DeckNames.reduce(
-                  (accum:any, deck:any, index:number) => {
+                  (accum, deck, index) => {
                     if (active === index) {
                       accum.arr.push(
                         <Deck

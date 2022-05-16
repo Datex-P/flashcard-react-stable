@@ -11,6 +11,8 @@ export default function ContextProvider({ children }:any) {
   const [active, setActive] = useState(0);
   const [dataBase, setDataBase] = useState<any>([]);
   const [showProgressDiagram, setShowProgressDiagram] = useState(false)
+  const [hideMenu, setHideMenu] = useState(false)
+  const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
 
   const [styles, setStyles] = useState({
     backgroundColor: {
@@ -20,7 +22,6 @@ export default function ContextProvider({ children }:any) {
     }
   });
 
-  // // 
    let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
 
@@ -126,7 +127,9 @@ export default function ContextProvider({ children }:any) {
         changeDeckNameOpen, setChangeDeckNameOpen,
         dataBase, setDataBase, 
         editButtonClicked, setEditButtonClicked, 
-        scrollbarVisible, setScrollbarVisible, 
+        hideMenu, setHideMenu, 
+        hideCreateDeckBtn, setHideCreateDeckBtn,
+        scrollbarVisible, setScrollbarVisible,
         showProgressDiagram, setShowProgressDiagram,
         styles, setStyles,
         }} 

@@ -9,30 +9,35 @@ import ShowProgressD from "../../LandingPage/ShowProgressDiagram";
 import settingsIcon from '../../icons/settings.svg';
 import statsIcon from '../../icons/stats.svg'
 import logoutIcon from '../../icons/logout.svg'
-// const settingsIcon = require("../../icons/settings.svg") as string;
-// const statsIcon = require("../../icons/stats.svg") as string;
-// const logoutIcon = require("../../icons/logout.svg") as string;
 
 
-export default function MenuContainer({showProgressDiagram,setShowProgressDiagram}:any) {
+export default function MenuContainer({showProgressDiagram,setShowProgressDiagram,hideCreateDeckBtn}) {
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
-  const { dataBase, styles,editButtonClicked} = useContext(Context);
+  const { dataBase, styles,editButtonClicked, hideMenu} = useContext(Context);
   const handleClose = () => {setMenuOpen(false)
   console.log('I got clicked')
   }; // closes the Menu when handleclos is triggered
 console.log(logoutIcon, 'logiuticon')
   return (
-    <div
-      className='mx-auto menu__cont justify-between'
-      style={{
-        // backgroundColor:
-        //   dataBase &&
-        //   styles.backgroundColor[dataBase.userPreferences.backgroundColor],
-      }}
+    // <div
+    //   className='mx-auto menu__cont justify-between'
+    //   style={{
+    //     // backgroundColor:
+    //     //   dataBase &&
+    //     //   styles.backgroundColor[dataBase.userPreferences.backgroundColor],
+    //   }}
+    // >
+
+  
+    <div 
+    
+    style={{visibility: hideMenu? 'hidden':'visible'}}
+    
     >
       <Hamburger
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
+        hideCreateDeckBtn={hideCreateDeckBtn}
       />
        {menuOpen && editButtonClicked && 
         <div className='posAbsolute width200px height200px'> 
@@ -40,12 +45,12 @@ console.log(logoutIcon, 'logiuticon')
              show={menuOpen}
             // onHide={handleClose}
              contentClassName={"modNew"}
-            dialogClassName='align-items-start  pl-3'
+             dialogClassName='align-items-start  pl-3'
             // centered
           >
             <Modal.Body className='p-0 menu__modalbody posRelative'>
               <div 
-                className='menu__cont z-Index5 marginAuto nonDraggableIcon'
+                className='mt-50px menu__cont z-Index5 marginAuto nonDraggableIcon'
                 onClick={handleClose}
               >
                  <Icons

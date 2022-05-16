@@ -3,23 +3,24 @@ import { Context } from "../../Context";
 
 function Hamburger({ 
   menuOpen, //when true menu is clicked and stats settings logout appear
-  setMenuOpen 
+  setMenuOpen,
+  hideCreateDeckBtn
 }) {
 
   const { editButtonClicked, showProgressDiagram, setShowProgressDiagram} = useContext(Context);
 
   function triggerDiagramAndState() {
     // if(editButtonClicked) {
+    if(!hideCreateDeckBtn) {
       setMenuOpen(!menuOpen);
       setShowProgressDiagram(!showProgressDiagram);
-      console.log('got triggered in diagram')
-    //}
+      }
   }
 
   return (
     <div
       className='menu__menu mt-15px align-center flex-column p-3'
-      style={{cursor: editButtonClicked ? 'pointer': 'default'}} //cursor is default when edit input field is activated
+      style={{cursor: editButtonClicked && !hideCreateDeckBtn ? 'pointer': 'default'}} //cursor is default when edit input field is activated
     >
       <div className='font-18px'>Menu</div>
       <div 

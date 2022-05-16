@@ -21,16 +21,18 @@ export default function BasicOrangeWindow({
               title
 }) {
 
-  const {dataBase, setDataBase} = useContext(Context);
+  const {dataBase, setDataBase, setHideMenu} = useContext(Context);
 
   function redCrossHandler () {
     setShow(false);
     setEdit(false);
+    setHideMenu(false) //menu gets shown again
     setHideCreateDeckBtn(false) //createDeckBtn is shown again
     //setShowRepeatBtn(false);
     setShowAnswerBtn(true);
     setEditBtnClicked(false);
     setScrollbarVisible(true);
+    console.log('got triggered here')
     if (index) {
     let newDataBase = {...dataBase}
     newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
@@ -71,7 +73,7 @@ export default function BasicOrangeWindow({
       style={{
         left: '-160px !important',
         right: '45px !important',
-        backgroundColor: questionViewActive?'':'rgba(0, 0, 0, 0.6)',
+        backgroundColor: questionViewActive?'':'rgba(0, 0, 0, 0.6)'
       }}
     >
       <div className='deck__modal_cont posRelative top-20px'>

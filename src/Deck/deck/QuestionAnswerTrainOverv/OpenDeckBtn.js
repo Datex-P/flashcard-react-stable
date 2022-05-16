@@ -12,6 +12,7 @@ export default function OpenDeckBtn ({data,
   const {
     dataBase, setDataBase, 
     editButtonClicked, 
+    setHideMenu,
     setShowProgressDiagram //progressDiagram is shown in the back of main 
   } = useContext(Context);
 
@@ -22,8 +23,9 @@ export default function OpenDeckBtn ({data,
       newDataBase.openedToday = true;
       setShowProgressDiagram(false); //progress diagram gets why not at this place??
       setDataBase(newDataBase);
-      setScrollbarVisible(false)
+      setScrollbarVisible(false) //as long as deck is open, scrollbar is not visible
       setHideCreateDeckBtn(true) //create Deck Btn gets hidden
+      setHideMenu(true)
     }
   }
 

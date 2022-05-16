@@ -8,6 +8,19 @@ html {
   margin-top: 50px;
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: seagreen;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: seagreen;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: seagreen;
+}
+
 /*Chrome, Safari, Edge, Opera  tried to hide the up and down number field in settings with that*/
 
 input::-webkit-outer-spin-button,
@@ -38,6 +51,10 @@ input[type="number"] {
   z-index: 5;
 }
 
+.login__reset-col {
+  color:seashell;
+}
+
 .overflowHidden {
   overflow: hidden;
 }
@@ -55,6 +72,10 @@ input[type="number"] {
 
 .font-22px {
   font-size: 22px;
+}
+
+.font-26px {
+  font-size: 26px;
 }
 
 .text-center {
@@ -170,6 +191,10 @@ input[type="number"] {
   margin-left: 21px;
 }
 
+.mb-30px {
+  margin-bottom: 30px;
+}
+
 .mt-40px {
   margin-top: 40px;
 }
@@ -186,8 +211,16 @@ input[type="number"] {
   margin-top: 22px;
 }
 
+.mt-30px {
+  margin-top: 30px;
+}
+
 .mt-48px {
   margin-top: 48px;
+}
+
+.mt-50px {
+  margin-top: 50px !important;
 }
 
 .mt-75px {
@@ -198,8 +231,8 @@ input[type="number"] {
   margin-top: 150px;
 }
 
-.mt-350px {
-  margin-top: 350px;
+.mt-290px {
+  margin-top: 290px;
 }
 
 .ml-30px {
@@ -540,6 +573,10 @@ a {
   margin: auto;
   border: 2px solid black !important;
   z-index: 2;
+}
+
+.col-darkslategrey {
+  color: darkslategrey;
 }
 
 .modAddToDeck {

@@ -5,7 +5,7 @@ import particle from './particle-config.js'
 
 
 
-export default function ParticleBackground ({children}) {
+ function ParticleBackground ({children}) {
   
 var particlesInit = (main) => {
   console.log(main);
@@ -19,6 +19,7 @@ var particlesLoaded = (container) => {
     <div className='posRelative'>
         <Particles 
           id="tsparticles"
+          enable={false}
           init={particlesInit}
           loaded={particlesLoaded}
           options={particle}
@@ -28,3 +29,7 @@ var particlesLoaded = (container) => {
     </div>
   )
 }
+
+
+export default ParticleBackground
+

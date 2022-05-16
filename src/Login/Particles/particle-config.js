@@ -70,13 +70,13 @@ const particlesConfig =
       }
     },
     interactivity: {
-      detect_on: "canvas",
+      detectsOn: "canvas",
       events: {
         onhover: {
           enable: false,
           mode: "repulse"
         },
-        onclick: {
+        onClick: {
           enable: false,
           mode: "push"
         },

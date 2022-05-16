@@ -84,7 +84,7 @@ function Settings({ history }) {
         </div>
       }
     >
-      <div className='settings__repetiton-interval'>
+      <div className='settings__repetition-interval'>
         Change Repetition Interval
       </div>
       <div className='justify-center'>
@@ -120,7 +120,7 @@ function Settings({ history }) {
         </div>
       </div>
       <div>
-        <div className='settings__goal-settings fontBold'>
+        <div className='settings__goal-settings fontBold mt-30px'>
           <div className='settings__paddings'>Goal Settings</div>
           <div className='settings__weekly-target settings__paddings'>Current Weekly Target</div>
         </div>

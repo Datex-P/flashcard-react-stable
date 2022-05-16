@@ -13,31 +13,33 @@ export default function AddQuestionsToDeck({ index, name,
   const [newCardAdded, setNewCardAdded] = useState(false);
 
   const { 
-    dataBase,
+    dataBase,setDataBase,
     editButtonClicked, 
     setShowProgressDiagram,
+    setHideMenu
   } = useContext(Context);
 
-  // function addToDeck() {
+  function addToDeck() {
+    let newDataBase = { ...dataBase }
+    newDataBase.DeckNames[index].data.push(card)
+    setDataBase(newDataBase)
+    setNewCardAdded(true)
 
-  //   let newDataBase = { ...dataBase }
-  //   newDataBase.DeckNames[index].data.push(card)
-  //   setDataBase(newDataBase)
-  //   setNewCardAdded(true)
+    if (card.question.trim().length !== 0 && card.answer.trim().length !== 0) {
+      setTimeout(() => {
+        setCard({ question: '', answer: '' })
+        setNewCardAdded(false)
+      }, 650)
+    }
+  }
 
-  //   if (card.question.trim().length !== 0 && card.answer.trim().length !== 0) {
-  //     setTimeout(() => {
-  //       setCard({ question: '', answer: '' })
-  //       setNewCardAdded(false)
-  //     }, 650)
-  //   }
-  // }
-  // function hideHandler () {
-  //   setShow(false)
-  //   setShowProgressDiagram(true)
-  //   setHideCreateDeckBtn(false)
-
-  // }
+  function hideHandler () {
+    setShow(false)
+    setShowProgressDiagram(true)
+    setHideCreateDeckBtn(false)
+    setScrollbarVisible(true)
+    console.log('hide triggered')
+  }
 
   // plusHandler gets triggered when User clicks on plus Icon
   // is deactivated when the deck is paused, so User has to unpause
@@ -49,6 +51,7 @@ export default function AddQuestionsToDeck({ index, name,
         setShow(true)
         setShowProgressDiagram(false)
         setScrollbarVisible(false)
+        setHideMenu(true)
       }
     }
 
@@ -78,10 +81,15 @@ export default function AddQuestionsToDeck({ index, name,
     setTimeout(() => { setNewCardAdded(false) }, 650)
   }, [newCardAdded]);
 
+  /*create Deck btn and menu icons are shwon again
+  set show closes the add to deck window*/
+
   function closeHandler () {
     setShow(false)
     setHideCreateDeckBtn(false)
     setShowProgressDiagram(true)
+    setHideMenu(false) 
+    setScrollbarVisible(true)
   }
 
   return (
@@ -100,7 +108,7 @@ export default function AddQuestionsToDeck({ index, name,
           show={show}
           contentClassName={'modAddToDeck'}
           backdrop='static'
-         // onHide={hideHandler}
+          onHide={hideHandler}
         >
           <Modal.Header className='border-bottom-0'>
             <Modal.Title className='justify-between mod-title'
@@ -126,7 +134,7 @@ export default function AddQuestionsToDeck({ index, name,
               newCardAdded={newCardAdded} 
           />
             <button
-            //   onClick={addToDeck}
+              onClick={addToDeck}
               className='deck_add_btn deck__addToDeck mt-20px ml-21px'
             >
               Add to Deck

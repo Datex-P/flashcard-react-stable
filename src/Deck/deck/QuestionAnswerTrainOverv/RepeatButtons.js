@@ -2,7 +2,7 @@ import { Button} from 'react-bootstrap'
 import React, { useContext} from "react";
 import { Context } from "../../../Context";
  
-function RepeatButtons({showAnswerBtn, 
+function RepeatButtons({ 
   setShowAnswerBtn,setShowRepeatBtn, generateRandom}) {
 
 const {dataBase} = useContext(Context);
@@ -10,10 +10,10 @@ const {dataBase} = useContext(Context);
 function repeatHandler() {
   setShowRepeatBtn(false);
   generateRandom();
+  setShowAnswerBtn(true)
 }
 
-function RepeatBtn({label, btn, onClick,showAnswerBtn, 
-  setShowAnswerBtn}) {
+function RepeatBtn({label, btn, onClick}) {
   
   return (
 

@@ -11,9 +11,7 @@ export default function PauseModeHandler({
 
   function unpauseHandler() {
     let newDataBase = { ...dataBase };
-    newDataBase.DeckNames[index].data.filter((item) => item.paused)[
-      randomQuestion
-    ].paused = false;
+    newDataBase.DeckNames[index].data.filter((item) => item.paused)[randomQuestion].paused = false;
     setDataBase(newDataBase);
     generateRandom();
   }
@@ -27,13 +25,13 @@ export default function PauseModeHandler({
       <div className='justify-center'>
         <div className='justify-around width300px'>
           <div
-            className='deck__unpause-keepPaused deck__showAnswerButton align-center'
+            className='justify-center deck__unpause-keepPaused deck__showAnswerButton align-center'
             onClick={unpauseHandler}
           >
             Unpause card
           </div>
           <div
-            className='deck__unpause-keepPaused deck__showAnswerButton align-center'
+            className='justify-center deck__unpause-keepPaused deck__showAnswerButton align-center'
             onClick={generateRandom}
           >
             Keep paused

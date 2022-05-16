@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-export default function Button ({login=false}) {
+export default function Button ({text, login=false}) {
   
   let history = useHistory();
   
@@ -19,7 +19,7 @@ export default function Button ({login=false}) {
       // }
       type='submit'
     >
-        Login
+        {text}
     </button>
   )
 }
