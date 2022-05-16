@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import { useForm } from "react-hook-form";
 import flashcard from "../icons/flashcard-design-new.png";
 import "../styles.scss";
 import './login.css';
@@ -10,13 +9,11 @@ import Email from "../icons/email.svg";
 
 
 function ForgotPassword({ setUser}) {
-  const {register,handleSubmit,formState: { errors }} = useForm();
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-
-  const onSubmit = (data) => console.log(data);
 
   // async function loginUser(e) {
   //   console.log('got triggered')
@@ -60,8 +57,6 @@ function ForgotPassword({ setUser}) {
           <form 
               className='zIndex-5 width12rem' 
              // onSubmit={loginUser}
-              method='post'
-              action='/'
           >
             <div className='login__reset-col'>
             Lost your password? You will receive a link to create a new password.
@@ -80,10 +75,9 @@ function ForgotPassword({ setUser}) {
                   id='emailinput'
                   onChange={(e)=>setEmail(e.target.value)}
                   className='login__input'
-                  // {...register("password", {
-                  //   required: "true",
-                  //   pattern: /(?<=^| )\d+\.\d+(?=$| )/,
-                  // })}
+                  required
+                  pattern='[a-zA-Z0-9]'
+                  title= 'Only a-z 0-9 allowed'
                 />
               </div>
               <div className='login__button__container login__field-distance justify-between-align-center flex-column width100pc height75px mt-20px'>       
