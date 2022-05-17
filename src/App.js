@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-do
 
 import LandingPage from './LandingPage/LandingPage'
 import Login from './Login/Login/Login'
+import CheckEmail from './Login/CheckEmail'
 import Register from './Login/Register/Register'
 import Settings from './Deck/Settings/Settings'
 import Stats from './Deck/Stats/Stats'
@@ -32,6 +33,9 @@ export default function App() {
           </Route>
           <Route path='/stats'>
             <Stats />
+          </Route>
+          <Route path='/checkemail'>
+            <CheckEmail/>
           </Route>
           <Route path='/settings'>
             <Settings/>

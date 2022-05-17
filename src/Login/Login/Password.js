@@ -1,11 +1,11 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, forwardRef} from "react";
 import eyesClosed from '../../icons/eye-closed-pwd.png'
 import eyesOpened from '../../icons/eye-opened-pwd.svg'
 
-function Password () {
+const Password = forwardRef((props, passwordRef) => {
 
   const [showPassword, setShowPassword] = useState(false)
-  const passwordRef = useRef(null)
+  // const passwordRef = useRef(null)
 
   return (
   <div className= "login__LoginInput flex-column">
@@ -17,7 +17,7 @@ function Password () {
       placeholder='password'
       type={showPassword? 'text':'password'}
       required
-      pattern='[a-zA-Z0-9]'
+      pattern='[a-zA-Z0-9]+'
       title= 'Only a-z 0-9 allowed'
       className='login__input login__icon__keys pl-30px login__eyeopen'
     />
@@ -31,6 +31,6 @@ function Password () {
   </div>
 </div> 
 )
-}
+});
 
 export default Password

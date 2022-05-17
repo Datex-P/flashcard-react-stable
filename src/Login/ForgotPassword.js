@@ -1,19 +1,13 @@
-import React, {useState} from "react";
-import flashcard from "../icons/flashcard-design-new.png";
+import React from "react";
 import "../styles.scss";
 import './login.css';
 import ParticleBackground from "./Particles/ParticlesBackground";
 import Button from "./Button";
-import Email from "../icons/email.svg";
-
+import Email from './Register/Email'
+import FlashcardLogo from './FlashcardLogo'
 
 
 function ForgotPassword({ setUser}) {
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
 
   // async function loginUser(e) {
   //   console.log('got triggered')
@@ -46,40 +40,19 @@ function ForgotPassword({ setUser}) {
     <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
-          <div className='justify-center width100pc mt-75px mb-15pc'>
-            <img
-              src={flashcard}
-              alt='flashcard'
-              className='width100px height100px'
-            />
+          <FlashcardLogo/>
+          <div className='login__register__text  login__col-navajowhite'>
+            Reset your Password
           </div>
-          <div className='login__register__text  login__col-navajowhite'>Reset your Password</div>
           <form 
               className='zIndex-5 width12rem' 
              // onSubmit={loginUser}
           >
             <div className='login__reset-col'>
-            Lost your password? You will receive a link to create a new password.
+              Lost your password? You will receive a link to create a new password.
             </div>
             <div className= "login__LoginInput flex-column mb-20px">
-            <div className='width200px mt-15px'>
-                <img
-                  src={Email}
-                  alt='enter email address'
-                  className='width16px height16px login__img-login-password login__email-transform'
-                />
-                <input
-                  value={email}
-                  placeholder='Your email'
-                  type='text'
-                  id='emailinput'
-                  onChange={(e)=>setEmail(e.target.value)}
-                  className='login__input'
-                  required
-                  pattern='[a-zA-Z0-9]'
-                  title= 'Only a-z 0-9 allowed'
-                />
-              </div>
+              <Email/>
               <div className='login__button__container login__field-distance justify-between-align-center flex-column width100pc height75px mt-20px'>       
                 <Button text='Reset password'/>
                 <a

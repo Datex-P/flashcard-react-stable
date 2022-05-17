@@ -14,7 +14,7 @@ function Email() {
         id='emailinput'
         className='login__input'
         required
-        pattern='[a-zA-Z0-9]'
+        pattern='[a-zA-Z0-9]+'
         title='Only a-z 0-9 allowed'
       />
     </div>

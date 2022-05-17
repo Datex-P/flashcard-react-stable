@@ -1,10 +1,9 @@
-import React, {  useState, useRef } from 'react';
+import React, {  useState, forwardRef } from 'react';
 import eyesClosed from '../../icons/eye-closed-pwd.png'
 import eyesOpened from '../../icons/eye-opened-pwd.svg'
 
-export default function Password () {
+const  Password = forwardRef((props, passwordRef) => {
   const [showPassword, setShowPassword] = useState(false)
-  const passwordRef = useRef(null)
 
   return (
     <div className='width200px mt-15px'>
@@ -23,9 +22,11 @@ export default function Password () {
         ref={passwordRef}
         className='login__input login__icon__keys'
         required
-        pattern='[a-zA-Z0-9]'
+        pattern='[a-zA-Z0-9]+'
         title= 'Only a-z 0-9 allowed'          
       />
     </div>
   )
-}
+})
+
+export default Password

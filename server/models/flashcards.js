@@ -6,7 +6,7 @@ const User = new Schema({
  // email: {type: String, required: false, unique: true},
   password: {type: String, required: true},
 
-},{timestamps:true}, {collection: 'flashcard-new'}
+},{timestamps:true}, {collection: 'user'}
 )
 
 const model = mongoose.model('UserData', User)

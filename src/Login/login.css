@@ -37,6 +37,17 @@
   cursor:pointer;
 }
 
+.login__verify__button {
+  height: 30px; 
+  border-radius: 5px;
+  width: 100%;
+  background: sandybrown;
+  color: white;
+  box-shadow: 2px 2px black;
+  border: 0px;
+  cursor:pointer;
+}
+
 .login__register__text {
   margin-bottom: 20px;
   font-size: 25px;

@@ -1,10 +1,9 @@
 import usersSolid from "../../icons/users.svg";
-import React, { useRef } from "react";
+import React, { forwardRef } from "react";
 
 
-function UserName() {
-  const userNameRef = useRef(null)
-  
+const UserName = forwardRef((props, userNameRef) => {
+
   return (
     <div className='width200px'>
       <img
@@ -20,11 +19,11 @@ function UserName() {
         className='login__input'
         ref={userNameRef}
         required
-        pattern='[a-zA-Z0-9]'
+        pattern='[a-zA-Z0-9]+'
         title='Only a-z 0-9 allowed'
       />
     </div>
   )
-}
+})
 
 export default UserName

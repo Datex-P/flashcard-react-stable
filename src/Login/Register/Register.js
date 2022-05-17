@@ -1,21 +1,20 @@
-import React, { useContext, useRef } from "react";
-import { Context } from "../../Context";
+import React, { useRef } from "react";
 import "../../styles.scss";
 import "../login.css";
-import flashcard from "../../icons/flashcard-design-new.png";
 import ParticleBackground from "../Particles/ParticlesBackground";
 import { useHistory } from "react-router-dom";
 import Password from './Password'
 import Email from './Email'
 import UserName from './UserName'
+import FlashcardLogo from '../FlashcardLogo'
 
 
 
 function Register() {
-  const { setRegister } = useContext(Context);
   const userNameRef = useRef(null)
   const passwordRef = useRef(null)
   const history = useHistory();
+
 
   function signUpHandler() {
     // setRegister(false);
@@ -45,7 +44,7 @@ function Register() {
 
     //data.status === 'ok'
     if(data.status === 'ok') {
-      history.push('/login')
+      history.push('/checkemail')
     }
 
     if(data.user) {
@@ -61,21 +60,15 @@ function Register() {
     <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
-          <div className='justify-center width100pc mt-75px mb-15pc'>
-            <img
-              src={flashcard}
-              alt='flashcard'
-              className='login__flashcardBackground-top width100px height100px'
-            />
-          </div>
+          <FlashcardLogo register/>
           <div className='flex-column align-center mb-25px'>
             <div className='login__register__text login__col-navajowhite'>Register</div>
             <div className='login__reset-col '>Create an Account</div>
           </div>
            <form onSubmit={registerUser}> 
           <div className='align-center flex-column posRelative'>
-              <UserName/>
-              <Password/>           
+              <UserName ref={userNameRef}/>
+              <Password ref={passwordRef}/>           
               <Email/>
             <div className='login__button__container login__field-distance justify-between flex-column width75pc height75px mt-20px'>
               <button

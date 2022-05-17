@@ -9,19 +9,34 @@ import UserName from './UserName'
 import Password from './Password'
 
 function Login({ setUser}) {
+
+
+  let facebook = document.querySelectorAll("input[type=button]") 
+  console.log(facebook, 'facebook here')
+
+  const callback = element => element.innerHTML === 'Login with Facebook'
+  const elements = Array.from(document.getElementsByTagName('button'))
+  console.log(elements, 'elements here')
+
+const result = elements.filter(callback)
+      result.innerHTML = 'Facebook'
+
+      console.log(result, 'result here facebook')
   
-  const loginRef = useRef(null)
+  const userNameRef = useRef(null)
   const passwordRef = useRef(null)
 
   async function loginUser(e) {
-
     e.preventDefault()
+    try{
     //e preventDefault is needed because forms 
     //have a standard behaviour of redirecting
-     let name = loginRef.current.value;
+     let name = userNameRef.current.value;
      let password = passwordRef.current.value;
+     console.log(name, 'name')
+     console.log(password, 'password')
 
-   const response =  fetch('http://localhost:4000/login', {
+   const response =  await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +47,10 @@ function Login({ setUser}) {
         password
       })
     })
+
     const data =  await response.json()
+    console.log(data, 'data here')
+    console.log(response, 'response here')
 
     if(data.user) {
       localStorage.setItem('token', data.user) //store token so it can be used
@@ -41,6 +59,9 @@ function Login({ setUser}) {
       alert('Please check your username and password')
     }
    console.log(data)
+  } catch (err){
+    console.log(err, 'err here')
+  }
   }
  
   return (
@@ -58,10 +79,11 @@ function Login({ setUser}) {
           <div className='font-26px mb-20px login__col-navajowhite'>Login</div>
           <form 
             className='zIndex-5 width12rem' 
-            onSubmit={loginUser}               
+            onSubmit={loginUser}
+            method='post' action='/login'               
           >
-            <UserName/>        
-            <Password/>    
+            <UserName ref={userNameRef}/>        
+            <Password ref={passwordRef}/>    
             <div className='login__button-container flex-column justify-between'>
               <Button text='Login' />
             </div>

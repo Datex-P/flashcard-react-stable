@@ -5,12 +5,20 @@ let facebookID = env.Facebook_ID;
 
 function Facebook ({setUser}) {
 
+  let facebook = document.querySelectorAll("input[type=text]") 
+
   const callback = element => element.innerHTML === 'Login with Facebook'
   const elements = Array.from(document.getElementsByTagName('button'))
   console.log(elements, 'elements here')
 
 const result = elements.filter(callback)
       result.innerHTML = 'Facebook'
+     
+      // mouseTarget.addEventListener('mouseenter', e => {
+      //   mouseTarget.style.border = '5px dotted orange';
+
+
+
       console.log(result, 'result here')
     //  result.classList.add('facebook')
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-export default function Button ({text, login=false}) {
+export default function Button ({text, login=false, verify=false}) {
   
   let history = useHistory();
   
 
   return (
     <button
-      className='login__button justify-center-align-center'
+      className={`${verify? 'login__verify__button': 'login__button'} justify-center-align-center`}
       // onClick={
       // //   () => {
       // //      // login? setRegister(true):
