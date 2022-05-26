@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import PieDiagramm from "./PieDiagrammMain";
 import { Context } from "../Context"; 
 
-function ShowProgressD() {
+function ShowProgressDiagram() {
 
    const {
      dataBase
@@ -16,17 +16,17 @@ function ShowProgressD() {
             Goal
         </div>
         <div className='showProgressDiagram__percentages'>
-          {/* {
-            `${parseInt((dataBase?.deckCompleted * 100) /
-                Object.keys(dataBase?.DeckNames).length)} %`
-          } */}
+           {
+             200
+          
+          } 
           </div>
         </div>
         <div className='width80px'>
-          <PieDiagramm />
+          {/* <PieDiagramm /> */}
         </div>     
     </>
   )
 }
 
-export default ShowProgressD
+export default ShowProgressDiagram

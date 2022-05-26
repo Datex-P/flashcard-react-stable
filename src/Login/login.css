@@ -37,6 +37,10 @@
   cursor:pointer;
 }
 
+.facebookBtn button:hover {
+  box-shadow: 2px 1px black;
+}
+
 .login__verify__button {
   height: 30px; 
   border-radius: 5px;
@@ -106,8 +110,6 @@
 .login__col-navajowhite {
   color: navajowhite;
 }
-
-
 
 .login__text-dec-none {
   text-decoration: none;

@@ -1,31 +1,38 @@
-import React, { useContext,useRef, } from "react";
+import React, { useContext } from "react";
 import { Context } from "../Context"; 
 
 export default function Button ({ok=false, 
   setInputField, 
   setHideCreateDeckBtn,
- // addNewDeckName,
+  addNewDeckName,
+  setNameTooShortOrLong,
   setArrowDown,
   closeHandler}) {
 
-  const {
-    dataBase, 
-    setDecksAreVisible, 
+  const {dataBase, 
   } = useContext(Context);
 
 
-  const okRef = useRef<HTMLButtonElement>(null)
-  const cancelRef = useRef<HTMLButtonElement>(null)
+  // const okRef = useRef<HTMLButtonElement>(null)
+  // const cancelRef = useRef<HTMLButtonElement>(null)
 
   function cancelHandler () {
     closeHandler();
     setInputField('');
     setHideCreateDeckBtn(false)
+    setNameTooShortOrLong(false)
   
-    if (dataBase.DeckNames.length === 0) {     
+    if (dataBase?.DeckNames?.length === 0) {     
         setArrowDown(true);
-        setDecksAreVisible(false); 
+        // setDecksAreVisible(false); 
     }
+  }
+
+  function okHandler(){
+    setHideCreateDeckBtn(false)
+    setNameTooShortOrLong(false)
+    addNewDeckName()
+    closeHandler()
   }
 
   return (
@@ -33,9 +40,8 @@ export default function Button ({ok=false,
       <button
         className='landing__okCancelButton'
         key={'Ok'}
-        ref={okRef}
-        onClick={()=>setHideCreateDeckBtn(false)}
-      //  onClick={addNewDeckName}
+        // ref={okRef}
+        onClick={okHandler}
       >
         Ok
       </button>
@@ -45,7 +51,7 @@ export default function Button ({ok=false,
       <button
         className='landing__okCancelButton'
         key={'Cancel'}
-        ref={cancelRef}
+        // ref={cancelRef}
         onClick={cancelHandler}
       >
         Cancel

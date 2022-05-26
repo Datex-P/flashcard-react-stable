@@ -1,62 +1,70 @@
 import React,  {useState, useEffect, useContext, useRef} from "react";
 import { Context } from "../../Context";
 
-function RenderDays() {
+function RenderDays({year}) {
 
-  const [year] = useState(new Date().getFullYear());
   const [days, setDays] = useState([]);
   const {dataBase} = useContext(Context);
-  const [showTodaysProg, setShowTodaysProg] = useState(false);
   const innerStat = useRef(null)
   const [right,setRight]=useState(0)
   const [outer,setOuter]=useState(0)
+  const [studiedOnThisDay, setStudiedOnThisDay] = useState(false)
+
+  useEffect(()=>{
+    console.log(days, 'days here')
+  },[days])
 
   useEffect(() => {
-    // let date = [];
-    // let thisYear = new Date(`January 1, ${+year}`);
+    let date = [];
+    let thisYear = new Date(`January 1, ${+year}`);
 
-    // while (
-    //   thisYear.getMonth() !== 0 ||
-    //   thisYear.getDate() !== 1 ||
-    //   thisYear.getFullYear() === +year
-    // ) {
-    //   date.push({ day: thisYear.toDateString(), cardsStudied: 0 });
-    //   thisYear.setDate(thisYear.getDate() + 1);
-    // }
-    // //setDays(date);
-    // let today = new Date('May 26, 2021').toDateString();
-    // if (dataBase?.DeckNames) {
-    //   for (let deck in dataBase.DeckNames) {
-    //     //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
+    while (
+      thisYear.getMonth() !== 0 ||
+      thisYear.getDate() !== 1 ||
+      thisYear.getFullYear() === +year
+    ) {
+      date.push({ day: thisYear.toDateString(), cardsStudied: 0 });
+      thisYear.setDate(thisYear.getDate() + 1);
+    }
+    setDays(date);
+    let today = new Date().toDateString();
+    if (dataBase?.DeckNames) {
+      for (let deck in dataBase.DeckNames) {
+        //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
 
-    //     //cardsStudiedataBase.DeckNames[deck].data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length
+        // cardsStudied?.dataBase?.DeckNames[deck]?.data?.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length
 
-    //     //cardsStudied = dataBase.DeckNames[deck].data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === date)).length
-    //     let todaysAmount = dataBase.DeckNames[deck].data.filter((item) =>
-    //       item?.openHistory?.some(
-    //         (item) => new Date(item).toDateString() === today
-    //       )
-    //     ).length;
-    //     let index = date.findIndex((day) => day.day === today);
-    //     console.log(index);
-    //     date[index].cardsStudied += todaysAmount;
-    //     setDays(date);
-    //   }
-    // }
+         //let cardsStudied = dataBase.DeckNames[deck].data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === date)).length
+        let todaysAmount = dataBase.DeckNames[deck].data.filter((item) =>
+          item?.openHistory?.some(
+            (item) => new Date(item).toDateString() === today
+          )
+        ).length;
+        console.log(todaysAmount, 'cards studied today')
+        let index = date.findIndex((day) => day.day === today);
+        console.log(index);
+        // debugger
+        //  date[index].cardsStudied += todaysAmount;
+        setDays(date);
+      }
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year,dataBase?.DeckNames]);
 
-  function clickHandler(e, day) {
-    let inner= e.target.getBoundingClientRect();
-           
-                if((outer.right - inner.right) < 126){
-                  setRight(outer.right - inner.right - 126)    
-                }   
-            if (day.cardsStudied) {
-              setShowTodaysProg(true);
-            }
-  }
 
+  /*method checks whether the index that was triggered via the clickhandler
+  is a day where cards where studied*/
+
+  function clickHandler(e, index) {
+    let inner= e.target.getBoundingClientRect();
+    let day = index;
+    let findday = days.findIndex((el, index)=>day ===index && el.cardsStudied)
+    setStudiedOnThisDay([...findday])
+           
+    if((outer.right - inner.right) < 126){
+        setRight(outer.right - inner.right - 126)    
+    }   
+  }
 
   return (
     <div 
@@ -69,13 +77,12 @@ function RenderDays() {
       {days.map((day, index) => (
         <div
           key={index}
-          className={`day ${day?.cardsStudied ? 'pointer' : ''}`}
-          style={{backgroundColor: day?.cardsStudied ? 'red' : '' }}
-          onClick={(e, day)=>clickHandler(e, day)}
+          className={`day ${day?.cardsStudied ? 'pointer backgroundRed' : ''}`}
+          onClick={(e)=>clickHandler(e, index)}
         >
-          {showTodaysProg && day.cardsStudied && 
-            <div
-              className='stats__study-info posAbsolute top-20px'
+          {studiedOnThisDay ===index &&
+   
+            <div className='stats__study-info posAbsolute top-20px'
               style={{left: right+'px'}}
               ref={innerStat}
             >
@@ -83,9 +90,7 @@ function RenderDays() {
               <div className='top-30px posAbsolute'>
                 Time:
               </div>
-              <div className='top-56px posAbsolute'>               
-                Review:`${day.cardsStudied !== 1 ? "s" : ""}: $
-                {day.cardsStudied} card${day.cardsStudied !== 1 ? 's' : ''}`
+              <div className='top-56px posAbsolute'>                          
               </div>
             </div>
           }

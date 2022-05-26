@@ -5,7 +5,7 @@
   border-top-right-radius: 10px !important;
   height: 651px !important;
   width: 440px !important;
-  background-color: rgb(90, 170, 149);
+  /* background-color: rgb(90, 170, 149); */
   position: absolute;
 }
 
@@ -59,26 +59,23 @@
 }
 
 .createNewDeck__too-short-or-long {
-  left: 225px;
-  top: 44px;
+  left: 222px;
+  top: 59px;
   width: 85px;
   font-size: 13px;
 }
 
 #landing__createFirstDeck {
-  top: 233px;
+  top: 160px;
+  left:28%;
   position: absolute;
   font-weight: bold;
   font-size: 16px;
 }
 
 .createFirstDeck-arrowDown {
-  margin-top: 180px;
-  width: 100%;
   margin: 0 auto;
   text-align: center;
-  position: absolute;
-  top: 60px;
 }
 
 .landing__select__options {

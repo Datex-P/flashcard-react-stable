@@ -5,7 +5,7 @@ import './landingpage.css'
 import Deck from "../Deck/deck/Index/index";
 import CreateNewDeck from "./CreateNewDeck";
 import MenuContainer from '../Deck/Menu/MenuContainer'
-// import ShowProgressD from "./ShowProgressDiagram";
+import ProgressDiagram from "./ShowProgressDiagram";
 import Scrollbar from './Scrollbar'
 import StartFirstDeck from './StartFirstDeck'
 
@@ -20,11 +20,15 @@ import {useHistory} from 'react-router-dom'
   const [showProgressDiagram, setShowProgressDiagram] = useState(true);
   const [arrowDown, setArrowDown] = useState(true);
   
+  useEffect(()=>{
+    console.log(arrowDown, 'arrow down here')
+  },[arrowDown])
 
   const {
     active, 
     colors, //colors array for the decks
     dataBase, 
+    styles,
     editButtonClicked,
     hideCreateDeckBtn, setHideCreateDeckBtn
   } = useContext(Context);
@@ -55,6 +59,14 @@ import {useHistory} from 'react-router-dom'
       }
     }
   },[])
+
+  useEffect(()=>{
+    console.log(dataBase, 'database here')
+    if (dataBase?.DeckNames) {
+    console.log(dataBase && dataBase?.DeckNames.length, 'decknames')
+    }
+    // console.log(dataBase?.DeckNames.length, 'length')
+  },[dataBase])
  
 
   // useEffect(() => {
@@ -84,6 +96,7 @@ import {useHistory} from 'react-router-dom'
       setShowProgressDiagram(false);
       setArrowDown(false); //create new deck and arrow down not visible
     }
+    setArrowDown(false); //create new deck and arrow down not visible
     setHideCreateDeckBtn(true) //the button create Deck gets hidden
   }
 
@@ -101,26 +114,30 @@ import {useHistory} from 'react-router-dom'
       setScrollbarVisible:setScrollbarVisible,
       setDecksAreVisible:setDecksAreVisible,
   }
+console.log(dataBase?.userPreferences?.backgroundColor, 'color background')
 
+
+useEffect(()=>{
+console.log(hideCreateDeckBtn, 'hidecreatedeck')
+},[hideCreateDeckBtn])
   // !spinnerIsVisible && dataBase 
   return spinnerIsVisible  ? (
     <>
+      <ProgressDiagram/>
       <Container
         className="align-items-center landingpage__cont "
-        style={{
-           //backgroundColor:  styles.backgroundColor[dataBase.userPreferences.backgroundColor],
-        //  backgroundColor:`url ${'/Users/fab/Downloads/cool-background.png'}` 
-        }}
+        style={{backgroundColor: styles.backgroundColor[dataBase?.userPreferences?.backgroundColor]}}
       >
       <MenuContainer 
         showProgressDiagram={showProgressDiagram}
         setShowProgressDiagram={setShowProgressDiagram}
         hideCreateDeckBtn={hideCreateDeckBtn}
       />
+      
         <Row className="posRelative justify-between width100pc">
-          {decksAreVisible ? (
+          {decksAreVisible && (
             <div className='p-50px'>
-              <div className='posAbsolute left-40px'>
+              <div className={`posAbsolute left-40px ${hideCreateDeckBtn? 'mt20px':''}`}>
                 {dataBase?.DeckNames && Array.isArray(dataBase.DeckNames) && dataBase.DeckNames.reduce(
                   (accum, deck, index) => {
                     if (active === index) {
@@ -159,15 +176,18 @@ import {useHistory} from 'react-router-dom'
                   { index: 0, arr: [] }
                 ).arr.reverse()}
               </div>       
-              {scrollbarVisible &&
-                //scrollbar gets hidden when there is only one deck
-                <Scrollbar/>              
-            }
+    
+                <Scrollbar 
+                  scrollbarVisible={scrollbarVisible}
+                />              
+               
             </div>
           ) 
-          : arrowDown && 
-            <StartFirstDeck/>
-         }    
+         
+         } 
+          {arrowDown  &&
+         <StartFirstDeck/>
+         } 
         </Row>  
           <CreateNewDeck
             hideCreateDeckBtn={hideCreateDeckBtn}

@@ -3,11 +3,24 @@
   --smaller-font: 13px;
 }
 
+/* hides up and down arrows for input number fields */
+
+button,
+input,
+textarea {
+  border-radius: 5px;
+}
+
+.settings__redDot {
+  border-radius: 50%;
+  background: #772e25;
+}
+
 .settings__saveoredit {
   cursor: pointer;
-  position: relative;
-  left: 310px;
-  top: -43px;
+  position: absolute;
+  left: 318px;
+  top: 295px;
 }
 
 .settings__padding {
@@ -56,9 +69,69 @@
 .settings__save-or-edit-container {
   position: absolute;
   right: 11px;
-  top: 77px;
+  top: 135px;
   cursor: pointer;
 }
+
+#settings__deleteModal .modal-body {
+  padding: 5px;
+  height: 45px;
+}
+
+#settings__deleteModal .modal-header {
+  height: 33px;
+}
+
+#settings__deleteModal .modal-title {
+  height: 30px;
+  background-color: rgba(200, 168, 115) !important;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent !important;
+  width: 175px;
+  display: flex;
+  justify-content:center;
+}
+
+#settings__deleteModal {
+  position: absolute;
+  top: 250px;
+  z-index: 99;
+  left: 39%;
+  width: 216px;
+}
+
+.settings__deleteAccount-cont {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  z-index: 5;
+  left: 0%;
+  border-radius: 13px;
+}
+
+#settings__deleteModal .modal-content {
+  width: 247px;
+  height: 110px;
+  border-radius: 10px;
+  background-color: rgba(200, 168, 115) !important;
+  margin: auto;
+  padding: 15px;
+}
+
+.settings__button {
+  width: 63px;
+  height: 26px;
+  color: white !important;
+  cursor: pointer !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  border: none !important;
+  background-color: grey /*important;*/;
+}
+
 .settings__container-hexagon {
   border-radius: 5px;
   padding-left: 8px; 
@@ -94,13 +167,17 @@
 .settings__intervalFields-p {
   border-radius: 5px; 
   width: 72px;
+  border: 1px solid black;
+  padding:3px;
+  height:27px;
+  box-sizing: border-box;
 }
 
 .settings__interval-textFields {
   width: 72px;
-  height: 27px;
+  height: 25px;
   padding-left: 7px;
-  background-color: grey;
+  background-color: #545863;
   color: white;
   border-radius: 5px;
   outline: none;
@@ -115,6 +192,12 @@
   padding-left: 14px; 
   position: absolute ;
   right: -42px;
+  top: 4px;
+  bottom: 14px;
+}
+
+.settings__deleteAccount {
+  color:maroon;
 }
 
 .settings__blackArrow {

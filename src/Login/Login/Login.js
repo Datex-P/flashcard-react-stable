@@ -76,7 +76,9 @@ const result = elements.filter(callback)
               className='width100px height100px'
             />
           </div>
-          <div className='font-26px mb-20px login__col-navajowhite'>Login</div>
+          <div className='font-26px mb-20px login__col-navajowhite'>
+          Login
+          </div>
           <form 
             className='zIndex-5 width12rem' 
             onSubmit={loginUser}

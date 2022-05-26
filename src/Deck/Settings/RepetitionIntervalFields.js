@@ -1,119 +1,90 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import style from './style.module.css'
 
 
- export default function RepetitionIntervalFields(
-                                      { data: { name, amount, unit }, 
-                                      editIsPossible, index, 
-                                      userTimePreferences, setUserTimePreferences,
-                                      saveOrEdit
-                                      }) 
-  {
+function RepetitionIntervalFields(
+  { data: { name, amount, unit },
+    editModeActive, index,
+    userTimePreferences, setUserTimePreferences,
+    editRepActive
+  }) {
 
-  const [inputNumb, setInputNumb] = useState(amount)
+  const [inputNumber, setInputNumber] = useState(amount)
   const [inputText, setInputText] = useState(name)
-  
+
   function handleInputNumbers(e) {
 
-    
-    if(e.target.value.length<3) {
-
-      setInputNumb(e.target.value)
-      let newUserTimePreferences = [ ...userTimePreferences ]
-      newUserTimePreferences[index].amount = e.target.value
-      setUserTimePreferences(newUserTimePreferences)
+    if (e.target.value.length < 3) {
+        setInputNumber(e.target.value)
+        let newUserTimePreferences = [...userTimePreferences]
+        newUserTimePreferences[index].amount = e.target.value
+        setUserTimePreferences(newUserTimePreferences)
     }
   }
 
-  function checker(e){
-    let {value} = e.target;
-    let newValue = value.replace(/[^0-9]/g,'')
-    if(newValue.length<4){
-      setInputNumb(newValue)
+  function checker(e) {
+    let { value } = e.target;
+    let newValue = value.replace(/[^0-9]/g, '')
+    if (newValue.length < 4) {
+        setInputNumber(newValue)
     }
   }
-
 
   function handleInputText(e) {
-
     setInputText(e.target.value)
-   let newUserTimePreferences = [ ...userTimePreferences ]
+    let newUserTimePreferences = [...userTimePreferences]
     newUserTimePreferences[index].name = e.target.value
     setUserTimePreferences(newUserTimePreferences)
   }
 
-
   return (
-    
     <div className='p-2 flex-column justify-center-align-center'>
-      <div  className='settings__intervalFields-p border border-dark justify-center' >
-          <div style={{ marginRight: '4px' }}>
-
-              {'<'}
-          </div>
-          <form style={{width:'34px'}}>
-
-              <input 
-                  className={style.inputCustom}
-                  type='number'
-                  style={{ 
-                      backgroundColor: saveOrEdit? '#545863':'transparent',
-                      cursor: saveOrEdit? 'pointer': 'default',
-                      color: saveOrEdit? 'white':'black',
-                        }} 
-                  disabled={!editIsPossible}
-                  value={inputNumb}
-                  onChange={handleInputNumbers}
-                  onInput={checker}
-            
-              />
-          </form>
-            {
-              <div className='fontBold'>              
-                {unit}
-              </div>
-            }
+      <div className={`settings__intervalFields-p justify-around ${editRepActive? 'align-center':'p-4px'}`}>
+        <div>
+          {!editRepActive && '<'}
+        </div>
+        <form className={`${editRepActive?'width34px': 'widthFitContent'}`}>
+          {editRepActive?        
+            <input
+              //  type='number'          
+              style={{
+                width:'20px',
+                height:'15px',
+                backgroundColor: editRepActive ? '#545863' : 'transparent',
+                cursor: editRepActive ? 'pointer' : 'default',
+                color: editRepActive ? 'white' : 'black',
+              }}
+              disabled={!editModeActive}
+              value={inputNumber}
+              onChange={handleInputNumbers}
+              onInput={checker}
+            />
+              :
+            <div className='widthFitContent'>{inputNumber}</div>
+          }
+        </form>
+        {editRepActive && <div className='settings__redDot width10px height10px cursorPointer'></div>}
+        <div className='fontBold'>
+          {unit}
+        </div>
       </div>
-      <form>
-          <input
-            value={inputText}
-            type='text'
-            disabled={!editIsPossible}
-            onChange={handleInputText}
-            className='settings__interval-textFields'
-            maxLength = '8'
-            minLength = '3'
-            style={{
-              cursor: editIsPossible ? 'pointer' : 'default',
-              backgroundColor: saveOrEdit? '#545863': 'grey'
-                  }}
-          />
+      <form className='mt-5px'>
+        <input
+          value={inputText}
+          type='text'
+          disabled={!editModeActive}
+          onChange={handleInputText}
+          className='settings__interval-textFields'
+          maxLength='8'
+          minLength='3'
+          style={{
+            cursor: editModeActive ? 'pointer' : 'default',
+            backgroundColor: editRepActive ? '#545863' : 'grey'
+          }}
+        />
       </form>
-
     </div>
   )
- }
+}
 
-//  export default Repetition(){
-
-//   <div className='settings__repetiton-interval'>
-//           Change Repetition Interval
-//       </div>
-//       <div className='justify-center'>
-//           <div className='border border-dark justify-center-align-center settings_repetition-container'>
-//               <div className='justify-around settings_width280px' ></div>
-
-// //   const { dataBase, setDataBase,setShowProgressDiagram } = useContext(Context)
-   
-//    return(
-//  <div 
-//                    className='justify-around' 
-//                    style={{width: '280px'}}
-//                >
-//                    {
-//                      dataBase &&                      
-//                        dataBase.userTimePreferences.map((col, k) =>
-//                        RepetitionIntervalFields
-//                    }
-//    </div>)
-//  }
+export default RepetitionIntervalFields

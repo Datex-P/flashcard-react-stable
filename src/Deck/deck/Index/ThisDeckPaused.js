@@ -1,5 +1,5 @@
 import React, { useContext}  from 'react';
- import Playimg from "../../../icons/PlayButton";
+import play from "../../../icons/play.svg";
 import { Context } from "../../../Context";
 
 
@@ -8,6 +8,8 @@ export default function ThisDeckPaused ({index}) {
   const { dataBase, setDataBase } = useContext(Context);
   let colors = ["#ffcdb2", "#ffb4a2", "#e5989b", "#b5838d", "#6d6875"];
 
+  console.log(index, 'index in deck paused here')
+  console.log(dataBase, 'database here')
 
   function handlePause(index) { 
     let newDataBase = { ...dataBase };
@@ -28,11 +30,14 @@ export default function ThisDeckPaused ({index}) {
           <button
             className="deck__btn-play justify-center-align-center"
             onClick={handlePause}
-          >
-            <Playimg
+          > 
+            <img 
+              src={play} 
+              alt='play' 
               className='paused__img-play'
-            /> 
-          </button>
+              // onClick={handlePause}
+            />
+            </button>
         </div>
         <div className="deck__countToStudyGoal posRelative">
           It doesn't count to the study goal.

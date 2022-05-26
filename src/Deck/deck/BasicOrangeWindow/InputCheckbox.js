@@ -25,16 +25,16 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
       } else {
       
           if (dataBase.DeckNames[index].pauseMode) {
-          dataBase.DeckNames[index].pauseMode=false
-          setDataBase(newDataBase)
-          setShowAnswerBtn(true)    
+            dataBase.DeckNames[index].pauseMode=false
+            setDataBase(newDataBase)
+            setShowAnswerBtn(true)    
           }else{
-          dataBase.DeckNames[index].pauseMode=true
-          setDataBase(newDataBase)
-        //  setShowAnswerBtn(false)
-          generateRandom()
+            dataBase.DeckNames[index].pauseMode=true
+            setDataBase(newDataBase)
+          //  setShowAnswerBtn(false)
+            generateRandom()
       }  
-    } }
+    }}
   }
 
   return (

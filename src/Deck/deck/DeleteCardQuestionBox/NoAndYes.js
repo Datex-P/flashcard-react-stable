@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext, useEffect} from 'react'
 import {Context} from '../../../Context'
 
 
@@ -8,6 +8,7 @@ export default function NoAndYes ({
   setEditBtnClicked, 
   index, 
   setShowAnswerBtn, 
+  // setShowRepeatBtn,
   trashEvent, 
   pauseCardinQuestionAnswer, 
   randomQuestion,
@@ -20,7 +21,7 @@ export default function NoAndYes ({
   function yesHandler() {
     trashEvent()
     deleteCurrentCard()
-    setShowRepeatBtn(false)
+    // setShowRepeatBtn(false) not sure if needed
     setShowAnswerBtn(true)
     setEditBtnClicked(false)
 
@@ -31,9 +32,10 @@ export default function NoAndYes ({
   }
 }
 
+
   return (
     <div className='deleteCardQuestionBox-modal-footer justify-around-align-center'>
-      <div className='justify-around deck__noyes_inner'>
+      <div className='justify-around width80pc'>
         {
           ['No', 'Yes'].map(el =>
             <div 
@@ -44,7 +46,7 @@ export default function NoAndYes ({
                         yesHandler()
                     }
                     deleteWindow()
-                    setPauseOrDeleteText(true)
+                    // setPauseOrDeleteText(true) not sure if needed
                 }}
               >
                 {el}

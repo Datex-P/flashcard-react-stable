@@ -89,6 +89,8 @@
   padding: 0 !important;
   position: relative;
   left: 12px;
+  border: 0px;
+  color:white;
 }
 
 .deck__saveAndDiscardBtn {
@@ -210,6 +212,11 @@
   border-radius: 5px;
 }
 
+.deck__settings_button_positioning {
+  right: 13px;
+  top: 24px;
+}
+
 .deck__basic_button_positioning {
   right: 10px;
   top: 3px;
@@ -224,8 +231,8 @@
   display: inline-block;
 }
 
-.deck__posQuestionAnswer {
-  right: 20px;
+.deck__threeDotsPositioning {
+  right: 27px;
   top: -1px
 }
 
@@ -239,8 +246,9 @@
 }
 
 .deck__threeDotsBtn_btn_pause {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid black !important;
+  border-bottom: 1px solid black !important;
+  border-radius: 0px;
 }
 
 .deck__threeDotsBtn__btn {
@@ -253,6 +261,7 @@
 .deck__threeDotsBtn__btn:hover {
   background-color: #a39171 !important;
   outline:none;
+  border-radius: 0px;
 }
 
 .deck__openDeck {
@@ -289,9 +298,6 @@
   top: 110px;
 }
 
-.deck__noyes_inner {
-  width: 75%;
-}
 
 .deck__btn-play {
   border: 1px solid black;
@@ -301,6 +307,27 @@
   border-radius: 12px;
   padding-left: 8px;
   margin-left: 8px;
+}
+
+.deck__redCross-cont {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(200, 168, 115, 0.95);
+  border-radius: 50%;
+  position: absolute;
+  right: -7px;
+  top: 22px;
+  padding: 1px;
+}
+
+.deck__redCross {
+  width: 20px;
+  height: 20px;
+  color: #772e25;
+  right: -7px;
+  top: 3px;
+  position: absolute;
+  font-size: 11px; 
 }
 
 .deck__modal_cont {
@@ -410,6 +437,15 @@
 .deck__deckEmpty {
   left: 84px; 
   text-align: center;
+}
+
+.deck__repeat-btn__button {
+  width: 65px;
+  height: 27px;
+  background: #545863 !important;
+  border-radius: 5px;
+  color: white;
+  border: 0px;
 }
 
 .deck__pauseModeHandler {

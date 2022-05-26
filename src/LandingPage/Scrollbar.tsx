@@ -2,7 +2,7 @@
 import React, {  useContext, useState, useRef} from "react";
 import { Context } from "../Context"; 
 
-function Scrollbar() {
+function Scrollbar({scrollbarVisible}) {
 
   const [scrollPosition, setScrollPosition] = useState(0)
   const scroller = useRef<HTMLInputElement>(null);
@@ -27,6 +27,10 @@ function Scrollbar() {
   } = useContext(Context);
 
   return (
+    <>
+    {scrollbarVisible &&
+      dataBase.DeckNames && 
+      dataBase?.DeckNames.length > 1 &&
     <div
     ref={scroller}
     className="landing__scrollbar"
@@ -43,6 +47,8 @@ function Scrollbar() {
     >
     <div className='scrollbar-inner'></div>
   </div>
+}
+  </>
   )
 }
 

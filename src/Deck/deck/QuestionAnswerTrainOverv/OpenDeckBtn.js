@@ -4,7 +4,6 @@ import { Context } from "../../../Context";
 
 export default function OpenDeckBtn ({data, 
   paused, generateRandom,
-  setDecksAreVisible,
   setScrollbarVisible,
   setHideCreateDeckBtn
 }) {
@@ -37,7 +36,7 @@ export default function OpenDeckBtn ({data,
       size="sm"
       onClick={openDeckHandler}
       style={{
-        backgroundColor: !editButtonClicked ? "rgb(108, 117, 125)" : "grey",
+        backgroundColor:  "rgb(108, 117, 125)",
         cursor: paused || data.length === 0 || !editButtonClicked ? "default": "pointer",
         opacity: paused || data.length === 0 ? "0" : "1" //open deck button is not visible when length is zero
       }}

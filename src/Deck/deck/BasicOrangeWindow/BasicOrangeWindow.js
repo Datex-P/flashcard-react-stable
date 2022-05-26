@@ -9,11 +9,11 @@ export default function BasicOrangeWindow({
               index,
               generateRandom,
               setScrollbarVisible,
-              setHideCreateDeckBtn,
               show,setShow,
               mainBox,
               menu,
               settings=false,
+              stats=false,
               questionViewActive=false,
               setShowAnswerBtn = () => {},
               setEdit = () => {},
@@ -21,7 +21,8 @@ export default function BasicOrangeWindow({
               title
 }) {
 
-  const {dataBase, setDataBase, setHideMenu} = useContext(Context);
+  const {dataBase, setDataBase, setHideMenu,setHideCreateDeckBtn
+  } = useContext(Context);
 
   function redCrossHandler () {
     setShow(false);
@@ -32,11 +33,10 @@ export default function BasicOrangeWindow({
     setShowAnswerBtn(true);
     setEditBtnClicked(false);
     setScrollbarVisible(true);
-    console.log('got triggered here')
     if (index) {
-    let newDataBase = {...dataBase}
-    newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
-    setDataBase(newDataBase)
+      let newDataBase = {...dataBase}
+      newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened
+      setDataBase(newDataBase)
     }
   }
 
@@ -55,20 +55,20 @@ export default function BasicOrangeWindow({
   }
 
   useEffect(() => {
-    if (settings){
+    if (settings || stats){
       if (document.querySelector('.modal-dialog')) {
         let elem = document.getElementsByClassName('modal-dialog')
         elem[0].style.padding='28px'
         }
     }
-  }, [settings]);
+  }, [settings, stats]);
 
   return (
     <Modal
       key={index}
       show={show}
       onHide={() => setShow(false)}
-      contentClassName={settings? 'marginAuto zIndex-5 deck__settings-layout':"mod"}
+      contentClassName={settings? 'posRelative marginAuto zIndex-5 deck__settings-layout':"mod"}
       backdrop="static"
       style={{
         left: '-160px !important',
@@ -76,14 +76,15 @@ export default function BasicOrangeWindow({
         backgroundColor: questionViewActive?'':'rgba(0, 0, 0, 0.6)'
       }}
     >
-      <div className='deck__modal_cont posRelative top-20px'>
+      <div className={`${settings?'':'posRelative'} deck__modal_cont top-20px`}>
         <Modal.Header className="border-bottom-0">
           <Modal.Title
             style={{
               fontSize: "16px",
               marginLeft: "12px",
               height: "24px",
-              width: "240px"
+              width: "240px",
+              marginTop: settings? '20px':'0px'
             }}
           >
             {title}
@@ -102,16 +103,16 @@ export default function BasicOrangeWindow({
             }
           </div>
           {menu}
-          <button
-            className="redCross deck__basic_button_positioning posAbsolute justify-center-align-center"
+          <div
+            className={`${settings? 'deck__settings_button_positioning':'deck__basic_button_positioning'} redCross posAbsolute justify-center-align-center`}
             onClick={redCrossHandler}
           >
             <img 
-              className="nonDraggableIcon width16px height16px" 
+              className="redCross nonDraggableIcon width16px height16px" 
               src={closeWindow} 
               alt="redCross" 
             /> 
-          </button>
+          </div>
         </Modal.Header>
         <Modal.Body>
             {children}

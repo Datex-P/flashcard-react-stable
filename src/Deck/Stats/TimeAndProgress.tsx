@@ -144,9 +144,9 @@ const TimeAndProgress: React.FC = () => {
         <div className='height27px font-13px justify-center-align-center stats__studyGoal'>
           Monthly Goal
         </div>
-        <div className='stats__progressBar ml-21px'>
+        <div className='stats__progressBar ml-21px-imp'>
           <div 
-            className='stats__currentProgress'
+            className='stats__currentProgress mt-3px'
             style={{width: `${currentProgress}%`}}
           ></div>
         </div>
@@ -166,7 +166,7 @@ function Row({ time, previousWidthVar, widthVar }) {
   return (
     <div className='d-flex'>
       <div className='stats__time justify-center'>{time}</div>
-      <div className='progressBar'>
+      <div className='stats__progressBar'>
         <div className='stats__row height10px'
           style={{
             marginLeft: `${previousWidthVar}%`,

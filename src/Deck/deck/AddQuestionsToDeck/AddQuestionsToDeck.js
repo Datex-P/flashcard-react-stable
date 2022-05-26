@@ -60,6 +60,11 @@ export default function AddQuestionsToDeck({ index, name,
       let elem = document.getElementsByClassName('modal-dialog')
        elem[0].style.display='flex'
        elem[0].style.justifyContent = 'center'
+       elem[0].style.width = '87%'
+       elem[0].style.position = 'relative'
+       elem[0].style.zIndex = '5'
+       elem[0].style.padding = '27px'
+       elem[0].style.backgroundColor = 'rgba(0, 0, 0, 0.7)'
       console.log(elem, 'elem here')
     }
   //   if (show) {
@@ -78,7 +83,10 @@ export default function AddQuestionsToDeck({ index, name,
 
 
   useEffect(() => {
-    setTimeout(() => { setNewCardAdded(false) }, 650)
+    let i = setTimeout(() => { setNewCardAdded(false) }, 650)
+    return ()=>{
+      clearInterval(i)
+    }
   }, [newCardAdded]);
 
   /*create Deck btn and menu icons are shwon again
@@ -110,9 +118,11 @@ export default function AddQuestionsToDeck({ index, name,
           backdrop='static'
           onHide={hideHandler}
         >
-          <Modal.Header className='border-bottom-0'>
-            <Modal.Title className='justify-between mod-title'
-            //style={{width:'90%', marginLeft:'20px'}}
+          <Modal.Header 
+              className='border-bottom-0'
+          >
+            <Modal.Title 
+              className='justify-between mod-title'
             >
               <span className='align-center'>Deck: {name}</span>
               <button

@@ -7,19 +7,16 @@ export default function ColorScheme () {
 
   const { dataBase, setDataBase} = useContext(Context)
 
-
   function handleColor(e) {
     let newDataBase = { ...dataBase }
     newDataBase.userPreferences[e.target.name] = e.target.value
     setDataBase(newDataBase)
   }
 
-
   return (
    <>
     <div className='settings__colorscheme'>Colorscheme</div>
-      <div className='settings__colorscheme-container justify-between-align-center border border-dark'
-      >
+    <div className='settings__colorscheme-container justify-between-align-center'>
         {
           ['light', 'dark', 'default'].map((comp,index) =>
             <React.Fragment key={index}>
@@ -27,7 +24,7 @@ export default function ColorScheme () {
                 className='cursorPointer'
                 name='backgroundColor'
                 type='radio'
-                // title = `Change background color of main menu to ${comp}.`
+                title = {`Change background color of main menu to ${comp}.`}
                 value={comp}
                 checked ={dataBase.userPreferences?.backgroundColor === comp}  //how to combine checked and handleColor accurately?
                 onChange={handleColor}
@@ -38,7 +35,7 @@ export default function ColorScheme () {
             </React.Fragment>
           )
         }
-        </div>
-      </>
+    </div>
+   </>
   )
 }

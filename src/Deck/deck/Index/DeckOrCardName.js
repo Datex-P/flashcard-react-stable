@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 
 export default function DeckOrCardName({ 
           bg, 
@@ -7,7 +8,8 @@ export default function DeckOrCardName({
           nameOfTopDeck, setNameOfTopDeck,
           setDeckNameLengthRight, 
           setThreeDotsMenuOpen,
-          setNameTooLongOrShort
+          setNameTooLongOrShort,
+          setThreeDotsOpen
         }) {
 
   function handleChangeName(e){
@@ -15,7 +17,8 @@ export default function DeckOrCardName({
     if (e.target.value.length >3 && e.target.value.length <12) {    
      setDeckNameLengthRight(true)
      setThreeDotsMenuOpen(true)
-     setNameTooLongOrShort(false)    
+     setNameTooLongOrShort(false) 
+     setThreeDotsOpen(true)   
     } else {
       setNameTooLongOrShort(true)
       setDeckNameLengthRight(false)
@@ -23,6 +26,9 @@ export default function DeckOrCardName({
       setNameOfTopDeck(e.target.value);
   }
 
+  useEffect(()=>{
+    console.log('deck name length changed')
+  },[setDeckNameLengthRight])
  
 
   return (

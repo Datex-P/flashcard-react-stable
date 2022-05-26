@@ -2,9 +2,9 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 import '../../../styles.scss'
 import NoAndYes from './NoAndYes'
-// import resetimg from '../../../icons/reset.svg'
-// import questionMark from '../../../icons/questionMark.svg'
-// import flashcards from '../../../icons/flashcards.svg'
+import resetimg from '../../../icons/reset.svg'
+import questionMark from '../../../icons/questionMark.svg'
+import flashcards from '../../../icons/flashcards.svg'
 import ShowMessage from './ShowMessage'
 
 export default function DeleteCardQuestionBox({ card, 
@@ -33,11 +33,9 @@ export default function DeleteCardQuestionBox({ card,
         keyboard={false}
         id='deleteWindow'
         dialogClassName='backgroundModal'
-        contentClassName='widthFitContent'
-        className='justify-center'
+        className='justify-center posRelative zIndex-5'
       >
         <div>
-{/* 
             <img 
                 src={questionMark} 
                className='deck__question-mark questionMark1'        
@@ -47,16 +45,15 @@ export default function DeleteCardQuestionBox({ card,
               src={questionMark} 
               className='deck__question-mark questionMark2'
                alt='questionMark'              
-            /> */}
-
+            />
         </div>
         <Modal.Header 
-            closeButton 
+          
         >
             <Modal.Title>
-                <div className='height100pc width100pc justify-center-align-center'>
+                <div className='height85pc width100pc justify-center-align-center'>
                   <div>
-                      {/* {
+                      {
                         resetQuestionText? 
                           <img 
                               src={resetQuestionText? resetimg: flashcards} 
@@ -70,7 +67,7 @@ export default function DeleteCardQuestionBox({ card,
                               alt='flashcards'                         
                           />
 
-                      } */}
+                      }
                   </div>
                   <div>  
                     {
@@ -80,9 +77,12 @@ export default function DeleteCardQuestionBox({ card,
                   </div>
               </div>
             </Modal.Title>
+            <div className='deck__redCross-cont'>
+              <div className='deck__redCross'>x</div>
+            </div>
         </Modal.Header>
         <Modal.Body 
-            className='justify-center-align-center' 
+            className='justify-center-align-center background__white' 
         >
             {
               resetQuestionText?  
@@ -91,7 +91,9 @@ export default function DeleteCardQuestionBox({ card,
                 `Do you want to ${pauseOrDelete.toLowerCase()} this ${card} ?` 
             }
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer
+            className='background__white'
+        >
             <NoAndYes
                 trashEvent={trashEvent}
                 deleteCurrentCard={deleteCurrentCard}

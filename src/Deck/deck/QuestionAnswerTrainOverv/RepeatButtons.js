@@ -24,7 +24,7 @@ function RepeatBtn({label, btn, onClick}) {
       <Button 
         variant="secondary"
         onClick={onClick}
-        className='repeat-btn__button justify-center-align-center'
+        className='deck__repeat-btn__button justify-center-align-center'
       >
           {btn}
       </Button>  

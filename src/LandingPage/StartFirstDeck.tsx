@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CreateFirstDeck() {
+function StartFirstDeck() {
   
   return (
     <div id="arrow">
@@ -14,4 +14,4 @@ function CreateFirstDeck() {
   )
 }
 
-export default CreateFirstDeck
+export default StartFirstDeck

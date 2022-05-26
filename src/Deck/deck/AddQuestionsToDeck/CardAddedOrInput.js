@@ -1,29 +1,27 @@
 import React from 'react'
-//import { Alert } from 'react-bootstrap'
 import Alert from 'react-bootstrap/Alert'
 
 function CardAddedOrInput({ card }) {
 
   function result(){
-    return card.question.trim().length !== 0 && card.answer.trim().length !== 0
+    return card.question.trim().length !== 0 && 
+    card.answer.trim().length !== 0
   }
+
+  //when question or answer is empty, show a warning message
   
   return (
-
-    <div className='height52px justify-center-align-center'>
+    <div className='bs-5 height52px justify-center-align-center'>
       <Alert
-        //when question or answer is empty, show a warning message
-       // variant={result() ? "success" : "danger"}
-       variant='success'
-        className={`height35px ${result? 'width140px':'width100px'}`}
+        variant={result() ? "success" : "danger"}
+        className={`height35px`}
       >
-      Card Added
-        {/* {
-          result() ?
-            <div className='width140px'>Card added to Deck.</div>
-            :
-            <div className='width120px height35px'>Input needed.</div>
-        } */}
+         {
+          result() ? 
+          <span className='width140px'>Card added to Deck</span>
+          :
+          <span className='width100px'>Input needed</span>
+         }
       </Alert>
     </div>
   )

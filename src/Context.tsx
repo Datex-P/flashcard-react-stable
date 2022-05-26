@@ -33,7 +33,7 @@ export default function ContextProvider({ children }:any) {
       queue: [],
       checkboxClicked: false,
       showDeleteFrame: true,
-      openedToday: false,
+      openedToday: true,
       deckCompleted: 2,
       timeValues: {
         left: 2,
@@ -117,6 +117,10 @@ export default function ContextProvider({ children }:any) {
     }
     setDataBase(dB)
   }, []);
+
+  useEffect(()=>{
+    console.log(dataBase, 'database here')
+  },[dataBase])
   
   return (
 

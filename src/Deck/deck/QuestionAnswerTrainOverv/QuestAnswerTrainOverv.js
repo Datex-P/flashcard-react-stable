@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../../Context";
-import { Button, FormControl} from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import editimg from "../../../icons/edit.svg";
 import CardModified from './CardModified'
 import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
@@ -64,9 +64,12 @@ export default function QuestAnswerTrainOverv({
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    let i = setTimeout(() => {
       setCardModified(false);
     }, 500);
+    return ()=>{
+      clearInterval(i)
+    }
   }, [cardModified]);
 
 
@@ -98,8 +101,7 @@ export default function QuestAnswerTrainOverv({
           newDataBase.DeckNames[index].data[newRandomQuestion].openHistory = [];
         }
         newDataBase.DeckNames[index].data[newRandomQuestion].openHistory.push(
-       //   new Date()
-       new Date('May 26, 2021')
+       new Date()
         );
         setDataBase(newDataBase);
       }
@@ -133,8 +135,9 @@ export default function QuestAnswerTrainOverv({
   // }
 
   useEffect(() => {
+    let timeLeft=null
     if (show) {
-      let timeLeft = setInterval(() => {
+      timeLeft = setInterval(() => {
         // dataBase.queue.forEach((item, index) => {
         //   if (dataBase.queue[index].timeLeft >= 1000) {
         //     dataBase.queue[index].timeLeft -= 1000
@@ -151,7 +154,7 @@ export default function QuestAnswerTrainOverv({
       clearInterval(timer);
       setShowProgressDiagram(true);
     }
-    //return function () {clearInterval(timeLeft)}
+    return function () {clearInterval(timeLeft)}
     // eslint-disable-next-line
   }, [show]);
 

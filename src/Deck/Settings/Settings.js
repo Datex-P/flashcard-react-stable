@@ -10,14 +10,15 @@ import ColorScheme from './ColorScheme'
 import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow'
 import edit from '../../icons/edit.svg'
 import save from '../../icons/save.svg'
+import DeleteAccount from './DeleteAccount'
 
 
 function Settings({ history }) {
-  const [editIsPossible, setEditIsPossible] = useState(false)
-  const [saveOrEdit, setSaveOrEdit] = useState(false)
+
+  const [editModeActive, setEditModeActive] = useState(false)
+  const [editRepActive, setEditRepActive] = useState(false)
   const [saveOrEditGoal, setSaveOrEditGoal] = useState(false)
   const [editHex, setEditHex] = useState(true)
-
   const { dataBase, setDataBase, setShowProgressDiagram } = useContext(Context)
   const [userTimePreferences, setUserTimePreferences] = useState({})
 
@@ -34,42 +35,23 @@ function Settings({ history }) {
     setShowProgressDiagram(true)
   }
 
-
   function saveTimeNumberChanges() {
     let newDataBase = { ...dataBase }
     newDataBase.userTimePreferences = userTimePreferences
     setDataBase(newDataBase)
   }
 
-
-  function ImgContainer({ hex = false }) {
-
-    function notHexagonal() {
-      setEditIsPossible(!editIsPossible)
-      setSaveOrEdit(!saveOrEdit)
-      saveTimeNumberChanges()
-    }
-
-    function hexagonal() {
-      setSaveOrEditGoal(!saveOrEditGoal)
-      setEditHex(!editHex)
-    }
-
-    return (
-      <img
-        src={saveOrEdit ? save : edit}
-        alt={saveOrEdit ? 'save' : 'edit'}
-        className='nonDraggableIcon settings__outline-none'
-        onClick={hex ? hexagonal : notHexagonal}
-      />
-    )
+  function goalHandler() {
+    setSaveOrEditGoal(!saveOrEditGoal)
+    setEditHex(!editHex)
   }
 
-  // function imgHandler(){
-  //       setEditIsPossible(!editIsPossible)
-  //       setSaveOrEdit(!saveOrEdit)
-  //       saveTimeNumberChanges()
-  // }
+  function repetitionHandler(){
+    setEditModeActive(!editModeActive)
+    setEditRepActive(!editRepActive)
+    saveTimeNumberChanges()
+  }
+
   return (
 
     dataBase &&
@@ -78,51 +60,49 @@ function Settings({ history }) {
       settings
       show={true}
       setShow={setShow}
-      title={
-        <div className='fontBold font-22px'>
-          Settings
-        </div>
-      }
+      title={<div className='fontBold font-22px'>Settings</div>}
     >
-      <div className='settings__repetition-interval'>
+      <div className='settings__repetition-interval mt-30px'>
         Change Repetition Interval
       </div>
       <div className='justify-center'>
-        <Container>
-          {
-            dataBase?.userTimePreferences &&
+          <Container>
+            {
+              dataBase?.userTimePreferences &&
+              dataBase?.userTimePreferences.map((col, k) =>
 
-            dataBase?.userTimePreferences.map((col, k) =>
-
-              <RepetitionIntervalFields
-                key={k}
-                index={k}
-                data={col}
-                saveOrEdit={saveOrEdit}
-                editIsPossible={editIsPossible}
-                userTimePreferences={userTimePreferences}
-                setUserTimePreferences={setUserTimePreferences}
-              />
-            )
-          }</Container>
+                <RepetitionIntervalFields
+                  key={k}
+                  index={k}
+                  data={col}
+                  editRepActive={editRepActive}
+                  editModeActive={editModeActive}
+                  userTimePreferences={userTimePreferences}
+                  setUserTimePreferences={setUserTimePreferences}
+                />
+              )
+            }
+          </Container>
         <div
           className='settings__save-or-edit-container'
           title='Click and change name buttons and repetition intervals for all decks.'
         >
-          <ImgContainer
-          />
-          {/* <img
-                  src={saveOrEdit ? save : edit}
-                  alt={saveOrEdit ? 'save' : 'edit'}
-                  className= 'nonDraggableIcon settings__outline-none'
-                  onClick={imgHandler}
-                />   */}
+          <img
+            src={editRepActive ? save : edit}
+            alt={editRepActive ? 'save' : 'edit'}
+            className= 'nonDraggableIcon settings__outline-none'
+            onClick={repetitionHandler}
+          />   
         </div>
       </div>
       <div>
-        <div className='settings__goal-settings fontBold mt-30px'>
-          <div className='settings__paddings'>Goal Settings</div>
-          <div className='settings__weekly-target settings__paddings'>Current Weekly Target</div>
+        <div className='settings__goal-settings fontBold mt-30px mb-10px'>
+          <div className='settings__paddings'>
+             Goal Settings
+          </div>
+          <div className='settings__weekly-target settings__paddings'>
+             Current Weekly Target
+          </div>
         </div>
         <div className='justify-between-align-center border border-dark  settings__container-hexagon'>
           {
@@ -138,21 +118,27 @@ function Settings({ history }) {
           }
         </div>
         <div className='settings__saveoredit'>
-          <ImgContainer />
+          <img
+            src={editHex ? edit : save}
+            alt={editHex ? 'edit' : 'save'}
+            className='nonDraggableIcon settings__outline-none'
+            onClick={goalHandler}
+          /> 
         </div>
-        <div className='settings__weekly-target justify-center'>
+        <div className='settings__weekly-target justify-center mt-3px'>
           {/* Target met: {dataBase.userPreferences.weeksInRow} weeks in a row */}
           Target met : 0 weeks in a row.
         </div>
       </div>
       <ColorScheme />
+      <DeleteAccount/>
     </BasicOrangeWindow>
   )
 }
 
 function Container({ children }) {
   return (
-    <div className='border border-dark justify-center-align-center settings_repetition-container'>
+    <div className='justify-center-align-center settings_repetition-container'>
       <div className='justify-around settings_width280px' >
         {children}
       </div>

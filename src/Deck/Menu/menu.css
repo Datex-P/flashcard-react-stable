@@ -35,6 +35,10 @@
   transform: rotate(-135deg);
 }
 
+/* .menu__icon-container a {
+
+} */
+
 .menu__menuIcon {
   font-weight: bold;
   border: 2px black solid;

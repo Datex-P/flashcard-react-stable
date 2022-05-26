@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-dom'
-
 import LandingPage from './LandingPage/LandingPage'
 import Login from './Login/Login/Login'
 import CheckEmail from './Login/CheckEmail'
@@ -15,8 +14,7 @@ export default function App() {
 
   return (
    
-    <div 
-     >
+    <div>
       <Router>
 
         {/* {user?<LandingPage /> : <Redirect to='./login'/>} */}
@@ -34,9 +32,9 @@ export default function App() {
           <Route path='/stats'>
             <Stats />
           </Route>
-          <Route path='/checkemail'>
-            <CheckEmail/>
-          </Route>
+           <Route path='/checkemail'>
+            <CheckEmail />
+          </Route> 
           <Route path='/settings'>
             <Settings/>
           </Route>
@@ -56,6 +54,7 @@ export default function App() {
           <Redirect to='/login'/>
           </Route>
           <Route path='/logout'>
+            <Login  setUser={setUser}/>  
           </Route>
         </Switch>
 

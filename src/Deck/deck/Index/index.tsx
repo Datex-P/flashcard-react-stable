@@ -35,7 +35,7 @@ export default function Deck({
   const [showDeleteWindow, setShowDeleteWindow] = useState(true); //if true and triggered the delete window with yes and no button is shown
   const [trash, setTrash] = useState(false);
   const [pauseIsActive, setPauseIsActive] = useState(true);
-
+  const [threeDotsOpen, setThreeDotsOpen] = useState(false);
 
   const {
     active, setActive, 
@@ -58,6 +58,9 @@ export default function Deck({
      // eslint-disable-next-line
   }, [editButtonClicked]);
 
+  useEffect(()=>{
+    console.log(showDeleteWindow, 'show delete window')
+  },[showDeleteWindow])
 
   let input = useRef(null);
 
@@ -108,13 +111,14 @@ export default function Deck({
             nameTooLongOrShort={nameTooLongOrShort} 
             nameOfTopDeck={nameOfTopDeck}
         />
-          <Card.Title className="deck__index-card-title justify-between-align-center position-relative">
+          <Card.Title className="deck__index-card-title justify-between-align-center">
               <DeckOrCardName 
                 bg={bg}
                 nameOfTopDeck={nameOfTopDeck}
                 editButtonClicked={editButtonClicked}
                 name={name}
                 input={input}
+                setThreeDotsOpen={setThreeDotsOpen}
                 setNameOfTopDeck={setNameOfTopDeck}
                 setThreeDotsMenuOpen={setThreeDotsMenuOpen}
                 setDeckNameLengthRight={setDeckNameLengthRight}
@@ -132,17 +136,19 @@ export default function Deck({
               setShowFromParent={setThreeDotsMenuOpen}
               index={index}
               icons={{paused,edit:!paused,trash:!paused}}
-              //paused={paused}
+              paused={paused}
+              setThreeDotsOpen={setThreeDotsOpen}
+              threeDotsOpen={threeDotsOpen}
               bg={style.background}
               nameOfTopDeck={nameOfTopDeck}
               setNameOfTopDeck={setNameOfTopDeck}
-              //edit={!paused}
+              edit={!paused}
               pause
-              //trash={!paused}
+              trash={!paused}
               input={input}
               threeDotsContainer={{
-                position: "fixed",
-                right: "50px",
+                position: "absolute",
+                right: "20px",
                 top: "18px",
               }}
               className="deck__threeDotsBtnIndex"
