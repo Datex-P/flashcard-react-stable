@@ -1,8 +1,8 @@
-import React, { useState, useRef, useContext,useEffect } from 'react'
+import React, {useState, useRef, useContext} from 'react'
 import {withRouter} from 'react-router-dom'
 import {Context} from '../../../Context';
 
-import useOutsideAlerter from './useOutsideAlerter'
+import threeDotsMenuBlinks from './ThreeDotsMenuBlinks'
 import trashimg from '../../../icons/trash.svg'
 import pauseimg from '../../../icons/pause.svg'
 import editimg from '../../../icons/edit.svg'
@@ -12,7 +12,7 @@ import playimg from '../../../icons/play.svg'
 
 
 function ThreeDotsBtn({    
-                        icons,
+                        
                         reset=false,
                         edit=false,
                         trash=false,
@@ -36,6 +36,7 @@ function ThreeDotsBtn({
    const {dataBase, setDataBase, editButtonClicked} = useContext(Context);
   //let {edit=false,trash=false,pause=false} = icons;
   
+  console.log(input, 'input in three dots')
   // const [dataBase, setDataBase] = useState([]);
 
 
@@ -44,7 +45,7 @@ function ThreeDotsBtn({
   // const [threeDotsOpen, setThreeDotsOpen] = useState(false);
 
   function trashHandler() {
-    trashEvent()
+    trashEvent()()
     setThreeDotsOpen(false)
   }
 
@@ -75,18 +76,18 @@ function ThreeDotsBtn({
   }
 
 
-  useOutsideAlerter([ref,input], 
-                    // editButtonClicked, 
-                    ()=>{
-                      setThreeDotsOpen(false)
-                    },
-                    ()=>{
-                    setBlinkingSaveIcon(true)
-                    setTimeout(()=>{
-                      setBlinkingSaveIcon(false)},
-                      2000)
-                    }                  
-  )
+  // threeDotsMenuBlinks([ref,input], 
+  //                   // editButtonClicked, 
+  //                   ()=>{
+  //                     setThreeDotsOpen(false)
+  //                   },
+  //                   ()=>{
+  //                   setBlinkingSaveIcon(true)
+  //                   setTimeout(()=>{
+  //                     setBlinkingSaveIcon(false)},
+  //                     2000)
+  //                   }                  
+  // )
     
     
   function handleEdit() {

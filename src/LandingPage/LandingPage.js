@@ -1,82 +1,82 @@
-import React, { useEffect, useContext, useState} from "react";
-import { Context } from "../Context"; 
+import React, { useEffect, useContext, useState } from "react";
+import { Context } from "../Context";
 import { Container, Row, Spinner } from "react-bootstrap";
 import './landingpage.css'
 import Deck from "../Deck/deck/Index/index";
-import CreateNewDeck from "./CreateNewDeck";
+import CreateNewDeck from "./CreateNewDeck/CreateNewDeck";
 import MenuContainer from '../Deck/Menu/MenuContainer'
-import ProgressDiagram from "./ShowProgressDiagram";
 import Scrollbar from './Scrollbar'
 import StartFirstDeck from './StartFirstDeck'
 
 import jwt_decode from "jwt-decode"
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
- const LandingPage = () => {
+const LandingPage = () => {
   const [addNewDeckWindow, setAddNewDeckWindow] = useState(false);
   const [spinnerIsVisible, setSpinnerIsVisible] = useState(true); //spinner that is shown when application loads
   const [scrollbarVisible, setScrollbarVisible] = useState(true)
   const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
-  const [showProgressDiagram, setShowProgressDiagram] = useState(true);
   const [arrowDown, setArrowDown] = useState(true);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     console.log(arrowDown, 'arrow down here')
-  },[arrowDown])
+  }, [arrowDown])
 
   const {
-    active, 
+    active,
     colors, //colors array for the decks
-    dataBase, 
+    dataBase,
     styles,
     editButtonClicked,
-    hideCreateDeckBtn, setHideCreateDeckBtn
+    hideCreateDeckBtn, setHideCreateDeckBtn,
+    setShowProgressDiagram
   } = useContext(Context);
 
   const history = useHistory()
 
 
   async function dosome() {
-    
+
     const req = await fetch('/http://localhost:4000/register', {
-      headers:  {'x-access-token': localStorage.getItem('token')
-    }
+      headers: {
+        'x-access-token': localStorage.getItem('token')
+      }
     })
     const data = req.json()
     console.log(data)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       const user = jwt_decode(token)
-    //  console.log(user)
+      //  console.log(user)
       if (!user) {
-          localStorage.removeItem('token')
-          history.replace('/login')
+        localStorage.removeItem('token')
+        history.replace('/login')
       } else {
         dosome()
       }
     }
-  },[])
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(dataBase, 'database here')
     if (dataBase?.DeckNames) {
-    console.log(dataBase && dataBase?.DeckNames.length, 'decknames')
+      console.log(dataBase && dataBase?.DeckNames.length, 'decknames')
     }
     // console.log(dataBase?.DeckNames.length, 'length')
-  },[dataBase])
- 
+  }, [dataBase])
+
 
   // useEffect(() => {
-    
+
   //   setTimeout(() => {
   //     setSpinnerIsVisible(false);
   //   }, 2000);
   // }, []);
 
-  function colorHandler () {
+  function colorHandler() {
     colors.map((i, k, ar) => {
       if (active === k) {
         return ar[ar.length % (k || 1)];
@@ -86,11 +86,10 @@ import {useHistory} from 'react-router-dom'
     })
   }
 
-  function createDeckHandler () {
+  function createDeckHandler() {
     if (!editButtonClicked) {
       //editButtonClicked is set to true by default
     } else {
-   
       setAddNewDeckWindow(true); //open the pop up to add a new deck
       setDecksAreVisible(false); // all the decks in the back are not visible
       setShowProgressDiagram(false);
@@ -100,45 +99,43 @@ import {useHistory} from 'react-router-dom'
     setHideCreateDeckBtn(true) //the button create Deck gets hidden
   }
 
-  function closeHandler () {
+  function closeHandler() {
     setDecksAreVisible(true);
     setAddNewDeckWindow(false);
-    setShowProgressDiagram(true);
+    setShowProgressDiagram(true); //diagram on main page is shown again
+    setHideCreateDeckBtn(false) //button create deck is shown again
   }
 
-                      //    background={colors[active % colors.length]}
+  //    background={colors[active % colors.length]}
   const deckProps = {
-      showProgressDiagram: showProgressDiagram,
-      setShowProgressDiagram:setShowProgressDiagram,
-      setArrowDown: setArrowDown,
-      setScrollbarVisible:setScrollbarVisible,
-      setDecksAreVisible:setDecksAreVisible,
+    setArrowDown:setArrowDown,
+    setScrollbarVisible:setScrollbarVisible,
+    setDecksAreVisible:setDecksAreVisible,
   }
-console.log(dataBase?.userPreferences?.backgroundColor, 'color background')
+  console.log(dataBase?.userPreferences?.backgroundColor, 'color background')
 
 
-useEffect(()=>{
-console.log(hideCreateDeckBtn, 'hidecreatedeck')
-},[hideCreateDeckBtn])
+  useEffect(() => {
+    console.log(hideCreateDeckBtn, 'hidecreatedeck')
+  }, [hideCreateDeckBtn])
   // !spinnerIsVisible && dataBase 
-  return spinnerIsVisible  ? (
+  return spinnerIsVisible ? (
     <>
-      <ProgressDiagram/>
       <Container
-        className="align-items-center landingpage__cont "
+        className="align-items-center landing__cont"
         style={{backgroundColor: styles.backgroundColor[dataBase?.userPreferences?.backgroundColor]}}
       >
-      <MenuContainer 
-        showProgressDiagram={showProgressDiagram}
-        setShowProgressDiagram={setShowProgressDiagram}
-        hideCreateDeckBtn={hideCreateDeckBtn}
-      />
-      
+        <MenuContainer
+          setShowProgressDiagram={setShowProgressDiagram}
+          hideCreateDeckBtn={hideCreateDeckBtn}
+        />
         <Row className="posRelative justify-between width100pc">
-          {decksAreVisible && (
+          {decksAreVisible && 
             <div className='p-50px'>
-              <div className={`posAbsolute left-40px ${hideCreateDeckBtn? 'mt20px':''}`}>
-                {dataBase?.DeckNames && Array.isArray(dataBase.DeckNames) && dataBase.DeckNames.reduce(
+              <div className='posAbsolute left-40px'>
+                {
+                  dataBase?.DeckNames && Array.isArray(dataBase.DeckNames) && 
+                  dataBase.DeckNames.reduce(
                   (accum, deck, index) => {
                     if (active === index) {
                       accum.arr.push(
@@ -151,12 +148,11 @@ console.log(hideCreateDeckBtn, 'hidecreatedeck')
                           zIndex={2}
                           bg={colorHandler}
                           background={colors[active % colors.length]}
-                           {...deckProps}
+                          {...deckProps}
                         />
                       );
                     } else {
                       accum.index++;
-
                       accum.arr.push(
                         <Deck
                           key={index}
@@ -174,33 +170,30 @@ console.log(hideCreateDeckBtn, 'hidecreatedeck')
                     return accum;
                   },
                   { index: 0, arr: [] }
-                ).arr.reverse()}
-              </div>       
-    
-                <Scrollbar 
-                  scrollbarVisible={scrollbarVisible}
-                />              
-               
-            </div>
-          ) 
-         
-         } 
-          {arrowDown  &&
-         <StartFirstDeck/>
-         } 
-        </Row>  
-          <CreateNewDeck
-            hideCreateDeckBtn={hideCreateDeckBtn}
-            setHideCreateDeckBtn={setHideCreateDeckBtn}
-            addNewDeckWindow={addNewDeckWindow}
-            createDeckHandler={createDeckHandler}
-            closeHandler={closeHandler}
-            decksAreVisible={decksAreVisible}
-            editButtonClicked={editButtonClicked}
-            setArrowDown={setArrowDown}
-            setScrollbarVisible={setScrollbarVisible}
-            setDecksAreVisible={setDecksAreVisible}
-          />                   
+                ).arr.reverse()
+                }
+              </div>
+              <Scrollbar
+                scrollbarVisible={scrollbarVisible}
+              />
+            </div>   
+           }
+          {arrowDown &&
+            <StartFirstDeck />
+          }
+        </Row>
+        <CreateNewDeck
+          hideCreateDeckBtn={hideCreateDeckBtn}
+          setHideCreateDeckBtn={setHideCreateDeckBtn}
+          addNewDeckWindow={addNewDeckWindow}
+          createDeckHandler={createDeckHandler}
+          closeHandler={closeHandler}
+          decksAreVisible={decksAreVisible}
+          editButtonClicked={editButtonClicked}
+          setArrowDown={setArrowDown}
+          setScrollbarVisible={setScrollbarVisible}
+          setDecksAreVisible={setDecksAreVisible}
+        />
       </Container>
     </>
   ) : (

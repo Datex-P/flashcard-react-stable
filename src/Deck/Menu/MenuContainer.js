@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import Hamburger from "./Hamburger";
 import "../../styles.scss";
@@ -11,9 +11,10 @@ import statsIcon from '../../icons/stats.svg'
 import logoutIcon from '../../icons/logout.svg'
 
 
-export default function MenuContainer({showProgressDiagram,setShowProgressDiagram,hideCreateDeckBtn}) {
+export default function MenuContainer() {
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
-  const { dataBase, styles,editButtonClicked, hideMenu} = useContext(Context);
+  const {editButtonClicked, hideMenu, 
+        hideCreateDeckBtn, showProgressDiagram} = useContext(Context);
   const handleClose = () => {setMenuOpen(false)}; // closes the Menu when handleclos is triggered
 
   return (
@@ -47,15 +48,7 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
                       src: statsIcon,
                       alt: "statsIcon",
                       href: "stats",
-                      // style: {
-                      //   width: "calc(100% / 3)",
-                      //   padding: "11px 8px 1px 15px",
-                      //   textDecoration:'none',
-                       
-                      // },
                       style:{
-                        // width: "33%",
-                     
                         textDecoration: 'none',
                         height: '30px',
                         display: 'flex',
@@ -68,16 +61,7 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
                       src: settingsIcon,
                       alt: "settingsIcon",
                       href: "settings",
-                      // style: {
-                      //   width: "calc(100% / 3)",
-                      //   padding: "11px 8px 1px 15px",
-                      //   borderLeft: "2px solid black",
-                      //   borderRight: "2px solid black",
-                      //   textDecoration: 'none',
-                        
-                      // },
                       style:{
-                        // width: "33%",
                         textDecoration: 'none',
                         height: '30px',
                         display: 'flex',
@@ -92,12 +76,6 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
                       src: logoutIcon,
                       alt: "logoutIcon",
                       href: "logout",
-                      // style: {
-                      //   width: "calc(100% / 3)",
-                      //   padding: "11px 8px 1px 5px",
-                      //   textDecoration: 'none',
-                     
-                      // },
                       style:{
                         textDecoration: 'none',
                         height: '30px',
@@ -114,10 +92,10 @@ export default function MenuContainer({showProgressDiagram,setShowProgressDiagra
           </Modal>
          </div> 
         }
-      {
+       {
         showProgressDiagram &&
           <ShowProgressD/>
-          } 
+          }  
     </div>
   );
 }

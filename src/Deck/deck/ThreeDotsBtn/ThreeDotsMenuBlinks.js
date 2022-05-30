@@ -3,27 +3,22 @@ import { useEffect } from "react";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-export default function useOutsideAlerter(ref,editButtonClicked, cb,cb2) {
+function ThreeDotsMenuBlinks(e, ref,editButtonClicked, menuCloses,saveIconBlinks) {
 
+    console.log('got triggered in outside alerter')
     useEffect(() => {
         /**
          * Alert if clicked on outside of element
          */
-        function handleClickOutside(event) {
+        function handleClickOutside(e) {
 
-            if ( (ref[0].current && !ref[0].current.contains(event.target)) ) {
+            if ( (ref[0].current && !ref[0].current.contains(e.target)) ) {
                 if(editButtonClicked){
-                    cb()
+                    menuCloses()
                     // ()=>{setShow(false)}
                 } else {
-
-                    if(ref[1].current && !ref[1].current.contains(event.target)) {
-                        cb2()
-                    
-                    } else {
-                        
-                    }                   
-                    // ()=>{setStartAnimation(true)}
+                    if(ref[1].current && !ref[1].current.contains(e.target)) {
+                        saveIconBlinks()
                 }
             }
         }
@@ -34,5 +29,9 @@ export default function useOutsideAlerter(ref,editButtonClicked, cb,cb2) {
             // Unbind the event listener on clean up
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [ref,editButtonClicked, cb, cb2]);
+    }
+    //handleClickOutside(e);
+    }, [ref,editButtonClicked, menuCloses, saveIconBlinks]);
 }
+
+export default ThreeDotsMenuBlinks

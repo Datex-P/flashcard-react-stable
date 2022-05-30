@@ -1,22 +1,22 @@
-import React, { useContext, useEffect} from 'react'
+import React, { useContext} from 'react'
 import {Context} from '../../../Context'
 
 
 
-export default function NoAndYes ({
+export default function NoAndYes ({data:{
   deleteCurrentCard,
   setEditBtnClicked, 
   index, 
   setShowAnswerBtn, 
-  // setShowRepeatBtn,
   trashEvent, 
   pauseCardinQuestionAnswer, 
   randomQuestion,
   deleteWindow,
   setPauseOrDeleteText
-}) {
+}}) {
 
-  const { dataBase, setDataBase, setShowRepeatBtn} = useContext(Context)
+  //console.log(data, 'data here')
+  const { dataBase, setDataBase} = useContext(Context)
 
   function yesHandler() {
     trashEvent()

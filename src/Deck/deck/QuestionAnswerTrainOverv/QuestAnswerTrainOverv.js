@@ -265,20 +265,7 @@ export default function QuestAnswerTrainOverv({
           )}
           {data[randomQuestion] && (
             <>
-              {/* <div className="mb-4">
-                <p className="deck__questionAnswer fontBold">Question</p>
 
-                <FormControl
-                  as="textarea"
-                  aria-label="With textarea"
-                  value={card.question}
-                  disabled={!editBtnClicked}
-                  name="question"
-                  onChange={changeHandler}
-                  className="deck__formControl"
-                  ref={inputRef}
-                />
-              </div> */}
               <QuestionAnswerForm 
                 card={card}
                 editBtnClicked={editBtnClicked}

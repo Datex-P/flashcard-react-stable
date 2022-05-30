@@ -16,12 +16,6 @@ export default function App() {
    
     <div>
       <Router>
-
-        {/* {user?<LandingPage /> : <Redirect to='./login'/>} */}
-        {/* {registerUser?<LandingPage /> : <Redirect to='./register'/>} */}
-        {/* <LandingPage/> */}
-      {/* {registerUser?<Register path='register'/>: <Login path='login' />} */}
-         
         <Switch>                      
           <Route path='/login'>
             <Login  setUser={setUser}/>  
@@ -38,11 +32,6 @@ export default function App() {
           <Route path='/settings'>
             <Settings/>
           </Route>
-          {/* {!user &&
-          <Route path ='/login' >
-            <Login setUser={setUser}/>
-          </Route>
-          } */}
            <Route path ='/forgotpassword' >
             <ForgotPassword/>
            </Route>
@@ -57,7 +46,6 @@ export default function App() {
             <Login  setUser={setUser}/>  
           </Route>
         </Switch>
-
       </Router>
     </div>
 

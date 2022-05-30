@@ -26,8 +26,8 @@ export default function ChartComp() {
       backgroundColor: [
         //  "#FF6384",
         //  "#36A2EB",
-         "#5aaa95", "#FF6384"
-        // "#FFCE56"
+        //  "#5aaa95", "#FF6384"
+         "#FFCE56"
       ],
       borderColor: [
         "#5aaa95", "#FF6384"
@@ -83,8 +83,9 @@ export default function ChartComp() {
 
 
     config.data.datasets[0].data.push(
-      Object.keys(dataBase?.DeckNames).length - dataBase?.deckCompleted,
-      dataBase.deckCompleted
+      // Object.keys(dataBase?.DeckNames).length - dataBase?.deckCompleted,
+      // dataBase?.deckCompleted
+      10
     );
 
     Chart.pluginService.register({
@@ -176,9 +177,9 @@ export default function ChartComp() {
       },
     });
 
-      if(dataBase.userPreferences.backgroundColor === 'default') {
+      if(dataBase?.userPreferences?.backgroundColor === 'default') {
       
-       } else if (dataBase.userPreferences.backgroundColor === 'dark') {
+       } else if (dataBase?.userPreferences?.backgroundColor === 'dark') {
    
            config.data.datasets[0].backgroundColor = []
            config.data.datasets[0].backgroundColor.push("#5aaaff")
@@ -197,6 +198,5 @@ export default function ChartComp() {
         style={{ width: '110px', height: '110px', overflow: 'hidden', borderRadius: '5px' }} 
     >
     </canvas>
-    // <div>hello</div>
   )
 }

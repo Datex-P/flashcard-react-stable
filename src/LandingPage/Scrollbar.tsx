@@ -1,11 +1,17 @@
 
 import React, {  useContext, useState, useRef} from "react";
-import { Context } from "../Context"; 
+import { Context } from '../Context'; 
 
 function Scrollbar({scrollbarVisible}) {
 
   const [scrollPosition, setScrollPosition] = useState(0)
   const scroller = useRef<HTMLInputElement>(null);
+  const {
+    setActive,
+    changeDeckNameOpen, 
+    dataBase,setDataBase, 
+  } = useContext(Context);
+
 
   function handleActive(i:number) {
     setActive(i);
@@ -13,18 +19,19 @@ function Scrollbar({scrollbarVisible}) {
     newDataBase.active = i;
     setDataBase(newDataBase);
   }
-
-    
-  function scrollHandler(e:any) {
-    let position = e.target.scrollTop;
-    setScrollPosition(position);
+  
+  function scrollHandler(event:any) {
+    if (!changeDeckNameOpen) {
+      let step = (1000 - 220) / (dataBase.DeckNames.length - 1);
+      const scroll = (event.target as HTMLElement).scrollTop
+      let index = Math.floor(scroll / step);
+      
+      handleActive(index);
+      let position = event.target.scrollTop;
+      setScrollPosition(position);
+    }
   }
 
-  const {
-    setActive,
-    changeDeckNameOpen, 
-    dataBase,setDataBase, 
-  } = useContext(Context);
 
   return (
     <>
@@ -32,20 +39,11 @@ function Scrollbar({scrollbarVisible}) {
       dataBase.DeckNames && 
       dataBase?.DeckNames.length > 1 &&
     <div
-    ref={scroller}
-    className="landing__scrollbar"
-    onScroll={(event) => {
-      if (!changeDeckNameOpen) {
-        let step = (1000 - 220) / (dataBase.DeckNames.length - 1);
-        const scroll = (event.target as HTMLElement).scrollTop
-        let index = Math.floor(scroll / step);
-        handleActive(index);
-        // console.log(index + "actual handle active index");
-        scrollHandler(event);
-      }
-    }}
+      ref={scroller}
+      className="landing__scrollbar"
+      onScroll={scrollHandler}
     >
-    <div className='scrollbar-inner'></div>
+      <div className='scrollbar-inner'></div>
   </div>
 }
   </>

@@ -11,7 +11,7 @@ function ShowProgressDiagram() {
 
   return (
     <>   
-      <div className='showProgressDiagram posRelative top-50px left-180px'>
+      <div className='showProgressDiagram posRelative top-1px left-358px'>
         <div className='fontBold'> 
             Goal
         </div>
@@ -22,8 +22,8 @@ function ShowProgressDiagram() {
           } 
           </div>
         </div>
-        <div className='width80px'>
-          {/* <PieDiagramm /> */}
+        <div className='width80px posRelative top--74px right--335px'>
+          <PieDiagramm />
         </div>     
     </>
   )

@@ -18,7 +18,6 @@ export default function Deck({
    bg,
    setArrowDown,
    setDecksAreVisible,
-   showProgressDiagram, setShowProgressDiagram,
    setScrollbarVisible,
    setHideCreateDeckBtn, 
    ...style
@@ -26,7 +25,6 @@ export default function Deck({
  
     const { data, name,paused } = deck;
   
-
   const [show, setShow] = useState(false);
   const [nameOfTopDeck, setNameOfTopDeck] = useState(name);
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
@@ -71,6 +69,64 @@ export default function Deck({
    
   }
 
+  const deckOrCardNameProps = {
+    bg:bg,
+    nameOfTopDeck:nameOfTopDeck,
+    editButtonClicked:editButtonClicked,
+    name:name,
+    input:input,
+    setThreeDotsOpen:setThreeDotsOpen,
+    setNameOfTopDeck:setNameOfTopDeck,
+    setThreeDotsMenuOpen:setThreeDotsMenuOpen,
+    setDeckNameLengthRight:setDeckNameLengthRight,
+    setNameTooLongOrShort:setNameTooLongOrShort,
+    pause : true
+  }
+
+  const threeDotsProps = {
+    name:name,
+    text:"deck",
+    data:data,
+    showFromParent:threeDotsMenuOpen,
+    setShowFromParent:setThreeDotsMenuOpen,
+    index:index,
+    icons:{paused,edit:!paused,trash:!paused},
+    paused:paused,
+    setThreeDotsOpen:setThreeDotsOpen,
+    threeDotsOpen:threeDotsOpen,
+    bg:style.background,
+    nameOfTopDeck:nameOfTopDeck,
+    setNameOfTopDeck:setNameOfTopDeck,
+     edit:!paused,
+    trash:!paused,
+    input:input,
+    pause: true,
+    threeDotsContainer:{
+                position: "absolute",
+                right: "20px",
+                top: "18px",
+              },
+    editEvent:() => {   
+                setThreeDotsMenuOpen(false);
+                setEditButtonClicked(!editButtonClicked);             
+              },
+    pauseEvent:(index)=>{
+                handlePause(index)
+              },
+    trashEvent:()=>{
+                return dataBase.checkboxClicked
+                  ?  () => { deleteDeck();
+                      // handleActive(active - 1);
+                    }
+                  : () => {
+                      setTrash(true);
+                      setShowDeleteWindow(true);
+                      
+                    }                 
+                  }
+              }
+  
+
 
   useEffect(() => {
     setNameOfTopDeck(name);
@@ -113,19 +169,9 @@ export default function Deck({
         />
           <Card.Title className="deck__index-card-title justify-between-align-center">
               <DeckOrCardName 
-                bg={bg}
-                nameOfTopDeck={nameOfTopDeck}
-                editButtonClicked={editButtonClicked}
-                name={name}
-                input={input}
-                setThreeDotsOpen={setThreeDotsOpen}
-                setNameOfTopDeck={setNameOfTopDeck}
-                setThreeDotsMenuOpen={setThreeDotsMenuOpen}
-                setDeckNameLengthRight={setDeckNameLengthRight}
-                setNameTooLongOrShort={setNameTooLongOrShort}
+                data={deckOrCardNameProps}
                 className="deck__deckOrCardName justify-center posRelative"
-              />
-           
+              />          
             {
               deckNameLengthRight &&
             <ThreeDotsBtn
@@ -143,6 +189,7 @@ export default function Deck({
               nameOfTopDeck={nameOfTopDeck}
               setNameOfTopDeck={setNameOfTopDeck}
               edit={!paused}
+              // data={threeDotsProps}
               pause
               trash={!paused}
               input={input}
@@ -152,6 +199,7 @@ export default function Deck({
                 top: "18px",
               }}
               className="deck__threeDotsBtnIndex"
+            //  data={threeDotsProps}
               style={{
                 border: paused ? "none" : "1px solid black",
                 backgroundColor: paused ? "black" : "white",
@@ -174,7 +222,7 @@ export default function Deck({
                     }
               }
             />
-                }
+            }
             {trash && showDeleteWindow && !paused && (
               <DeleteCardQuestionBox
                 pauseOrDelete="Delete"

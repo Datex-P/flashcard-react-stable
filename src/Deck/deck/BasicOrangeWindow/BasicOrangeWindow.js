@@ -21,8 +21,8 @@ export default function BasicOrangeWindow({
               title
 }) {
 
-  const {dataBase, setDataBase, setHideMenu,setHideCreateDeckBtn
-  } = useContext(Context);
+  const {dataBase, setDataBase, setHideMenu,setHideCreateDeckBtn,
+        setShowProgressDiagram} = useContext(Context);
 
   function redCrossHandler () {
     setShow(false);
@@ -33,6 +33,7 @@ export default function BasicOrangeWindow({
     setShowAnswerBtn(true);
     setEditBtnClicked(false);
     setScrollbarVisible(true);
+    setShowProgressDiagram(true)
     if (index) {
       let newDataBase = {...dataBase}
       newDataBase.DeckNames[index].pauseMode = false //needed to be set to false so that switch diagram closes in case its opened

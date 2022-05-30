@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 
-export default function DeckOrCardName({ 
+export default function DeckOrCardName({data:{ 
           bg, 
           editButtonClicked, 
           input, 
@@ -10,7 +10,7 @@ export default function DeckOrCardName({
           setThreeDotsMenuOpen,
           setNameTooLongOrShort,
           setThreeDotsOpen
-        }) {
+        }}) {
 
   function handleChangeName(e){
 

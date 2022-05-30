@@ -3,6 +3,16 @@
  // margin: 5px; 
 }
 
+body {
+  margin: 0px;
+}
+
+// https://stackoverflow.com/questions/13644262/bootstrap-2-2-1-modal-bug-blue-border-around-calling-href
+//there was a border around menu before
+.modal-open .modal,.btn:focus{
+  outline:none!important
+}
+
 // https://stackoverflow.com/questions/68280984/how-to-isolate-bootstrap-5
 /*bs-5 needed to isolate bootstrap classes*/
 
@@ -59,9 +69,9 @@ input[type="number"] {
   z-index: 5;
 }
 
-.login__reset-col {
-  color:seashell;
-}
+// .login__reset-col {
+//   color:seashell;
+// }
 
 .overflowHidden {
   overflow: hidden;
@@ -105,6 +115,22 @@ input[type="number"] {
 
 .left-180px {
   left: 180px;
+}
+
+.left-358px {
+  left: 358px;
+}
+
+.right--335px {
+  right: -335px;
+}
+
+.top--74px {
+  top: -74px;
+}
+
+.top-1px {
+  top: 1px;
 }
 
 .top-2px {
@@ -728,7 +754,6 @@ a {
    padding: 3px;
 }
 
-
 .redCross:active, .redCross:hover {
   background: #b07d62;
   padding: 3px;
@@ -819,15 +844,22 @@ a {
   border-top-left-radius: 5px;
 }
 
+#deleteWindow .modal-content {
+  width: 240px;
+  top: -36px;
+  position: relative;
+}
+
 #deleteWindow .modal-footer {
   height: 28px !important;
+  border: 1px solid  rgba(200, 168, 115);
 }
 
 .modal-open .modal {
   overflow-y: hidden !important;
 }
 
-#deleteWindow {
+#deleteWindow { 
   /*background color of reset progress in stats*/
   background-color: rgba(0, 0, 0, 0.7);
 }
@@ -856,18 +888,7 @@ a {
   height: 75px;
 }
 
-.deleteCardQuestionBox__showMessageAgain {
-  position: relative;
-  top: 10px;
-} 
-
-.deleteCardQuestionBox__dontShowMessageAgain{
-  width: 200px;
-  z-index: 2; 
-  color: white;
-}
-
-.deleteWindow #modal {
+.deleteWindow #modal { 
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -882,8 +903,6 @@ a {
   margin-left:20px;
 }
 
-
-
 .mod .modal-dialog {
   display: flex;
   justify-content: center;
@@ -894,10 +913,10 @@ a {
   justify-content:center
 }
 
-.paused__img-play {
-  margin: 6px; 
-  cursor: pointer;
-}
+// .paused__img-play {
+//   margin: 6px; 
+//   cursor: pointer;
+// }
 
 .backgroundModal {
   /*background styling that is shown when threedotscontainer in stats is clicked*/
@@ -920,8 +939,6 @@ a {
 #createDeck .modal-header {
   height: 33px;
 }
-
-
 
 #createDeck .modal-title {
   height: 30px;
@@ -948,15 +965,6 @@ a {
   padding: 15px;
 }
 
-// #deleteWindow .modal-content {
-//   width: 240px !important;
-//   position:relative;
-//   top:-45px;
-// }
-
-// #questionAnswerOverview .modal-body {
-//   padding: 10px;
-// }
 
 .bar {
   background: red !important;
@@ -976,17 +984,6 @@ a {
   background: #2d6a4f;
 }
 
-#inputField {
-  width: 65%;
-  margin-top: 3px;
-  border-radius: 5px;
-  border: 1px solid black;
-  margin-bottom: 14px;
-  height: 22px;
-  outline: none;
-  padding-left: 5px;
-}
-
 textarea.form-control:active,
 textarea.form-control:focus {
   outline: none !important;
@@ -1001,30 +998,30 @@ textarea.form-control:focus {
   padding: 5px !important;
 }
 
-@-webkit-keyframes arrow {
-  0%,
-  100% {
-    top: 50px;
-  }
-  50% {
-    top: 80px;
-  }
-}
+// @-webkit-keyframes arrow {
+//   0%,
+//   100% {
+//     top: 50px;
+//   }
+//   50% {
+//     top: 80px;
+//   }
+// }
 
 
-#arrow {
-  width:100%;
-}
+// #arrow {
+//   width:100%;
+// }
 
-@keyframes arrow {
-  0%,
-  100% {
-    top: 50px;
-  }
-  50% {
-    top: 80px;
-  }
-}
+// @keyframes arrow {
+//   0%,
+//   100% {
+//     top: 50px;
+//   }
+//   50% {
+//     top: 80px;
+//   }
+// }
 
 textarea:focus {
   border: 3px solid grey;
@@ -1035,18 +1032,6 @@ textarea:focus {
 textarea:enabled {
   border: 3px solid grey;
   outline: none !important;
-}
-
-.questionMark1 {
-  position:relative;
-  top: -5px;
-  right: -235px;
-}
-
-.questionMark2 {
-  top: -29px;
-  right: -28px;
-  position: absolute
 }
 
 input::-webkit-outer-spin-button,
