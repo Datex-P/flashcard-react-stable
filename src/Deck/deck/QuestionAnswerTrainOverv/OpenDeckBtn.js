@@ -19,7 +19,7 @@ export default function OpenDeckBtn ({data,
     if(!paused ||  editButtonClicked) {
       generateRandom();
       let newDataBase = { ...dataBase };
-      newDataBase.openedToday = true;
+      newDataBase.openedToday = true; //important for stats
       setShowProgressDiagram(false); //progress diagram gets why not at this place??
       setDataBase(newDataBase);
       setScrollbarVisible(false) //as long as deck is open, scrollbar is not visible

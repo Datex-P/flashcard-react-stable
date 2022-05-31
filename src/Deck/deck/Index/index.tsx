@@ -13,18 +13,18 @@ import DeleteCardQuestionBox from "../DeleteCardQuestionBox/DeleteCardQuestionBo
 import Paused from './Paused/Paused'
 
 export default function Deck({
-   deck,
-   index,
-   bg,
-   setArrowDown,
-   setDecksAreVisible,
-   setScrollbarVisible,
-   setHideCreateDeckBtn, 
-   ...style
+  deck,
+  index,
+  bg,
+  setArrowDown,
+  setDecksAreVisible,
+  setScrollbarVisible,
+  setHideCreateDeckBtn,
+  ...style
 }) {
- 
-    const { data, name,paused } = deck;
-  
+
+  const { data, name, paused } = deck;
+
   const [show, setShow] = useState(false);
   const [nameOfTopDeck, setNameOfTopDeck] = useState(name);
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
@@ -36,96 +36,97 @@ export default function Deck({
   const [threeDotsOpen, setThreeDotsOpen] = useState(false);
 
   const {
-    active, setActive, 
-    dataBase, setDataBase, 
-    editButtonClicked, setEditButtonClicked, 
+    active, setActive,
+    dataBase, setDataBase,
+    editButtonClicked, setEditButtonClicked,
     setChangeDeckNameOpen
   } = useContext(Context);
 
   //const [index, setIndex] = useState(0);
 
-/*  useEffect(() => {
-    let cIndex = dataBase.DeckNames.findIndex((item) => item.name === name);
-    setIndex(cIndex);
-    //console.log(cIndex)
-    // eslint-disable-next-line
-  }, [trigger]);*/
+  /*  useEffect(() => {
+      let cIndex = dataBase.DeckNames.findIndex((item) => item.name === name);
+      setIndex(cIndex);
+      //console.log(cIndex)
+      // eslint-disable-next-line
+    }, [trigger]);*/
 
   useEffect(() => {
     setChangeDeckNameOpen(!editButtonClicked); //when input field of deck name is open it is set to false
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [editButtonClicked]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(showDeleteWindow, 'show delete window')
-  },[showDeleteWindow])
+  }, [showDeleteWindow])
 
   let input = useRef(null);
 
-  function handlePause(index) { 
+  function handlePause(index) {
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].paused = true;
     setDataBase(newDataBase);
-   
+
   }
 
   const deckOrCardNameProps = {
-    bg:bg,
-    nameOfTopDeck:nameOfTopDeck,
-    editButtonClicked:editButtonClicked,
-    name:name,
-    input:input,
-    setThreeDotsOpen:setThreeDotsOpen,
-    setNameOfTopDeck:setNameOfTopDeck,
-    setThreeDotsMenuOpen:setThreeDotsMenuOpen,
-    setDeckNameLengthRight:setDeckNameLengthRight,
-    setNameTooLongOrShort:setNameTooLongOrShort,
-    pause : true
+    bg: bg,
+    nameOfTopDeck: nameOfTopDeck,
+    editButtonClicked: editButtonClicked,
+    name: name,
+    input: input,
+    setThreeDotsOpen: setThreeDotsOpen,
+    setNameOfTopDeck: setNameOfTopDeck,
+    setThreeDotsMenuOpen: setThreeDotsMenuOpen,
+    setDeckNameLengthRight: setDeckNameLengthRight,
+    setNameTooLongOrShort: setNameTooLongOrShort,
+    pause: true
   }
 
   const threeDotsProps = {
-    name:name,
-    text:"deck",
-    data:data,
-    showFromParent:threeDotsMenuOpen,
-    setShowFromParent:setThreeDotsMenuOpen,
-    index:index,
-    icons:{paused,edit:!paused,trash:!paused},
-    paused:paused,
-    setThreeDotsOpen:setThreeDotsOpen,
-    threeDotsOpen:threeDotsOpen,
-    bg:style.background,
-    nameOfTopDeck:nameOfTopDeck,
-    setNameOfTopDeck:setNameOfTopDeck,
-     edit:!paused,
-    trash:!paused,
-    input:input,
+    name: name,
+    text: "deck",
+    data: data,
+    showFromParent: threeDotsMenuOpen,
+    setShowFromParent: setThreeDotsMenuOpen,
+    index: index,
+    icons: { paused, edit: !paused, trash: !paused },
+    paused: paused,
+    setThreeDotsOpen: setThreeDotsOpen,
+    threeDotsOpen: threeDotsOpen,
+    bg: style.background,
+    nameOfTopDeck: nameOfTopDeck,
+    setNameOfTopDeck: setNameOfTopDeck,
+    edit: !paused,
+    trash: !paused,
+    input: input,
     pause: true,
-    threeDotsContainer:{
-                position: "absolute",
-                right: "20px",
-                top: "18px",
-              },
-    editEvent:() => {   
-                setThreeDotsMenuOpen(false);
-                setEditButtonClicked(!editButtonClicked);             
-              },
-    pauseEvent:(index)=>{
-                handlePause(index)
-              },
-    trashEvent:()=>{
-                return dataBase.checkboxClicked
-                  ?  () => { deleteDeck();
-                      // handleActive(active - 1);
-                    }
-                  : () => {
-                      setTrash(true);
-                      setShowDeleteWindow(true);
-                      
-                    }                 
-                  }
-              }
-  
+    threeDotsContainer: {
+      position: "absolute",
+      right: "20px",
+      top: "18px",
+    },
+    editEvent: () => {
+      setThreeDotsMenuOpen(false);
+      setEditButtonClicked(!editButtonClicked);
+    },
+    pauseEvent: (index) => {
+      handlePause(index)
+    },
+    trashEvent: () => {
+      return dataBase.checkboxClicked
+        ? () => {
+          deleteDeck();
+          // handleActive(active - 1);
+        }
+        : () => {
+          setTrash(true);
+          setShowDeleteWindow(true);
+
+        }
+    }
+  }
+
 
 
   useEffect(() => {
@@ -137,91 +138,91 @@ export default function Deck({
     let newDataBase = { ...dataBase };
     //newDataBase.DeckNames[index].deleted = true; //index where delete starts second para is delete count
 
-     newDataBase.DeckNames.splice(index,1)
-    
-    if (newDataBase.DeckNames.filter(item=>!item.deleted).length === 0) {
+    newDataBase.DeckNames.splice(index, 1)
+
+    if (newDataBase.DeckNames.filter(item => !item.deleted).length === 0) {
       setDecksAreVisible(false);
       setArrowDown(true);
     } else {
-    
+
       setDataBase(newDataBase);
-  
+
       if (index === 0) {
         setActive(1);
       } else {
-        setActive(active-1);
+        setActive(active - 1);
       }
     }
   }
 
-
   return (
-    deck && (  
-      
+    deck && (
+
       <Card
         style={style}
         className="deck__card_cont flexColumn position-absolute "
-      >    
+      >
         <Card.Body className="justify-center-align-center flex-column mt-48px">
-        <NameLongOrShort 
-            nameTooLongOrShort={nameTooLongOrShort} 
+          <NameLongOrShort
+            nameTooLongOrShort={nameTooLongOrShort}
             nameOfTopDeck={nameOfTopDeck}
-        />
+          />
           <Card.Title className="deck__index-card-title justify-between-align-center">
-              <DeckOrCardName 
-                data={deckOrCardNameProps}
-                className="deck__deckOrCardName justify-center posRelative"
-              />          
+            <DeckOrCardName
+              data={deckOrCardNameProps}
+              className="deck__deckOrCardName justify-center posRelative"
+            />
             {
               deckNameLengthRight &&
-            <ThreeDotsBtn
-              name={name}
-              text={"deck"}
-              data={data}
-              showFromParent={threeDotsMenuOpen}
-              setShowFromParent={setThreeDotsMenuOpen}
-              index={index}
-              icons={{paused,edit:!paused,trash:!paused}}
-              paused={paused}
-              setThreeDotsOpen={setThreeDotsOpen}
-              threeDotsOpen={threeDotsOpen}
-              bg={style.background}
-              nameOfTopDeck={nameOfTopDeck}
-              setNameOfTopDeck={setNameOfTopDeck}
-              edit={!paused}
-              // data={threeDotsProps}
-              pause
-              trash={!paused}
-              input={input}
-              threeDotsContainer={{
-                position: "absolute",
-                right: "20px",
-                top: "18px",
-              }}
-              className="deck__threeDotsBtnIndex"
-            //  data={threeDotsProps}
-              style={{
-                border: paused ? "none" : "1px solid black",
-                backgroundColor: paused ? "black" : "white",
-              }}
-              editEvent={() => {   
-                setThreeDotsMenuOpen(false);
-                setEditButtonClicked(!editButtonClicked);             
-              }}
-              pauseEvent={(index)=>{
-                handlePause(index)
-              }}
-              trashEvent={
-                dataBase.checkboxClicked
-                  ? () => {deleteDeck();
+              <ThreeDotsBtn
+                name={name}
+                text={"deck"}
+                data={data}
+                showFromParent={threeDotsMenuOpen}
+                setShowFromParent={setThreeDotsMenuOpen}
+                index={index}
+                icons={{ paused, edit: !paused, trash: !paused }}
+                paused={paused}
+                setThreeDotsOpen={setThreeDotsOpen}
+                threeDotsOpen={threeDotsOpen}
+                bg={style.background}
+                nameOfTopDeck={nameOfTopDeck}
+                setNameOfTopDeck={setNameOfTopDeck}
+                edit={!paused}
+                // data={threeDotsProps}
+                pause
+                trash={!paused}
+                input={input}
+                threeDotsContainer={{
+                  position: "absolute",
+                  right: "20px",
+                  top: "18px",
+                }}
+                className="deck__threeDotsBtnIndex"
+                //  data={threeDotsProps}
+                style={{
+                  border: paused ? "none" : "1px solid black",
+                  backgroundColor: paused ? "black" : "white",
+                }}
+                editEvent={() => {
+                  setThreeDotsMenuOpen(false);
+                  setEditButtonClicked(!editButtonClicked);
+                }}
+                pauseEvent={(index) => {
+                  handlePause(index)
+                }}
+                trashEvent={
+                  dataBase.checkboxClicked
+                    ? () => {
+                      deleteDeck();
                       // handleActive(active - 1);
                     }
-                  : () => {
+                    : () => {
                       setTrash(true);
                       setShowDeleteWindow(true);
                     }
-              }
-            />
+                }
+              />
             }
             {trash && showDeleteWindow && !paused && (
               <DeleteCardQuestionBox
@@ -238,26 +239,26 @@ export default function Deck({
               />
             )}
           </Card.Title>
-                <Paused
-                  data={data}
-                  index={index}
-                  setShow={setShow}
-                  paused={paused}
-                  name={name}
-                  style={style}
-                />        
-              <QuestAnswerTrainOverv
-                setHideCreateDeckBtn={setHideCreateDeckBtn}
-                name={name}
-                index={index}
-                data={data}
-                paused={paused}
-                setDecksAreVisible={setDecksAreVisible}
-                setPauseIsActive={setPauseIsActive}
-                pauseIsActive={pauseIsActive}
-                setScrollbarVisible={setScrollbarVisible}
-              />
-          {active === index && (      
+          <Paused
+            data={data}
+            index={index}
+            setShow={setShow}
+            paused={paused}
+            name={name}
+            style={style}
+          />
+          <QuestAnswerTrainOverv
+            setHideCreateDeckBtn={setHideCreateDeckBtn}
+            name={name}
+            index={index}
+            data={data}
+            paused={paused}
+            setDecksAreVisible={setDecksAreVisible}
+            setPauseIsActive={setPauseIsActive}
+            pauseIsActive={pauseIsActive}
+            setScrollbarVisible={setScrollbarVisible}
+          />
+          {active === index && (
             <AddQuestionsToDeck
               setHideCreateDeckBtn={setHideCreateDeckBtn}
               background={style.background}

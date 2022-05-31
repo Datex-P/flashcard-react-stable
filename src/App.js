@@ -43,7 +43,7 @@ export default function App() {
           <Redirect to='/login'/>
           </Route>
           <Route path='/logout'>
-            <Login  setUser={setUser}/>  
+            <Login setUser={setUser}/>  
           </Route>
         </Switch>
       </Router>

@@ -60,7 +60,8 @@ export default function AddQuestionsToDeck({ index, name,
       let elem = document.getElementsByClassName('modal-dialog')
        elem[0].style.display='flex'
        elem[0].style.justifyContent = 'center'
-       elem[0].style.width = '87%'
+       elem[0].style.width = '86%'
+       elem[0].style.borderRadius = '12px'
        elem[0].style.position = 'relative'
        elem[0].style.zIndex = '5'
        elem[0].style.padding = '27px'

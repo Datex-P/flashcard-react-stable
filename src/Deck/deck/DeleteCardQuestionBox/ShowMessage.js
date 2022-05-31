@@ -12,7 +12,7 @@ export default function ShowMessage({showMessageAgain}) {
   return (
     <>
     {
-      !showMessageAgain&&
+    !showMessageAgain&&
       <div className='deck__deleteCardQuestionBox__showMessageAgain justify-center'>
           <div className='width40px'>
               <input 

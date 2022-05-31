@@ -3,11 +3,12 @@ import { Context } from "../../Context";
 
 function RenderDays({year}) {
 
-  const [days, setDays] = useState([]);
   const {dataBase} = useContext(Context);
+  const calBoxWidth = useRef(null); //size of the calendar box 
   const innerStat = useRef(null)
+  
+  const [days, setDays] = useState([]);
   const [right,setRight]=useState(0)
-  const [outer,setOuter]=useState(0)
   const [studiedOnThisDay, setStudiedOnThisDay] = useState(false)
 
   useEffect(()=>{
@@ -37,15 +38,13 @@ function RenderDays({year}) {
          //let cardsStudied = dataBase.DeckNames[deck].data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === date)).length
         let todaysAmount = dataBase.DeckNames[deck].data.filter((item) =>
           item?.openHistory?.some(
-            (item) => new Date(item).toDateString() === today
-          )
-        ).length;
+            (item) => new Date(item).toDateString() === today)).length;
         console.log(todaysAmount, 'cards studied today')
         let index = date.findIndex((day) => day.day === today);
-        console.log(index);
-        // debugger
-        //  date[index].cardsStudied += todaysAmount;
-        setDays(date);
+        
+        let newDays = [...date]
+          newDays[index].cardsStudied += todaysAmount;
+          setDays(newDays);
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,32 +55,33 @@ function RenderDays({year}) {
   is a day where cards where studied*/
 
   function clickHandler(e, index) {
-    let inner= e.target.getBoundingClientRect();
+    let inner = e.target.getBoundingClientRect();
     let day = index;
     let findday = days.findIndex((el, index)=>day ===index && el.cardsStudied)
-    setStudiedOnThisDay([...findday])
-           
-    if((outer.right - inner.right) < 126){
-        setRight(outer.right - inner.right - 126)    
+    console.log(findday, 'findday here')
+    setStudiedOnThisDay(findday)
+
+    let calendarDimension = calBoxWidth.current.getBoundingClientRect().right
+    //calendarDimension => most right position of calendarBox
+          
+    if((calendarDimension- inner.right) < 126) {
+        setRight(calendarDimension - inner.right - 126)    
     }   
   }
 
   return (
     <div 
       className="d-flex stats__year-box"
-      onClick={(e)=>{    
-       let outer = e.currentTarget.getBoundingClientRect()
-        setOuter(outer)
-       }}
+      ref={calBoxWidth}
      >
       {days.map((day, index) => (
         <div
           key={index}
-          className={`day ${day?.cardsStudied ? 'pointer backgroundRed' : ''}`}
+          className={`stats__day ${day?.cardsStudied ? 'pointer stats__backgroundRed' : ''}`}
           onClick={(e)=>clickHandler(e, index)}
         >
-          {studiedOnThisDay ===index &&
-   
+          {
+            studiedOnThisDay === index &&   
             <div className='stats__study-info posAbsolute top-20px'
               style={{left: right+'px'}}
               ref={innerStat}
@@ -97,10 +97,7 @@ function RenderDays({year}) {
         </div>
       ))}
     </div>
- 
   )
-    
-
 }
 
 export default RenderDays

@@ -7,13 +7,11 @@ export default function ChartComp() {
   const { dataBase} = useContext(Context);
   let ctx = useRef(null)
 
-
  var config = {
   type: 'doughnut',
   data: {
     labels: [
       // "Red",
-
     ],
     datasets: [{
       data: [
@@ -21,16 +19,13 @@ export default function ChartComp() {
       ],
       backgroundColor: [
         //  "#FF6384",
-  
       ],
       borderColor: [
-        //  'rgba(184, 156, 110, 0.95)',
-   
+        //  'rgba(184, 156, 110, 0.95)',  
       ],
        borderWidth: 0,
       hoverBackgroundColor: [
       //  "#FF6384",
-   
       ]
     }]
   },
@@ -40,23 +35,20 @@ export default function ChartComp() {
     center:{
      display: true,
      text:'',
-    //  text: 'text here',
-      // text: `{!dataBase.openedToday ? 'No cards studied today'
-      //       <div style='font-size:12px'>No data</div> 
+  //   text: 'text here',
+      // text: `${!dataBase.openedToday ? 'No cards studied today'
+      //       //<div style='font-size:12px'>No data</div> 
       //       :
-      //       `Data from ${todayDate.toLocaleString('de-DE', {
+      //       `Data from ${new Date().toLocaleString('de-DE', {
       //         day: 'numeric',
       //         month: 'numeric',
       //         year: 'numeric',
-      //       })}`}`,
-            
+      //       })}`}`,           
       color: 'black',
       fontStyle: 'Arial', // Default is Arial
       sidePadding: 2, // Default is 20 (as a percentage)
       minFontSize: 16, // Default is 20 (in px), set to false and text will not wrap.
-      lineHeight: 19,
-    
-     
+      lineHeight: 19, 
     }
   },
     legend: {
@@ -77,12 +69,8 @@ export default function ChartComp() {
   }
 };
 
-
-
   useEffect(() => {
-
     new Chart(ctx.current, config);
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -92,10 +80,20 @@ export default function ChartComp() {
   for (let deck in dataBase.DeckNames) {
 
     let deckItem = dataBase.DeckNames[deck]
-    if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString() === new Date().toDateString())) {
+
+    /*when card of deck was opened today, the label is pushed to the diagram 
+    in stats -->*/
+
+    deckItem.data.filter((item) => {
+      if(new Date(item?.openHistory?.[0]).toDateString() === new Date().toDateString()) {
+        config.data.labels.push(deckItem.name)
+      }})
+
+      /*<----*/
       // todayCardsStudiedCounter++
-      config.data.labels.push(deckItem.name)
-    }
+    //   console.log(item, 'item here')
+    //   config.data.labels.push(deckItem.name)
+    // }
     if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString())) {
 
 
@@ -104,7 +102,7 @@ export default function ChartComp() {
     //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
 
 
-     config.data.labels.push(deckItem.name)
+   //  config.data.labels.push(deckItem.name)
       
       //config.data.datasets[0].data.push(10)
       config.data.datasets[0].data.push(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === date)).length)
@@ -207,15 +205,11 @@ export default function ChartComp() {
     },
   });
 
-
-
   return (
     <canvas 
         ref={ctx} 
-        className='pieChart'
-        style={{ width: '270px', height: '200px', overflow: 'hidden', borderRadius: '5px' }} 
+        className='pieChart stats__pieChart' 
     >
-
     </canvas>
 
   )

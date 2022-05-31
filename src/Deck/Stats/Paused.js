@@ -4,8 +4,8 @@ import { Context } from "../Context";
 
 export default function Paused({ handlePause, index }) {
   const {
-    colors, //colors array for the decks
-  } = useContext(Context);
+    colors //colors array for the decks
+} = useContext(Context);
 
   return (
     <div
@@ -16,7 +16,11 @@ export default function Paused({ handlePause, index }) {
       <div className='align-center'>
         Press:
         <button className='deck__btn-play' onClick={handlePause()}>
-          <img src={playimg} alt='play' className='m-6px cursorPointer' />
+          <img 
+            src={playimg} 
+            alt='play' 
+            className='m-6px cursorPointer' 
+          />
         </button>
       </div>
       <div>

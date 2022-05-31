@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { Context } from "../../../Context";
 import { Button} from "react-bootstrap";
 import editimg from "../../../icons/edit.svg";
@@ -42,7 +42,6 @@ export default function QuestAnswerTrainOverv({
   //const inputRef = useRef(null);
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
   const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
-  
 
   const {
     dataBase, setDataBase, 
@@ -71,7 +70,6 @@ export default function QuestAnswerTrainOverv({
       clearInterval(i)
     }
   }, [cardModified]);
-
 
   function generateRandom() {
     let newRandomQuestion = null;
@@ -210,6 +208,7 @@ export default function QuestAnswerTrainOverv({
     setShowDeleteWindow(true);
   }
 
+
   return (
     <>
       <OpenDeckBtn 
@@ -230,7 +229,7 @@ export default function QuestAnswerTrainOverv({
           mainBox={mainBox}
           index={index}
           setScrollbarVisible={setScrollbarVisible}
-          id="questionAnswerOverview"
+          id= 'questionAnswerOverview'
           setEditBtnClicked={setEditBtnClicked}
           createDeckButtonIsVisible={createDeckButtonIsVisible}
           setCreateDeckButtonIsVisible={setCreateDeckButtonIsVisible}
@@ -242,14 +241,23 @@ export default function QuestAnswerTrainOverv({
                 text={"card"}
                 editButtonClicked={true}
                 editBtnClicked={editBtnClicked}
-                className="deck__threeDotsInQuestAnsw posAbsolute"
-                threeDotsContainer={{position: "default"}}
+                className='deck__threeDotsInQuestAnsw posAbsolute'
+                threeDotsContainer={{position: 'default'}}
                 paused={paused}
+                // setThreeDotsOpen={setThreeDotsOpen}
+                // threeDotsOpen={threeDotsOpen}
                 setShowFromParent={setThreeDotsMenuOpen}
                 index={index}
                 edit
                 pause
                 trash
+                style= {{
+                  position: 'absolute',
+                  top: '0px',
+                  border: '1px solid black',
+                  left: '308px',
+                  zIndex: '99'
+                }}
                 type="card"
                 editEvent={editHandler}
                 pauseEvent={pauseEventHandler}
@@ -257,6 +265,7 @@ export default function QuestAnswerTrainOverv({
               />
           }
         >
+        <div >
           {editBtnClicked && (
             <div className='deck__editBtn align-center posRelative'>
                <img alt="edit" src={editimg} /> 
@@ -265,7 +274,6 @@ export default function QuestAnswerTrainOverv({
           )}
           {data[randomQuestion] && (
             <>
-
               <QuestionAnswerForm 
                 card={card}
                 editBtnClicked={editBtnClicked}
@@ -344,6 +352,7 @@ export default function QuestAnswerTrainOverv({
               }
             </>
           )}
+          </div>
         </BasicOrangeWindow>
       )}
     </>

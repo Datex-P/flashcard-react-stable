@@ -17,7 +17,7 @@ const InputSelectField = forwardRef ((props, okRef) =>{
       if (event.target.value.length > 3 && event.target.value.length < 11) {
         if (okRef !== null && okRef.current) {
           okRef.current.disabled = false;
-          okRef.current.classList.add("okCancelButtonColor");
+          okRef.current.classList.add("landing__Btn-col");
           setNameTooShortOrLong(false);
         }
         // } else if (okRef.current){ needed for typescript,did not work
@@ -25,7 +25,7 @@ const InputSelectField = forwardRef ((props, okRef) =>{
         setNameTooShortOrLong(true);
         if(okRef.current){
           okRef.current.disabled = true;
-          okRef.current.classList.remove("okCancelButtonColor");
+          okRef.current.classList.remove("landing__Btn-col");
         }
       }
     }, 800);
@@ -34,7 +34,7 @@ const InputSelectField = forwardRef ((props, okRef) =>{
   return (
     <>
     <input
-      id='inputField'
+      id='landing__inputField'
       value={inputField}
       onChange={(event) => {
         onChangeHandler(event);

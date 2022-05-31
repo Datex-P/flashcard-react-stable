@@ -1,56 +1,56 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 
-export default function DeckOrCardName({data:{ 
-          bg, 
-          editButtonClicked, 
-          input, 
-          name, 
-          nameOfTopDeck, setNameOfTopDeck,
-          setDeckNameLengthRight, 
-          setThreeDotsMenuOpen,
-          setNameTooLongOrShort,
-          setThreeDotsOpen
-        }}) {
+export default function DeckOrCardName({ data: {
+  bg,
+  editButtonClicked,
+  input,
+  name,
+  nameOfTopDeck, setNameOfTopDeck,
+  setDeckNameLengthRight,
+  setThreeDotsMenuOpen,
+  setNameTooLongOrShort,
+  setThreeDotsOpen
+} }) {
 
-  function handleChangeName(e){
+  function handleChangeName(e) {
 
-    if (e.target.value.length >3 && e.target.value.length <12) {    
-     setDeckNameLengthRight(true)
-     setThreeDotsMenuOpen(true)
-     setNameTooLongOrShort(false) 
-     setThreeDotsOpen(true)   
+    if (e.target.value.length > 3 && e.target.value.length < 12) {
+      setDeckNameLengthRight(true)
+      setThreeDotsMenuOpen(true)
+      setNameTooLongOrShort(false)
+      setThreeDotsOpen(true)
     } else {
       setNameTooLongOrShort(true)
       setDeckNameLengthRight(false)
     }
-      setNameOfTopDeck(e.target.value);
+    setNameOfTopDeck(e.target.value);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log('deck name length changed')
-  },[setDeckNameLengthRight])
- 
+  }, [setDeckNameLengthRight])
+
 
   return (
     <>
-    {editButtonClicked?
-      (
-    <div 
-        className='deck__deckOrCardName justify-center posRelative'
-        style={{background: bg}}
-    >
-      {name}
-         
-    </div>
-      ):(
-        <input
+      {editButtonClicked ?
+        (
+          <div
+            className='deck__deckOrCardName justify-center posRelative'
+            style={{ background: bg }}
+          >
+            {name}
+
+          </div>
+        ) : (
+          <input
             ref={input}
             className="deck__addToDeckInput"
             value={nameOfTopDeck}
             onChange={handleChangeName}
-        />
-      )
-    }
+          />
+        )
+      }
     </>
   )
 }

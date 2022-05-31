@@ -37,7 +37,7 @@ function Stats({ history }:any) {
   return (
     <div className='stats__BasicOrangeWindow__cont'>
       <BasicOrangeWindow
-        // setHideCreateDeckBtn={setHideCreateDeckBtn}
+        questionViewActive
         stats
         show={true}
         setShow={setShowFunc}
@@ -59,7 +59,7 @@ function Stats({ history }:any) {
         <div>
           <div className='stats__study-breakdown mt-15px-imp mb-15px-imp'>Today's study breakdown</div>
           <div className='stats__dateDiagram'>
-            {!dataBase?.openedToday
+             {!dataBase?.openedToday
               ? 'No cards studied today'
               :  `Data from: ${new Date().toLocaleDateString().replace(/\//g,'.')}`         
                 }
@@ -81,9 +81,7 @@ function Stats({ history }:any) {
              <PieDiagramm />
           </div>
           <div className="stats__calendar">Calendar</div>
-          <div className="justify-center-align-center">
-            <ButtonLeftAndRight />
-          </div>
+          <ButtonLeftAndRight />
           <HourlyBreakdown />
         </div>
         <div className='width200px'></div>
@@ -93,7 +91,6 @@ function Stats({ history }:any) {
   );
 }
 
-//export default Stats
 export default withRouter(Stats);
 
 

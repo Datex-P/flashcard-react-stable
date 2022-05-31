@@ -1,8 +1,6 @@
-import React, {useState, useRef, useContext} from 'react'
+import React, {useState, useRef, useContext, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
 import {Context} from '../../../Context';
-
-import threeDotsMenuBlinks from './ThreeDotsMenuBlinks'
 import trashimg from '../../../icons/trash.svg'
 import pauseimg from '../../../icons/pause.svg'
 import editimg from '../../../icons/edit.svg'
@@ -11,8 +9,7 @@ import saveimg from '../../../icons/save.svg'
 import playimg from '../../../icons/play.svg'
 
 
-function ThreeDotsBtn({    
-                        
+function ThreeDotsBtn({                           
                         reset=false,
                         edit=false,
                         trash=false,
@@ -33,23 +30,23 @@ function ThreeDotsBtn({
                        // pauseEvent = () => {},
                         type
                       }) {
-   const {dataBase, setDataBase, editButtonClicked} = useContext(Context);
+   const {dataBase, setDataBase, editButtonClicked, setEditButtonClicked} = useContext(Context);
   //let {edit=false,trash=false,pause=false} = icons;
-  
+  const ref = useRef(null)
   console.log(input, 'input in three dots')
-  // const [dataBase, setDataBase] = useState([]);
 
 
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
   const [pauseIsActive, setPauseIsActive] = useState(true)
-  // const [threeDotsOpen, setThreeDotsOpen] = useState(false);
-
+ 
   function trashHandler() {
+    setEditButtonClicked(true) //input field gets closed on landing page
+    setThreeDotsOpen(false) //three dots menu gets closed
     trashEvent()()
-    setThreeDotsOpen(false)
   }
 
   const handleClick = () => {
+    console.log('click on three dots button')
     setThreeDotsOpen(!threeDotsOpen)
     // if(true) {
     //   console.log('triggered in handle click')
@@ -60,8 +57,28 @@ function ThreeDotsBtn({
     // debugger
   };
 
-  const ref = useRef(null)
+  const threeDotsRef = useRef(null)
 
+
+  useEffect(()=>{
+    console.log(threeDotsRef, 'three dots ref here')
+    function saveIconBlinks(event) {
+      if (threeDotsRef.current && !threeDotsRef.current.contains(event.target)
+      ) {
+        if (editButtonClicked) {
+      //    setThreeDotsOpen(false) need to be imported
+        } else {
+        console.log('I fired')
+       setBlinkingSaveIcon(true) 
+       setTimeout(()=>{
+         setBlinkingSaveIcon(false)
+       }, 2000)    
+      }
+    }
+    }
+    document.addEventListener('click', saveIconBlinks)
+    return ()=>{document.removeEventListener('click', saveIconBlinks); setBlinkingSaveIcon(false);console.log('got unmounted')}
+  },[threeDotsOpen, setThreeDotsOpen, editButtonClicked, setBlinkingSaveIcon])
   // useEffect(()=>{
   //   setThreeDotsOpen(showFromParent)
   // },[showFromParent])
@@ -74,22 +91,7 @@ function ThreeDotsBtn({
     console.log(newDataBase)
     setDataBase(newDataBase)
   }
-
-
-  // threeDotsMenuBlinks([ref,input], 
-  //                   // editButtonClicked, 
-  //                   ()=>{
-  //                     setThreeDotsOpen(false)
-  //                   },
-  //                   ()=>{
-  //                   setBlinkingSaveIcon(true)
-  //                   setTimeout(()=>{
-  //                     setBlinkingSaveIcon(false)},
-  //                     2000)
-  //                   }                  
-  // )
-    
-    
+ 
   function handleEdit() {
     editEvent() 
     if(type==='card'){
@@ -105,14 +107,14 @@ function ThreeDotsBtn({
   
   // function handlePause () {
   //   //pauseEvent(index)
-  //   let newDataBase = {...dataBase}
+  //  // let newDataBase = {...dataBase}
   //   let savePausedState = !pauseIsActive
   //   setPauseIsActive(savePausedState)
 
   //  // dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
   //   //let key = newDataBase.DeckNames.findIndex(deck=>deck.name === name)
   //  // newDataBase.DeckNames[key].paused = true //does not work for some reason
-  //   setDataBase(newDataBase)
+  // //  setDataBase(newDataBase)
   //  // setEditButtonClicked(true)
   //   setThreeDotsOpen(false)
   //   //setNameOfTopDeck(name)  
@@ -123,7 +125,9 @@ function ThreeDotsBtn({
     <>
         {/* !dataBase?.DeckNames?.[index]?.paused || !editBtnClicked) && */}
     {    
-      <div style={threeDotsContainer}>
+      <div style={threeDotsContainer}
+           ref={threeDotsRef}
+      >
         <div 
             className='deck__threeDotsCont posAbsolute deck__threeDotsPositioning' 
             onClick={handleClick}
@@ -131,12 +135,11 @@ function ThreeDotsBtn({
                   ... 
         </div>
         {
-          threeDotsOpen && 
-          
+         // threeDotsOpen &&          
+         true && 
           <div 
             ref={ref}
             style={style}
-            className='ml-2 rounded mt-2'
           >     
             {
               edit&& 
@@ -146,7 +149,7 @@ function ThreeDotsBtn({
               >                     
                    <img 
                       alt='edit'              
-                      className={`mr-3px ${blinkingSaveIcon ? 'blinkingIcon':''}`} 
+                      className={`mr-3px ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`} 
                       src={editButtonClicked? editimg: saveimg } 
                   />  
                 {text}
@@ -154,22 +157,20 @@ function ThreeDotsBtn({
             }
             {
               pause &&
-
               <button 
                   className={`deck__threeDotsBtn_btn_pause deck__threeDotsBtn__btn align-center  p-1 ${dataBase.DeckNames[index]?.paused? 'deck__threeDotsBtn__conditional': ''} `}
-                 //  onClick={handlePause(index)}
+                //  onClick={handlePause(index)}
               >
                    <img 
                       alt='pause' 
                       className='mr-3px'
-                      src={ !dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
+                      src={!dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
                   /> 
                   {text}
               </button>
             }
             {
               trash &&  
-
               <button 
                 className='deck__threeDotsBtn__btn align-center  p-1'
                 onClick={trashHandler}
@@ -183,8 +184,7 @@ function ThreeDotsBtn({
               </button>
             }
             {
-              reset &&
-              
+              reset &&             
               <button 
                   className='deck__threeDotsBtn__btn align-center outline-none p-1'
                   onClick={resetEvent}

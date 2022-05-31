@@ -57,8 +57,8 @@ function Settings({ history }) {
     dataBase &&
 
     <BasicOrangeWindow
-      settings
-      show={true}
+      questionViewActive
+      show
       setShow={setShow}
       title={<div className='fontBold font-22px'>Settings</div>}
     >

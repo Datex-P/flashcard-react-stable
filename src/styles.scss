@@ -3,6 +3,12 @@
  // margin: 5px; 
 }
 
+html {
+  width: 450px;
+  margin: auto;
+  margin-top: 50px;
+}
+
 body {
   margin: 0px;
 }
@@ -18,12 +24,6 @@ body {
 
 .bs-5 {
   @import "~bootstrap/scss/bootstrap"
-}
-
-html {
-  width: 450px;
-  margin: auto;
-  margin-top: 50px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -69,10 +69,6 @@ input[type="number"] {
   z-index: 5;
 }
 
-// .login__reset-col {
-//   color:seashell;
-// }
-
 .overflowHidden {
   overflow: hidden;
 }
@@ -103,6 +99,7 @@ input[type="number"] {
 .cursorPointer {
   cursor: pointer;
 }
+
 /*positioning following from here*/
 
 .left-40px {
@@ -183,6 +180,14 @@ input[type="number"] {
 
 .p-4px {
   padding: 4px;
+}
+
+.pl-10px {
+  padding-left:10px;
+}
+
+.pr-10px {
+  padding-right:10px;
 }
 
 .pl-25px {
@@ -353,7 +358,6 @@ input[type="number"] {
   margin-left: 30px;
 }
 
-
 .mr-3px {
   margin-right: 3px;
 }
@@ -379,7 +383,6 @@ input[type="number"] {
 }
 
 /*<--all custom margins and paddings until here*/
-
 
 /*custom width and height following-->*/
 
@@ -722,7 +725,7 @@ a {
   margin-top: 50px !important;
   margin: auto;
   border: 2px solid black !important;
-  z-index: 2;
+  z-index: 10;
 }
 
 .col-darkslategrey {
@@ -760,10 +763,6 @@ a {
   border-radius: 50%;
 }
 
-.backgroundRed {
-  background-color: red;
-}
-
 .form-control {
   resize: none;
 }
@@ -772,11 +771,6 @@ a {
   50% {
     opacity: 0;
   }
-}
-
-.okCancelButtonColor {
-  cursor: pointer !important;
-  background-color: grey /*important;*/;
 }
 
 /* width */
@@ -808,27 +802,6 @@ a {
 
 .selected svg {
   fill: green;
-}
-
-.day {
-  width: 10px;
-  height: 10px;
-  border: 1px black solid;
-  box-sizing: border-box;
-  margin: 1px;
-  position: relative;
-}
-
-.day > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  width: 120px;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 2;
-  padding: 5px;
 }
 
 #deleteWindow .modal-header {
@@ -872,7 +845,8 @@ a {
 }
 
 #createDeck {
-  position: absolute
+  position: absolute;
+  top: 170px;
 }
 
 .close {
@@ -884,7 +858,6 @@ a {
 }
 
 .modal-body {
-  //removed important
   height: 75px;
 }
 
@@ -894,8 +867,6 @@ a {
 
 .modal-title {
   height: 50px;
-  //width: 90%; 
-  //margin-left:20px;
 }
 
 .mod-title {
@@ -953,21 +924,12 @@ a {
   justify-content:center;
 }
 
-.background__white {
-  background-color:white;
-}
-
 #createDeck .modal-content {
   width: 247px;
   height: 160px;
   background-color: rgba(200, 168, 115) !important;
   margin: auto;
   padding: 15px;
-}
-
-
-.bar {
-  background: red !important;
 }
 
 .modal-footer {
@@ -989,39 +951,10 @@ textarea.form-control:focus {
   outline: none !important;
 }
 
-.plusInfoMessage:hover {
-  cursor: pointer;
-}
-
 .alert {
   margin-bottom: 0px !important;
   padding: 5px !important;
 }
-
-// @-webkit-keyframes arrow {
-//   0%,
-//   100% {
-//     top: 50px;
-//   }
-//   50% {
-//     top: 80px;
-//   }
-// }
-
-
-// #arrow {
-//   width:100%;
-// }
-
-// @keyframes arrow {
-//   0%,
-//   100% {
-//     top: 50px;
-//   }
-//   50% {
-//     top: 80px;
-//   }
-// }
 
 textarea:focus {
   border: 3px solid grey;

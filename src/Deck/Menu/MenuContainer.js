@@ -13,16 +13,12 @@ import logoutIcon from '../../icons/logout.svg'
 
 export default function MenuContainer() {
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
-  const {editButtonClicked, hideMenu, 
-        hideCreateDeckBtn, showProgressDiagram} = useContext(Context);
+  const {editButtonClicked, hideCreateDeckBtn, showProgressDiagram} = useContext(Context);
   const handleClose = () => {setMenuOpen(false)}; // closes the Menu when handleclos is triggered
 
   return (
 
-    <div 
-      className='mt-25px height100px'
-      style={{display: hideMenu? 'none':'block'}}
-    >
+    <div className='mt-25px height100px justify-between pl-10px pr-10px'>
       <Hamburger
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}

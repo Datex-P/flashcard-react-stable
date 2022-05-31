@@ -5,8 +5,13 @@
   border-top-right-radius: 10px !important;
   height: 651px !important;
   width: 440px !important;
-  /* background-color: rgb(90, 170, 149); */
   position: absolute;
+  /* background-color: rgba(0,0,0,0.7) */
+}
+
+.landing__Btn-col {
+  cursor: pointer !important;
+  background-color: grey /*important;*/;
 }
 
 .landing__scrollbar {
@@ -52,7 +57,9 @@
 .showProgressDiagram {
   width: 48px; 
   height: 27px;
-  background: 'rgb(90, 170, 149)'
+  position:relative;
+  left:188px;
+  top:34px;
 }
 
 .createNewDeck__too-short-or-long {
@@ -126,7 +133,7 @@
   }
 }
 
-#inputField {
+#landing__inputField {
   width: 65%;
   margin-top: 3px;
   border-radius: 5px;

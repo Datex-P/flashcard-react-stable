@@ -201,7 +201,7 @@
   text-align: center;
   background: #ffffff;
   position: absolute;
-  top: 0px;
+  top: -2px;
   bottom: 0px;
   right: 53px;
   border: 1px solid #1f1e1e;
@@ -267,6 +267,7 @@
   border: none;
   color: black !important;
   outline:none;
+  border-radius: 0px;
 }
 
 .deck__threeDotsBtn__btn:hover {
@@ -423,7 +424,6 @@
 
 .deck__addToDeckInput {
   width: 129px;
-
   border-radius: 5px;
   padding-left: 5px;
   position: relative;
@@ -496,6 +496,10 @@
 .deck__blinkingIcon {
   animation: blinker 1.3s linear infinite;
   animation-iteration-count: 2;
+}
+
+.deck__bg-white {
+  background-color:white;
 }
 
 .deck__unpause-keepPaused {

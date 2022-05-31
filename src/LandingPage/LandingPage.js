@@ -18,10 +18,7 @@ const LandingPage = () => {
   const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
   const [arrowDown, setArrowDown] = useState(true);
 
-  useEffect(() => {
-    console.log(arrowDown, 'arrow down here')
-  }, [arrowDown])
-
+  
   const {
     active,
     colors, //colors array for the decks
@@ -31,6 +28,10 @@ const LandingPage = () => {
     hideCreateDeckBtn, setHideCreateDeckBtn,
     setShowProgressDiagram
   } = useContext(Context);
+
+  useEffect(() => {
+    console.log(hideCreateDeckBtn, 'arrow down here')
+  }, [hideCreateDeckBtn])
 
   const history = useHistory()
 
@@ -122,7 +123,7 @@ const LandingPage = () => {
   return spinnerIsVisible ? (
     <>
       <Container
-        className="align-items-center landing__cont"
+        className='align-items-center landing__cont'
         style={{backgroundColor: styles.backgroundColor[dataBase?.userPreferences?.backgroundColor]}}
       >
         <MenuContainer

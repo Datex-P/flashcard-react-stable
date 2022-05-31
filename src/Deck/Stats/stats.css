@@ -66,6 +66,38 @@
   margin-bottom: 20px;
 }
 
+.stats__backgroundRed {
+  background-color: red;
+}
+
+.stats__day {
+  width: 10px;
+  height: 10px;
+  border: 1px black solid;
+  box-sizing: border-box;
+  margin: 1px;
+  position: relative;
+}
+
+.stats__day > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 120px;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2;
+  padding: 5px;
+}
+
+.stats__pieChart {
+  width: 270px; 
+  height: 200px; 
+  overflow: hidden; 
+  border-radius: 5px;
+}
+
 .stats__dateDiagram {
   width: 90px;
   height: 50px;

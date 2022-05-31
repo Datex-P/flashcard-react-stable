@@ -19,7 +19,7 @@ function Hamburger({
 
   return (
     <div
-      className='menu__menu mt-15px align-center flex-column p-3'
+      className='menu__menu align-center flex-column'
       style={{cursor: editButtonClicked && !hideCreateDeckBtn ? 'pointer': 'default'}} //cursor is default when edit input field is activated
     >
       <div className='font-18px'>Menu</div>

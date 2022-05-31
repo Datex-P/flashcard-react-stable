@@ -1,8 +1,7 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { Modal, Row } from "react-bootstrap";
-import { Context } from "../../Context";
-import Button from "../Button";
-import InputSelectField from "./InputSelectField";
+import React, { useContext, useState, useRef, useEffect } from 'react';
+import { Modal, Row } from 'react-bootstrap';
+import { Context } from '../../Context';
+import InputSelectField from './InputSelectField';
 import ButtonContainer from './ButtonContainer';
 
 export default function CreateNewDeck({
@@ -33,7 +32,7 @@ export default function CreateNewDeck({
 
 useEffect(()=>{
   if(addNewDeckWindow){
-    const createDeckElem = window.document.getElementById("createDeck");
+    const createDeckElem = window.document.getElementById('createDeck');
   if (createDeckElem) {
     var createDeckElement = createDeckElem.parentElement;
   }
@@ -41,7 +40,7 @@ useEffect(()=>{
     createDeckElement.style.display = "flex";
     createDeckElement.style.justifyContent = "center";
     createDeckElement.style.alignItems = "center";
-    createDeckElement.style.height = "500px";
+    createDeckElement.style.height = "651px";
   }
 }
 },[addNewDeckWindow])
@@ -57,8 +56,9 @@ useEffect(()=>{
   };
 
   return (
+    
     <Row className='justify-center mt-290px'>
-      {!hideCreateDeckBtn && (
+      {!hideCreateDeckBtn && 
         <button
           className={`landing__row__btn-create-deck posAbsolute ${
             editButtonClicked ? 'cursorPointer' : ''
@@ -67,7 +67,7 @@ useEffect(()=>{
         >
           Create Deck
         </button>
-      )}
+      }
       <div className='mt-40px'>
         <Modal
           show={addNewDeckWindow}
@@ -75,6 +75,13 @@ useEffect(()=>{
           keyboard={false}
           id='createDeck'
           centered
+          style={{
+            backgroundColor:'rgba(0, 0, 0, 0.6)',
+            height: '651px !important',
+            width:'98%',
+            position: 'relative',
+            borderRadius: '10px'
+          }}
         >
           <Modal.Header>
             <Modal.Title>Name for new deck</Modal.Title>
@@ -86,10 +93,11 @@ useEffect(()=>{
               nameTooShortOrLong={nameTooShortOrLong}
               setNameTooShortOrLong={setNameTooShortOrLong}
               ref={okRef}
-             />
+            />
           </Modal.Body>
-             <ButtonContainer
-              data={deckProps} ref={okRef}
+             <ButtonContainer 
+              data={deckProps} 
+              ref={okRef}
             /> 
         </Modal>
       </div>

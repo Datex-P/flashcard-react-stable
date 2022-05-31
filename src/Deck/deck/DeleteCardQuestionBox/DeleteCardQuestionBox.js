@@ -61,11 +61,11 @@ return (
               <div className='deck__redCross'>x</div>
             </div>
         </Modal.Header>
-        <Modal.Body className='justify-center-align-center background__white'>
+        <Modal.Body className='justify-center-align-center deck__bg-white'>
          
             <ResetQuestionText pauseOrDelete={pauseOrDelete} resetQuestionText={resetQuestionText} card={card} />
         </Modal.Body>
-        <Modal.Footer className='background__white'>
+        <Modal.Footer className='deck__bg-white'>
             <NoAndYes data={noAndYesProps}/>            
         </Modal.Footer>
         <ShowMessage showMessageAgain={showMessageAgain}/>         

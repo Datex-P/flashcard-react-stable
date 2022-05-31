@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import closeWindow from "../../../icons/closeWindow.svg";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import InputCheckbox from "./InputCheckbox";
 import { Context } from "../../../Context";
 
@@ -12,7 +12,6 @@ export default function BasicOrangeWindow({
               show,setShow,
               mainBox,
               menu,
-              settings=false,
               stats=false,
               questionViewActive=false,
               setShowAnswerBtn = () => {},
@@ -23,7 +22,10 @@ export default function BasicOrangeWindow({
 
   const {dataBase, setDataBase, setHideMenu,setHideCreateDeckBtn,
         setShowProgressDiagram} = useContext(Context);
+  const basicOrangeRef = useRef(null)
+  const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
 
+  
   function redCrossHandler () {
     setShow(false);
     setEdit(false);
@@ -55,29 +57,56 @@ export default function BasicOrangeWindow({
     }
   }
 
+  useEffect(()=>{
+    let element = document.querySelector('.mod')
+
+    function saveIconBlinks(event) {
+      if (element && !element.contains(event.target)
+      ) {
+        console.log('clicked outside')
+        setBlinkingSaveIcon(true) 
+       setTimeout(()=>{
+         setBlinkingSaveIcon(false)
+       }, 2000)  
+     }
+    }
+    document.addEventListener('click', saveIconBlinks)
+    return ()=>{document.removeEventListener('click', saveIconBlinks); setBlinkingSaveIcon(false);console.log('got unmounted')}
+  },[show])
+
   useEffect(() => {
-    if (settings || stats){
+    if ( stats){
       if (document.querySelector('.modal-dialog')) {
         let elem = document.getElementsByClassName('modal-dialog')
         elem[0].style.padding='28px'
         }
     }
-  }, [settings, stats]);
+  }, [ stats]);
+
+  useEffect(()=>{
+    //let element = document.querySelector('mod')
+    console.log( 'blinking icon triggered')
+  },[blinkingSaveIcon])
 
   return (
     <Modal
       key={index}
       show={show}
-      onHide={() => setShow(false)}
-      contentClassName={settings? 'posRelative marginAuto zIndex-5 deck__settings-layout':"mod"}
+      ref={basicOrangeRef}
+      onHide={() => setShow(false)}  
+      contentClassName={'mod'}
       backdrop="static"
       style={{
         left: '-160px !important',
         right: '45px !important',
-        backgroundColor: questionViewActive?'':'rgba(0, 0, 0, 0.6)'
+        backgroundColor: questionViewActive?'rgba(0, 0, 0, 0.6)':'',
+        position: questionViewActive? 'relative':'',
+        width:questionViewActive? '98%':'',
+        height:questionViewActive? '651px':'',
+        borderRadius:questionViewActive? '10px':''
       }}
     >
-      <div className={`${settings?'':'posRelative'} deck__modal_cont top-20px`}>
+      <div className='posRelative deck__modal_cont top-20px'>
         <Modal.Header className="border-bottom-0">
           <Modal.Title
             style={{
@@ -85,7 +114,7 @@ export default function BasicOrangeWindow({
               marginLeft: "12px",
               height: "24px",
               width: "240px",
-              marginTop: settings? '20px':'0px'
+              marginTop: '0px'
             }}
           >
             {title}
@@ -105,11 +134,11 @@ export default function BasicOrangeWindow({
           </div>
           {menu}
           <div
-            className={`${settings? 'deck__settings_button_positioning':'deck__basic_button_positioning'} redCross posAbsolute justify-center-align-center`}
+            className='deck__basic_button_positioning redCross posAbsolute justify-center-align-center'
             onClick={redCrossHandler}
           >
             <img 
-              className="redCross nonDraggableIcon width16px height16px" 
+              className={`redCross nonDraggableIcon width16px height16px ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`}
               src={closeWindow} 
               alt="redCross" 
             /> 
