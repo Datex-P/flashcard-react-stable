@@ -13,9 +13,11 @@ export default function DeckEmpty({ setShow }) {
 
 
   return (
-    <div className='deckEmptyAndPausedContainer deck__deckEmpty justify-evenly-align-center flex-column'>
-      <div className='deck__deckempty justify-around flex-column'>
-        <div>Deck is empty.</div>
+    <div className='deck__deckEmptyCont deck__deckEmpty justify-evenly-align-center flex-column'>
+      <div className='heigth90px width122px justify-around flex-column'>
+        <div>
+          Deck is empty.
+        </div>
         <div>
           Press:
           <span

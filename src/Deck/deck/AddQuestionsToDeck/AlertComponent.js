@@ -21,7 +21,7 @@ function AlertComponent({ card, setCard, newCardAdded }) {
           value={card.question}
           name='question'
           onChange={changeHandler}
-          className='deck__formControl'
+          className='deck__formControl posRelative'
         />
         {newCardAdded && <CardAddedOrInput card={card} />}
       </div>
@@ -33,7 +33,7 @@ function AlertComponent({ card, setCard, newCardAdded }) {
           value={card.answer}
           name='answer'
           onChange={changeHandler}
-          className='deck__formControl'
+          className='deck__formControl posRelative'
         />
       </div>
     </>

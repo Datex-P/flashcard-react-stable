@@ -18,7 +18,7 @@ export default function AddQuestionsToDeck({ index, name,
     dataBase,setDataBase,
     editButtonClicked, 
     setShowProgressDiagram,
-  //  setHideMenu
+  //  setdeck__deckEmptyCont
   } = useContext(Context);
 
   function addToDeck() {
@@ -27,8 +27,7 @@ export default function AddQuestionsToDeck({ index, name,
     setDataBase(newDataBase)
     setNewCardAdded(true)
 
-    if (card.question.trim().length !== 0 && 
-        card.answer.trim().length !== 0) {
+    if (card.question.trim().length !== 0 && card.answer.trim().length !== 0) {
       setTimeout(() => {
         setCard({ question: '', answer: '' })
         setNewCardAdded(false)
@@ -54,7 +53,7 @@ export default function AddQuestionsToDeck({ index, name,
         setShow(true)
         setShowProgressDiagram(false)
         setScrollbarVisible(false)
-    //    setHideMenu(true)
+    //    setdeck__deckEmptyCont(true)
       }
     }
 
@@ -89,7 +88,7 @@ export default function AddQuestionsToDeck({ index, name,
     setShow(false)
     setHideCreateDeckBtn(false)
     setShowProgressDiagram(true)
- //   setHideMenu(false) 
+ //   setdeck__deckEmptyCont(false) 
     setScrollbarVisible(true)
   }
   

@@ -18,7 +18,7 @@ export default function MenuContainer() {
 
   return (
 
-    <div className='mt-25px height100px justify-between pl-10px pr-10px'>
+    <div className='mt-25px height100px justify-between pl-20px pr-10px'>
       <Hamburger
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}

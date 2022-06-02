@@ -6,8 +6,10 @@ import QuestionMarkCont from './QuestionMarkCont'
 import ShowMessage from './ShowMessage'
 import FlashcardTextOrReset from './FlashcardTextOrReset'
 
-export default function DeleteCardQuestionBox({ card, 
-  pauseOrDelete,deleteWindow, 
+export default function DeleteCardQuestionBox({ 
+  card, 
+  pauseOrDelete,
+  deleteWindow, 
   trashEvent, 
   setShowAnswerBtn=()=>{},
   setEditBtnClicked=()=>{},
@@ -34,11 +36,7 @@ export default function DeleteCardQuestionBox({ card,
     randomQuestion:randomQuestion
   }
 
-
-
-
 return (
-
       <Modal
         show={showDeleteWindow}
         onHide={deleteWindow}
@@ -46,7 +44,7 @@ return (
         keyboard={false}
         id='deleteWindow'
         dialogClassName='backgroundModal'
-        className='justify-center posRelative zIndex-5'
+        className='justify-center zIndex-5'
       >
         <QuestionMarkCont />
         <Modal.Header>
@@ -58,12 +56,17 @@ return (
               />
             </Modal.Title>
             <div className='deck__redCross-cont'>
-              <div className='deck__redCross'>x</div>
+              <div className='deck__redCross'>
+                  x
+              </div>
             </div>
         </Modal.Header>
-        <Modal.Body className='justify-center-align-center deck__bg-white'>
-         
-            <ResetQuestionText pauseOrDelete={pauseOrDelete} resetQuestionText={resetQuestionText} card={card} />
+        <Modal.Body className='justify-center-align-center deck__bg-white'>        
+            <ResetQuestionText 
+              pauseOrDelete={pauseOrDelete} 
+              resetQuestionText={resetQuestionText} 
+              card={card} 
+            />
         </Modal.Body>
         <Modal.Footer className='deck__bg-white'>
             <NoAndYes data={noAndYesProps}/>            
@@ -79,8 +82,8 @@ function ResetQuestionText({resetQuestionText, pauseOrDelete, card}) {
     {
       resetQuestionText?  
       'Do you want to reset the stats?'
-            : 
-        `Do you want to ${pauseOrDelete.toLowerCase()} this ${card} ?` 
+         : 
+      `Do you want to ${pauseOrDelete.toLowerCase()} this ${card} ?` 
     }
     </>
   )

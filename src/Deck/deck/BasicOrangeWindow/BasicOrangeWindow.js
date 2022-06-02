@@ -20,16 +20,19 @@ export default function BasicOrangeWindow({
               title
 }) {
 
-  const {dataBase, setDataBase, setHideMenu,setHideCreateDeckBtn,
+  const {dataBase, setDataBase, 
+   // setHideMenu,
+    setHideCreateDeckBtn,
         setShowProgressDiagram} = useContext(Context);
   const basicOrangeRef = useRef(null)
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
 
+  let someCardsPaused = dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0
   
   function redCrossHandler () {
     setShow(false);
     setEdit(false);
-    setHideMenu(false) //menu gets shown again
+  //  setHideMenu(false) //menu gets shown again
     setHideCreateDeckBtn(false) //createDeckBtn is shown again
     //setShowRepeatBtn(false);
     setShowAnswerBtn(true);
@@ -44,7 +47,7 @@ export default function BasicOrangeWindow({
   }
 
   function mouseEnterHandler () {
-    if (dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0 && !dataBase.DeckNames[index].editModeActive) {
+    if (someCardsPaused && !dataBase.DeckNames[index].editModeActive) {
       document
       .querySelector(".deck__onOffSwitch-label")
       .classList.add("pointer");
@@ -52,7 +55,7 @@ export default function BasicOrangeWindow({
   }
 
   function mouseLeaveHandler () {
-    if (dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0) {
+    if (someCardsPaused) {
       document.querySelector(".deck__onOffSwitch-label").classList.remove("pointer");
     }
   }
@@ -70,18 +73,13 @@ export default function BasicOrangeWindow({
        }, 2000)  
      }
     }
-    document.addEventListener('click', saveIconBlinks)
+    if(show){
+      setTimeout(()=>{document.addEventListener('click', saveIconBlinks)},500)
+      
+    }
+    //document.addEventListener('click', saveIconBlinks)
     return ()=>{document.removeEventListener('click', saveIconBlinks); setBlinkingSaveIcon(false);console.log('got unmounted')}
   },[show])
-
-  useEffect(() => {
-    if ( stats){
-      if (document.querySelector('.modal-dialog')) {
-        let elem = document.getElementsByClassName('modal-dialog')
-        elem[0].style.padding='28px'
-        }
-    }
-  }, [ stats]);
 
   useEffect(()=>{
     //let element = document.querySelector('mod')
@@ -93,7 +91,7 @@ export default function BasicOrangeWindow({
       key={index}
       show={show}
       ref={basicOrangeRef}
-      onHide={() => setShow(false)}  
+      onHide={()=>setShow(false)}  
       contentClassName={'mod'}
       backdrop="static"
       style={{
@@ -123,6 +121,7 @@ export default function BasicOrangeWindow({
             className="deck__onOffSwitch"
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
+            title={`${someCardsPaused? 'Click to show all paused cards':''}`}
           >
             {mainBox &&
               <InputCheckbox

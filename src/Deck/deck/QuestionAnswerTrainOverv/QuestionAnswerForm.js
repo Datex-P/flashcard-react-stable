@@ -11,7 +11,7 @@ function QuestionAnswerForm({answer=false,card, editBtnClicked, changeHandler, i
             disabled={!editBtnClicked}
             name="answer"
             onChange={changeHandler}
-            className="deck__formControl"
+            className='deck__formControl posRelative'
           //  ref={inputRef}
         />
      </div>

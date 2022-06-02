@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect} from "react";
 import { Context } from "../../../Context";
 import { Button} from "react-bootstrap";
 import editimg from "../../../icons/edit.svg";
@@ -18,6 +18,8 @@ export default function QuestAnswerTrainOverv({
         setDecksAreVisible,
         setScrollbarVisible,
         setHideCreateDeckBtn,
+        showThreeDots,
+        setShowThreeDots,
         pauseIsActive, setPauseIsActive,
         data,
         index,
@@ -26,7 +28,6 @@ export default function QuestAnswerTrainOverv({
         setCreateDeckButtonIsVisible = () => {}
     }) {
 
-  const [checked, setChecked] = useState(false);
   const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [randomQuestion, setRandomQuestion] = useState(null);
   const [cardModified, setCardModified] = useState(false);
@@ -46,20 +47,21 @@ export default function QuestAnswerTrainOverv({
   const {
     dataBase, setDataBase, 
     setShowProgressDiagram,
+    threeDotsOpen, setThreeDotsOpen,
     } = useContext(Context);
 
-  useEffect(() => {
-    // if (editBtnClicked) {
-    //   inputRef.current.focus();
-    // }
-  }, [editBtnClicked]);
+
+  useEffect(()=>{
+    console.log(showDeleteWindow, 'show delete window')
+    console.log(trash, 'trash')
+  },[showDeleteWindow, trash])
 
   function handlePause() {
-    // let newDataBase = {...dataBase}
-    // let savePausedState = !pauseIsActive
-    // setPauseIsActive(savePausedState)
-    // dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
-    // setDataBase(newDataBase)
+    let newDataBase = {...dataBase}
+    let savePausedState = !pauseIsActive
+    setPauseIsActive(savePausedState)
+    dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
+    setDataBase(newDataBase)
   }
 
   useEffect(() => {
@@ -71,6 +73,11 @@ export default function QuestAnswerTrainOverv({
     }
   }, [cardModified]);
 
+  useEffect(()=>{
+    console.log('edit btn was clicked')
+   // debugger
+  },[editBtnClicked])
+
   function generateRandom() {
     let newRandomQuestion = null;
     if (dataBase.DeckNames[index].pauseMode) {
@@ -79,7 +86,6 @@ export default function QuestAnswerTrainOverv({
         data = data.filter((item) => item.paused === true);
       }
     }
-
     if (data.length === 0) {
       alert("add questions to deck");
       setDeckLengthNotZero(false);
@@ -105,18 +111,27 @@ export default function QuestAnswerTrainOverv({
       }
       if(newRandomQuestion === randomQuestion){
         generateRandom()
-      }else{
+      } else {
         setRandomQuestion(newRandomQuestion);
         setCard(data[newRandomQuestion]);
         setShow(true);
-      }
-      
+      }    
     }
   }
 
+  function saveHandler() {
+    let newDataBase = { ...dataBase };
+    newDataBase.DeckNames[index].data[randomQuestion] = card;
+    setDataBase(newDataBase);
+  }
+
+  function showAnswerHandler() {
+    setShowAnswerBtn(false);
+    setShowRepeatBtn(true);
+  }
+
   function discardHandler() {
-    setCard(data[randomQuestion]);
-   
+    setCard(data[randomQuestion]);  
   }
 
   // function addToQueue(time) {
@@ -175,12 +190,6 @@ export default function QuestAnswerTrainOverv({
     editModeActive();
   }
 
-  function saveHandler() {
-    let newDataBase = { ...dataBase };
-    newDataBase.DeckNames[index].data[randomQuestion] = card;
-    setDataBase(newDataBase);
-  }
-
   function changeHandler(e) {
     let { name, value } = e.target;
     setCard({ ...card, [name]: value });
@@ -203,18 +212,19 @@ export default function QuestAnswerTrainOverv({
   }
 
   function pauseEventHandler () {
-    handlePause();
+  // handlePause();
     setTrash(true);
     setShowDeleteWindow(true);
+    console.log('pause event triggered')
   }
-
 
   return (
     <>
       <OpenDeckBtn 
-          data = {data}
-          generateRandom = {generateRandom}
-          paused = {paused}
+          data={data}
+          generateRandom={generateRandom}
+          paused={paused}
+          setThreeDotsOpen={setThreeDotsOpen}
           setHideCreateDeckBtn={setHideCreateDeckBtn}
           setDecksAreVisible={setDecksAreVisible}
           setScrollbarVisible={setScrollbarVisible}
@@ -229,7 +239,7 @@ export default function QuestAnswerTrainOverv({
           mainBox={mainBox}
           index={index}
           setScrollbarVisible={setScrollbarVisible}
-          id= 'questionAnswerOverview'
+          id='questionAnswerOverview'
           setEditBtnClicked={setEditBtnClicked}
           createDeckButtonIsVisible={createDeckButtonIsVisible}
           setCreateDeckButtonIsVisible={setCreateDeckButtonIsVisible}
@@ -241,11 +251,14 @@ export default function QuestAnswerTrainOverv({
                 text={"card"}
                 editButtonClicked={true}
                 editBtnClicked={editBtnClicked}
+                setEditBtnClicked={setEditBtnClicked}
                 className='deck__threeDotsInQuestAnsw posAbsolute'
                 threeDotsContainer={{position: 'default'}}
                 paused={paused}
-                // setThreeDotsOpen={setThreeDotsOpen}
-                // threeDotsOpen={threeDotsOpen}
+                showThreeDots={showThreeDots}
+                setShowThreeDots={setShowThreeDots}
+                setThreeDotsOpen={setThreeDotsOpen}
+                threeDotsOpen={threeDotsOpen}
                 setShowFromParent={setThreeDotsMenuOpen}
                 index={index}
                 edit
@@ -266,12 +279,12 @@ export default function QuestAnswerTrainOverv({
           }
         >
         <div >
-          {editBtnClicked && (
-            <div className='deck__editBtn align-center posRelative'>
+          {editBtnClicked && 
+            <div className='ml-20px align-center posRelative'>
                <img alt="edit" src={editimg} /> 
               <span className='ml-3px'>mode</span>
             </div>
-          )}
+          }
           {data[randomQuestion] && (
             <>
               <QuestionAnswerForm 
@@ -281,23 +294,19 @@ export default function QuestAnswerTrainOverv({
                // inputRef
               />
               {showAnswerBtn && 
-               !dataBase?.DeckNames[index]?.pauseMode &&
-              (            
+               !dataBase?.DeckNames[index]?.pauseMode &&            
                <Button
                   variant="secondary"
                   className="p-1 deck__showAnswer mt-20px my-5 justify-center-align-center"
-                  onClick={() => {
-                    setShowAnswerBtn(false);
-                    setShowRepeatBtn(true);
-                  }}
+                  onClick={showAnswerHandler}
                 >
                   Show answer
                 </Button> 
-              )}
+              }
               {dataBase?.DeckNames[index]?.pauseMode &&
               <PauseModeHandler
                 generateRandom={generateRandom}
-                index = {index}
+                index={index}
                 randomQuestion={randomQuestion}
               />
               } 
@@ -332,12 +341,11 @@ export default function QuestAnswerTrainOverv({
                     refresh={refreshHandler}
                   />
               }
-              {trash && showDeleteWindow && 
+              {trash && 
+               showDeleteWindow && 
                 <DeleteCardQuestionBox
-                  card="card"
-                  pauseOrDelete={`${pauseOrDeleteText ? "Pause" : "Delete"}`}
-                  checked={checked}
-                  setChecked={setChecked}
+                  card='card'
+                  pauseOrDelete={`${pauseOrDeleteText ? 'Pause' : 'Delete'}`}
                   randomQuestion={randomQuestion}
                   show={show}
                   index={index}

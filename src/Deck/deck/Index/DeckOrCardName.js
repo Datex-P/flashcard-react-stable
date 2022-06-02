@@ -40,7 +40,6 @@ export default function DeckOrCardName({ data: {
             style={{ background: bg }}
           >
             {name}
-
           </div>
         ) : (
           <input

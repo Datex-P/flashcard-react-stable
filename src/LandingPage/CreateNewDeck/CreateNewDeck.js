@@ -64,6 +64,7 @@ useEffect(()=>{
             editButtonClicked ? 'cursorPointer' : ''
           }`}
           onClick={createDeckHandler}
+          title='Click to create a new deck'
         >
           Create Deck
         </button>

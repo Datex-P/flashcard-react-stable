@@ -10,17 +10,36 @@ export default function PauseModeHandler({
   const { dataBase, setDataBase } = useContext(Context);
 
   function unpauseHandler() {
+
     let newDataBase = { ...dataBase };
-    newDataBase.DeckNames[index].data.filter((item) => item.paused)[randomQuestion].paused = false;
-    setDataBase(newDataBase);
-    generateRandom();
+ 
+    if (newDataBase.DeckNames[index].data.filter((item) => item.paused).length >1) { 
+      newDataBase.DeckNames[index].data.filter((item) => item.paused)[randomQuestion].paused = false;
+      setDataBase(newDataBase);
+   //   generateRandom();
+    } else if(newDataBase.DeckNames[index].data.filter((item) => item.paused).length === 1){
+      newDataBase.DeckNames[index].data.filter((item) => item.paused)[randomQuestion].paused = false;
+      newDataBase.DeckNames[index].pauseMode = false
+      setDataBase(newDataBase);
+      document.querySelector('.deck__onOffSwitch-checkbox').checked = false 
   }
+}
+
+  function keepPausedHandler() {
+    generateRandom()
+  }
+
 
   return (
     <>
       <div className='deck__pauseModeHandler posAbsolute'>
-        <img src={pauseimg} alt={"pause"} />
-        <span className='ml-7px'>mode</span>
+        <img 
+          src={pauseimg} 
+          alt={"pause"}
+        />
+        <span className='ml-7px'>
+          mode
+        </span>
       </div>
       <div className='justify-center'>
         <div className='justify-around width300px'>
@@ -32,7 +51,7 @@ export default function PauseModeHandler({
           </div>
           <div
             className='justify-center deck__unpause-keepPaused deck__showAnswerButton align-center'
-            onClick={generateRandom}
+            onClick={keepPausedHandler}
           >
             Keep paused
           </div>

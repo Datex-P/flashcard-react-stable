@@ -174,9 +174,7 @@ const LandingPage = () => {
                 ).arr.reverse()
                 }
               </div>
-              <Scrollbar
-                scrollbarVisible={scrollbarVisible}
-              />
+              <Scrollbar scrollbarVisible={scrollbarVisible}/>
             </div>   
            }
           {arrowDown &&

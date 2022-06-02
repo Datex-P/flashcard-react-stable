@@ -3,43 +3,41 @@ import play from "../../../icons/play.svg";
 import { Context } from "../../../Context";
 
 
-export default function ThisDeckPaused ({index}) {
+export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}) {
 
   const { dataBase, setDataBase } = useContext(Context);
-  let colors = ["#ffcdb2", "#ffb4a2", "#e5989b", "#b5838d", "#6d6875"];
+  let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
-  console.log(index, 'index in deck paused here')
-  console.log(dataBase, 'database here')
-
-  function handlePause(index) { 
+  function handlePause() { 
     let newDataBase = { ...dataBase };
-    newDataBase.DeckNames[index].paused = true;
+    newDataBase.DeckNames[index].paused = false;
     setDataBase(newDataBase);
+    setShowThreeDots(!showThreeDots) //three dots get hidden commented out for now
   }
   
   return (
       <div
-        className="deck__deckEmptyAndPausedContainer justify-evenly-align-center flex-column"
+        className='deck__deckEmptyCont justify-evenly-align-center flex-column'
         style={{ background: colors[index % 5] }}
       >
         <div>
         This deck is paused.
         </div>
-        <div className='align-center'>
+        <div className='align-center mt-5px'>
           Press:
           <button
-            className="deck__btn-play justify-center-align-center"
-            onClick={handlePause}
+            className='deck__btn-play justify-center-align-center'
+          //  onClick={handlePause}
           > 
             <img 
               src={play} 
               alt='play' 
+              onClick={handlePause}
               className='paused__img-play'
-              // onClick={handlePause}
             />
             </button>
         </div>
-        <div className="deck__countToStudyGoal posRelative">
+        <div className='deck__countToStudyGoal posRelative'>
           It doesn't count to the study goal.
         </div>
       </div>

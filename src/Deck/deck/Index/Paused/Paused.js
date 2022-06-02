@@ -1,11 +1,19 @@
 import React from 'react';
-import Unpause from '../../../Stats/Unpause'
 import ThisDeckPaused from '../ThisDeckPaused'
 import DeckEmpty from './DeckEmpty'
 import DeckNotEmpty from './DeckNotEmpty'
 
 
-function Paused({data, index, paused, name, setShow, style}) {
+function Paused({
+  data, 
+  index, 
+  paused, 
+  name, 
+  showThreeDots, setShowThreeDots, 
+  setShow, 
+  style
+}) {
+
 
   return (
     <div className="paused justify-between flex-column">
@@ -14,9 +22,11 @@ function Paused({data, index, paused, name, setShow, style}) {
         : 
           <DeckNotEmpty index={index} paused={paused} style={style}/>
       }
-      {paused &&
-   
-        <ThisDeckPaused index={index}/>
+      {paused &&  
+        <ThisDeckPaused 
+          showThreeDots={showThreeDots} 
+          setShowThreeDots={setShowThreeDots} 
+          index={index}/>
       }
       {name && data.length !== 0 &&
         <div

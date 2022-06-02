@@ -66,11 +66,8 @@
 }
 
 .deck__saveAndDiscard {
-  width: 166px;
   padding: 4px;
   height: 71px;
-  top: 345px;
-  position: absolute;
   border: 1px grey solid;
   border-radius: 5px;
 }
@@ -112,11 +109,6 @@
   outline: none !important;
   border: none !important;
   font-size: 14px;
-}
-
-.deck__deckempty {
-  height: 90px;
-  width: 122px;
 }
 
 .deck__container_input {
@@ -248,12 +240,12 @@
 }
 
 .deck__addToDeck {
-    width: 110px;
-    height: 32px;
-    padding: 5px;
-    box-sizing: border-box;
-    color: white;
-    background: grey;
+  width: 110px;
+  height: 32px;
+  padding: 5px;
+  box-sizing: border-box;
+  color: white;
+  background: grey;
 }
 
 .deck__threeDotsBtn_btn_pause {
@@ -268,6 +260,7 @@
   color: black !important;
   outline:none;
   border-radius: 0px;
+  padding: 4px;
 }
 
 .deck__threeDotsBtn__btn:hover {
@@ -309,7 +302,6 @@
   font-size: 13px;
   top: 110px;
 }
-
 
 .deck__btn-play {
   border: 1px solid black;
@@ -384,7 +376,7 @@
   border: none !important;
 }
 
-.deckEmptyAndPausedContainer {
+.deck__deckEmptyCont {
   padding: 5px;
   width: 152px;
   position: absolute;
@@ -406,19 +398,13 @@
   height: 23px;
 }
 
-.deck__editBtn {
-  top: -18px;
-  margin-left: 20px;
-}
-
 .deck__formControl {
   width: 93% !important;
   height: 93px !important;
-  position: relative;
   left: 10px;
   outline: none !important;
   padding-left: 10px;
-  padding-top: 2px;
+  padding-top: 5px;
   box-sizing: border-box;
 }
 
@@ -483,6 +469,10 @@
   top: 22px;
 }
 
+.deck__bg-orange {
+  background:rgba(200, 168, 115)
+}
+
 .deck__threeDotsInQuestAnsw {
   top: 14px;
   right: 19px;
@@ -502,11 +492,32 @@
   background-color:white;
 }
 
+.SaveBtn {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.DiscardBtn {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.SaveBtn:hover {
+  background-color: #155724;
+  color: white;
+}
+
+.DiscardBtn:hover {
+  background-color: #721c24;
+  color: white;
+}
+
 .deck__unpause-keepPaused {
   cursor: pointer;
-  width: 113px;
-  padding: 7px;
+  width: 100px;
+  padding: 5px;
   height:23px;
+  font-size: 15px;
 }
 
 .deck__threeDotsBtnIndex {

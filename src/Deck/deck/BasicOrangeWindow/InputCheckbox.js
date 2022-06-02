@@ -21,9 +21,10 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
     if(!dataBase?.DeckNames[index]?.editModeActive) {
 
       if (dataBase.DeckNames[index].data.filter(x => x.paused === true).length === 0) {
-        return
-      } else {
-      
+     //   return
+        document.querySelector('.deck__onOffSwitch-checkbox').disabled = true
+        console.log('switch here')
+      } else {    
           if (dataBase.DeckNames[index].pauseMode) {
             dataBase.DeckNames[index].pauseMode=false
             setDataBase(newDataBase)

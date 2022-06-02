@@ -62,6 +62,12 @@
   top:34px;
 }
 
+.landing__showDiagram {
+  height: fit-content;
+  left: 42px;
+  top: 77px;
+}
+
 .createNewDeck__too-short-or-long {
   left: 222px;
   top: 59px;

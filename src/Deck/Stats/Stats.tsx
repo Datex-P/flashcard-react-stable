@@ -11,7 +11,7 @@ import DeleteCardQuestionBox from "../deck/DeleteCardQuestionBox/DeleteCardQuest
 import './stats.css'
 
 function Stats({ history }:any) {
-  const { dataBase, setShowProgressDiagram, setDataBase } = useContext(Context);
+  const { dataBase, setShowProgressDiagram, setDataBase, threeDotsOpen, setThreeDotsOpen } = useContext(Context);
   const [showDeleteFrame, setShowDeleteFrame] = useState(false);
   const [checked, setChecked] = useState(false);
   const [show, setShow] = useState(false);
@@ -47,17 +47,29 @@ function Stats({ history }:any) {
             text={"stats"}
             className="stats__resetButtonStyling"
             editButtonClicked
+            setThreeDotsOpen={setThreeDotsOpen}
+            threeDotsOpen={threeDotsOpen}
             resetEvent={() => {
-              setShow(!show);
+           //   setShow(!show);
               setShowDeleteFrame(true);
+           console.log('hello reset')
               //  reset=false
+            }}
+            style= {{
+              position: 'absolute',
+              top: '0px',
+              border: '1px solid black',
+              left: '292px',
+              zIndex: '99'
             }}
             reset
           />
         }
       >
         <div>
-          <div className='stats__study-breakdown mt-15px-imp mb-15px-imp'>Today's study breakdown</div>
+          <div className='stats__study-breakdown mt-15px-imp mb-15px-imp'>
+            Today's study breakdown
+          </div>
           <div className='stats__dateDiagram'>
              {!dataBase?.openedToday
               ? 'No cards studied today'
@@ -73,8 +85,11 @@ function Stats({ history }:any) {
                 checked={checked}
                 setChecked={setChecked}
                 showDeleteWindow={showDeleteFrame}
-                deleteWindow={() => setShowDeleteFrame(false)}
-                trashEvent={trashEventHandler()}
+                deleteWindow={() => {
+                  setShowDeleteFrame(false); 
+                  setThreeDotsOpen(false)
+                }}
+                trashEvent={trashEventHandler}
                 onHide={() => {}}
               />
             )}

@@ -33,14 +33,19 @@ export default function Deck({
   const [showDeleteWindow, setShowDeleteWindow] = useState(true); //if true and triggered the delete window with yes and no button is shown
   const [trash, setTrash] = useState(false);
   const [pauseIsActive, setPauseIsActive] = useState(true);
-  const [threeDotsOpen, setThreeDotsOpen] = useState(false);
+  const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
 
   const {
     active, setActive,
     dataBase, setDataBase,
     editButtonClicked, setEditButtonClicked,
+    threeDotsOpen, setThreeDotsOpen,
     setChangeDeckNameOpen
   } = useContext(Context);
+
+  useEffect(()=>{
+    console.log(index, 'index in use effect')
+  },[index])
 
   //const [index, setIndex] = useState(0);
 
@@ -64,6 +69,7 @@ export default function Deck({
 
   function handlePause(index) {
     let newDataBase = { ...dataBase };
+    console.log(index, 'index in handle pause index.js')
     newDataBase.DeckNames[index].paused = true;
     setDataBase(newDataBase);
 
@@ -176,6 +182,8 @@ export default function Deck({
               deckNameLengthRight &&
               <ThreeDotsBtn
                 name={name}
+                showThreeDots={showThreeDots}
+                setShowThreeDots={setShowThreeDots}
                 text={"deck"}
                 data={data}
                 showFromParent={threeDotsMenuOpen}
@@ -208,7 +216,7 @@ export default function Deck({
                   setThreeDotsMenuOpen(false);
                   setEditButtonClicked(!editButtonClicked);
                 }}
-                pauseEvent={(index) => {
+                pauseEvent={() => {
                   handlePause(index)
                 }}
                 trashEvent={
@@ -230,7 +238,11 @@ export default function Deck({
                 card="deck"
                 threeDotsMenuOpen={threeDotsMenuOpen}
                 index={index}
-                deleteWindow={() => setShowDeleteWindow(false)}
+                deleteWindow={() => {
+                  setShowDeleteWindow(false); 
+                  setThreeDotsOpen(false) //not sure if needed here
+                  console.log('I triggered delete window')
+                }}
                 trashEvent={() => {
                   deleteDeck();
                   //handleActive(index - 1);
@@ -242,6 +254,8 @@ export default function Deck({
           <Paused
             data={data}
             index={index}
+            showThreeDots={showThreeDots}
+            setShowThreeDots={setShowThreeDots}
             setShow={setShow}
             paused={paused}
             name={name}
@@ -253,6 +267,8 @@ export default function Deck({
             index={index}
             data={data}
             paused={paused}
+            showThreeDots={showThreeDots}
+            setShowThreeDots={setShowThreeDots}
             setDecksAreVisible={setDecksAreVisible}
             setPauseIsActive={setPauseIsActive}
             pauseIsActive={pauseIsActive}

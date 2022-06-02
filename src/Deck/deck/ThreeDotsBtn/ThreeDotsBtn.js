@@ -16,18 +16,21 @@ function ThreeDotsBtn({
                         pause=false,
                         className, 
                         editBtnClicked, //is the editBtn in the main Question/Answer Overview
+                        setEditBtnClicked,
                         data,
                         index, input, threeDotsContainer,
                         text, 
                         // showFromParent, 
                         style, 
                         threeDotsOpen,
+                        showThreeDots,
+                        setShowThreeDots,
                         setThreeDotsOpen,
                         nameOfTopDeck, 
-                        editEvent = () => { }, 
-                        trashEvent = () => { },
-                        resetEvent = () => { },
-                       // pauseEvent = () => {},
+                        editEvent = () => {}, 
+                        trashEvent = () => {},
+                        resetEvent = () => {},
+                        pauseEvent = () => {},
                         type
                       }) {
    const {dataBase, setDataBase, editButtonClicked, setEditButtonClicked} = useContext(Context);
@@ -36,13 +39,17 @@ function ThreeDotsBtn({
   console.log(input, 'input in three dots')
 
 
-  const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
+  const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false) //blinks when deck name in input mode and clicked outside
   const [pauseIsActive, setPauseIsActive] = useState(true)
+
+
  
   function trashHandler() {
     setEditButtonClicked(true) //input field gets closed on landing page
     setThreeDotsOpen(false) //three dots menu gets closed
-    trashEvent()()
+  trashEvent() //just invoke once when in question answer
+  //trashEvent()()
+    console.log('trash handler fired')
   }
 
   const handleClick = () => {
@@ -56,6 +63,10 @@ function ThreeDotsBtn({
     // }
     // debugger
   };
+
+  useEffect(()=>{
+    console.log(threeDotsOpen, 'three dots open here')
+  },[threeDotsOpen])
 
   const threeDotsRef = useRef(null)
 
@@ -93,6 +104,8 @@ function ThreeDotsBtn({
   }
  
   function handleEdit() {
+    console.log('edit event fired')
+  //  setEditBtnClicked(true)
     editEvent() 
     if(type==='card'){
       setThreeDotsOpen(!threeDotsOpen)
@@ -105,21 +118,26 @@ function ThreeDotsBtn({
     // }
   }
   
-  // function handlePause () {
-  //   //pauseEvent(index)
-  //  // let newDataBase = {...dataBase}
-  //   let savePausedState = !pauseIsActive
-  //   setPauseIsActive(savePausedState)
+ function handlePause () {
+   pauseEvent(index)
+  //  let newDataBase = {...dataBase}
+    let savePausedState = !pauseIsActive
+    setPauseIsActive(savePausedState)
+  //  dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
+  //  let key = newDataBase.DeckNames.findIndex(deck=>deck.name === name)
+  // newDataBase.DeckNames[key].paused = true //does not work for some reason
+  //  setDataBase(newDataBase)
+ //  setEditButtonClicked(true)
+    setThreeDotsOpen(false) //menu is closed
+    setShowThreeDots(!showThreeDots) //three dots get hidden commented out for now
+   // debugger
+    //setNameOfTopDeck(name)  
+  }
 
-  //  // dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
-  //   //let key = newDataBase.DeckNames.findIndex(deck=>deck.name === name)
-  //  // newDataBase.DeckNames[key].paused = true //does not work for some reason
-  // //  setDataBase(newDataBase)
-  //  // setEditButtonClicked(true)
-  //   setThreeDotsOpen(false)
-  //   //setNameOfTopDeck(name)  
-  // }
 
+  useEffect(()=>{
+    console.log(showThreeDots, 'show three dots triggered')
+  },[showThreeDots])
 
   return (
     <>
@@ -128,15 +146,16 @@ function ThreeDotsBtn({
       <div style={threeDotsContainer}
            ref={threeDotsRef}
       >
+      {showThreeDots &&
         <div 
             className='deck__threeDotsCont posAbsolute deck__threeDotsPositioning' 
             onClick={handleClick}
         >
                   ... 
         </div>
+      }
         {
-         // threeDotsOpen &&          
-         true && 
+          threeDotsOpen &&          
           <div 
             ref={ref}
             style={style}
@@ -147,11 +166,11 @@ function ThreeDotsBtn({
                   className='deck__threeDotsBtn__btn align-center  p-1 '
                   onClick={handleEdit} 
               >                     
-                   <img 
-                      alt='edit'              
-                      className={`mr-3px ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`} 
-                      src={editButtonClicked? editimg: saveimg } 
-                  />  
+                <img 
+                  alt='edit'              
+                  className={`mr-3px ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`} 
+                  src={editButtonClicked? editimg: saveimg } 
+                />  
                 {text}
               </button>
             }
@@ -159,13 +178,13 @@ function ThreeDotsBtn({
               pause &&
               <button 
                   className={`deck__threeDotsBtn_btn_pause deck__threeDotsBtn__btn align-center  p-1 ${dataBase.DeckNames[index]?.paused? 'deck__threeDotsBtn__conditional': ''} `}
-                //  onClick={handlePause(index)}
+                  onClick={handlePause}
               >
-                   <img 
-                      alt='pause' 
-                      className='mr-3px'
-                      src={!dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
-                  /> 
+                <img 
+                  alt='pause' 
+                  className='mr-3px'
+                  src={!dataBase.DeckNames[index]?.paused? pauseimg: playimg }  
+                /> 
                   {text}
               </button>
             }

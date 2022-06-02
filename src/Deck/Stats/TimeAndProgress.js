@@ -2,20 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import "../../styles.scss";
 import { Context } from "../../Context";
 
+// interface itemProps {
+//   openHistory: string[];
+// }
 
-interface itemProps {
-  openHistory: string[];
-}
+//interface TimeObj { 6: number[]; 12: number[]; 18: number[]; 24: number[]; }
 
-interface TimeObj { 6: number[]; 12: number[]; 18: number[]; 24: number[]; }
-
-const TimeAndProgress: React.FC = () => {
+const TimeAndProgress = () => {
   let studyGoal = 80;
 
   const {dataBase} = useContext(Context);
   const [currentProgress, setCurrentProgress] = useState(0);
   const [widthAdjusted, setWidthAdjusted] = useState(0);
-  const [timeObj, setTimeObj] = useState<TimeObj>({} as TimeObj);
+  const [timeObj, setTimeObj] = useState({});
 
   
   useEffect(() => {
@@ -26,43 +25,38 @@ const TimeAndProgress: React.FC = () => {
     //   || 0);
     setCurrentProgress(currentProgress);
 
-    let firstVal: number[] = [];
-    if (dataBase?.DeckNames) {
-    for (let deckItem of dataBase?.DeckNames) {
-      firstVal.push(
-        deckItem?.data?.filter(
-          (item) =>
-            item.openHistory &&
-            item.openHistory.filter(
-              (item) =>
-                new Date(item).getHours() < 12 && new Date(item).getHours() > 6
-            ).length
-        )
-      );
-      var secVal = deckItem.data.filter(
-        (item:itemProps) =>
+    let firstVal = [];
+    let secVal = [];
+    let thirdVal = [];
+    let fourthVal = [];
+
+    function timeHorizon (deckItem, starthour, endhour) {
+      return deckItem?.data?.filter(
+        (item) =>
           item.openHistory &&
           item.openHistory.filter(
-            (item:string) =>
-              new Date(item).getHours() < 18 && new Date(item).getHours() > 12
+            (item) =>
+              new Date(item).getHours() < endhour && new Date(item).getHours() > starthour
           ).length
-      );
-      var thirdVal = deckItem.data.filter(
-        (item: itemProps) =>
-          item.openHistory &&
-          item.openHistory.filter(
-            (item:string) =>
-              new Date(item).getHours() < 24 && new Date(item).getHours() > 18
-          ).length
-      );
-      var fourthVal = deckItem.data.filter(
-        (item: itemProps) =>
-          item.openHistory &&
-          item.openHistory.filter((item:string) => new Date(item).getHours() < 6)
-            .length
-      );
+      ).filter(x=>x).length
     }
+
+    function valueReducer (x) {
+      return x.reduce((acc, cur)=>acc+cur, 0)
+    }
+
+    if (dataBase?.DeckNames) {
+      for (let deckItem of dataBase?.DeckNames) {
+        firstVal.push(timeHorizon(deckItem, 6,12))
+        secVal.push(timeHorizon(deckItem, 12,18))
+        thirdVal.push(timeHorizon(deckItem, 18,14))
+        fourthVal.push(timeHorizon(deckItem, 0,6))
+      }
   }
+    firstVal = valueReducer(firstVal)
+    secVal = valueReducer(secVal)
+    thirdVal = valueReducer(thirdVal)
+    fourthVal = valueReducer(fourthVal)
 
     setTimeObj({
       6: firstVal,
@@ -75,8 +69,24 @@ const TimeAndProgress: React.FC = () => {
     setWidthAdjusted(widthAdjusted);
   }, [dataBase]);
 
+  useEffect(()=>{
+    console.log(timeObj, 'time obj here')
+  },[timeObj])
+
+  function rowContainer (key, previousWidthVar, widthVar, x) {
+  
+  return (
+    <Row
+      key={key}
+      previousWidthVar={previousWidthVar}
+      widthVar={widthVar}
+      time={<div className='stats__timesAndProgress_times'>{x}</div>}
+    />
+    )
+  }
+
   function renderLines() {
-    let arr:any = [];
+    let arr = [];
     //change type of arr
     let previousWidthVar = 0;
     for (let i = 6; i <= 24; i += 6) {
@@ -84,58 +94,31 @@ const TimeAndProgress: React.FC = () => {
       if (i in timeObj) {
         let widthVar = ((timeObj[i] || 0) / studyGoal) * 100;
         previousWidthVar += widthVar;
-
+        console.log(previousWidthVar, 'previous width var here')
+ 
         if (i === 18) {
           arr.push(
-            <Row
-              key='1'
-              previousWidthVar={previousWidthVar}
-              widthVar={widthVar}
-              time={<div className='stats__timesAndProgress_times'>{"18 - 24"}</div>}
-            />
+            rowContainer (1, previousWidthVar, widthVar, '18 - 24')
           );
         } else if (i === 24) {
           arr.push(
-            <Row
-              key='2'
-              previousWidthVar={previousWidthVar}
-              widthVar={widthVar}
-              time={<div className='stats__timesAndProgress_times'>{"24 - 06"}</div>}
-            />
+            rowContainer (2, previousWidthVar, widthVar, '24 - 06')
           );
         } else if (i <= 12) {
           if (i < 12) {
             arr.push(
-              <Row
-                key='3'
-                previousWidthVar={previousWidthVar}
-                widthVar={widthVar}
-                time={
-                  <div className='stats__timesAndProgress_times'>
-                    {"0" + i} - {i + 6}
-                  </div>
-                }
-              />
+            rowContainer (3, previousWidthVar, widthVar, '6 - 12')
             );
           } else {
             arr.push(
-              <Row
-                key='4'
-                previousWidthVar={previousWidthVar}
-                widthVar={widthVar}
-                time={
-                  <div className='stats__timesAndProgress_times'>
-                    {"12"} - {"18"}
-                  </div>
-                }
-              />
+            rowContainer (4, previousWidthVar, widthVar, '12 - 18')
             );
           }
         }
       }
+     }
     }
-    }
-    return arr;
+  return arr;
   }
 
   return (
@@ -167,7 +150,7 @@ function Row({ time, previousWidthVar, widthVar }) {
     <div className='d-flex'>
       <div className='stats__time justify-center'>{time}</div>
       <div className='stats__progressBar'>
-        <div className='stats__row height10px'
+        <div className='stats__row height10px align-center'
           style={{
             marginLeft: `${previousWidthVar}%`,
             width: `${widthVar}%`

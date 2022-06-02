@@ -10,7 +10,7 @@ export default function ContextProvider({ children }:any) {
   const [active, setActive] = useState(0);
   const [dataBase, setDataBase] = useState<any>([]);
   const [showProgressDiagram, setShowProgressDiagram] = useState(false)
- // const [hideMenu, setHideMenu] = useState(false) probably not needed
+ // const [deck__deckEmptyCont, setdeck__deckEmptyCont] = useState(false) probably not needed
   const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
   const [threeDotsOpen, setThreeDotsOpen] = useState(false);
 
@@ -131,7 +131,7 @@ export default function ContextProvider({ children }:any) {
         changeDeckNameOpen, setChangeDeckNameOpen,
         dataBase, setDataBase, 
         editButtonClicked, setEditButtonClicked, 
-       // hideMenu, setHideMenu, 
+       // deck__deckEmptyCont, setdeck__deckEmptyCont, 
         hideCreateDeckBtn, setHideCreateDeckBtn,
         showProgressDiagram, setShowProgressDiagram,
         styles, setStyles,
