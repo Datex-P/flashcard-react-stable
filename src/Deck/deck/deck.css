@@ -311,6 +311,15 @@
   border-radius: 12px;
   padding-left: 8px;
   margin-left: 8px;
+  cursor:pointer;
+}
+
+.deck__threeDotsOpen {
+  position: absolute;
+  top: 0px;
+  border: 1px solid black;
+  left: 308px;
+  z-index: 99;
 }
 
 .deck__questionMark1 {

@@ -37,14 +37,6 @@ textarea {
   transform: rotate(90deg);
 }
 
-.settings_width280px {
-  width: 280px;
-}
-
-.settings__outline-none {
-  outline: none;
-}
-
 .settings__weekly-target {
   font-weight: normal;
   font-size: var(--smaller-font)
@@ -66,10 +58,10 @@ textarea {
   margin-bottom: 8px;
 }
 
-.settings__save-or-edit-container {
+.settings__save-or-edit-cont {
   position: absolute;
   right: 8px;
-  top: 132px;
+  top: 115px;
   cursor: pointer;
 }
 

@@ -3,7 +3,9 @@ import React, { useContext} from "react";
 import { Context } from "../../../Context";
  
 function RepeatButtons({ 
-  setShowAnswerBtn,setShowRepeatBtn, generateRandom}) {
+  setShowAnswerBtn,setShowRepeatBtn, 
+  generateRandom}
+  ) {
 
 const {dataBase} = useContext(Context);
 
@@ -16,7 +18,6 @@ function repeatHandler() {
 function RepeatBtn({label, btn, onClick}) {
   
   return (
-
     <div className='flex-column align-center'>
        <div className='fontBold'>
           {label}

@@ -31,7 +31,6 @@ export default function ChartComp() {
   },
   options: {
     elements: {
-
     center:{
      display: true,
      text:'',
@@ -56,7 +55,6 @@ export default function ChartComp() {
       labels: {
         fontColor: 'black'
       }
-
     },
     cutoutPercentage: 81,
     maintainAspectRatio: false,
@@ -74,7 +72,6 @@ export default function ChartComp() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-
   let date = new Date().toDateString()
 
   for (let deck in dataBase.DeckNames) {
@@ -86,7 +83,9 @@ export default function ChartComp() {
 
     deckItem.data.filter((item) => {
       if(new Date(item?.openHistory?.[0]).toDateString() === new Date().toDateString()) {
-        config.data.labels.push(deckItem.name)
+        if(!config.data.labels.includes(deckItem.name)) {
+          config.data.labels.push(deckItem.name)
+        }
       }})
 
       /*<----*/
@@ -98,10 +97,7 @@ export default function ChartComp() {
 
 
     //  cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() == date)).length
-
     //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
-
-
    //  config.data.labels.push(deckItem.name)
       
       //config.data.datasets[0].data.push(10)
@@ -112,9 +108,6 @@ export default function ChartComp() {
       config.data.datasets[0].hoverBackgroundColor.push(deckItem.color)
     }
   }
-
- 
-
 
   Chart.pluginService.register({
     beforeDraw: function(chart) {
@@ -149,6 +142,7 @@ export default function ChartComp() {
           elementHeight,
           maxFontSize
         );
+         
         var minFontSize = centerConfig.minFontSize;
         var lineHeight = centerConfig.lineHeight || 25;
         var wrapText = false;

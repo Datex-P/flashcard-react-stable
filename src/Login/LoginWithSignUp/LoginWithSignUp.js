@@ -2,14 +2,19 @@ import Facebook from "./Facebook";
 import Google from "./Google";
 
 function LoginWithSignUp({ setUser }) {
-
-  if(document.getElementsByClassName('posRelative flex-column justify-between height120px')) {
-    let elem = document.getElementsByClassName('posRelative flex-column justify-between height120px')
-    console.log(elem, 'elem 2 here')
-//    let k = elem[2]
-   // k.style.height = '39px'
-  //  console.log(elem[2], 'elem here')
-    console.log(elem.childNodes, 'elem here')
+  if (
+    document.getElementsByClassName(
+      "posRelative flex-column justify-between height120px"
+    )
+  ) {
+    let elem = document.getElementsByClassName(
+      "posRelative flex-column justify-between height120px"
+    );
+    console.log(elem, "elem 2 here");
+    //    let k = elem[2]
+    // k.style.height = '39px'
+    //  console.log(elem[2], 'elem here')
+    console.log(elem.childNodes, "elem here");
   }
 
   return (
@@ -18,26 +23,26 @@ function LoginWithSignUp({ setUser }) {
         <div className='mb-10px justify-start width100pc login__reset-col'>
           Or login with:
         </div>
-         <div className='posRelative flex-column justify-between height120px'>
+        <div className='posRelative flex-column justify-between height120px'>
           <Facebook setUser={setUser} />
-          <Google /> 
+          <Google />
         </div>
       </div>
       <span className='mt-10px col-darkslategrey'>
         Not a member?
-         <a
-           href='/register'
-           className='posRelative login__text-dec-none login__col-navajowhite ml-10px'
-         >
-           Sign up!
-         </a> 
-       </span>
-       <a
-          href='/forgotPassword'
-          className='posRelative login__text-dec-none login__col-navajowhite mt-10px mr-18px'
-         >
-           Forgot your password?
-         </a>  
+        <a
+          href='/register'
+          className='posRelative login__text-dec-none login__col-navajowhite ml-10px'
+        >
+          Sign up!
+        </a>
+      </span>
+      <a
+        href='/forgotPassword'
+        className='posRelative login__text-dec-none login__col-navajowhite mt-10px mr-18px'
+      >
+        Forgot your password?
+      </a>
     </>
   );
 }

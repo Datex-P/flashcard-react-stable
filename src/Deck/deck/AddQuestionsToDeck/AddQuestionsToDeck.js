@@ -3,8 +3,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal} from 'react-bootstrap'
 import { Context } from '../../../Context';
 import '../../../styles.scss'
-import closeWindow from "../../../icons/closeWindow.svg";
 import AlertComponent from './AlertComponent'
+import closeWindow from "../../../icons/closeWindow.svg";
 
 export default function AddQuestionsToDeck({ index, name, 
   show, setShow, setScrollbarVisible, setHideCreateDeckBtn}) {
@@ -13,12 +13,10 @@ export default function AddQuestionsToDeck({ index, name,
   const [newCardAdded, setNewCardAdded] = useState(false);
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
 
-
   const { 
     dataBase,setDataBase,
     editButtonClicked, 
     setShowProgressDiagram,
-  //  setHideMenu
   } = useContext(Context);
 
   function addToDeck() {
@@ -49,14 +47,15 @@ export default function AddQuestionsToDeck({ index, name,
   //the deck to add cards to the deck
 
   function plusHandler () {
+    if (editButtonClicked) { //see CardOrDeckName Input field not active
       if(!dataBase?.DeckNames[index]?.paused || editButtonClicked) {
         setHideCreateDeckBtn(true)
         setShow(true)
         setShowProgressDiagram(false)
         setScrollbarVisible(false)
-    //    setHideMenu(true)
       }
     }
+  }
 
    useEffect(() => {
   
@@ -89,7 +88,6 @@ export default function AddQuestionsToDeck({ index, name,
     setShow(false)
     setHideCreateDeckBtn(false)
     setShowProgressDiagram(true)
- //   setHideMenu(false) 
     setScrollbarVisible(true)
   }
   
@@ -140,13 +138,11 @@ export default function AddQuestionsToDeck({ index, name,
             position: 'relative'
           }}
         >
-          <Modal.Header 
-              className='border-bottom-0'
-          >
-            <Modal.Title 
-              className='justify-between-align-center mod-title'
-            >
-              <span className='align-center'>Deck: {name}</span>
+          <Modal.Header className='border-bottom-0'>
+            <Modal.Title className='justify-between-align-center mod-title'>
+              <span className='align-center'>
+              Deck: {name}
+              </span>
               <button
                 className='redCross pointer deck__bg-orange'
                 onClick={closeHandler}
@@ -154,16 +150,18 @@ export default function AddQuestionsToDeck({ index, name,
               <img
                 src={closeWindow}
                 alt='redCross'
-                className={`nonDraggableIcon width16px height16px ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`}
+                className={`nonDraggableIcon width16px height16px 
+                          ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`
+                }
               /> 
               </button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body > 
           <AlertComponent 
-              card={card}
-              setCard={setCard}
-              newCardAdded={newCardAdded} 
+            card={card}
+            setCard={setCard}
+            newCardAdded={newCardAdded} 
           />
             <button
               onClick={addToDeck}

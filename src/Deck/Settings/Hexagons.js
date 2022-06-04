@@ -53,8 +53,7 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
             
         <div className='settings__editHex'>
             <div className='settings__blackArrow'></div>           
-            <span className='fontBold'
-            >
+            <span className='fontBold'>
                 {
                   idx <= dataBase?.userPreferences?.days ? 
 

@@ -35,17 +35,19 @@ function Scrollbar({scrollbarVisible}) {
 
   return (
     <>
-    {scrollbarVisible &&
+    {
+      scrollbarVisible &&
       dataBase.DeckNames && 
       dataBase?.DeckNames.length > 1 &&
+
     <div
       ref={scroller}
-      className="landing__scrollbar"
+      className='landing__scrollbar'
       onScroll={scrollHandler}
     >
       <div className='scrollbar-inner'></div>
-  </div>
-}
+    </div>
+  }
   </>
   )
 }

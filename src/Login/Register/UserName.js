@@ -9,8 +9,8 @@ const UserName = forwardRef((props, userNameRef) => {
       <img
         src={usersSolid}
         alt='click to enter user name'
-        className='width16px height16px login__img-login-password'
-        style={{ transform: 'translate(10px, 28px)' }}
+        className='width16px height16px mr-9px'
+        style={{transform: 'translate(10px, 28px)'}}
       />
       <input
         id='user-name'

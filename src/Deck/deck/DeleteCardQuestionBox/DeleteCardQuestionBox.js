@@ -12,7 +12,7 @@ export default function DeleteCardQuestionBox({
   deleteWindow, 
   trashEvent, 
   setShowAnswerBtn=()=>{},
-  setEditBtnClicked=()=>{},
+  setEditModeActive=()=>{},
   showDeleteWindow,
   deleteCurrentCard=()=>{},
   resetQuestionText=false,
@@ -29,11 +29,11 @@ export default function DeleteCardQuestionBox({
     trashEvent:trashEvent,
     deleteCurrentCard:deleteCurrentCard,
     deleteWindow:deleteWindow,
-    setEditBtnClicked:setEditBtnClicked,
+    setEditModeActive:setEditModeActive,
     setShowAnswerBtn:setShowAnswerBtn,
     pauseCardinQuestionAnswer:pauseCardinQuestionAnswer,
     index:index,
-    randomQuestion:randomQuestion
+    randomQuestion:randomQuestion,
   }
 
 return (
@@ -69,7 +69,7 @@ return (
             />
         </Modal.Body>
         <Modal.Footer className='deck__bg-white'>
-            <NoAndYes data={noAndYesProps}/>            
+          <NoAndYes data={noAndYesProps}/>            
         </Modal.Footer>
         <ShowMessage showMessageAgain={showMessageAgain}/>         
       </Modal>

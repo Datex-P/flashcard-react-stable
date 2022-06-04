@@ -1,9 +1,9 @@
 import React, {useRef} from "react";
-import flashcard from "../../icons/flashcard-design-new.png";
-import "../../styles.scss";
+import flashcard from '../../icons/flashcard-design-new.png';
+import '../../styles.scss';
 import '../login.css';
-import ParticleBackground from "../Particles/ParticlesBackground";
-import Button from "../Button";
+import ParticleBackground from '../Particles/ParticlesBackground';
+import Button from '../Button';
 import LoginWithSignUp from '../LoginWithSignUp/LoginWithSignUp'
 import UserName from './UserName'
 import Password from './Password'
@@ -86,7 +86,7 @@ const result = elements.filter(callback)
           >
             <UserName ref={userNameRef}/>        
             <Password ref={passwordRef}/>    
-            <div className='login__button-container flex-column justify-between'>
+            <div className='mt-15px height75px flex-column justify-between'>
               <Button text='Login' />
             </div>
           </form>

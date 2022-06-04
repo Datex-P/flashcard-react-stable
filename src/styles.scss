@@ -1,6 +1,5 @@
 * {
-  font-family: "San Francisco";
- // margin: 5px; 
+  font-family: 'San Francisco';
 }
 
 html {
@@ -65,10 +64,6 @@ input[type="number"] {
   color:seashell;
 }
 
-.left-40px {
-  left:40px;
-}
-
 .zIndex-5 {
   z-index: 5;
 }
@@ -121,6 +116,7 @@ input[type="number"] {
 .left-324px {
   left: 324px;
 }
+
 .left-326px {
   left: 326px;
 }
@@ -179,6 +175,10 @@ input[type="number"] {
 
 .top-56px {
   top: 56px;
+}
+
+.top-59px {
+  top: 59px;
 }
 
 /*<-- top left right positioning until here*/
@@ -309,6 +309,10 @@ input[type="number"] {
   margin-top: 60px;
 }
 
+.mr-9px {
+  margin-right: 9px;
+}
+
 .mr-18px {
   margin-right: 18px;
 }
@@ -319,6 +323,10 @@ input[type="number"] {
 
 .mr-4px {
   margin-right: 4px;
+}
+
+.mt-15px {
+  margin-top:15px;
 }
 
 .mt-25px {
@@ -501,6 +509,10 @@ input[type="number"] {
   height: 85%;
 }
 
+.width87px {
+  width: 87px;
+}
+
 .width95pc {
   width: 95%;
 }
@@ -531,6 +543,10 @@ input[type="number"] {
 
 .width250px {
   width:250px;
+}
+
+.width280px {
+  width:280px;
 }
 
 .width300px {
@@ -699,7 +715,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: auto !important;
   opacity: 1;
-  /*!important;*/
   cursor: pointer;
 }
 
@@ -902,6 +917,8 @@ a {
 .paused__img-play {
   margin: 6px; 
   cursor: pointer;
+  z-index:5;
+  position:relative;
 }
 
 .backgroundModal {

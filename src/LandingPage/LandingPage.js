@@ -88,17 +88,14 @@ const LandingPage = () => {
   }
 
   function createDeckHandler() {
-    if (!editButtonClicked) {
-      //editButtonClicked is set to true by default
-    } else {
+    if (editButtonClicked) { //input field of deck is not active see InputSelectField.js
       setAddNewDeckWindow(true); //open the pop up to add a new deck
       setDecksAreVisible(false); // all the decks in the back are not visible
       setShowProgressDiagram(false);
       setArrowDown(false); //create new deck and arrow down not visible
-    }
-    setArrowDown(false); //create new deck and arrow down not visible
-    setHideCreateDeckBtn(true) //the button create Deck gets hidden
+      setHideCreateDeckBtn(true) //the button create Deck gets hidden
   }
+}
 
   function closeHandler() {
     setDecksAreVisible(true);
@@ -126,10 +123,7 @@ const LandingPage = () => {
         className='align-items-center landing__cont'
         style={{backgroundColor: styles.backgroundColor[dataBase?.userPreferences?.backgroundColor]}}
       >
-        <MenuContainer
-          setShowProgressDiagram={setShowProgressDiagram}
-          hideCreateDeckBtn={hideCreateDeckBtn}
-        />
+        <MenuContainer setShowProgressDiagram={setShowProgressDiagram} />
         <Row className="posRelative justify-between width100pc">
           {decksAreVisible && 
             <div className='p-50px'>
@@ -142,7 +136,6 @@ const LandingPage = () => {
                       accum.arr.push(
                         <Deck
                           key={index}
-                          setHideCreateDeckBtn={setHideCreateDeckBtn}
                           index={index}
                           deck={deck}
                           transform={`rotate(0deg)`}
@@ -161,7 +154,6 @@ const LandingPage = () => {
                           deck={deck}
                           transform={`rotate(${-accum.index * 2}deg)`}
                           zIndex={0}
-                          setHideCreateDeckBtn={setHideCreateDeckBtn}
                           bg={colorHandler}
                           background={colorHandler}
                           {...deckProps}
@@ -182,8 +174,6 @@ const LandingPage = () => {
           }
         </Row>
         <CreateNewDeck
-          hideCreateDeckBtn={hideCreateDeckBtn}
-          setHideCreateDeckBtn={setHideCreateDeckBtn}
           addNewDeckWindow={addNewDeckWindow}
           createDeckHandler={createDeckHandler}
           closeHandler={closeHandler}

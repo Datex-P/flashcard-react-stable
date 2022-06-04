@@ -19,7 +19,6 @@ export default function Deck({
   setArrowDown,
   setDecksAreVisible,
   setScrollbarVisible,
-  setHideCreateDeckBtn,
   ...style
 }) {
 
@@ -33,13 +32,14 @@ export default function Deck({
   const [showDeleteWindow, setShowDeleteWindow] = useState(true); //if true and triggered the delete window with yes and no button is shown
   const [trash, setTrash] = useState(false);
   const [pauseIsActive, setPauseIsActive] = useState(true);
-  const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
 
   const {
     active, setActive,
     dataBase, setDataBase,
     editButtonClicked, setEditButtonClicked,
+    setHideCreateDeckBtn,
     threeDotsOpen, setThreeDotsOpen,
+    showThreeDots, setShowThreeDots,
     setChangeDeckNameOpen
   } = useContext(Context);
 
@@ -81,7 +81,6 @@ export default function Deck({
     editButtonClicked: editButtonClicked,
     name: name,
     input: input,
-    setThreeDotsOpen: setThreeDotsOpen,
     setNameOfTopDeck: setNameOfTopDeck,
     setThreeDotsMenuOpen: setThreeDotsMenuOpen,
     setDeckNameLengthRight: setDeckNameLengthRight,
@@ -108,9 +107,9 @@ export default function Deck({
     input: input,
     pause: true,
     threeDotsContainer: {
-      position: "absolute",
-      right: "20px",
-      top: "18px",
+      position: 'absolute',
+      right: '20px',
+      top: '18px',
     },
     editEvent: () => {
       setThreeDotsMenuOpen(false);
@@ -132,8 +131,6 @@ export default function Deck({
         }
     }
   }
-
-
 
   useEffect(() => {
     setNameOfTopDeck(name);
@@ -182,8 +179,6 @@ export default function Deck({
               deckNameLengthRight &&
               <ThreeDotsBtn
                 name={name}
-                showThreeDots={showThreeDots}
-                setShowThreeDots={setShowThreeDots}
                 text={"deck"}
                 data={data}
                 showFromParent={threeDotsMenuOpen}
@@ -191,8 +186,6 @@ export default function Deck({
                 index={index}
                 icons={{ paused, edit: !paused, trash: !paused }}
                 paused={paused}
-                setThreeDotsOpen={setThreeDotsOpen}
-                threeDotsOpen={threeDotsOpen}
                 bg={style.background}
                 nameOfTopDeck={nameOfTopDeck}
                 setNameOfTopDeck={setNameOfTopDeck}
@@ -254,8 +247,6 @@ export default function Deck({
           <Paused
             data={data}
             index={index}
-            showThreeDots={showThreeDots}
-            setShowThreeDots={setShowThreeDots}
             setShow={setShow}
             paused={paused}
             name={name}
@@ -267,8 +258,6 @@ export default function Deck({
             index={index}
             data={data}
             paused={paused}
-            showThreeDots={showThreeDots}
-            setShowThreeDots={setShowThreeDots}
             setDecksAreVisible={setDecksAreVisible}
             setPauseIsActive={setPauseIsActive}
             pauseIsActive={pauseIsActive}

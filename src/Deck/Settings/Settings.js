@@ -12,7 +12,6 @@ import edit from '../../icons/edit.svg'
 import save from '../../icons/save.svg'
 import DeleteAccount from './DeleteAccount'
 
-
 function Settings({ history }) {
 
   const [editModeActive, setEditModeActive] = useState(false)
@@ -67,7 +66,7 @@ function Settings({ history }) {
       </div>
       <div className='justify-center'>
           <Container>
-            {
+            { 
               dataBase?.userTimePreferences &&
               dataBase?.userTimePreferences.map((col, k) =>
 
@@ -84,13 +83,13 @@ function Settings({ history }) {
             }
           </Container>
         <div
-          className='settings__save-or-edit-container'
+          className='settings__save-or-edit-cont'
           title='Click and change name buttons and repetition intervals for all decks.'
         >
           <img
             src={editRepActive ? save : edit}
             alt={editRepActive ? 'save' : 'edit'}
-            className= 'nonDraggableIcon settings__outline-none'
+            className= 'nonDraggableIcon outline-none'
             onClick={repetitionHandler}
           />   
         </div>
@@ -121,7 +120,7 @@ function Settings({ history }) {
           <img
             src={editHex ? edit : save}
             alt={editHex ? 'edit' : 'save'}
-            className='nonDraggableIcon settings__outline-none'
+            className='nonDraggableIcon outline-none'
             onClick={goalHandler}
           /> 
         </div>
@@ -139,7 +138,7 @@ function Settings({ history }) {
 function Container({ children }) {
   return (
     <div className='justify-center-align-center settings_repetition-container'>
-      <div className='justify-around settings_width280px' >
+      <div className='justify-around width280px'>
         {children}
       </div>
     </div>

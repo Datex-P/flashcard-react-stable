@@ -1,9 +1,10 @@
-import React from "react";
-import { FormControl } from "react-bootstrap";
-import CardAddedOrInput from "./CardAddedOrInput";
-import "../deck.css";
+import React from 'react';
+import { FormControl } from 'react-bootstrap';
+import CardAddedOrInput from './CardAddedOrInput';
+import '../deck.css';
 
 function AlertComponent({ card, setCard, newCardAdded }) {
+ 
   function changeHandler(e) {
     let newCard = { ...card };
     let { name, value } = e.target;
@@ -23,10 +24,15 @@ function AlertComponent({ card, setCard, newCardAdded }) {
           onChange={changeHandler}
           className='deck__formControl posRelative'
         />
-        {newCardAdded && <CardAddedOrInput card={card} />}
+        {
+          newCardAdded && 
+          <CardAddedOrInput card={card} />
+          }
       </div>
       <div className={`${newCardAdded? 'mt-60px': ''}`}>
-        <p className='deck__questionAnswer fontBold'>Answer</p>
+        <p className='deck__questionAnswer fontBold'>
+        Answer
+        </p>
         <FormControl
           as='textarea'
           aria-label='With textarea'

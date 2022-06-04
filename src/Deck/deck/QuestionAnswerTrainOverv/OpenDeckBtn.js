@@ -5,20 +5,19 @@ import { Context } from "../../../Context";
 export default function OpenDeckBtn ({data, 
   paused, 
   generateRandom,
-  setScrollbarVisible,
-  setThreeDotsOpen,
-  setHideCreateDeckBtn
+  setScrollbarVisible
 }) {
 
   const {
     dataBase, setDataBase, 
     editButtonClicked, 
- //   setHideMenu,
+    setHideCreateDeckBtn,
+    setThreeDotsOpen,
     setShowProgressDiagram //progressDiagram is shown in the back of main 
   } = useContext(Context);
 
   function openDeckHandler () {
-    if(editButtonClicked && !paused) {
+    if (editButtonClicked && !paused) {
       generateRandom();
       setThreeDotsOpen(false)
       let newDataBase = { ...dataBase };
@@ -27,7 +26,6 @@ export default function OpenDeckBtn ({data,
       setDataBase(newDataBase);
       setScrollbarVisible(false) //as long as deck is open, scrollbar is not visible
       setHideCreateDeckBtn(true) //create Deck Btn gets hidden
-   //   setHideMenu(true)
     }
   }
 
@@ -40,8 +38,9 @@ export default function OpenDeckBtn ({data,
       onClick={openDeckHandler}
       title='Click to open this deck'
       style={{
-        backgroundColor:  'rgb(108, 117, 125)',
-        cursor: paused || data.length === 0 || !editButtonClicked ? 'default': 'pointer',
+        backgroundColor: 'rgb(108, 117, 125)',
+        pointerEvents: editButtonClicked? 'auto':'none',
+        cursor: paused || data.length === 0 || editButtonClicked ? 'pointer': 'default',
         opacity: paused || data.length === 0 ? '0' : '1' //open deck button is not visible when length is zero
       }}
     >

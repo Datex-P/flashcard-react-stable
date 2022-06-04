@@ -10,9 +10,9 @@ export default function ContextProvider({ children }:any) {
   const [active, setActive] = useState(0);
   const [dataBase, setDataBase] = useState<any>([]);
   const [showProgressDiagram, setShowProgressDiagram] = useState(false)
- // const [hideMenu, setHideMenu] = useState(false) probably not needed
   const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
   const [threeDotsOpen, setThreeDotsOpen] = useState(false);
+  const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
 
 
   const [styles, setStyles] = useState({
@@ -131,10 +131,10 @@ export default function ContextProvider({ children }:any) {
         changeDeckNameOpen, setChangeDeckNameOpen,
         dataBase, setDataBase, 
         editButtonClicked, setEditButtonClicked, 
-       // hideMenu, setHideMenu, 
         hideCreateDeckBtn, setHideCreateDeckBtn,
         showProgressDiagram, setShowProgressDiagram,
         styles, setStyles,
+        showThreeDots, setShowThreeDots,
         threeDotsOpen, setThreeDotsOpen
         }} 
      >

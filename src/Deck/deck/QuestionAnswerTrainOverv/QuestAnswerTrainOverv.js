@@ -14,21 +14,16 @@ import QuestionAnswerForm from './QuestionAnswerForm'
 import '../deck.css'
 
 export default function QuestAnswerTrainOverv({
-        createDeckButtonIsVisible,
         setDecksAreVisible,
         setScrollbarVisible,
-        setHideCreateDeckBtn,
-        showThreeDots,
-        setShowThreeDots,
         pauseIsActive, setPauseIsActive,
         data,
         index,
         name,
         paused,
-        setCreateDeckButtonIsVisible = () => {}
     }) {
 
-  const [editBtnClicked, setEditBtnClicked] = useState(false);
+  const [editModeActive, setEditModeActive] = useState(false);
   const [randomQuestion, setRandomQuestion] = useState(null);
   const [cardModified, setCardModified] = useState(false);
   const [pauseOrDeleteText, setPauseOrDeleteText] = useState(true);
@@ -39,15 +34,13 @@ export default function QuestAnswerTrainOverv({
   const [deckLengthNotZero, setDeckLengthNotZero] = useState(true);
   const [card, setCard] = useState({ answer: "", question: "" });
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
-  const [mainBox] = useState(true);
-  //const inputRef = useRef(null);
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
   const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
 
   const {
     dataBase, setDataBase, 
     setShowProgressDiagram,
-    threeDotsOpen, setThreeDotsOpen,
+     setShowThreeDots,
     } = useContext(Context);
 
 
@@ -76,7 +69,7 @@ export default function QuestAnswerTrainOverv({
   useEffect(()=>{
     console.log('edit btn was clicked')
    // debugger
-  },[editBtnClicked])
+  },[editModeActive])
 
   function generateRandom() {
     let newRandomQuestion = null;
@@ -87,7 +80,7 @@ export default function QuestAnswerTrainOverv({
       }
     }
     if (data.length === 0) {
-      alert("add questions to deck");
+      alert('add questions to deck');
       setDeckLengthNotZero(false);
     } else {
       setDeckLengthNotZero(true);
@@ -178,7 +171,7 @@ export default function QuestAnswerTrainOverv({
     generateRandom();
   }
 
-  function editModeActive() {
+  function editModeAct() {
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].editModeActive = false;
     setDataBase(newDataBase);
@@ -186,8 +179,8 @@ export default function QuestAnswerTrainOverv({
 
   function refreshHandler() {
     setShowAnswerBtn(true);
-    setEditBtnClicked(false);
-    editModeActive();
+    setEditModeActive(false);
+    editModeAct();
   }
 
   function changeHandler(e) {
@@ -197,7 +190,8 @@ export default function QuestAnswerTrainOverv({
 
   function editHandler () {
       setShowAnswerBtn(false);
-      setEditBtnClicked(true);
+      setEditModeActive(true);
+      setShowThreeDots(false); //three dots are not displayed in edit Mode
       setShowRepeatBtn(false);
       let newDataBase = { ...dataBase };
       newDataBase.DeckNames[index].editModeActive = true;
@@ -224,54 +218,38 @@ export default function QuestAnswerTrainOverv({
           data={data}
           generateRandom={generateRandom}
           paused={paused}
-          setThreeDotsOpen={setThreeDotsOpen}
-          setHideCreateDeckBtn={setHideCreateDeckBtn}
           setDecksAreVisible={setDecksAreVisible}
           setScrollbarVisible={setScrollbarVisible}
       />      
       {deckLengthNotZero && !paused && (
         <BasicOrangeWindow
           questionViewActive
+          questionAnswerWindow
           show={show}
           setShow={setShow}
           generateRandom={generateRandom}
-          setHideCreateDeckBtn={setHideCreateDeckBtn}
-          mainBox={mainBox}
           index={index}
           setScrollbarVisible={setScrollbarVisible}
           id='questionAnswerOverview'
-          setEditBtnClicked={setEditBtnClicked}
-          createDeckButtonIsVisible={createDeckButtonIsVisible}
-          setCreateDeckButtonIsVisible={setCreateDeckButtonIsVisible}
+          setEditModeActive={setEditModeActive}
           title={`Deck: ${name}`}
           showFromParent={threeDotsMenuOpen}
           menu={
             !dataBase?.DeckNames[index]?.pauseMode &&
               <ThreeDotsBtn
-                text={"card"}
-                editButtonClicked={true}
-                editBtnClicked={editBtnClicked}
-                setEditBtnClicked={setEditBtnClicked}
+                text={'card'}
+                editModeActive={editModeActive}
+                setEditModeActive={setEditModeActive}
                 className='deck__threeDotsInQuestAnsw posAbsolute'
                 threeDotsContainer={{position: 'default'}}
                 paused={paused}
-                showThreeDots={showThreeDots}
-                setShowThreeDots={setShowThreeDots}
-                setThreeDotsOpen={setThreeDotsOpen}
-                threeDotsOpen={threeDotsOpen}
                 setShowFromParent={setThreeDotsMenuOpen}
                 index={index}
                 edit
                 pause
                 trash
-                style= {{
-                  position: 'absolute',
-                  top: '0px',
-                  border: '1px solid black',
-                  left: '308px',
-                  zIndex: '99'
-                }}
-                type="card"
+                classValue='deck__threeDotsOpen'
+                type='card'
                 editEvent={editHandler}
                 pauseEvent={pauseEventHandler}
                 trashEvent={trashHandler}
@@ -279,7 +257,7 @@ export default function QuestAnswerTrainOverv({
           }
         >
         <div >
-          {editBtnClicked && 
+          {editModeActive && 
             <div className='ml-20px align-center posRelative'>
                <img alt="edit" src={editimg} /> 
               <span className='ml-3px'>mode</span>
@@ -289,9 +267,8 @@ export default function QuestAnswerTrainOverv({
             <>
               <QuestionAnswerForm 
                 card={card}
-                editBtnClicked={editBtnClicked}
+                editModeActive={editModeActive}
                 changeHandler={changeHandler}
-               // inputRef
               />
               {showAnswerBtn && 
                !dataBase?.DeckNames[index]?.pauseMode &&            
@@ -311,7 +288,7 @@ export default function QuestAnswerTrainOverv({
               />
               } 
               {showRepeatBtn && 
-                !dataBase.DeckNames[index].pauseMode &&
+               !dataBase.DeckNames[index].pauseMode &&
                 <RepeatButtons 
                   showAnswerBtn={showAnswerBtn}
                   setShowAnswerBtn={setShowAnswerBtn}
@@ -326,12 +303,11 @@ export default function QuestAnswerTrainOverv({
                 <QuestionAnswerForm 
                   answer
                   card={card}
-                  editBtnClicked={editBtnClicked}
+                  editModeActive={editModeActive}
                   changeHandler={changeHandler}
-                  // inputRef
                 />
               }
-              {editBtnClicked && 
+              {editModeActive && 
                   <SaveAndDiscard
                     generateRandom={generateRandom}
                     setCardModified={setCardModified}
@@ -339,21 +315,22 @@ export default function QuestAnswerTrainOverv({
                     saveEvent={saveHandler}
                     discardEvent={discardHandler}
                     refresh={refreshHandler}
+                    setShowThreeDots={setShowThreeDots}
                   />
               }
               {trash && 
                showDeleteWindow && 
                 <DeleteCardQuestionBox
                   card='card'
-                  pauseOrDelete={`${pauseOrDeleteText ? 'Pause' : 'Delete'}`}
+                  pauseOrDelete={`${pauseOrDeleteText ? 'Pause':'Delete'}`}
                   randomQuestion={randomQuestion}
                   show={show}
                   index={index}
-                  editBtnClicked={editBtnClicked}
-                  setEditBtnClicked={setEditBtnClicked}
+                  editModeActive={editModeActive}
+                  setEditModeActive={setEditModeActive}
                   trashEvent={deleteCurrentCard}
                   showDeleteWindow={showDeleteWindow}
-                  deleteWindow={() => setShowDeleteWindow(false)}
+                  deleteWindow={() => {setShowDeleteWindow(false); setShowThreeDots(true)}}
                   pauseCardinQuestionAnswer
                   setPauseOrDeleteText={setPauseOrDeleteText}
                 />

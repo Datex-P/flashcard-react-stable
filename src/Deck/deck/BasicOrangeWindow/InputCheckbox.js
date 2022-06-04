@@ -6,7 +6,6 @@ export default function InputCheckbox({ index, setShowAnswerBtn, generateRandom 
   const { dataBase, setDataBase } = useContext(Context)
   let newDataBase = {...dataBase}
 
-
   function cardsPaused() {
     return dataBase.DeckNames[index].data.filter(x => x.paused === true).length || 0
   }

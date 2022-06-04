@@ -5,8 +5,6 @@ function RenderDays({year}) {
 
   const {dataBase} = useContext(Context);
   const calBoxWidth = useRef(null); //size of the calendar box 
-  const innerStat = useRef(null)
-  
   const [days, setDays] = useState([]);
   const [right,setRight]=useState(0)
   const [studiedOnThisDay, setStudiedOnThisDay] = useState(false)
@@ -34,7 +32,6 @@ function RenderDays({year}) {
         //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
 
         // cardsStudied?.dataBase?.DeckNames[deck]?.data?.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length
-
          //let cardsStudied = dataBase.DeckNames[deck].data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === date)).length
         let todaysAmount = dataBase.DeckNames[deck].data.filter((item) =>
           item?.openHistory?.some(
@@ -43,8 +40,10 @@ function RenderDays({year}) {
         let index = date.findIndex((day) => day.day === today);
         
         let newDays = [...date]
+        if(newDays[index]?.cardsStudied) {
           newDays[index].cardsStudied += todaysAmount;
-          setDays(newDays);
+        }
+        setDays(newDays);
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,7 +70,7 @@ function RenderDays({year}) {
 
   return (
     <div 
-      className="d-flex stats__year-box"
+      className='d-flex stats__year-box'
       ref={calBoxWidth}
      >
       {days.map((day, index) => (
@@ -82,9 +81,9 @@ function RenderDays({year}) {
         >
           {
             studiedOnThisDay === index &&   
-            <div className='stats__study-info posAbsolute top-20px'
+            <div 
+              className='stats__study-info posAbsolute top-20px'
               style={{left: right+'px'}}
-              ref={innerStat}
             >
               {day.day}
               <div className='top-30px posAbsolute'>

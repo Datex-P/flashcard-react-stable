@@ -22,7 +22,7 @@ export default function HourlyBreakdown() {
               className='stats__hourlyBreakdown__input'
               name='breakdownIntervals'
               type='radio'
-              // title = `Change background color of main menu to ${comp}.`
+              title = {`Change background color of main menu to ${comp}.`}
               value={comp}
               checked={dataBase?.hourlyBreakdown === comp} //how to combine checked and handleColor accurately?
               onChange={handleMonths}

@@ -1,39 +1,59 @@
-import React, { useContext } from "react";
-import { Context } from "../../Context";
+import React, { useContext, useEffect, useRef } from "react";
+import { Context } from '../../Context';
 
 function Hamburger({ 
   menuOpen, //when true menu is clicked and stats settings logout appear
-  setMenuOpen,
-  hideCreateDeckBtn
+  setMenuOpen
 }) {
 
-  const { editButtonClicked, showProgressDiagram, setShowProgressDiagram} = useContext(Context);
+  const { editButtonClicked, hideCreateDeckBtn, showProgressDiagram, setShowProgressDiagram} = useContext(Context);
+  
+  const menuRef = useRef(null)
 
   function triggerDiagramAndState() {
-    // if(editButtonClicked) {
-    if(!hideCreateDeckBtn) {
-      setMenuOpen(!menuOpen);
-      setShowProgressDiagram(!showProgressDiagram);
+     if(editButtonClicked) { //see DeckOrCardName not input field visible atm
+      if(!hideCreateDeckBtn) {
+        setMenuOpen(!menuOpen);
+        setShowProgressDiagram(!showProgressDiagram);
       }
+    }
   }
+
+  useEffect(()=>{
+    function menuCloses(event) {
+      if (menuRef && !menuRef.current.contains(event.target)) {
+        console.log('clicked outside')
+        setMenuOpen(false) 
+      }
+    }
+    if(menuOpen){
+      setTimeout(()=>{document.addEventListener('click', menuCloses)},500)    
+    }
+    return ()=>{document.removeEventListener('click', menuCloses)}
+  },[menuOpen, setMenuOpen])
+
 
   return (
     <div
       className='menu__menu align-center flex-column'
       style={{cursor: editButtonClicked && !hideCreateDeckBtn ? 'pointer': 'default'}} //cursor is default when edit input field is activated
+      ref={menuRef}
     >
-      <div className='font-18px'>Menu</div>
+      <div className='font-18px'>
+          Menu
+      </div>
       <div 
-        className='zIndex-5 menu__icon-cont posAbsolute width100px align-center flex-column'
+        className='zIndex-5 top-59px posAbsolute width87px align-center flex-column'
         onClick={triggerDiagramAndState}
       >
-        <div className={`menu__menuIcon ${menuOpen ? 'menu__transPlus top-8px' : ''}`}
-        ></div>
+        <div className={`menu__menuIcon ${menuOpen ? 'menu__transPlus top-8px' : ''}`}>
+        </div>
         {!menuOpen && 
-        <div className={"menu__menuIcon top-8px"}></div>
+        <div className='menu__menuIcon top-8px'>
+        </div>
         }
-        <div className={`menu__menuIcon ${menuOpen ? 'menu__transMinus top-8px' : 'top-16px'}`}
-        ></div>
+        <div className={`menu__menuIcon ${menuOpen ? 'menu__transMinus top-8px' : 'top-16px'}`}>
+        </div>
       </div>
     </div>
   );

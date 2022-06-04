@@ -2,22 +2,28 @@ import React, {useState, useEffect,useContext} from "react";
 import { withRouter } from 'react-router-dom';
 import { Context } from "../../Context";
 import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow';
-import ThreeDotsBtn from "../deck/ThreeDotsBtn/ThreeDotsBtn";
-import PieDiagramm from "./PieDiagramm";
-import ButtonLeftAndRight from "./ButtonLeftAndRight";
-import TimeAndProgress from './TimeAndProgress';
-import HourlyBreakdown from "./HourlyBreakdown";
-import DeleteCardQuestionBox from "../deck/DeleteCardQuestionBox/DeleteCardQuestionBox";
+import ThreeDotsBtn from '../deck/ThreeDotsBtn/ThreeDotsBtn';
+import PieDiagramm from './PieDiagramm';
+import CalAndButtons from './CalAndButtons';
+import TimeAndProgress from './TimeAndProgress/TimeAndProgress';
+import HourlyBreakdown from './HourlyBreakdown';
+import DeleteCardQuestionBox from '../deck/DeleteCardQuestionBox/DeleteCardQuestionBox';
 import './stats.css'
 
+
 function Stats({ history }:any) {
-  const { dataBase, setShowProgressDiagram, setDataBase, threeDotsOpen, setThreeDotsOpen } = useContext(Context);
+ 
+  const { 
+    dataBase, setDataBase, 
+    setShowProgressDiagram, 
+   // threeDotsOpen, 
+    setThreeDotsOpen } = useContext(Context);
   const [showDeleteFrame, setShowDeleteFrame] = useState(false);
   const [checked, setChecked] = useState(false);
   const [show, setShow] = useState(false);
  
   function setShowFunc() {
-    history.push("/main");
+    history.push('/main');
     setShowProgressDiagram(true);
   }
 
@@ -25,6 +31,11 @@ function Stats({ history }:any) {
     setShowProgressDiagram(false);
     // eslint-disable-next-line
   }, []);
+
+  function deleteWindowHandler() {
+    setShowDeleteFrame(false); 
+    setThreeDotsOpen(false)
+  }
 
   function trashEventHandler() {
       let DeckNames = [...dataBase.DeckNames]
@@ -39,29 +50,30 @@ function Stats({ history }:any) {
       <BasicOrangeWindow
         questionViewActive
         stats
-        show={true}
+        show
         setShow={setShowFunc}
         title={<div className='stats__header'>Stats</div>}
         menu={
           <ThreeDotsBtn
-            text={"stats"}
-            className="stats__resetButtonStyling"
+            text={'stats'}
+            className='stats__resetButtonStyling'
             editButtonClicked
             setThreeDotsOpen={setThreeDotsOpen}
-            threeDotsOpen={threeDotsOpen}
+         //   threeDotsOpen={threeDotsOpen}
             resetEvent={() => {
            //   setShow(!show);
               setShowDeleteFrame(true);
            console.log('hello reset')
               //  reset=false
             }}
-            style= {{
+            style={{
               position: 'absolute',
               top: '0px',
               border: '1px solid black',
               left: '292px',
               zIndex: '99'
             }}
+            //classValue='stats__threeDotsOpen'
             reset
           />
         }
@@ -77,29 +89,25 @@ function Stats({ history }:any) {
                 }
           </div>
           <div className='align-center marginAuto flex-column width95pc stats__DeleteCardQuestionBox__cont'>
-            {showDeleteFrame && (
+            <PieDiagramm />
+            
+            {showDeleteFrame && 
               <DeleteCardQuestionBox
                 resetQuestionText
                 showMessageAgain
-                card="card"
+                card='card'
                 checked={checked}
                 setChecked={setChecked}
                 showDeleteWindow={showDeleteFrame}
-                deleteWindow={() => {
-                  setShowDeleteFrame(false); 
-                  setThreeDotsOpen(false)
-                }}
+                deleteWindow={deleteWindowHandler}
                 trashEvent={trashEventHandler}
                 onHide={() => {}}
               />
-            )}
-             <PieDiagramm />
+            }
           </div>
-          <div className="stats__calendar">Calendar</div>
-          <ButtonLeftAndRight />
+          <CalAndButtons />
           <HourlyBreakdown />
         </div>
-        <div className='width200px'></div>
         <TimeAndProgress />
       </BasicOrangeWindow>
     </div>

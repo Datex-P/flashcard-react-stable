@@ -8,13 +8,8 @@
   margin-left: 5px !important; 
 }
 
-
 .facebook:hover {
   background:'green'
-}
-
-.login__img-login-password {
-  margin-right: 9px;
 }
 
 .login__email-transform {
@@ -62,6 +57,7 @@
   background-size: 20px;
   background-position: 2% 42%;
 }
+
 .login__icon__keys {
   background: url("../icons/keys.svg"); 
   background-repeat:no-repeat;
@@ -83,11 +79,6 @@
   border-radius: 10px;
   margin: 40px auto;
 } 
-
-.login__button-container {
-  margin-top:15px;
-  height:75px;
-}
 
 .login__input {
   width: 90%;

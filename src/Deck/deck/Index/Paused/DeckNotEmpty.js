@@ -25,7 +25,7 @@ export default function DeckNotEmpty({ index, paused, style }) {
         min='1'
         max={
           dataBase.DeckNames[index].data.length -
-            dataBase.DeckNames[index].data.filter((x) => x.paused === true)
+          dataBase.DeckNames[index].data.filter((x) => x.paused === true)
               .length || 0
         }
       />

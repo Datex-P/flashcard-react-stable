@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { Context } from "../../../Context";
+
 
 export default function DeckOrCardName({ data: {
   bg,
@@ -8,9 +10,10 @@ export default function DeckOrCardName({ data: {
   nameOfTopDeck, setNameOfTopDeck,
   setDeckNameLengthRight,
   setThreeDotsMenuOpen,
-  setNameTooLongOrShort,
-  setThreeDotsOpen
+  setNameTooLongOrShort
 } }) {
+
+  const {dataBase, setDataBase, setThreeDotsOpen} = useContext(Context);
 
   function handleChangeName(e) {
 
@@ -23,6 +26,11 @@ export default function DeckOrCardName({ data: {
       setNameTooLongOrShort(true)
       setDeckNameLengthRight(false)
     }
+
+    let newDataBase = {...dataBase}
+    let index = newDataBase.DeckNames.findIndex(x=> x.name === name)
+    newDataBase.DeckNames[index].name = e.target.value
+    setDataBase(newDataBase)
     setNameOfTopDeck(e.target.value);
   }
 
@@ -44,7 +52,7 @@ export default function DeckOrCardName({ data: {
         ) : (
           <input
             ref={input}
-            className="deck__addToDeckInput"
+            className='deck__addToDeckInput'
             value={nameOfTopDeck}
             onChange={handleChangeName}
           />

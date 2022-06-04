@@ -6,7 +6,7 @@ function Email() {
       <img
         src={email}
         alt='enter email address'
-        className='width16px height16px login__img-login-password login__email-transform'
+        className='width16px height16px mr-9px login__email-transform'
       />
       <input
         placeholder='Your email'

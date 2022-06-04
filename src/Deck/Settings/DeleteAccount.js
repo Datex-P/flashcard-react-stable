@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useState } from "react";
 
 function DeleteAccount() {
+  
   const [deleteAccountPrompt, setDeleteAccountPrompt] = useState(false);
 
   return (

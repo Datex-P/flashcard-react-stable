@@ -2,7 +2,7 @@
   width: 33px;
   cursor: default; 
   margin: 5px;
-  margin-top:  1px;
+  margin-top: 1px;
 }
 
 .stats__ButtonLeftAndRight__signs {
@@ -183,6 +183,14 @@
 .stats__DeleteCardQuestionBox__cont {
   margin-bottom: 10px;
   border: 1px solid black;
+}
+
+.stats__threeDotsOpen {
+  position: absolute;
+  top: 0px;
+  border: 1px solid black;
+  left: 292px;
+  z-index: 99;
 }
 
 .stats__BasicOrangeWindow__cont {

@@ -26,16 +26,15 @@ export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}
         <div className='align-center mt-5px'>
           Press:
           <button
-            className='deck__btn-play justify-center-align-center'
-          //  onClick={handlePause}
+            className='deck__btn-play justify-center-align-center posRelative zIndex-5'
+            onClick={handlePause}
           > 
             <img 
               src={play} 
               alt='play' 
-              onClick={handlePause}
               className='paused__img-play'
             />
-            </button>
+          </button>
         </div>
         <div className='deck__countToStudyGoal posRelative'>
           It doesn't count to the study goal.

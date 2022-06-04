@@ -26,18 +26,9 @@
   background:#545863
 }
 
-.menu__icon-cont {
-  width: 87px;
-  top: 59px;
-}
-
 .menu__transMinus {
   transform: rotate(-135deg);
 }
-
-/* .menu__icon-container a {
-
-} */
 
 .menu__menuIcon {
   font-weight: bold;

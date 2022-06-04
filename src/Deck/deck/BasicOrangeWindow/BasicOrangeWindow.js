@@ -10,20 +10,20 @@ export default function BasicOrangeWindow({
               generateRandom,
               setScrollbarVisible,
               show,setShow,
-              mainBox,
+              questionAnswerWindow = false,
               menu,
               stats=false,
               questionViewActive=false,
               setShowAnswerBtn = () => {},
               setEdit = () => {},
-              setEditBtnClicked = () => {},
+              setEditModeActive = () => {},
               title
 }) {
 
   const {dataBase, setDataBase, 
-   // setHideMenu,
-    setHideCreateDeckBtn,
+        setHideCreateDeckBtn,
         setShowProgressDiagram} = useContext(Context);
+
   const basicOrangeRef = useRef(null)
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
 
@@ -32,12 +32,13 @@ export default function BasicOrangeWindow({
   function redCrossHandler () {
     setShow(false);
     setEdit(false);
-  //  setHideMenu(false) //menu gets shown again
     setHideCreateDeckBtn(false) //createDeckBtn is shown again
     //setShowRepeatBtn(false);
     setShowAnswerBtn(true);
-    setEditBtnClicked(false);
-    setScrollbarVisible(true);
+    setEditModeActive(false);
+    if (!stats){
+      setScrollbarVisible(true);
+    }
     setShowProgressDiagram(true)
     if (index) {
       let newDataBase = {...dataBase}
@@ -49,14 +50,15 @@ export default function BasicOrangeWindow({
   function mouseEnterHandler () {
     if (someCardsPaused && !dataBase.DeckNames[index].editModeActive) {
       document
-      .querySelector(".deck__onOffSwitch-label")
-      .classList.add("pointer");
+      .querySelector('.deck__onOffSwitch-label')
+      .classList.add('pointer');
     }
   }
 
   function mouseLeaveHandler () {
     if (someCardsPaused) {
-      document.querySelector(".deck__onOffSwitch-label").classList.remove("pointer");
+      document.querySelector('.deck__onOffSwitch-label')
+      .classList.remove('pointer');
     }
   }
 
@@ -64,25 +66,26 @@ export default function BasicOrangeWindow({
     let element = document.querySelector('.mod')
 
     function saveIconBlinks(event) {
-      if (element && !element.contains(event.target)
-      ) {
+      if (element && !element.contains(event.target)) {
         console.log('clicked outside')
         setBlinkingSaveIcon(true) 
-       setTimeout(()=>{
-         setBlinkingSaveIcon(false)
-       }, 2000)  
-     }
+        setTimeout(()=>{
+          setBlinkingSaveIcon(false)
+        }, 2000)  
+      }
     }
+
     if(show){
       setTimeout(()=>{document.addEventListener('click', saveIconBlinks)},500)
-      
+      setTimeout(()=>{document.addEventListener('scroll', saveIconBlinks)},500)
     }
-    //document.addEventListener('click', saveIconBlinks)
-    return ()=>{document.removeEventListener('click', saveIconBlinks); setBlinkingSaveIcon(false);console.log('got unmounted')}
+    return ()=>{
+      document.removeEventListener('click', saveIconBlinks);
+      document.removeEventListener('scroll', saveIconBlinks);
+      setBlinkingSaveIcon(false);console.log('got unmounted')}
   },[show])
 
   useEffect(()=>{
-    //let element = document.querySelector('mod')
     console.log( 'blinking icon triggered')
   },[blinkingSaveIcon])
 
@@ -108,10 +111,10 @@ export default function BasicOrangeWindow({
         <Modal.Header className="border-bottom-0">
           <Modal.Title
             style={{
-              fontSize: "16px",
-              marginLeft: "12px",
-              height: "24px",
-              width: "240px",
+              fontSize: '16px',
+              marginLeft: '12px',
+              height: '24px',
+              width: '240px',
               marginTop: '0px'
             }}
           >
@@ -123,7 +126,7 @@ export default function BasicOrangeWindow({
             onMouseLeave={mouseLeaveHandler}
             title={`${someCardsPaused? 'Click to show all paused cards':''}`}
           >
-            {mainBox &&
+            {questionAnswerWindow &&
               <InputCheckbox
                 index={index}
                 generateRandom={generateRandom}
@@ -137,9 +140,10 @@ export default function BasicOrangeWindow({
             onClick={redCrossHandler}
           >
             <img 
-              className={`redCross nonDraggableIcon width16px height16px ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`}
+              className={`redCross nonDraggableIcon width16px height16px 
+              ${blinkingSaveIcon ? 'deck__blinkingIcon':''}`}
               src={closeWindow} 
-              alt="redCross" 
+              alt='redCross'
             /> 
           </div>
         </Modal.Header>

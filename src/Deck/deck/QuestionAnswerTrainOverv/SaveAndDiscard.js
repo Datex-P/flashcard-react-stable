@@ -5,19 +5,22 @@ export default function SaveAndDiscard({
   generateRandom,
   setCardModified,
   discardEvent,
-  refresh
+  refresh,
+  setShowThreeDots
 }) {
 
   function saveHandler() {
     generateRandom();
     saveEvent();
     setCardModified(true);
-    refresh()
+    refresh();
+    setShowThreeDots(true)
   }
 
   function discardHandler() {
      discardEvent()
      refresh()
+     setShowThreeDots(true)
   }
 
   return (
@@ -27,10 +30,10 @@ export default function SaveAndDiscard({
           Save changes?
         </div>
         <div className='justify-between width140px'>
-          {["Discard", "Save"].map((el, index) => (
+          {['Discard', 'Save'].map((el, index) => (
             <div
               className={`deck__saveAndDiscardBtn justify-center-align-center ${el}Btn`}
-              onClick={el === "Save"? saveHandler: discardHandler}
+              onClick={el === 'Save'? saveHandler: discardHandler}
               key={index}
             >
               {el}

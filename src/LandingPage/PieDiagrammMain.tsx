@@ -17,8 +17,7 @@ export default function ChartComp() {
           return ''
         }
       }
-    }
-    ,
+    },
     datasets: [{
       data: [
         // 300, 50, 100
@@ -59,10 +58,7 @@ export default function ChartComp() {
     // },
   },
     tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
-    hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights
-  
- 
-    
+    hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights   
     cutoutPercentage: 81,
     maintainAspectRatio: false,
     layout: {
@@ -77,10 +73,8 @@ export default function ChartComp() {
   useEffect(() => {
   
     new Chart(ctx.current, config);
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
 
     config.data.datasets[0].data.push(
       // Object.keys(dataBase?.DeckNames).length - dataBase?.deckCompleted,
@@ -187,8 +181,7 @@ export default function ChartComp() {
          } else {
            config.data.datasets[0].backgroundColor = []
            config.data.datasets[0].backgroundColor.push("#86a873")
-           config.data.datasets[0].backgroundColor.push("#FF6384")
-   
+           config.data.datasets[0].backgroundColor.push("#FF6384") 
          }
 
   return (
