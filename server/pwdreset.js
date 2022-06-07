@@ -38,10 +38,10 @@ async function pwdreset() {
         Password Reset
       </div>
       <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
-      <a href="https://localhost:4000/new_pwd?token=${jwt.sign(
+      <a href='${process.env.PROVIDER}/new_pwd?token=${jwt.sign(
         { email: process.env.EMAIL_RECEIVER_ADRESS },
         process.env.Secret
-      )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, please reset my password.</a>
+      )}' style='color:seashell; text-decoration:none; font-size:15px'>Yes, please reset my password.</a>
       </button>
       <div style='color:seashell; margin-top: 30px'>If you received this email by mistake, simply delete it.
       <div style='margin-top:30px'>

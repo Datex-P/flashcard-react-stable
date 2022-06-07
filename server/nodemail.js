@@ -38,7 +38,7 @@ async function nodemail() {
         Please Confirm Registration
       </div>
       <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
-      <a href="https://localhost:4000/confirm_registration?token=${jwt.sign(
+      <a href="${process.env.PROVIDER}/confirm_registration?token=${jwt.sign(
         { name: process.env.EMAIL_HOLDER_NAME, email: process.env.EMAIL_RECEIVER_ADRESS },
         process.env.Secret
       )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, verify my account.</a>
