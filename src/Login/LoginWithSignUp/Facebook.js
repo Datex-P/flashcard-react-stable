@@ -1,11 +1,39 @@
 import FacebookLogin from "@greatsumini/react-facebook-login";
 import env from "../../env.json";
 import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { Context } from "../../Context";
+
 let facebookID = env.Facebook_ID;
 
-function Facebook({ setUser }) {
-  // console.log(result)
+function Facebook() {
   let history = useHistory();
+  const { setUser } = useContext(Context);
+
+  async function facebookUser(value) {
+    try {
+      let { email, name } = value;
+      let response = await fetch("http://localhost:4000/facebook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+        }),
+      });
+      const data = await response.json();
+
+      if (data.status === 'user created' || data.status === 'user found') {
+        history.push('/main');
+        setUser(email); //current logged in user is primary key in database
+      }
+    } catch (err) {
+      console.log(err, 'err here');
+    }
+  }
 
   return (
     <div className='facebookBtn'>
@@ -23,14 +51,14 @@ function Facebook({ setUser }) {
           cursor: "pointer",
         }}
         onSuccess={(response) => {
-          // history.push("/main")
+          console.log('hello from on success', response);
         }}
         onFail={(error) => {
-          console.log("Login Failed!", error);
+          console.log('Login Failed!', error);
         }}
         onProfileSuccess={(response) => {
-          console.log("Get Profile Success!", response);
-          setUser(true);
+          facebookUser(response);
+          console.log('Get Profile Success!', response);
         }}
       />
     </div>

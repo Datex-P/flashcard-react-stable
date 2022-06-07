@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
+
 const UserSchema = new Schema({
-  name: {type: String, required: true},
+  name: {type: String, required: false},
   email: {type: String, required: false, unique: true},
   verified: {type: String, required: false},
-  password: {type: String, required: true},
-
-},{timestamps:true}, {collection: 'user'}
+  password: {type: String, required: false},
+},{timestamps:true}
 )
-
-const User = mongoose.model('UserData', UserSchema)
- module.exports = User
+mongoose.pluralize(null);
+const User = mongoose.model('user-data', UserSchema)
+ module.exports = User;
 
  //module helps you to directly access
  //and interact with mongoose

@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
-import { Modal } from "react-bootstrap";
-import Hamburger from "./Hamburger";
-import "../../styles.scss";
+import React, { useState, useContext } from 'react';
+import { Modal } from 'react-bootstrap';
+import Hamburger from './Hamburger';
+import '../../styles.scss';
 import './menu.css'
-import { Context } from "../../Context";
-import Icon from "./Icon";
-import ShowProgressD from "../../LandingPage/ShowProgressDiagram";
+import { Context } from '../../Context';
+import Icon from './Icon';
+import ShowProgressD from '../../LandingPage/ShowProgressDiagram';
 import settingsIcon from '../../icons/settings.svg';
 import statsIcon from '../../icons/stats.svg'
 import logoutIcon from '../../icons/logout.svg'
@@ -22,7 +22,9 @@ export default function MenuContainer() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
-       {menuOpen && editButtonClicked && 
+       {
+       menuOpen && 
+       editButtonClicked && 
         <div className='posAbsolute width200px height200px'> 
           <Modal
              show={menuOpen}

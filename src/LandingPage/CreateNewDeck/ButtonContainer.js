@@ -11,7 +11,7 @@ const ButtonContainer = forwardRef((props, okRef) =>{
             />
             <Button 
               ref={okRef}
-              ok={true}
+              ok
               {...props}
              /> 
           </div>

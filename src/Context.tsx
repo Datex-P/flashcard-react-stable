@@ -13,7 +13,9 @@ export default function ContextProvider({ children }:any) {
   const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
   const [threeDotsOpen, setThreeDotsOpen] = useState(false);
   const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
-
+  const [emailAdress, setEmailAdress] = useState(null)
+  const [user, setUser] = useState('Fabian')
+  const [nameOfTopDeck, setNameOfTopDeck] = useState(null)
 
   const [styles, setStyles] = useState({
     backgroundColor: {
@@ -135,7 +137,10 @@ export default function ContextProvider({ children }:any) {
         showProgressDiagram, setShowProgressDiagram,
         styles, setStyles,
         showThreeDots, setShowThreeDots,
-        threeDotsOpen, setThreeDotsOpen
+        threeDotsOpen, setThreeDotsOpen,
+        user, setUser,
+        emailAdress, setEmailAdress,
+        nameOfTopDeck, setNameOfTopDeck
         }} 
      >
       {children}

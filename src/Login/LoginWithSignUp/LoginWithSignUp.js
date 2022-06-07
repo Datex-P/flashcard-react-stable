@@ -1,21 +1,13 @@
 import Facebook from "./Facebook";
 import Google from "./Google";
 
-function LoginWithSignUp({ setUser }) {
-  if (
-    document.getElementsByClassName(
-      "posRelative flex-column justify-between height120px"
-    )
-  ) {
-    let elem = document.getElementsByClassName(
-      "posRelative flex-column justify-between height120px"
-    );
-    console.log(elem, "elem 2 here");
-    //    let k = elem[2]
-    // k.style.height = '39px'
-    //  console.log(elem[2], 'elem here')
-    console.log(elem.childNodes, "elem here");
-  }
+function LoginWithSignUp() {
+  // if (
+  //   document.getElementsByClassName(
+  //     "posRelative flex-column justify-between height120px"
+  //   )
+  // ) {
+  // }
 
   return (
     <>
@@ -24,7 +16,7 @@ function LoginWithSignUp({ setUser }) {
           Or login with:
         </div>
         <div className='posRelative flex-column justify-between height120px'>
-          <Facebook setUser={setUser} />
+          <Facebook />
           <Google />
         </div>
       </div>

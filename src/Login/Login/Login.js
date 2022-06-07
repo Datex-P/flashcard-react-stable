@@ -1,15 +1,17 @@
-import React, {useRef} from "react";
+import React, {useRef, useContext} from "react";
 import flashcard from '../../icons/flashcard-design-new.png';
 import '../../styles.scss';
 import '../login.css';
+import { Context } from '../../Context';
 import ParticleBackground from '../Particles/ParticlesBackground';
 import Button from '../Button';
 import LoginWithSignUp from '../LoginWithSignUp/LoginWithSignUp'
 import UserName from './UserName'
 import Password from './Password'
 
-function Login({ setUser}) {
+function Login() {
 
+  const {user, setUser} = useContext(Context)
 
   let facebook = document.querySelectorAll("input[type=button]") 
   console.log(facebook, 'facebook here')
@@ -55,6 +57,7 @@ const result = elements.filter(callback)
     if(data.user) {
       localStorage.setItem('token', data.user) //store token so it can be used
       window.location.href = '/main'
+      setUser(name) //name of login field gets set as user
     } else {
       alert('Please check your username and password')
     }
@@ -90,7 +93,7 @@ const result = elements.filter(callback)
               <Button text='Login' />
             </div>
           </form>
-          <LoginWithSignUp setUser={setUser}/>      
+          <LoginWithSignUp />      
         </div>
       </div>
     </ParticleBackground>

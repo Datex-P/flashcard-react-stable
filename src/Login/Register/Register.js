@@ -1,16 +1,17 @@
-import React, { useRef } from "react";
-import "../../styles.scss";
-import "../login.css";
-import ParticleBackground from "../Particles/ParticlesBackground";
+import React, { useRef } from 'react';
+import '../../styles.scss';
+import '../login.css';
+import ParticleBackground from '../Particles/ParticlesBackground';
 import { useHistory } from "react-router-dom";
-import Password from "./Password";
-import Email from "./Email";
-import UserName from "./UserName";
-import FlashcardLogo from "../FlashcardLogo";
+import Password from './Password';
+import Email from './Email';
+import UserName from './UserName';
+import FlashcardLogo from '../FlashcardLogo';
 
 function Register() {
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
+  const emailRef = useRef(null);
   const history = useHistory();
 
   function signUpHandler() {
@@ -23,11 +24,12 @@ function Register() {
     e.preventDefault();
     //e preventDefault is needed because forms
     //have a standard behaviour of redirecting
+   // console.log(name, "name in ref");
     let name = userNameRef.current.value;
-    console.log(name, "name in ref");
     let password = passwordRef.current.value;
+    let email = emailRef.current.value;
 
-    const response = await fetch("http://localhost:4000/register", {
+    const response = await fetch('http://localhost:4000/register', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,20 +37,13 @@ function Register() {
       body: JSON.stringify({
         name,
         password,
+        email
       }),
     });
     const data = await response.json();
 
-    //data.status === 'ok'
     if (data.status === "ok") {
       history.push("/checkemail");
-    }
-
-    if (data.user) {
-      alert("Login successful");
-      window.location.href = "/main";
-    } else {
-      alert("Please check your username and password");
     }
     console.log(data);
   }
@@ -68,7 +63,7 @@ function Register() {
             <div className='align-center flex-column posRelative'>
               <UserName ref={userNameRef} />
               <Password ref={passwordRef} />
-              <Email />
+              <Email ref={emailRef} />
               <div className='login__button__container login__field-distance justify-between flex-column width75pc height75px mt-20px'>
                 <button
                   className='login__button justify-center-align-center cursorPointer'

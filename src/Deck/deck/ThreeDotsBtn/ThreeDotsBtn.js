@@ -24,7 +24,6 @@ function ThreeDotsBtn({
   // showFromParent,
   classValue,
   style,
-  nameOfTopDeck,
   editEvent = () => {},
   trashEvent = () => {},
   resetEvent = () => {},
@@ -35,7 +34,8 @@ function ThreeDotsBtn({
     dataBase,setDataBase,
     editButtonClicked,setEditButtonClicked,
     threeDotsOpen,setThreeDotsOpen,
-    showThreeDots,setShowThreeDots
+    showThreeDots,setShowThreeDots,
+    nameOfTopDeck, setNameOfTopDeck
   } = useContext(Context);
   //let {edit=false,trash=false,pause=false} = icons;
   const ref = useRef(null);

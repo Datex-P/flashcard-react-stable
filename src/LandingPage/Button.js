@@ -6,24 +6,26 @@ const Button = forwardRef ((
  okRef
 )=> {
 console.log(props, 'props in button')
-const {dataBase, setDataBase, setActive, colors} = useContext(Context);
+const {dataBase, setDataBase, setActive, colors, user} = useContext(Context);
 
 let {setArrowDown, inputField, setInputField, closeHandler, setHideCreateDeckBtn,setNameTooShortOrLong, setScrollbarVisible} = props.data
 
-  function addNewDeckName() {
+
+   function addNewDeckName() {
     let newDataBase = { ...dataBase };
 
-    let index = newDataBase.DeckNames.push({
-      name: inputField,
-      data: [],
-      cardsToday: 0,
-      color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
-      paused: false,
-      thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
-      skipPausedCards: 0,
-      pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
-      editModeActive: false, //when editModeActive is true, pause switch can t be clicked
-    });
+   // const data =  await response.json()
+    // let index = newDataBase.DeckNames.push({
+    //   name: inputField,
+    //   data: [],
+    //   cardsToday: 0,
+    //   color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
+    //   paused: false,
+    //   thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+    //   skipPausedCards: 0,
+    //   pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
+    //   editModeActive: false, //when editModeActive is true, pause switch can t be clicked
+    // });
 
     if (
       dataBase?.DeckNames?.length === 1 ||
@@ -33,7 +35,7 @@ let {setArrowDown, inputField, setInputField, closeHandler, setHideCreateDeckBtn
     } else {
       setScrollbarVisible(true);
     }
-    setActive(index - 1);
+   // setActive(index - 1);
     setInputField("");
     setDataBase(newDataBase);
    // close(); not sure if needed
@@ -51,11 +53,30 @@ let {setArrowDown, inputField, setInputField, closeHandler, setHideCreateDeckBtn
     }
   }
 
-  function okHandler(){
-    setHideCreateDeckBtn(false)
-    setNameTooShortOrLong(false)
-    addNewDeckName()
-    closeHandler()
+  async function okHandler(){
+    try{
+      let req = await fetch('http://localhost:4000/generate_deck', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          deckname: inputField,
+          username: user
+        })
+      }
+    ) 
+    let res = await req.json()
+    if(res.status==='deck-created'){
+      setHideCreateDeckBtn(false)
+      setNameTooShortOrLong(false)
+      addNewDeckName()
+      closeHandler()
+    }
+    } catch(error) {
+      console.log(error, 'error here')
+    } 
   }
 
   return (

@@ -15,22 +15,40 @@ export default function AddQuestionsToDeck({ index, name,
 
   const { 
     dataBase,setDataBase,
+    user,
     editButtonClicked, 
+    nameOfTopDeck,
     setShowProgressDiagram,
   } = useContext(Context);
 
-  function addToDeck() {
-    let newDataBase = { ...dataBase }
-    newDataBase.DeckNames[index].data.push(card)
-    setDataBase(newDataBase)
-    setNewCardAdded(true)
 
+  async function addToDeck() {
+
+    try{
+      console.log('hello from fetch')
+      await fetch('http://localhost:4000/add_to_deck', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json'
+       },
+       body: JSON.stringify({
+         deckname: nameOfTopDeck,
+         username: user,
+         data : [{question: card.question, answer: card.answer}]
+       })
+     });
+     console.log('hello there')
+    setNewCardAdded(true)
     if (card.question.trim().length !== 0 && 
         card.answer.trim().length !== 0) {
       setTimeout(() => {
         setCard({ question: '', answer: '' })
         setNewCardAdded(false)
       }, 650)
+    }
+    } catch (error) {
+      console.log(error, 'error here')
     }
   }
 
@@ -41,6 +59,11 @@ export default function AddQuestionsToDeck({ index, name,
     setScrollbarVisible(true)
     console.log('hide triggered')
   }
+
+  useEffect(()=>{
+    console.log(card, 'card')
+    console.log(card.question, 'card question')
+  },[card])
 
   // plusHandler gets triggered when User clicks on plus Icon
   // is deactivated when the deck is paused, so User has to unpause

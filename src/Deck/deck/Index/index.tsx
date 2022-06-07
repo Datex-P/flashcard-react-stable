@@ -25,7 +25,6 @@ export default function Deck({
   const { data, name, paused } = deck;
 
   const [show, setShow] = useState(false);
-  const [nameOfTopDeck, setNameOfTopDeck] = useState(name);
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
   const [deckNameLengthRight, setDeckNameLengthRight] = useState(true) //deckname length is not too short and not too long
   const [nameTooLongOrShort, setNameTooLongOrShort] = useState(false) //if true deckname is too long or too short
@@ -39,9 +38,13 @@ export default function Deck({
     editButtonClicked, setEditButtonClicked,
     setHideCreateDeckBtn,
     threeDotsOpen, setThreeDotsOpen,
-    showThreeDots, setShowThreeDots,
+    setNameOfTopDeck,
     setChangeDeckNameOpen
   } = useContext(Context);
+
+  useEffect(()=>{
+    setNameOfTopDeck(name)
+  },[])
 
   useEffect(()=>{
     console.log(index, 'index in use effect')
@@ -77,11 +80,9 @@ export default function Deck({
 
   const deckOrCardNameProps = {
     bg: bg,
-    nameOfTopDeck: nameOfTopDeck,
     editButtonClicked: editButtonClicked,
     name: name,
     input: input,
-    setNameOfTopDeck: setNameOfTopDeck,
     setThreeDotsMenuOpen: setThreeDotsMenuOpen,
     setDeckNameLengthRight: setDeckNameLengthRight,
     setNameTooLongOrShort: setNameTooLongOrShort,
@@ -100,8 +101,6 @@ export default function Deck({
     setThreeDotsOpen: setThreeDotsOpen,
     threeDotsOpen: threeDotsOpen,
     bg: style.background,
-    nameOfTopDeck: nameOfTopDeck,
-    setNameOfTopDeck: setNameOfTopDeck,
     edit: !paused,
     trash: !paused,
     input: input,
@@ -166,10 +165,7 @@ export default function Deck({
         className="deck__card_cont flexColumn position-absolute "
       >
         <Card.Body className="justify-center-align-center flex-column mt-48px">
-          <NameLongOrShort
-            nameTooLongOrShort={nameTooLongOrShort}
-            nameOfTopDeck={nameOfTopDeck}
-          />
+          <NameLongOrShort nameTooLongOrShort={nameTooLongOrShort}/>
           <Card.Title className="deck__index-card-title justify-between-align-center">
             <DeckOrCardName
               data={deckOrCardNameProps}
@@ -187,8 +183,6 @@ export default function Deck({
                 icons={{ paused, edit: !paused, trash: !paused }}
                 paused={paused}
                 bg={style.background}
-                nameOfTopDeck={nameOfTopDeck}
-                setNameOfTopDeck={setNameOfTopDeck}
                 edit={!paused}
                 // data={threeDotsProps}
                 pause
@@ -259,8 +253,8 @@ export default function Deck({
             data={data}
             paused={paused}
             setDecksAreVisible={setDecksAreVisible}
-            setPauseIsActive={setPauseIsActive}
             pauseIsActive={pauseIsActive}
+            setPauseIsActive={setPauseIsActive}
             setScrollbarVisible={setScrollbarVisible}
           />
           {active === index && (
