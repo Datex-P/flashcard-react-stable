@@ -199,7 +199,7 @@ console.log(mongoose.connection.readyState, 'mongoose connection');
 
 app.use(express.static(path.join(__dirname, '/src')))
 app.get('*', (req, res)=>{
-  res.sendFile(path.resolve(__dirname, '/src/build', 'index.html'))
+  res.sendFile(path.resolve(__dirname, '/build', 'index.html'))
 })
 
 mongoose.connect(process.env.MONGO_URI, {
