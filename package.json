@@ -40,8 +40,8 @@
     "test": "react-scripts test",
     "tsc:w": "tsc -w",
     "eject": "react-scripts eject",
-    "install-client": "cd client && npm install",
-    "build": "cd client && npm run build",
+    "install-client": "cd src && npm install",
+    "build": "cd src && npm run build",
     "heroku-postbuild": "npm run install-client && npm run build",
     "start":"node ./server/index.js"
   },
