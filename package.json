@@ -37,11 +37,13 @@
 
   "scripts": {
     "watch": "nodemon ./server/index.js",
-    "start": "HTTPS=true react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "tsc:w": "tsc -w",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install-client": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start":"node ./server/index.js"
   },
   "eslintConfig": {
     "extends": [

@@ -10,6 +10,7 @@ require('dotenv').config();
 const nodemail = require('./nodemail.js')
 const pwdreset = require('./pwdreset.js')
 const Deck = require('./models/deck');
+const path = require('path')
 
 app.use(cors()) //manipulates response and passes on to next function
 app.use(express.json()) //parses anything that comes from express as json
@@ -144,7 +145,7 @@ app.get('/new_pwd', (req, res) => {
   if (decoded) {
     console.log(decoded, 'decoded here')
     res.writeHead(302, {
-      Location: `https://localhost:3000/new_password/${token}`
+      Location: `${process.env.PROVIDER_FRONTEND}/new_password/${token}`
   });
   res.end();
 }
@@ -190,13 +191,18 @@ app.post('/', (req, res) => {
 });
 
 
-app.listen(4000, ()=>{
+app.listen(process.env.PORT, ()=>{
   console.log('server started')
 })
 
 console.log(mongoose.connection.readyState, 'mongoose connection');
 
-mongoose.connect(process.env.Mongo_Url, {
+app.use(express.static(path.resolve(__dirname, './client/build', 'index.html')))
+app.get('*', (req, res)=>{
+  res.sendFile(path.resolve(__dirname, './client/build'))
+})
+
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true
 },
 () => {
