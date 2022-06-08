@@ -197,9 +197,9 @@ app.listen(process.env.PORT, ()=>{
 
 console.log(mongoose.connection.readyState, 'mongoose connection');
 
-app.use(express.static(path.resolve(__dirname, './public/build', 'index.html')))
+app.use(express.static(path.join(__dirname, '/src')))
 app.get('*', (req, res)=>{
-  res.sendFile(path.resolve(__dirname, './public/build'))
+  res.sendFile(path.resolve(__dirname, '/src/build', 'index.html'))
 })
 
 mongoose.connect(process.env.MONGO_URI, {
