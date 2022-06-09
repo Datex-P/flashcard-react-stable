@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <script src="https://apis.google.com/js/platform.js"
-     >
+     async>
     let link = document.createElement('meta'); 
     link.setAttribute('name','google-signin-client_id'); 
     link.content = `${REACT_CREATE_APP}.apps.googleusercontent.com`
@@ -10,7 +10,7 @@
     document.getElementsByTagName('head')[0].appendChild(link)
     </script>
     <title>React App</title>
-    <script>
+    <script async>
 
 // <meta name="google-signin-client_id" content=`${}.apps.googleusercontent.com`>
 
