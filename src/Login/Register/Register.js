@@ -3,10 +3,15 @@ import '../../styles.scss';
 import '../login.css';
 import ParticleBackground from '../Particles/ParticlesBackground';
 import { useHistory } from "react-router-dom";
+
 import Password from './Password';
 import Email from './Email';
 import UserName from './UserName';
 import FlashcardLogo from '../FlashcardLogo';
+import { API } from 'aws-amplify';
+
+
+
 
 function Register() {
   const userNameRef = useRef(null);
@@ -19,6 +24,42 @@ function Register() {
     // setUser(true);
   }
 
+  async function head(e) { 
+    e.preventDefault();
+
+    let name = userNameRef.current.value;
+    let password = passwordRef.current.value;
+    let email = emailRef.current.value;
+
+    const apiName = 'Flashcard';
+    const path = '/register';
+    const myInit = { // OPTIONAL
+        headers: {"Content-Type": "application/json"}, // OPTIONAL
+        body: JSON.stringify({
+          name,
+          password,
+          email
+        }),
+
+    };
+    // if (data.status === "ok") {
+    //   history.push("/checkemail");
+    // }
+    // console.log(data);
+    return API.head(apiName, path, myInit)
+  }
+  
+  (async function () {
+    const response = await head();
+    console.log(response)
+    // if (data.status === "ok") {
+    //   history.push("/checkemail");
+    // }
+    // console.log(data);
+  })();
+
+
+
   async function registerUser(e) {
     console.log("got triggered");
     e.preventDefault();
@@ -29,7 +70,7 @@ function Register() {
     let password = passwordRef.current.value;
     let email = emailRef.current.value;
 
-    const response = await fetch(`http://localhost:4000/register/.netlify/functions/get-mapid`, {
+    const response = await fetch(`http://localhost:4000/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
