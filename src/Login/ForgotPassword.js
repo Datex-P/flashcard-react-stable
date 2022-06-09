@@ -51,7 +51,7 @@ function ForgotPassword() {
  
   return (
 
-    <ParticleBackground>
+    // <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
            <FlashcardLogo/>
@@ -93,7 +93,7 @@ function ForgotPassword() {
           }        
         </div>
       </div>
-    </ParticleBackground>
+    // </ParticleBackground>
   );
 }
 

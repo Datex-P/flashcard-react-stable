@@ -49,7 +49,7 @@ function Register() {
   }
 
   return (
-    <ParticleBackground>
+    // <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
           <FlashcardLogo register />
@@ -82,7 +82,7 @@ function Register() {
           </form>
         </div>
       </div>
-    </ParticleBackground>
+    // </ParticleBackground>
   );
 }
 

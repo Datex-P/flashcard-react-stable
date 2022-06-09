@@ -69,7 +69,7 @@ const result = elements.filter(callback)
  
   return (
 
-    <ParticleBackground>
+    // <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
           <div className='justify-center width100pc mt-75px mb-15pc'>
@@ -96,7 +96,7 @@ const result = elements.filter(callback)
           <LoginWithSignUp />      
         </div>
       </div>
-    </ParticleBackground>
+    // </ParticleBackground>
   );
 }
 

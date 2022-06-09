@@ -12,7 +12,7 @@ function CheckEmail() {
   const { emailAdress} = useContext(Context);
 
   return (
-    <ParticleBackground>
+    // <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
           <FlashcardLogo register />
@@ -37,7 +37,7 @@ function CheckEmail() {
           </div>
         </div>
       </div>
-    </ParticleBackground>
+    // </ParticleBackground>
   );
 }
 
