@@ -2,16 +2,10 @@ import Facebook from "./Facebook";
 import Google from "./Google";
 
 function LoginWithSignUp() {
-  // if (
-  //   document.getElementsByClassName(
-  //     "posRelative flex-column justify-between height120px"
-  //   )
-  // ) {
-  // }
 
   return (
     <>
-      <div className='height120px login__field-distance flex-column justify-between align-center'>
+      <div className='height110px login__field-distance flex-column justify-between align-center'>
         <div className='mb-10px justify-start width100pc login__reset-col'>
           Or login with:
         </div>

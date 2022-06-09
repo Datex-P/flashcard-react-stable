@@ -202,7 +202,7 @@ app.get('*', (req, res)=>{
   res.sendFile(path.resolve(__dirname, 'src/build', 'index.html'))
 })
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true
 },
 () => {

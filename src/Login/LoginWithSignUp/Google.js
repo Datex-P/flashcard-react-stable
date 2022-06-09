@@ -1,32 +1,30 @@
-import {GoogleLogin} from 'react-google-login';
-import { useHistory } from "react-router-dom";
-
-
+import {useEffect} from 'react'
 // https://developers.google.com/identity/sign-in/web
 // documentation google for login
 
 function Google () {
+  useEffect(()=>{
+    setTimeout(()=>{
+    let element = document.querySelector('.abcRioButton')
+    let wrapper = document.querySelector('.abcRioButtonContentWrapper')
+    console.log(element, 'element here')
 
-  // let history = useHistory();
-
- 
+    if(element) {
+      element.style.height = '39px'
+      element.style.width = '159px'
+      element.style.borderRadius = '5px'
+      wrapper.style.display = 'flex'
+      wrapper.style.alignItems = 'center'
+      wrapper.style.paddingLeft = '20px'
+    }
+  },3000)
+  },[])
 
   return (
-    <div className='login__google posRelative overflowHidden'>
-     <div className="g-signin2" style={{width:'200px', height:'100px', background: 'green'}} 
-     //onClick={onSignIn} 
-     dataOnsuccess="onSignIn" ></div> 
-       {/* <GoogleLogin
-          clientId=""
-          // render={renderProps => (
-          //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>This is my custom Google button</button>
-          // )}
-          buttonText="Login"
-          onSuccess={(res)=>{console.log(res, 'res')}}
-          // onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}  
-      />  */}
-    </div>
+     <div 
+      className='g-signin2 width150px height30px' 
+      dataOnsuccess='onSignIn'>
+     </div>     
   )
 }
 
