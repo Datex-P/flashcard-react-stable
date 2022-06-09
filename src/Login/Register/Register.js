@@ -29,7 +29,7 @@ function Register() {
     let password = passwordRef.current.value;
     let email = emailRef.current.value;
 
-    const response = await fetch('http://localhost:4000/register', {
+    const response = await fetch(`http://localhost:4000/register/.netlify/functions/get-mapid`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
