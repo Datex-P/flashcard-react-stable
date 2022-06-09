@@ -3,7 +3,10 @@
   <head>
     <script src="https://apis.google.com/js/platform.js"
      >
-    let link = document.createElement('meta'); link.setAttribute('name','google-signin-client_id'); link.content = '120219528416-sosfr3o924155s2girgnofqkrvfa4qsr.apps.googleusercontent.com'
+    let link = document.createElement('meta'); 
+    link.setAttribute('name','google-signin-client_id'); 
+    link.content = `${REACT_CREATE_APP}.apps.googleusercontent.com`
+    //REACT_CREATE_APP=
     document.getElementsByTagName('head')[0].appendChild(link)
     </script>
     <title>React App</title>
