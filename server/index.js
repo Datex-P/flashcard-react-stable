@@ -19,7 +19,7 @@ app.use(express.json()) //parses anything that comes from express as json
 //not a cross origin
 
 app.post('/register', async (req, res)=>{
-  //console.log('register re')
+  console.log('hello from register')
   return res.json({status: 'ok'})
   // try {
   //   const cryptedPassword = await bcrypt.hash(req.body.password, 10)
