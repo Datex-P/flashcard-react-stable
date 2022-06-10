@@ -24,6 +24,7 @@ function Register() {
   }
 
   async function registerUser(e) { 
+    try{
     e.preventDefault();
 
     let name = userNameRef.current.value;
@@ -47,6 +48,9 @@ function Register() {
     // }
     // console.log(data);
     return API.get(apiName, path, myInit)
+  } catch (error) {
+    console.log(error, 'error here')
+  }
   }
   
   (async function () {
