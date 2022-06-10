@@ -3,7 +3,6 @@ import '../../styles.scss';
 import '../login.css';
 import ParticleBackground from '../Particles/ParticlesBackground';
 import { useHistory } from "react-router-dom";
-
 import Password from './Password';
 import Email from './Email';
 import UserName from './UserName';

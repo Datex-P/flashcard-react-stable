@@ -12,7 +12,6 @@ import Amplify, { API } from 'aws-amplify';
 
 export default function App() {
 
-
 Amplify.configure({
   // OPTIONAL - if your API requires authentication 
   Auth: {
