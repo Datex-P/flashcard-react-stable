@@ -23,7 +23,7 @@ function Register() {
     // setUser(true);
   }
 
-  async function head(e) { 
+  async function registerUser(e) { 
     e.preventDefault();
 
     let name = userNameRef.current.value;
@@ -33,6 +33,7 @@ function Register() {
     const apiName = 'Flashcard';
     const path = '/register';
     const myInit = { // OPTIONAL
+        method: "POST",
         headers: {"Content-Type": "application/json"}, // OPTIONAL
         body: JSON.stringify({
           name,
@@ -45,11 +46,11 @@ function Register() {
     //   history.push("/checkemail");
     // }
     // console.log(data);
-    return API.head(apiName, path, myInit)
+    return API.get(apiName, path, myInit)
   }
   
   (async function () {
-    const response = await head();
+    const response = await registerUser();
     console.log(response)
     // if (data.status === "ok") {
     //   history.push("/checkemail");
@@ -59,34 +60,34 @@ function Register() {
 
 
 
-  async function registerUser(e) {
-    console.log("got triggered");
-    e.preventDefault();
-    //e preventDefault is needed because forms
-    //have a standard behaviour of redirecting
-   // console.log(name, "name in ref");
-    let name = userNameRef.current.value;
-    let password = passwordRef.current.value;
-    let email = emailRef.current.value;
+  // async function registerUser(e) {
+  //   console.log("got triggered");
+  //   e.preventDefault();
+  //   //e preventDefault is needed because forms
+  //   //have a standard behaviour of redirecting
+  //  // console.log(name, "name in ref");
+  //   let name = userNameRef.current.value;
+  //   let password = passwordRef.current.value;
+  //   let email = emailRef.current.value;
 
-    const response = await fetch(`http://localhost:4000/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        password,
-        email
-      }),
-    });
-    const data = await response.json();
+  //   const response = await fetch(`http://localhost:4000/register`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       name,
+  //       password,
+  //       email
+  //     }),
+  //   });
+  //   const data = await response.json();
 
-    if (data.status === "ok") {
-      history.push("/checkemail");
-    }
-    console.log(data);
-  }
+  //   if (data.status === "ok") {
+  //     history.push("/checkemail");
+  //   }
+  //   console.log(data);
+  // }
 
   return (
     // <ParticleBackground>

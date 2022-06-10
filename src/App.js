@@ -8,7 +8,8 @@ import NewPwd from './Login/NewPwd'
 import Settings from './Deck/Settings/Settings'
 import Stats from './Deck/Stats/Stats'
 import ForgotPassword from './Login/ForgotPassword'
-import Amplify, { API } from 'aws-amplify';
+import Amplify from 'aws-amplify';
+import config from './aws-exports.js'
 
 export default function App() {
 
