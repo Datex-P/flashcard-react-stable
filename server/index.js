@@ -19,21 +19,23 @@ app.use(express.json()) //parses anything that comes from express as json
 //not a cross origin
 
 app.post('/register', async (req, res)=>{
-  try {
-    const cryptedPassword = await bcrypt.hash(req.body.password, 10)
-    await User.create({
-      name: req.body.name,
-      email: req.body.email,
-      verified: false,
-      password: cryptedPassword,
-    })
-    res.json({status: 'ok'})
-    nodemail()   //how to check if res.json is really ok? put in if statement somehow
-    //res.json({status:'message send'})
-  } catch (err) {
-    console.log(err, 'err here')
-    res.json({status:'error', error: 'Duplicate email'})
-  }
+  //console.log('register re')
+  return res.json({status: 'ok'})
+  // try {
+  //   const cryptedPassword = await bcrypt.hash(req.body.password, 10)
+  //   await User.create({
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //     verified: false,
+  //     password: cryptedPassword,
+  //   })
+  //   res.json({status: 'ok'})
+  //   nodemail()   //how to check if res.json is really ok? put in if statement somehow
+  //   //res.json({status:'message send'})
+  // } catch (err) {
+  //   console.log(err, 'err here')
+  //   res.json({status:'error', error: 'Duplicate email'})
+  // }
 })
 
 app.post('/login', async (req, res)=>{
