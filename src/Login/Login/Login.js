@@ -8,8 +8,11 @@ import Button from '../Button';
 import LoginWithSignUp from '../LoginWithSignUp/LoginWithSignUp'
 import UserName from './UserName'
 import Password from './Password'
+import env from "../../env.json";
 
 function Login() {
+
+  let NETLIFY_URL = env.NETLIFY_URL;
 
   const {user, setUser} = useContext(Context)
 
@@ -38,15 +41,15 @@ const result = elements.filter(callback)
      console.log(name, 'name')
      console.log(password, 'password')
 
-   const response =  await fetch('https://cool-gnome-d84e5e.netlify.app/.netlify/functions/addtask', {
+   const response =  await fetch(`${process.env.REACT_APP_NETLIFY_URL}.netlify/functions/addtask`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        // name,
-        // password
+        name,
+        password
       })
     })
 
