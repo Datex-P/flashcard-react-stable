@@ -43,7 +43,7 @@
     "test": "react-scripts test",
     "tsc:w": "tsc -w",
     "eject": "react-scripts eject",
-    "build": "npm run build"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
