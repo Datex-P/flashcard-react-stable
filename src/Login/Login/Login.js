@@ -45,8 +45,8 @@ const result = elements.filter(callback)
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        name,
-        password
+        // name,
+        // password
       })
     })
 
