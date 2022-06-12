@@ -1,6 +1,7 @@
-const { MongoClient } = require('mongodb');
+//const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const mongoose = require('mongoose')
+const User = require('../../models/user')
 
 
 // let client = new MongoClient(`${process.env.MONGO_URI}`, {
@@ -13,22 +14,25 @@ let client = await mongoose.connect(`${process.env.MONGO_URI}`, {
 }
 );
 
-const clientPromise = client.connect()
+//const clientPromise = client.connect()
 
 exports.handler = async (event, context, callback) => {
  console.log(event, 'event var here')
  console.log(context, 'context var here')
   context.callbackWaitsForEmptyEventLoop = false;
+   
   
-  try {    
-    client = await clientPromise;
-    client.db('flashcards').collection('hifrommonday').insertOne({
-      item: 'canvas',
-      qty: 100,
-      tags: ['cotton'],
-      size: { h: 28, w: 35.5, uom: 'cm' }
-    })
-
+    try{
+      const user =  await User.findOne({
+        email: 'bbbb'
+      })
+      if(!user) {
+        await User.create({
+          name: 'kkk',
+          email: 'llll',
+          verified: true,
+        })
+      }
     return {
       statusCode: 200,
       headers: {
@@ -37,7 +41,7 @@ exports.handler = async (event, context, callback) => {
         "Access-Control-Allow-Headers": "Authorization, Content-Type, X-Requested-With",
         "Content-Type":"application/json"
       }
-    };
+    }
   } catch (err) {
     return {
       statusCode: 500,
