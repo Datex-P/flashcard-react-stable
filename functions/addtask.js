@@ -6,12 +6,12 @@ let client = new MongoClient(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true
 }
 );
-console.log(client, 'client uri')
 
 const clientPromise = client.connect()
 
 exports.handler = async (event, context, callback) => {
- 
+ console.log(event, 'event var here')
+ console.log(context, 'context var here')
   context.callbackWaitsForEmptyEventLoop = false;
   
   try {    
