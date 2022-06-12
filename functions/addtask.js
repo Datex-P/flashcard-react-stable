@@ -33,13 +33,14 @@ exports.handler = async (event, context, callback) => {
           verified: true,
         })
       }
+      // "Access-Control-Allow-Headers": "Authorization, Content-Type, X-Requested-With",
     return {
       statusCode: 200,
       status:"ok",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Authorization, Content-Type, X-Requested-With",
+        "Access-Control-Allow-Headers": "append,delete,entries,foreach,get,has,keys,set,values,Authorization",
         "Content-Type":"application/json"
       }
     }
