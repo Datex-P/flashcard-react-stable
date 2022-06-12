@@ -1,11 +1,12 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
 
-let uri = 'mongodb+srv://...flashcard?retryWrites=true&w=majority'
-let client = new MongoClient(`${uri}`, {
+let client = new MongoClient(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true
 }
 );
+console.log(client, 'client uri')
 
 const clientPromise = client.connect()
 
@@ -14,7 +15,6 @@ exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   
   try {    
- 
     client = await clientPromise;
     client.db('flashcards').collection('hifrommonday').insertOne({
       item: 'canvas',
