@@ -38,7 +38,7 @@ const result = elements.filter(callback)
      console.log(name, 'name')
      console.log(password, 'password')
 
-   const response =  await fetch('https://cool-gnome-d84e5e.netlify.app/login', {
+   const response =  await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
