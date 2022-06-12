@@ -35,6 +35,7 @@ exports.handler = async (event, context, callback) => {
       }
     return {
       statusCode: 200,
+      status:"ok",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
