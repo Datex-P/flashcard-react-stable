@@ -42,17 +42,18 @@ const result = elements.filter(callback)
      let localhost = 'http://localhost:8888/'
 
 
-   const response =  await fetch(`${process.env.REACT_APP_NETLIFY_URL}.netlify/functions/addtask`, {
+   const response =  await fetch(`https://cool-gnome-d84e5e.netlify.app/}.netlify/functions/addtask`, {
       method: 'POST',
       mode: 'cors',
       statusCode: 200,
       status:"ok",
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Origin, X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        "Access-Control-Allow-Credentials": "true",
+        "Content-Type":"application/json",
+        "Access-Control-Max-Age": "2592000",
       },
       body: JSON.stringify({
         name,
