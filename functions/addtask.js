@@ -10,11 +10,8 @@ const User = require('../server/models/user')
 );
 
 exports.handler = async (event, context, callback) => {
- console.log(event, 'event var here')
- console.log(context, 'context var here')
   context.callbackWaitsForEmptyEventLoop = false;
    
-  
     try{
       const user =  await User.findOne({
         email: 'bbbb'
@@ -26,7 +23,6 @@ exports.handler = async (event, context, callback) => {
           verified: true,
         })
       }
-      // "Access-Control-Allow-Headers": "Authorization, Content-Type, X-Requested-With",
     return {
       statusCode: 200,
       status:"ok",
@@ -34,6 +30,7 @@ exports.handler = async (event, context, callback) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        "Access-Control-Allow-Credentials": "true",
         "Content-Type":"application/json"
       }
     }
