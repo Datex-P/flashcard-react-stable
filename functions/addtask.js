@@ -3,18 +3,11 @@ require('dotenv').config();
 const mongoose = require('mongoose')
 const User = require('../server/models/user')
 
-
-// let client = new MongoClient(`${process.env.MONGO_URI}`, {
-//   useNewUrlParser: true
-// }
-// );
-let client = await mongoose.connect(`${process.env.MONGO_URI}`, {
+ await mongoose.connect(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true 
 }
 );
-
-//const clientPromise = client.connect()
 
 exports.handler = async (event, context, callback) => {
  console.log(event, 'event var here')
@@ -40,7 +33,7 @@ exports.handler = async (event, context, callback) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
         "Content-Type":"application/json"
       }
     }

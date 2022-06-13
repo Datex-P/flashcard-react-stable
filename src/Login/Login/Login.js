@@ -40,12 +40,18 @@ const result = elements.filter(callback)
      let password = passwordRef.current.value;
      console.log(name, 'name')
      console.log(password, 'password')
+     let deployed = process.env.REACT_APP_NETLIFY_URL
+     let localhost = 'http://localhost:8888/'
 
-   const response =  await fetch(`${process.env.REACT_APP_NETLIFY_URL}.netlify/functions/addtask`, {
+   const response =  await fetch(`${deployed}.netlify/functions/addtask`, {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
       },
       body: JSON.stringify({
         name,
