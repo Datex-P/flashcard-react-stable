@@ -18,8 +18,8 @@ exports.handler = async (event, context, callback) => {
       })
       if(!user) {
         await User.create({
-          name: 'kkk',
-          email: 'llll',
+          name: 'itworks',
+          email: 'itworks',
           verified: true,
         })
       }
