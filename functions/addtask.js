@@ -31,7 +31,8 @@ exports.handler = async (event, context, callback) => {
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
         "Access-Control-Allow-Credentials": "true",
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "Access-Control-Max-Age": "2592000",
       }
     }
   } catch (err) {
