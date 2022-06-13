@@ -12,9 +12,7 @@ import ForgotPassword from './Login/ForgotPassword'
 
 export default function App() {
 
- 
-  return (
-   
+  return (  
     <div>
       <Router>
         <Switch>                      
@@ -39,7 +37,6 @@ export default function App() {
            <Route path ='/register' >
             <Register />
           </Route> 
-          {/*when user is not set, display login, otherwise hide it*/}
           <Route path='/' exact>
           <Redirect to='/login'/>
           </Route>

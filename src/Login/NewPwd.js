@@ -7,7 +7,6 @@ import FlashcardLogo from "./FlashcardLogo";
 import Password from "./Register/Password";
 import jwt_decode from "jwt-decode";
 import Alert from "react-bootstrap/Alert";
-//test
 
 function NewPwd() {
   const passwordRef1 = useRef(null);

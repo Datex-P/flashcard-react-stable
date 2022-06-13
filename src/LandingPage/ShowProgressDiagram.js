@@ -1,5 +1,5 @@
 import React from 'react'
-import PieDiagramm from "./PieDiagrammMain";
+ import PieDiagramm from "./PieDiagrammMain";
 
 function ShowProgressDiagram() {
 
@@ -16,7 +16,7 @@ function ShowProgressDiagram() {
           </div>
         </div>
         <div>
-          <PieDiagramm />
+           {/* <PieDiagramm />  */}
         </div>     
     </div>
   )

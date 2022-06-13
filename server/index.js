@@ -38,7 +38,7 @@ app.post('/register', async (req, res)=>{
   // }
 })
 
-app.post('https://cool-gnome-d84e5e.netlify.app/login', async (req, res)=>{
+app.post('api/login', async (req, res)=>{
  try{
     const user =  await User.findOne({
       name: req.body.name,

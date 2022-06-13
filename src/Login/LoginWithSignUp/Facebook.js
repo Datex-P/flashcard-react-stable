@@ -1,19 +1,17 @@
 import FacebookLogin from "@greatsumini/react-facebook-login";
-import env from "../../env.json";
 import { useHistory } from "react-router-dom";
 import React, { useContext } from "react";
 import { Context } from "../../Context";
 
-let facebookID = env.Facebook_ID;
-
 function Facebook() {
   let history = useHistory();
   const { setUser } = useContext(Context);
+  let FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID
 
   async function facebookUser(value) {
     try {
       let { email, name } = value;
-      let response = await fetch("http://localhost:4000/facebook", {
+      let response = await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/facebook", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +36,7 @@ function Facebook() {
   return (
     <div className='facebookBtn'>
       <FacebookLogin
-        appId={`${facebookID}`}
+        appId={`${FACEBOOK_ID}`}
         style={{
           backgroundColor: "#4267b2",
           color: "#fff",

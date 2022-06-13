@@ -7,8 +7,6 @@ import Password from './Password';
 import Email from './Email';
 import UserName from './UserName';
 import FlashcardLogo from '../FlashcardLogo';
-import { API } from 'aws-amplify';
-
 
 
 
@@ -47,7 +45,6 @@ function Register() {
     //   history.push("/checkemail");
     // }
     // console.log(data);
-    return API.get(apiName, path, myInit)
   } catch (error) {
     console.log(error, 'error here')
   }

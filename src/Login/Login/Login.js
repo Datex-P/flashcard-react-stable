@@ -8,11 +8,9 @@ import Button from '../Button';
 import LoginWithSignUp from '../LoginWithSignUp/LoginWithSignUp'
 import UserName from './UserName'
 import Password from './Password'
-import env from "../../env.json";
+
 
 function Login() {
-
-  let NETLIFY_URL = env.NETLIFY_URL;
 
   const {user, setUser} = useContext(Context)
 
@@ -34,7 +32,7 @@ const result = elements.filter(callback)
   async function loginUser(e) {
     e.preventDefault()
     try{
-    //e preventDefault is needed because forms 
+          //e preventDefault is needed because forms 
     //have a standard behaviour of redirecting
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
@@ -43,7 +41,8 @@ const result = elements.filter(callback)
      let deployed = process.env.REACT_APP_NETLIFY_URL
      let localhost = 'http://localhost:8888/'
 
-   const response =  await fetch(`${deployed}.netlify/functions/addtask`, {
+
+   const response =  await fetch(`${process.env.REACT_APP_NETLIFY_URL}.netlify/functions/addtask`, {
       method: 'POST',
       mode: 'cors',
       statusCode: 200,
@@ -58,6 +57,7 @@ const result = elements.filter(callback)
       body: JSON.stringify({
         name,
         password
+        /////
       })
     })
 

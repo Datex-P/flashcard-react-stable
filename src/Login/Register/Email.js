@@ -2,8 +2,6 @@ import email from "../../icons/email.svg";
 import {forwardRef, useEffect, useContext} from 'react'
 import { Context } from '../../Context';
 
-//test
-
 const Email = forwardRef((props, emailRef) => {
 
   const {emailAdress, setEmailAdress} = useContext(Context)
