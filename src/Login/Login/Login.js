@@ -42,7 +42,7 @@ const result = elements.filter(callback)
      let localhost = 'http://localhost:8888/'
 
 
-   const response =  await fetch(`https://cool-gnome-d84e5e.netlify.app/}.netlify/functions/addtask`, {
+   const response =  await fetch(`https://cool-gnome-d84e5e.netlify.app/.netlify/functions/addtask`, {
       method: 'POST',
       mode: 'cors',
       statusCode: 200,

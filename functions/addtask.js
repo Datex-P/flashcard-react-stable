@@ -3,15 +3,15 @@ require('dotenv').config();
 const mongoose = require('mongoose')
 const User = require('../server/models/user')
 
- await mongoose.connect(`${process.env.MONGO_URI}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true 
-}
-);
-
 exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-   
+  
+   await mongoose.connect(`${process.env.MONGO_URI}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+  }
+  );
+  
     try{
       const user =  await User.findOne({
         email: 'bbbb'
