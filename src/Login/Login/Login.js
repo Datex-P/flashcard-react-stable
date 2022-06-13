@@ -46,12 +46,14 @@ const result = elements.filter(callback)
    const response =  await fetch(`${deployed}.netlify/functions/addtask`, {
       method: 'POST',
       mode: 'cors',
+      statusCode: 200,
+      status:"ok",
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        "Access-Control-Allow-Headers": "Origin, X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
       },
       body: JSON.stringify({
         name,
