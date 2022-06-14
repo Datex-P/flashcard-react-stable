@@ -52,21 +52,18 @@ const result = elements.filter(callback)
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
         "Access-Control-Allow-Credentials": "true",
-        "Content-Type":"application/json",
+         "Content-Type":"application/json",
+        //"Content-Type": "application/x-www-form-urlencoded",
         "Access-Control-Max-Age": "2592000",
       },
-      body: JSON.stringify({
-        name,
-        password,
-        /////
-      })
+      body: JSON.stringify('llll')
     })
 
     const data =  await response.json()
     console.log(data, 'data here')
     console.log(response, 'response here')
 
-    if(data.user) {
+    if(data?.user) {
       localStorage.setItem('token', data.user) //store token so it can be used
       window.location.href = '/main'
       setUser(name) //name of login field gets set as user
