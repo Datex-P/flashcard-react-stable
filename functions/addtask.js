@@ -25,7 +25,7 @@ exports.handler = async (event, context, callback) => {
  const {name, password} = JSON.parse(event.body)
         console.log(name, 'name here')
          console.log(password, 'password here')
-       console.log(event.body.name, 'name here')
+       //console.log(event.body.name, 'name here')
        const user =  await User.findOne({
          email: 'bbbb'
        })
@@ -46,7 +46,7 @@ exports.handler = async (event, context, callback) => {
         "Content-Type":"application/json",
         "Access-Control-Max-Age": "2592000",
       },
-      body: JSON.stringify({ name: name, email: password }) 
+      body: JSON.stringify({ name: name }) 
     }
   } catch (err) {
     return {
