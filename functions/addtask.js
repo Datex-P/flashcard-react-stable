@@ -4,24 +4,33 @@ const User = require('../server/models/user')
 
 exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  await mongoose.connect(`${process.env.MONGO_URI}`, {
+ // const name =  JSON.parse(event.body)
+  //console.log(name, 'name here')
+  let body = event.queryStringParameters
+  console.log(event.body.name, 'body name here')
+  console.log(event, 'event here')
+
+
+
+  await mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/flashcard?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true 
   }
   );
   
   try{
-    // const {name, password} = JSON.parse(event.body)
-    //     console.log(name, 'name')
-    //     console.log(password, 'password')
-      //  console.log(event.body.name, 'name here')
-      const user =  await User.findOne({
-        email: 'bbbb'
-      })
-      if(!user) {
+    const {name, password} = await JSON.parse(event.body)
+  //   const {name, password} = JSON.parse(event.body)
+        console.log(name, 'name here')
+         console.log(password, 'password here')
+       console.log(event.body.name, 'name here')
+       const user =  await User.findOne({
+         email: 'bbbb'
+       })
+       if(!user) {
         await User.create({
-          name: event.body.name,
-          email: event.body.password,
+          name: name,
+          email: password,
           verified: true
         })
       }
@@ -35,7 +44,8 @@ exports.handler = async (event, context, callback) => {
         "Access-Control-Allow-Credentials": "true",
         "Content-Type":"application/json",
         "Access-Control-Max-Age": "2592000",
-      }
+      },
+      body: JSON.stringify({ name: name, email: password }) 
     }
   } catch (err) {
     return {
