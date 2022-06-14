@@ -11,8 +11,10 @@ exports.handler = async (event, context, callback) => {
   );
   
   try{
-       console.log(event, 'event')
-       console.log(event.body.name, 'name here')
+    const {name, password} = JSON.parse(event.body)
+        console.log(name, 'name')
+        console.log(password, 'password')
+      //  console.log(event.body.name, 'name here')
       const user =  await User.findOne({
         email: 'bbbb'
       })
