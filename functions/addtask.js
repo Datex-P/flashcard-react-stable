@@ -5,12 +5,8 @@ const util=require('util')
 
 exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  ;let s=util.inspect(event.body)
-  .split(`Content-Disposition: form-data; name`);s.splice(0,1);
-  let r=`{"`;s.forEach((e)=>{r+=e.split(`\\r\\n------`)[0]
-  .replace(`"\\r\\n\\r\\n`,`":"`).replace(`\': \'"`,``)
-  .replace(`=`,``)+`",`});s=r.slice(0,-1)+`}`;console.log(s);
 
+  
   // const name =  JSON.parse(event.body)
   //console.log(name, 'name here')
   // let body = event.queryStringParameters
@@ -29,14 +25,15 @@ exports.handler = async (event, context, callback) => {
     //   const {name, password} = await JSON.parse(event.body)
     // console.log(JSON.parse(event.body), "event here");
     console.log(event, 'event here')
-    console.debug(event.body, 'event body here')
-    console.debug(JSON.stringify(event.body), 'event body here')
 
+    console.debug(event.body, 'event body here')
+    console.dir(event.body, 'event body here')
+    console.debug(JSON.stringify(event.body), 'event body here')
     console.log(JSON.parse(JSON.stringify(event.body)), 'evetn')
-    //console.log(JSON.stringify(event.body), 'evetn')
-    //console.log(JSON.stringify(event.body[0]), 'event body here')
+    console.log(JSON.stringify(event.body), 'evetn')
+    console.log(JSON.stringify(event.body[0]), 'event body here')
     console.log(event.body.name, 'name here')
-    //  const { name,  } = JSON.parse(event.body);
+    //const { name,  } = JSON.stringify(event.body);
     //  console.log(name, "name here");
     // console.log(password, "password here");
     const user = await User.findOne({
