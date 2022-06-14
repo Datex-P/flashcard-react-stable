@@ -11,18 +11,18 @@ exports.handler = async (event, context, callback) => {
   );
   
   try{
-    const {name, password} = JSON.parse(event.body)
-        console.log(name, 'name')
-        console.log(password, 'password')
+    // const {name, password} = JSON.parse(event.body)
+    //     console.log(name, 'name')
+    //     console.log(password, 'password')
       //  console.log(event.body.name, 'name here')
       const user =  await User.findOne({
         email: 'bbbb'
       })
       if(!user) {
         await User.create({
-          name: 'itworks',
-          email: 'itworks',
-          verified: true,
+          name: event.body.name,
+          email: event.body.password,
+          verified: true
         })
       }
     return {
