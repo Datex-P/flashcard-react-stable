@@ -6,9 +6,9 @@ exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
  // const name =  JSON.parse(event.body)
   //console.log(name, 'name here')
-  let body = event.queryStringParameters
-  console.log(event.body.name, 'body name here')
-  console.log(event, 'event here')
+  // let body = event.queryStringParameters
+  // console.log(event.body.name, 'body name here')
+  // console.log(event, 'event here')
 
 
 
@@ -19,8 +19,10 @@ exports.handler = async (event, context, callback) => {
   );
   
   try{
-    const {name, password} = await JSON.parse(event.body)
-  //   const {name, password} = JSON.parse(event.body)
+ //   const {name, password} = await JSON.parse(event.body)
+ console.log(JSON.parse(event.body), 'event here')
+    
+ const {name, password} = JSON.parse(event.body)
         console.log(name, 'name here')
          console.log(password, 'password here')
        console.log(event.body.name, 'name here')
@@ -30,7 +32,6 @@ exports.handler = async (event, context, callback) => {
        if(!user) {
         await User.create({
           name: name,
-          email: password,
           verified: true
         })
       }

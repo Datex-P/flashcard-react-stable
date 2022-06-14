@@ -40,7 +40,7 @@ const result = elements.filter(callback)
      console.log(password, 'password')
      let deployed = process.env.REACT_APP_NETLIFY_URL
      let localhost = 'http://localhost:8888/'
-
+    let host = 'https://cool-gnome-d84e5e.netlify.app/'
 
    const response =  await fetch(`https://cool-gnome-d84e5e.netlify.app/.netlify/functions/addtask`, {
       method: 'POST',
@@ -57,7 +57,7 @@ const result = elements.filter(callback)
       },
       body: JSON.stringify({
         name,
-        password
+        password,
         /////
       })
     })
