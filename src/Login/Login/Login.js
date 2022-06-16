@@ -52,10 +52,10 @@ const result = elements.filter(callback)
       "Access-Control-Max-Age": "2592000",
     },
       body: JSON.stringify({
-        name,
-        password
+        name:name,
+        password:password
       })
-    })
+    });
     const data =  await response.json()
     console.log(data, 'data here')
     console.log(response, 'response here')
