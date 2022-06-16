@@ -39,7 +39,7 @@ const result = elements.filter(callback)
     
      console.log(name, 'name')
      console.log(password, 'password')
-   const response =  await fetch('https://flashcard-react-stable.vercel.app/login', {
+   const response =  await fetch('https://flashcard-react-stable.vercel.app/api/login/', {
     mode: 'cors',
     method:'POST',
     headers: {
@@ -48,6 +48,7 @@ const result = elements.filter(callback)
       "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
       "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
+      Authorization: Bearer <TOKEN>
       "Access-Control-Max-Age": "2592000",
     },
       body: JSON.stringify({
