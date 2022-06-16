@@ -41,6 +41,7 @@ const result = elements.filter(callback)
    const response =  await fetch('https://flashcard-react-stable.vercel.app/login', {
     mode: 'cors',
     statusCode: 200,
+    method:'POST',
     status:"ok",
     headers: {
       "Access-Control-Allow-Origin": "*",
