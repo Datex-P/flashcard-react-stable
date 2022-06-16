@@ -36,13 +36,12 @@ const result = elements.filter(callback)
     //have a standard behaviour of redirecting
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
+    
      console.log(name, 'name')
      console.log(password, 'password')
-   const response =  await fetch('https://flashcard-react-stable.vercel.app/login', {
+   const response =  await fetch('https://flashcard-react-stable-datex-p.vercel.app/login/api', {
     mode: 'cors',
-    statusCode: 200,
     method:'POST',
-    status:"ok",
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
@@ -52,8 +51,8 @@ const result = elements.filter(callback)
       "Access-Control-Max-Age": "2592000",
     },
       body: JSON.stringify({
-        name:name,
-        password:password
+       name,
+      password
       })
     });
     const data =  await response.json()
