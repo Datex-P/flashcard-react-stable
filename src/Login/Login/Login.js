@@ -39,11 +39,17 @@ const result = elements.filter(callback)
      console.log(name, 'name')
      console.log(password, 'password')
    const response =  await fetch('https://flashcard-react-stable.vercel.app/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+    mode: 'cors',
+    statusCode: 200,
+    status:"ok",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+      "Access-Control-Allow-Credentials": "true",
+      "Content-Type":"application/json",
+      "Access-Control-Max-Age": "2592000",
+    },
       body: JSON.stringify({
         name,
         password
@@ -56,6 +62,7 @@ const result = elements.filter(callback)
       localStorage.setItem('token', data.user) //store token so it can be used
       window.location.href = '/main'
     } else {
+      console.log(data.user)
       alert('Please check your username and password')
     }
    console.log(data)

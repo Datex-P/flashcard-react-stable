@@ -18,6 +18,16 @@ app.use(express.json()) //parses anything that comes from express as json
 //sets correct headers on the response so that is 
 //not a cross origin
 
+//serve statis assets if in production
+if(process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static('build'))
+
+  app.get('*', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, 'build'), 'index.html')
+  })
+}
+
 app.post('/register', async (req, res)=>{
   console.log('hello from register')
   return res.json({status: 'ok'})
@@ -38,7 +48,7 @@ app.post('/register', async (req, res)=>{
   // }
 })
 
-app.post('api/login', async (req, res)=>{
+app.post('/login', async (req, res)=>{
  try{
     const user =  await User.findOne({
       name: req.body.name,
@@ -199,10 +209,10 @@ app.listen(process.env.PORT || 3001, ()=>{
 
 console.log(mongoose.connection.readyState, 'mongoose connection');
 
-app.use(express.static(path.join(__dirname, 'src/build')))
-app.get('*', (req, res)=>{
-  res.sendFile(path.resolve(__dirname, 'src/build', 'index.html'))
-})
+// app.use(express.static(path.join(__dirname, 'src/build')))
+// app.get('*', (req, res)=>{
+//   res.sendFile(path.resolve(__dirname, 'src/build', 'index.html'))
+// })
 
 mongoose.connect(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true
