@@ -48,8 +48,7 @@ const result = elements.filter(callback)
       "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
       "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
-      Authorization: Bearer <TOKEN>
-      "Access-Control-Max-Age": "2592000",
+      "Access-Control-Max-Age": "2592000"
     },
       body: JSON.stringify({
        name,
