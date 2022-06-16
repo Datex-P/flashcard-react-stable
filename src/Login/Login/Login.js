@@ -39,7 +39,7 @@ const result = elements.filter(callback)
     
      console.log(name, 'name')
      console.log(password, 'password')
-   const response =  await fetch('https://flashcard-react-stable-datex-p.vercel.app/login/api', {
+   const response =  await fetch('https://flashcard-react-stable.vercel.app/login', {
     mode: 'cors',
     method:'POST',
     headers: {
