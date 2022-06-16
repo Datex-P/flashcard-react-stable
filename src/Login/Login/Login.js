@@ -32,41 +32,29 @@ const result = elements.filter(callback)
   async function loginUser(e) {
     e.preventDefault()
     try{
-          //e preventDefault is needed because forms 
+    //e preventDefault is needed because forms 
     //have a standard behaviour of redirecting
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
      console.log(name, 'name')
      console.log(password, 'password')
-     let deployed = process.env.REACT_APP_NETLIFY_URL
-     let localhost = 'http://localhost:8888/'
-    let host = 'https://cool-gnome-d84e5e.netlify.app/'
-
-   const response =  await fetch(`https://cool-gnome-d84e5e.netlify.app/.netlify/functions/addtask`, {
+   const response =  await fetch('https://flashcard-react-stable.vercel.app/login', {
       method: 'POST',
-      mode: 'cors',
-      statusCode: 200,
-      status:"ok",
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-        "Access-Control-Allow-Credentials": "true",
-         "Content-Type":"application/json",
-        //"Content-Type": "application/x-www-form-urlencoded",
-        "Access-Control-Max-Age": "2592000",
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
-      body: JSON.stringify('llll')
+      body: JSON.stringify({
+        name,
+        password
+      })
     })
-
     const data =  await response.json()
     console.log(data, 'data here')
     console.log(response, 'response here')
-
-    if(data?.user) {
+    if(data.user) {
       localStorage.setItem('token', data.user) //store token so it can be used
       window.location.href = '/main'
-      setUser(name) //name of login field gets set as user
     } else {
       alert('Please check your username and password')
     }
