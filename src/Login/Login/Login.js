@@ -41,7 +41,7 @@ const result = elements.filter(callback)
      console.log(password, 'password')
     // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
-   const response =  await fetch('http://flashcard-react-stable.vercel.app/login', {
+   const response =  await fetch('/login', {
  //   mode: 'cors',
     method:'POST',
     headers: {

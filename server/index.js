@@ -48,12 +48,18 @@ app.post('/register', async (req, res)=>{
 
 app.post('/login', async (req, res)=>{
  try{
-    const user =  await User.findOne({
+    const user =  await new Promise((res,rej)=>User.findOne({
       name: req.body.name,
+    },function(err,data){
+      if(err){
+        rej(err)
+      }
+      res(data)
     })
+    )
     console.log(user, 'user here')
     if (user) {
- //   console.log(user.backgroundColor, 'background color here')
+    console.log(user.backgroundColor, 'background color here')
   //put background color in own request or how to solve that??
     //console.log(user[0]['backgroundColor'], 'background color here')
     }
