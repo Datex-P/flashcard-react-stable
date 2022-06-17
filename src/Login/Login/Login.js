@@ -1,4 +1,4 @@
-import React, {useRef, useContext} from "react";
+import React, {useRef, useContext, useEffect} from "react";
 import flashcard from '../../icons/flashcard-design-new.png';
 import '../../styles.scss';
 import '../login.css';
@@ -12,7 +12,7 @@ import Password from './Password'
 
 function Login() {
 
-  const {dataBase, setUser, setDataBase} = useContext(Context)
+  const {dataBase, setUser, user, setDataBase} = useContext(Context)
 
   let facebook = document.querySelectorAll("input[type=button]") 
   console.log(facebook, 'facebook here')
@@ -39,7 +39,9 @@ const result = elements.filter(callback)
      //https://flashcard-react-stable.vercel.app/api/login/
      console.log(name, 'name')
      console.log(password, 'password')
-   const response =  await fetch('http://localhost:4000/login', {
+    // flashcard-react-stable.vercel.app
+     //http://localhost:4000/login
+   const response =  await fetch('http://flashcard-react-stable.vercel.app/login', {
  //   mode: 'cors',
     method:'POST',
     headers: {
@@ -79,6 +81,10 @@ const result = elements.filter(callback)
     console.log(err, 'err here')
   }
   }
+
+  useEffect(()=>{
+    console.log(user, 'user here')
+  },[user, setUser])
 
   // async function getColor() {
   //   try{
