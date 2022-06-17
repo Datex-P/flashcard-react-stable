@@ -121,6 +121,6 @@ export default function ChartComp() {
   //       className='pieChart stats__pieChart' 
   //   >
   //   </canvas>
-  // )
+   )
 }
 
