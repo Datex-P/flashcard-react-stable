@@ -5,12 +5,35 @@ import { Context } from '../../Context'
 
 export default function ColorScheme () {
 
-  const { dataBase, setDataBase} = useContext(Context)
+  const { dataBase, setDataBase, user} = useContext(Context)
 
-  function handleColor(e) {
-    let newDataBase = { ...dataBase }
-    newDataBase.userPreferences[e.target.name] = e.target.value
-    setDataBase(newDataBase)
+  async function handleColor(e) {
+    console.log(user, 'user in handle color')
+    let color = e.target.value
+    try{
+    await fetch('http://localhost:4000/update_colorscheme', {
+   //   mode: 'cors',
+      method:'POST',
+      headers: {
+        // "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+        // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        // "Access-Control-Allow-Credentials": "true",
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+       // "Access-Control-Max-Age": "2592000"
+      },
+        body: JSON.stringify({
+          color,
+          user
+        })
+      });
+       let newDataBase = { ...dataBase }
+       newDataBase.userPreferences[e.target.name] = e.target.value
+       setDataBase(newDataBase)
+    } catch (err){
+      console.log(err, 'err here')
+    }
   }
 
   return (

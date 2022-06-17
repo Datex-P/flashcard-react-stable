@@ -3,7 +3,7 @@ import { FormControl } from 'react-bootstrap';
 import CardAddedOrInput from './CardAddedOrInput';
 import '../deck.css';
 
-function AlertComponent({ card, setCard, newCardAdded }) {
+function AlertComponent({ card, setCard, newCardAdded, error }) {
  
   function changeHandler(e) {
     let newCard = { ...card };
@@ -15,7 +15,9 @@ function AlertComponent({ card, setCard, newCardAdded }) {
   return (
     <>
       <div className='mb-2'>
-        <p className='deck__questionAnswer fontBold'>Question</p>
+        <p className='deck__questionAnswer fontBold'>
+           Question
+        </p>
         <FormControl
           as='textarea'
           aria-label='With textarea'
@@ -24,14 +26,16 @@ function AlertComponent({ card, setCard, newCardAdded }) {
           onChange={changeHandler}
           className='deck__formControl posRelative'
         />
-        {
-          newCardAdded && 
-          <CardAddedOrInput card={card} />
+        {newCardAdded && 
+          <CardAddedOrInput 
+            card={card} 
+            error={error}
+          />
           }
       </div>
-      <div className={`${newCardAdded? 'mt-60px': ''}`}>
+      <div className={`${newCardAdded? 'mt-60px': 'mt-50px'}`}>
         <p className='deck__questionAnswer fontBold'>
-        Answer
+           Answer
         </p>
         <FormControl
           as='textarea'

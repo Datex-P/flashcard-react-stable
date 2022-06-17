@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
 
-function CardAddedOrInput({ card }) {
+function CardAddedOrInput({ card, error }) {
 
   function result(){
     return card.question.trim().length !== 0 && 
@@ -13,14 +13,18 @@ function CardAddedOrInput({ card }) {
   return (
     <div className='bs-5 height52px justify-center-align-center'>
       <Alert
-        variant={result() ? "success" : "danger"}
-        className={`height35px`}
+        variant={error? 'danger': result() ? 'success' : 'danger'}
+        className='height35px'
       >
          {
           result() ? 
           <span className='width140px'>Card added to Deck</span>
           :
           <span className='width100px'>Input needed</span>
+         }
+         {
+           error &&
+           <span className='width100px'>Network error</span>
          }
       </Alert>
     </div>

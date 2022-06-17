@@ -14,7 +14,7 @@ export default function ContextProvider({ children }:any) {
   const [threeDotsOpen, setThreeDotsOpen] = useState(false);
   const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
   const [emailAdress, setEmailAdress] = useState(null)
-  const [user, setUser] = useState('Fabian')
+  const [user, setUser] = useState('pp')
   const [nameOfTopDeck, setNameOfTopDeck] = useState(null)
 
   const [styles, setStyles] = useState({
@@ -123,6 +123,10 @@ export default function ContextProvider({ children }:any) {
   useEffect(()=>{
     console.log(dataBase, 'database here')
   },[dataBase])
+
+  useEffect(()=>{
+    console.log(user, 'user here')
+  },[user, setUser])
   
   return (
 

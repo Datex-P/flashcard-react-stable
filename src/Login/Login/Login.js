@@ -12,7 +12,7 @@ import Password from './Password'
 
 function Login() {
 
-  const {user, setUser} = useContext(Context)
+  const {dataBase, setUser, setDataBase} = useContext(Context)
 
   let facebook = document.querySelectorAll("input[type=button]") 
   console.log(facebook, 'facebook here')
@@ -31,24 +31,25 @@ const result = elements.filter(callback)
 
   async function loginUser(e) {
     e.preventDefault()
-    try{
+    try {
     //e preventDefault is needed because forms 
     //have a standard behaviour of redirecting
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
-    
+     //https://flashcard-react-stable.vercel.app/api/login/
      console.log(name, 'name')
      console.log(password, 'password')
-   const response =  await fetch('https://flashcard-react-stable.vercel.app/api/login/', {
-    mode: 'cors',
+   const response =  await fetch('http://localhost:4000/login', {
+ //   mode: 'cors',
     method:'POST',
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-      "Access-Control-Allow-Credentials": "true",
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+      // "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
-      "Access-Control-Max-Age": "2592000"
+      "Accept":"application/json"
+     // "Access-Control-Max-Age": "2592000"
     },
       body: JSON.stringify({
        name,
@@ -56,11 +57,19 @@ const result = elements.filter(callback)
       })
     });
     const data =  await response.json()
-    console.log(data, 'data here')
-    console.log(response, 'response here')
+
     if(data.user) {
       localStorage.setItem('token', data.user) //store token so it can be used
-      window.location.href = '/main'
+    //  window.location.href = '/main';
+      setUser(name)
+      let newDataBase = { ...dataBase }
+      newDataBase.userPreferences[e.target.name] = e.target.value
+      setDataBase(newDataBase)
+      //setTimeout(()=>setUser(name), 3000)
+      //why is setUser overwritten?? questionVal
+      console.log(name , 'user here')
+   //   getColor()
+   window.location.href = '/main'
     } else {
       console.log(data.user)
       alert('Please check your username and password')
@@ -70,6 +79,40 @@ const result = elements.filter(callback)
     console.log(err, 'err here')
   }
   }
+
+  // async function getColor() {
+  //   try{
+  //  const response =  await fetch(`http://localhost:4000/colors/kkkk`, {
+  //   method:'POST',
+  //   headers: {
+  //     // "Access-Control-Allow-Origin": "*",
+  //     // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+  //     // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+  //     // "Access-Control-Allow-Credentials": "true",
+  //     "Content-Type":"application/json",
+  //     "Accept":"application/json"
+  //    // "Access-Control-Max-Age": "2592000"
+  //   },
+  //     body: JSON.stringify({
+  //      name,
+  //     password
+  //   })
+      
+  // //  const data =  await response.json()
+  // //  console.log(data, 'data in colors')
+  // //  window.location.href = '/main';
+  //   } catch (error) {
+  //     console.log(error, 'error here')
+  //   }
+
+
+
+
+
+
+
+
+
  
   return (
 

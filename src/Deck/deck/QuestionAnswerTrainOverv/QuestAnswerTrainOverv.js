@@ -246,7 +246,15 @@ export default function QuestAnswerTrainOverv({
                 setShowFromParent={setThreeDotsMenuOpen}
                 index={index}
                 edit
+                questionAnswerWindow
                 pause
+                style={{
+                    position: 'absolute',
+                    top: '0px',
+                    border: '1px solid black',
+                    left: '310px',
+                    zIndex: '99'
+                }}
                 trash
                 classValue='deck__threeDotsOpen'
                 type='card'
@@ -271,16 +279,19 @@ export default function QuestAnswerTrainOverv({
                 changeHandler={changeHandler}
               />
               {showAnswerBtn && 
-               !dataBase?.DeckNames[index]?.pauseMode &&            
+               !dataBase?.DeckNames[index]?.pauseMode && 
+
                <Button
                   variant="secondary"
-                  className="p-1 deck__showAnswer mt-20px my-5 justify-center-align-center"
+                  className='p-1 deck__showAnswer mt-20px my-5 justify-center-align-center cursorPointer'
                   onClick={showAnswerHandler}
                 >
                   Show answer
                 </Button> 
               }
-              {dataBase?.DeckNames[index]?.pauseMode &&
+              {
+               dataBase?.DeckNames[index]?.pauseMode &&
+
               <PauseModeHandler
                 generateRandom={generateRandom}
                 index={index}

@@ -121,7 +121,8 @@ const LandingPage = () => {
     <>
       <Container
         className='align-items-center landing__cont'
-        style={{backgroundColor: styles.backgroundColor[dataBase?.userPreferences?.backgroundColor]}}
+        style={{backgroundColor: 
+        styles.backgroundColor[dataBase?.userPreferences?.backgroundColor]}}
       >
         <MenuContainer setShowProgressDiagram={setShowProgressDiagram} />
         <Row className="posRelative justify-between width100pc">

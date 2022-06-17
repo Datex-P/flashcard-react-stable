@@ -7,13 +7,16 @@ export default function DeckOrCardName({ data: {
   editButtonClicked,
   input,
   name,
-  nameOfTopDeck, setNameOfTopDeck,
   setDeckNameLengthRight,
   setThreeDotsMenuOpen,
   setNameTooLongOrShort
 } }) {
 
-  const {dataBase, setDataBase, setThreeDotsOpen} = useContext(Context);
+  const {
+    dataBase, setDataBase, 
+    setThreeDotsOpen, 
+    nameOfTopDeck,setNameOfTopDeck
+  } = useContext(Context);
 
   function handleChangeName(e) {
 

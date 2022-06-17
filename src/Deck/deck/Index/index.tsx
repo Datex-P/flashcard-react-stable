@@ -200,7 +200,7 @@ export default function Deck({
                   backgroundColor: paused ? "black" : "white",
                 }}
                 editEvent={() => {
-                  setThreeDotsMenuOpen(false);
+                //  setThreeDotsMenuOpen(false);
                   setEditButtonClicked(!editButtonClicked);
                 }}
                 pauseEvent={() => {

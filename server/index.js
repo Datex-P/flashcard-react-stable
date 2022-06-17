@@ -22,30 +22,28 @@ app.use(express.json()) //parses anything that comes from express as json
 if(process.env.NODE_ENV === 'production') {
   //set static folder
   app.use(express.static('build'))
-
+console.log('static folder triggered')
   app.get('*', (req, res)=>{
     res.sendFile(path.resolve(__dirname, 'build'), 'index.html')
   })
 }
 
 app.post('/register', async (req, res)=>{
-  console.log('hello from register')
-  return res.json({status: 'ok'})
-  // try {
-  //   const cryptedPassword = await bcrypt.hash(req.body.password, 10)
-  //   await User.create({
-  //     name: req.body.name,
-  //     email: req.body.email,
-  //     verified: false,
-  //     password: cryptedPassword,
-  //   })
-  //   res.json({status: 'ok'})
-  //   nodemail()   //how to check if res.json is really ok? put in if statement somehow
-  //   //res.json({status:'message send'})
-  // } catch (err) {
-  //   console.log(err, 'err here')
-  //   res.json({status:'error', error: 'Duplicate email'})
-  // }
+  try {
+    const cryptedPassword = await bcrypt.hash(req.body.password, 10)
+    await User.create({
+      name: req.body.name,
+      email: req.body.email,
+      verified: false,
+      password: cryptedPassword,
+    })
+    res.json({status: 'ok'})
+    nodemail()   //how to check if res.json is really ok? put in if statement somehow
+    //res.json({status:'message send'})
+  } catch (err) {
+    console.log(err, 'err here')
+    res.json({status:'error', error: 'Duplicate email'})
+  }
 })
 
 app.post('/login', async (req, res)=>{
@@ -53,11 +51,18 @@ app.post('/login', async (req, res)=>{
     const user =  await User.findOne({
       name: req.body.name,
     })
+    console.log(user, 'user here')
+    if (user) {
+ //   console.log(user.backgroundColor, 'background color here')
+  //put background color in own request or how to solve that??
+    //console.log(user[0]['backgroundColor'], 'background color here')
+    }
     if(!user) {
       return res.json({status: 'error', error: 'Invalid login'})
     }
     //= await bcrypt.compare(req.body.password, user.password)
     if (user) {
+      console.log(user.backgroundColor, 'background color here')
       const token = jwt.sign({
         name: user.name,
         password: user.password
@@ -115,24 +120,77 @@ app.post('/add_to_deck', async (req, res)=> {
   try {
     console.log(req.body, 'req body')
     let find =  await Deck.updateOne(
-      {username: req.body.username
-      ,deckname: req.body.nameOfTopDeck}, 
+      {userName: req.body.username
+      ,deckName: req.body.nameOfTopDeck}, 
         {$push: {data: [{question: req.body.data[0].question, 
                  answer: req.body.data[0].answer
         }  
       ]}
     }      
     )
-      console.log(find, 'find here')
+    return res.json({status:200}) 
+      //console.log(find, 'find here')
   } catch(error) {
     console.log(error, 'add to deck')
+  }
+})
+
+ app.post('/colors', async (req, res)=>{
+  var username = req.params.id
+  console.log(username, 'username')
+ })
+
+ app.post('/delete_account', async(req, res)=> {
+   console.log(req.body.user, 'user here')
+  try{ 
+    await User.deleteOne({userName:req.body.user},function(err){
+    if(err)
+    {
+       // res.send(err);
+       return res.json({status:'error'})
+    }
+    else{
+        //res.send("deleted");
+        return res.json({status:200})
+    }
+ })
+ await Deck.deleteOne({userName:req.body.user},function(err){
+  if(err)
+  {
+     // res.send(err);
+     return res.json({status:'error'})
+  }
+  else{
+      //res.send("deleted");
+      return res.json({status:200})
+      //do you dont need res.json in first function? how to deal with it?
+  }
+})
+} catch (error) {
+  console.log(error)
+}
+})
+
+app.post('/update_colorscheme', async (req, res)=>{
+  console.log(req.body.color, 'color in update')
+  console.log(req.body.user, 'user here')
+  try {
+    await User.findOneAndUpdate(
+      {userName: req.body.user,
+      }, {
+          backgroundColor:req.body.color
+        }
+    )
+    return res.json({status:200}) 
+  } catch(error) {
+    console.log(error, 'error here')
   }
 })
 
 app.get('/confirm_registration', (req, res) => {
   let token = req.query.token;
 
-  const decoded = jwt.verify(token, process.env.Secret);
+  const decoded = jwt.verify(token, process.env.SECRET);
   console.log('confirm registration route triggered',decoded)
 
   if (decoded) {
@@ -207,12 +265,6 @@ app.listen(process.env.PORT || 3001, ()=>{
   console.log('server started')
 })
 
-console.log(mongoose.connection.readyState, 'mongoose connection');
-
-// app.use(express.static(path.join(__dirname, 'src/build')))
-// app.get('*', (req, res)=>{
-//   res.sendFile(path.resolve(__dirname, 'src/build', 'index.html'))
-// })
 
 mongoose.connect(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true

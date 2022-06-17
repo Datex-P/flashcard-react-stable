@@ -31,6 +31,12 @@ async function pwdreset() {
       to: process.env.EMAIL_RECEIVER_ADRESS, // list of receivers
       subject: "FlashcardApp Password Reset", // Subject line
       text: "Hello world?", // plain text body
+      attachments: [
+        // { filename: 'profile.png', path: 'https://m.media-amazon.com/images/I/814XeDdJPCL._AC_SX425_.jpg',
+        //  cid: 'unique@kreata.ee'
+        // //  <img src="cid:unique@kreata.ee" alt ='flashcards logo'/>
+        // }
+     ], 
       html: `<div style='background:rgb(90, 170, 149); width:100%; height: 620px; overflow:auto'>
       <div style='margin-left:50px;margin-top:70px'>
       <img src="../src/icons/flashcard-design-new.png" alt ='flashcards logo'/>
@@ -40,7 +46,7 @@ async function pwdreset() {
       <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
       <a href='${process.env.PROVIDER}/new_pwd?token=${jwt.sign(
         { email: process.env.EMAIL_RECEIVER_ADRESS },
-        process.env.Secret
+        process.env.SECRET
       )}' style='color:seashell; text-decoration:none; font-size:15px'>Yes, please reset my password.</a>
       </button>
       <div style='color:seashell; margin-top: 30px'>If you received this email by mistake, simply delete it.

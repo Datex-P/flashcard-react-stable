@@ -16,7 +16,6 @@ function Stats({ history }:any) {
   const { 
     dataBase, setDataBase, 
     setShowProgressDiagram, 
-   // threeDotsOpen, 
     setThreeDotsOpen } = useContext(Context);
   const [showDeleteFrame, setShowDeleteFrame] = useState(false);
   const [checked, setChecked] = useState(false);
