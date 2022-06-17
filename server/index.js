@@ -64,7 +64,7 @@ app.post('/login', async (req, res)=>{
     //console.log(user[0]['backgroundColor'], 'background color here')
     }
     if(!user) {
-      return res.json({status: 'error', error: 'Invalid login'})
+    res.json({status: 'error', error: 'Invalid login'})
     }
     //= await bcrypt.compare(req.body.password, user.password)
     if (user) {
@@ -73,12 +73,13 @@ app.post('/login', async (req, res)=>{
         name: user.name,
         password: user.password
       }, process.env.JWT_SIGN_SECRET)
-      return res.json({status:'ok', user:token})
+    res.json({status:'ok', user:token})
     } else {
-      return res.json({status:'ok', user:false}) 
+    res.json({status:'ok', user:false}) 
     }
  } catch(error) {
-   console.log(error, 'error here')
+  res.json(error)
+  console.log(error, 'error here')
  }
 })
 
