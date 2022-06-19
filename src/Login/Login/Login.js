@@ -8,6 +8,7 @@ import Button from '../Button';
 import LoginWithSignUp from '../LoginWithSignUp/LoginWithSignUp'
 import UserName from './UserName'
 import Password from './Password'
+import { useHistory } from 'react-router-dom'
 
 
 function Login() {
@@ -16,7 +17,7 @@ function Login() {
 
   let facebook = document.querySelectorAll("input[type=button]") 
   console.log(facebook, 'facebook here')
-
+  const history = useHistory()
   const callback = element => element.innerHTML === 'Login with Facebook'
   const elements = Array.from(document.getElementsByTagName('button'))
   console.log(elements, 'elements here')
@@ -65,7 +66,7 @@ const result = elements.filter(callback)
 console.log(data, 'data here')
   if(data.user) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
-      window.location.href = '/main';
+    history.push('/main')
   }
   
   //  fetch("http://localhost:8888/.netlify/functions/hello", {
