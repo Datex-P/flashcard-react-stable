@@ -23,21 +23,39 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
   );
   
   try{
-    let hi = JSON.parse(event.body)
-    console.log(hi.name, 'hi name here')
-    console.log(hi, 'hi here')
-let result = 
-    await Test.create({
-      name: hi.name,
-      email: 'bbb'
-      //email: req.body.email,
-      //verified: true,
+    let data = JSON.parse(event.body)
+    // console.log(hi.name, 'hi name here')
+    // console.log(hi, 'hi here')
+    console.log(data, 'data here')
+    const user =  await Test.findOne({
+      name: data.name,
+      password:data.password
     })
+    console.log(user, 'user here')
+  //   if(!user) {
+  //    await User.create({
+  //      name: name,
+  //      verified: true
+  //    })
+  //  }
+
+
+// let result = 
+//     await Test.create({
+//       name: hi.name,
+//       email: 'bbb'
+//       //email: req.body.email,
+//       //verified: true,
+//     })
+
+    // if (user) {
+    //   return
+    // }
 
     
     return {
       statusCode: 200,
-      status:"ok",
+      status:`${user? 'ok': 'not found'}`,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
@@ -46,7 +64,7 @@ let result =
         "Content-Type":"application/json",
         "Access-Control-Max-Age": "2592000",
       },
-      body: JSON.stringify({ result }) 
+      body: JSON.stringify({ user}) 
     }
   } catch (err) {
     return {

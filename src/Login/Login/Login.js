@@ -29,7 +29,7 @@ const result = elements.filter(callback)
   const userNameRef = useRef(null)
   const passwordRef = useRef(null)
 
- function loginUser(e) {
+ async function loginUser(e) {
     e.preventDefault()
     try {
     //e preventDefault is needed because forms 
@@ -42,30 +42,48 @@ const result = elements.filter(callback)
      console.log(password, 'password')
     // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
-  //  const response =  await fetch("http://localhost:8888/.netlify/functions/hello", {
-  //   mode: 'cors',
-  //   method:"post",
-  //   headers: {
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-  //     "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-  //     "Access-Control-Allow-Credentials": "true",
-  //     "Content-Type":"application/json",
-  //     "Accept":"application/json",
-  //     "Access-Control-Max-Age": "2592000"
-  //   },
-  //     body: JSON.stringify({
-  //      name:name
-  //     })
-  //   });
-  console.log('hello from try')
-   fetch("http://localhost:8888/.netlify/functions/hello", {
+   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/hello", {
+    mode: 'cors',
     method:"post",
     headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+      "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
+      "Accept":"application/json",
+      "Access-Control-Max-Age": "2592000"
     },
-    body:JSON.stringify({name:name, password:password})
-  }).then(d=>d.json()).then(d=>console.log(d))
+      body: JSON.stringify({
+       name:name,
+       password:password
+      })
+    });
+  console.log('hello from try')
+
+  const data = await response.json()
+console.log(data, 'data here')
+  if(data.user.name) {
+    //     localStorage.setItem('token', data.user) //store token so it can be used
+      window.location.href = '/main';
+  }
+  
+  //  fetch("http://localhost:8888/.netlify/functions/hello", {
+  //   method:"post",
+  //   headers: {
+  //     "Content-Type":"application/json",
+  //   },
+  //   body:JSON.stringify({name:name, password:password})
+  // }).then(d=>d.json()
+  // //const data =  await response.json()
+ 
+  
+  // ).then(d=>console.log(d)
+  // if (d.status === 'ok') {
+  //   window.location.href = '/main';
+  //   }
+  
+  // )
   
   } catch(error) {
     console.log(error, 'error')
@@ -73,7 +91,6 @@ const result = elements.filter(callback)
 }
 
 
-  //  const data =  await response.json()
 
   //   if(data.user) {
   //     localStorage.setItem('token', data.user) //store token so it can be used
