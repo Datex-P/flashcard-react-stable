@@ -62,7 +62,8 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
         "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
         "Access-Control-Allow-Credentials": "true",
         "Content-Type":"application/json",
-        "Access-Control-Max-Age": "2592000",
+        "Accept":"application/json",
+        "Access-Control-Max-Age": "2592000"
       },
       body: JSON.stringify({ user}) 
     }

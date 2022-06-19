@@ -43,7 +43,6 @@ const result = elements.filter(callback)
     // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
    const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/hello", {
-    mode: 'cors',
     method:"post",
     headers: {
       "Access-Control-Allow-Origin": "*",
