@@ -47,18 +47,24 @@ const result = elements.filter(callback)
     mode: "cors",
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+       "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Token, X-Requested-With, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
       "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
       // "Accept":"application/json",
-      "Access-Control-Max-Age": "2592000"
+    //  "Access-Control-Max-Age": "2592000"
     },
       body: JSON.stringify({
        name:name,
        password:password
       })
     });
+
+  //   if (r.Method == "OPTIONS") {
+  //     w.WriteHeader(http.StatusOK)
+  //     return
+  // }
+
   console.log('hello from try')
 
   const data = await response.json()
