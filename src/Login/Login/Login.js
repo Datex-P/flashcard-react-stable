@@ -42,14 +42,14 @@ const result = elements.filter(callback)
      console.log(password, 'password')
     // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
-   const response =  await fetch("/api/hello", {
-    method:"post",
-    mode: "cors",
+   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/hello", {
+    method:"POST",
+   // mode: "cors",
     headers: {
-      "Access-Control-Allow-Origin": "*",
-       "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Token, X-Requested-With, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-      "Access-Control-Allow-Credentials": "true",
+      // "Access-Control-Allow-Origin": "*",
+      //  "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      // "Access-Control-Allow-Headers": "X-Token, X-Requested-With, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+      // "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
       // "Accept":"application/json",
     //  "Access-Control-Max-Age": "2592000"
