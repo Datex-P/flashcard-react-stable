@@ -22,7 +22,6 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
   }
   );
   
-  try{
     let data = JSON.parse(event.body)
     // console.log(hi.name, 'hi name here')
     // console.log(hi, 'hi here')
@@ -30,7 +29,29 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
     const user =  await Test.findOne({
       name: data.name,
       password:data.password
-    })
+    }, (err, user)=>{
+      if (err) {
+        return {
+        statusCode: 500,
+      body: JSON.stringify({ msg: err.message }) 
+      }} else { 
+        return{
+      statusCode: 200,
+      status:`${user? 'ok': 'not found'}`,
+      headers: {
+         "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+        // "Access-Control-Allow-Headers": "Content-Type, X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        // "Access-Control-Allow-Credentials": "true",
+        "Content-Type":"application/json",
+        // "Accept":"application/json",
+        // "Access-Control-Max-Age": "2592000"
+      },
+      body: JSON.stringify({ hi:'123'}) 
+    }
+  }
+}
+    )
     console.log(user, 'user here')
   //   if(!user) {
   //    await User.create({
@@ -52,25 +73,24 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
     //   return
     // }
 
-    
-    return {
-      statusCode: 200,
-      status:`${user? 'ok': 'not found'}`,
-      headers: {
-        // "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        // "Access-Control-Allow-Headers": "Content-Type, X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-        // "Access-Control-Allow-Credentials": "true",
-        "Content-Type":"application/json",
-        // "Accept":"application/json",
-        // "Access-Control-Max-Age": "2592000"
-      },
-      body: JSON.stringify({ hi:'123'}) 
-    }
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ msg: err.message }) 
-    };
-  }
+  //   return {
+  //     statusCode: 200,
+  //     status:`${user? 'ok': 'not found'}`,
+  //     headers: {
+  //       // "Access-Control-Allow-Origin": "*",
+  //       // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+  //       // "Access-Control-Allow-Headers": "Content-Type, X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+  //       // "Access-Control-Allow-Credentials": "true",
+  //       "Content-Type":"application/json",
+  //       // "Accept":"application/json",
+  //       // "Access-Control-Max-Age": "2592000"
+  //     },
+  //     body: JSON.stringify({ hi:'123'}) 
+  //   }
+  // } catch (err) {
+  //   return {
+  //     statusCode: 500,
+  //     body: JSON.stringify({ msg: err.message }) 
+  //   };
+  // }
 }

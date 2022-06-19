@@ -69,7 +69,7 @@ const result = elements.filter(callback)
 
   const data = await response.json()
 console.log(data, 'data here')
-  if(data.hi === '123') {
+  if(data.user === 'ok') {
     //     localStorage.setItem('token', data.user) //store token so it can be used
       window.location.href = '/main';
   }
