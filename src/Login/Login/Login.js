@@ -36,23 +36,17 @@ const result = elements.filter(callback)
     //have a standard behaviour of redirecting
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
-     //https://flashcard-react-stable.vercel.app/api/login/
+
      console.log(name, 'name')
      //test
      console.log(password, 'password')
-    // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
    const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/hello", {
     method:"POST",
-   // mode: "cors",
     headers: {
-       "Access-Control-Allow-Origin": "*",
-      //  "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-      // "Access-Control-Allow-Headers": "X-Token, X-Requested-With, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-      // "Access-Control-Allow-Credentials": "true",
+       "Access-Control-Allow-Origin": "*",     
       "Content-Type":"application/json",
-      // "Accept":"application/json",
-    //  "Access-Control-Max-Age": "2592000"
+
     },
       body: JSON.stringify({
        name:name,
@@ -69,7 +63,7 @@ const result = elements.filter(callback)
 
   const data = await response.json()
 console.log(data, 'data here')
-  if(data.status === 200) {
+  if(data.user) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
       window.location.href = '/main';
   }
