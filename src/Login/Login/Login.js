@@ -42,7 +42,7 @@ const result = elements.filter(callback)
      console.log(password, 'password')
     // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
-   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/hello", {
+   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/hello", {
     method:"post",
     headers: {
       // "Access-Control-Allow-Origin": "*",
