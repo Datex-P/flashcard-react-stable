@@ -57,13 +57,13 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
       statusCode: 200,
       status:`${user? 'ok': 'not found'}`,
       headers: {
-        // "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-        // "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        "Access-Control-Allow-Credentials": "true",
         "Content-Type":"application/json",
         // "Accept":"application/json",
-        // "Access-Control-Max-Age": "2592000"
+        "Access-Control-Max-Age": "2592000"
       },
       body: JSON.stringify({ user}) 
     }

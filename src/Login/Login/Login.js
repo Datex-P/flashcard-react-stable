@@ -44,14 +44,15 @@ const result = elements.filter(callback)
      //http://localhost:4000/login
    const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/hello", {
     method:"post",
+    mode: "cors",
     headers: {
-      // "Access-Control-Allow-Origin": "*",
-      // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-      // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-      // "Access-Control-Allow-Credentials": "true",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+      "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
       // "Accept":"application/json",
-      // "Access-Control-Max-Age": "2592000"
+      "Access-Control-Max-Age": "2592000"
     },
       body: JSON.stringify({
        name:name,
