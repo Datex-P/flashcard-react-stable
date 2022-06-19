@@ -4,14 +4,15 @@ import App from './App.js';
 import './styles.scss'
 import ContextProvider from './Context';
 //import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from "react-router-dom";
 
 
 ReactDOM.render(
-  // <BrowserRouter>
+   <HashRouter>
     <ContextProvider>     
           <App/>
     </ContextProvider>
-  // </BrowserRouter>
+   </HashRouter>
   ,
   document.getElementById('root')
 );
