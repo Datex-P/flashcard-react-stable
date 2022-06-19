@@ -65,7 +65,7 @@ const result = elements.filter(callback)
   //     return
   // }
 
-  console.log('hello from try')
+  console.log(response,'hello from try')
 
   const data = await response.json()
 console.log(data, 'data here')

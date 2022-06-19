@@ -25,8 +25,6 @@ exports.handler = async (event, context, callback) => {
   );
 
   let data = JSON.parse(event.body);
-  // console.log(hi.name, 'hi name here')
-  // console.log(hi, 'hi here')
   console.log(data, "data here");
  let fd = await new Promise((res,rej)=>Test.findOne(
     {
@@ -40,8 +38,9 @@ exports.handler = async (event, context, callback) => {
           body: JSON.stringify({ msg: err.message }),
         });
       } else {
+        let statusCode = user?200:405
         res({
-          statusCode: 200,
+          statusCode,
           //status: `${user ? "ok" : "not found"}`,
           headers: {
             "Access-Control-Allow-Origin": "*",
