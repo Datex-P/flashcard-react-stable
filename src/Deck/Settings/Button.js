@@ -13,29 +13,29 @@ console.log(user, 'user here')
     setDeleteAccountPrompt(false)
   }
 
-  async function okHandler() {
-    const response = await fetch('http://localhost:4000/delete_account', {
-      method:'POST',
-      headers:{
-        "Content-Type":"application/json",
-        "Accept":"application/json",
-        "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify({user})
-  })
- const data = await response.json()
-  console.log(data, 'data here')
-    if(response.status === 200) {
-      history.push('/login')
-    }
-  }
+//   async function okHandler() {
+//     const response = await fetch('http://localhost:4000/delete_account', {
+//       method:'POST',
+//       headers:{
+//         "Content-Type":"application/json",
+//         "Accept":"application/json",
+//         "Access-Control-Allow-Origin": "*",
+//     },
+//     body: JSON.stringify({user})
+//   })
+//  const data = await response.json()
+//   // console.log(data, 'data here')
+//   //   if(response.status === 200) {
+//   //     history.push('/login')
+//   //   }
+//   }
 
   return (
       ok? (
       <button
         className='settings__button'
         key={'Ok'}
-        onClick={okHandler}
+      //  onClick={okHandler}
       >
         Ok
       </button>

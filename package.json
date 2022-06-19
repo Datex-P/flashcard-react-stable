@@ -38,7 +38,7 @@
   },
   "scripts": {
     "watch": "nodemon ./server/index.js",
-    "start": "HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "test": "react-scripts test",
     "tsc:w": "tsc -w",
     "eject": "react-scripts eject",

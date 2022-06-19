@@ -29,7 +29,7 @@ const result = elements.filter(callback)
   const userNameRef = useRef(null)
   const passwordRef = useRef(null)
 
-  async function loginUser(e) {
+ function loginUser(e) {
     e.preventDefault()
     try {
     //e preventDefault is needed because forms 
@@ -42,50 +42,63 @@ const result = elements.filter(callback)
      console.log(password, 'password')
     // flashcard-react-stable.vercel.app
      //http://localhost:4000/login
-   const response =  await fetch('/login', {
- //   mode: 'cors',
-    method:'POST',
+  //  const response =  await fetch("http://localhost:8888/.netlify/functions/hello", {
+  //   mode: 'cors',
+  //   method:"post",
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+  //     "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+  //     "Access-Control-Allow-Credentials": "true",
+  //     "Content-Type":"application/json",
+  //     "Accept":"application/json",
+  //     "Access-Control-Max-Age": "2592000"
+  //   },
+  //     body: JSON.stringify({
+  //      name:name
+  //     })
+  //   });
+  console.log('hello from try')
+   fetch("http://localhost:8888/.netlify/functions/hello", {
+    method:"post",
     headers: {
-      // "Access-Control-Allow-Origin": "*",
-      // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-      // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-      // "Access-Control-Allow-Credentials": "true",
       "Content-Type":"application/json",
-      "Accept":"application/json"
-     // "Access-Control-Max-Age": "2592000"
     },
-      body: JSON.stringify({
-       name,
-      password
-      })
-    });
-    const data =  await response.json()
-
-    if(data.user) {
-      localStorage.setItem('token', data.user) //store token so it can be used
-    //  window.location.href = '/main';
-      setUser(name)
-      let newDataBase = { ...dataBase }
-      newDataBase.userPreferences[e.target.name] = e.target.value
-      setDataBase(newDataBase)
-      //setTimeout(()=>setUser(name), 3000)
-      //why is setUser overwritten?? questionVal
-      console.log(name , 'user here')
-   //   getColor()
-   window.location.href = '/main'
-    } else {
-      console.log(data.user)
-      alert('Please check your username and password')
-    }
-   console.log(data)
-  } catch (err){
-    console.log(err, 'err here')
+    body:JSON.stringify({name:name, password:password})
+  }).then(d=>d.json()).then(d=>console.log(d))
+  
+  } catch(error) {
+    console.log(error, 'error')
   }
-  }
+}
 
-  useEffect(()=>{
-    console.log(user, 'user here')
-  },[user, setUser])
+
+  //  const data =  await response.json()
+
+  //   if(data.user) {
+  //     localStorage.setItem('token', data.user) //store token so it can be used
+  //   //  window.location.href = '/main';
+  //     setUser(name)
+  //     let newDataBase = { ...dataBase }
+  //     newDataBase.userPreferences[e.target.name] = e.target.value
+  //     setDataBase(newDataBase)
+  //     //setTimeout(()=>setUser(name), 3000)
+  //     //why is setUser overwritten?? questionVal
+  //     console.log(name , 'user here')
+  //  //   getColor()
+  //  window.location.href = '/main'
+  //   } else {
+  //     console.log(data.user)
+  //     alert('Please check your username and password')
+  //   }
+  //  console.log(data)
+  // } catch (err){
+  //   console.log(err, 'err here')
+  // }
+  
+  // useEffect(()=>{
+  //   console.log(user, 'user here')
+  // },[user, setUser])
 
   // async function getColor() {
   //   try{
