@@ -65,7 +65,7 @@ mongoose.connect(`mongodb+srv://mongo123:mongo123@cluster0.m0wvo.mongodb.net/fla
         // "Accept":"application/json",
         // "Access-Control-Max-Age": "2592000"
       },
-      body: JSON.stringify({ user}) 
+      body: JSON.stringify({ hi:'123'}) 
     }
   } catch (err) {
     return {
