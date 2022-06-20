@@ -4,14 +4,15 @@ require('dotenv').config();
 const User = require('../server/models/user');
 
 exports.handler = async (event, context, callback) => {
-  
+  if (typeof window !== 'undefined') {
    let url = window.location.href
    let index = url.indexOf("=");
    let token = url.slice(index+1)
    console.log(token, 'token here')
   const decoded = jwt.verify(token, process.env.SECRET);
-  console.log('confirm registration route triggered',decoded)
 
+  console.log('confirm registration route triggered',decoded)
+  
   if (decoded) {
     const { email } = decoded;
     console.log(decoded, 'decoded here')
@@ -27,7 +28,7 @@ exports.handler = async (event, context, callback) => {
 
   
     console.log('confirm registration got invoked')
-  
+}
     return {
         statusCode: 400,
         body: "Oops"
