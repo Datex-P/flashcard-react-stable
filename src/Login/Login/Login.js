@@ -62,24 +62,9 @@ console.log(data, 'data here')
   if(response.status === 200) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
+  } else if (response.status === 405) {
+    alert('Please check your username and password!')
   }
-  
-  //  fetch("http://localhost:8888/.netlify/functions/hello", {
-  //   method:"post",
-  //   headers: {
-  //     "Content-Type":"application/json",
-  //   },
-  //   body:JSON.stringify({name:name, password:password})
-  // }).then(d=>d.json()
-  // //const data =  await response.json()
- 
-  
-  // ).then(d=>console.log(d)
-  // if (d.status === 'ok') {
-  //   window.location.href = '/main';
-  //   }
-  
-  // )
   
   } catch(error) {
     console.log(error, 'error')
@@ -137,13 +122,6 @@ console.log(data, 'data here')
   //   } catch (error) {
   //     console.log(error, 'error here')
   //   }
-
-
-
-
-
-
-
 
 
  
