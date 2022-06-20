@@ -36,11 +36,11 @@ function Register() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name,
-        password,
-        email
-      }),
+      // body: JSON.stringify({
+      //   name,
+      //   password,
+      //   email
+      // }),
     });
     const data = await response.json();
 

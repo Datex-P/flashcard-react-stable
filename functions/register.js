@@ -56,7 +56,7 @@ exports.handler = async (event, context, callback) => {
     if (info.messageId) {
         return {
             statusCode: 200,
-            body: nodemailer.getTestMessageUrl(info)
+         //   body: nodemailer.getTestMessageUrl(info)
         }
     }
   
