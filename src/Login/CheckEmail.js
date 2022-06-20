@@ -31,7 +31,7 @@ function CheckEmail() {
               text='Verify your email address'
             />
             <div
-              onClick={() => {history.push("/login")}}
+              onClick={() => {history.push('/login')}}
               className='mt-35px zIndex-5 justify-center login__link font-13px login__col-navajowhite cursorPointer'
             >
               Back to Login

@@ -39,7 +39,7 @@ async function pwdreset() {
      ], 
       html: `<div style='background:rgb(90, 170, 149); width:100%; height: 620px; overflow:auto'>
       <div style='margin-left:50px;margin-top:70px'>
-      <img src="../src/icons/flashcard-design-new.png" alt ='flashcards logo'/>
+      <img src="${process.env.FlASHCARD_LOGO}" alt ='flashcards logo'/>
       <div style='height: 75px; margin-top: 40px; font-size:26px; font-weight:bold; color:seashell'>
         Password Reset
       </div>

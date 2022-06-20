@@ -41,12 +41,11 @@ const result = elements.filter(callback)
      console.log(name, 'name')
      console.log(password, 'password')
      //http://localhost:4000/login
-   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/hello", {
+   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/login", {
     method:"POST",
     headers: {
        "Access-Control-Allow-Origin": "*",     
       "Content-Type":"application/json",
-
     },
       body: JSON.stringify({
        name:name,
@@ -62,11 +61,9 @@ console.log(data, 'data here')
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
     setUser(name)
-
   } else if (response.status === 405) {
     alert('Please check your username and password!')
-  }
-  
+  }  
   } catch(error) {
     console.log(error, 'error')
   }
