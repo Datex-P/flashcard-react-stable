@@ -31,7 +31,7 @@ function Register() {
     let password = passwordRef.current.value;
     let email = emailRef.current.value;
 
-    const response = await fetch(`http://localhost:4000/register`, {
+    const response = await fetch(`https://cool-gnome-d84e5e.netlify.app/.netlify/functions/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,8 +44,12 @@ function Register() {
     });
     const data = await response.json();
 
-    if (data.status === "ok") {
+    if (data.statusCode === 200) {
       history.push("/checkemail");
+    } 
+
+    if (data.statusCode === 400) {
+      alert('Something went wrong')
     }
     console.log(data);
   }
