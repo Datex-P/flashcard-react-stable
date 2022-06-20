@@ -6,7 +6,8 @@ exports.handler = async (event, context, callback) => {
 
     const transporter = nodemailer.createTransport({
         //host: process.env.MAIL_HOST,
-        port: 587,
+        host:'smtp-mail.outlook.com',
+        port:  465 || 587,
         service: "hotmail",
         secure: false,
         auth: {
