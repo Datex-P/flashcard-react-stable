@@ -73,12 +73,12 @@ function Register() {
                 >
                   Sign Up
                 </button>
-                <a
-                  href='/login'
+                <div
+                  onClick={()=>{history.push('/login')}}
                   className='zIndex-5 justify-center login__link font-13px login__col-navajowhite cursorPointer'
                 >
                   Back to Login
-                </a>
+                </div>
               </div>
             </div>
           </form>

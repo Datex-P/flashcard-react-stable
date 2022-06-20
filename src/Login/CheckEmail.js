@@ -6,10 +6,12 @@ import Button from "./Button";
 import FlashcardLogo from "./FlashcardLogo";
 import { Context } from "../Context";
 import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 function CheckEmail() {
   
   const { emailAdress} = useContext(Context);
+  const history = useHistory();
 
   return (
     // <ParticleBackground>
@@ -28,12 +30,12 @@ function CheckEmail() {
               verify
               text='Verify your email address'
             />
-            <a
-              href='/login'
+            <div
+              onClick={() => {history.push("/login")}}
               className='mt-35px zIndex-5 justify-center login__link font-13px login__col-navajowhite cursorPointer'
             >
               Back to Login
-            </a>
+            </div>
           </div>
         </div>
       </div>
