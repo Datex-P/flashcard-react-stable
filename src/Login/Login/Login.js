@@ -39,7 +39,6 @@ const result = elements.filter(callback)
      let password = passwordRef.current.value;
 
      console.log(name, 'name')
-     //test
      console.log(password, 'password')
      //http://localhost:4000/login
    const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/hello", {
@@ -129,7 +128,6 @@ useEffect(()=>{
   //   }
 
 
- 
   return (
 
     // <ParticleBackground>

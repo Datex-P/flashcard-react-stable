@@ -1,7 +1,9 @@
 import Facebook from "./Facebook";
 import Google from "./Google";
+import { useHistory } from 'react-router-dom'
 
 function LoginWithSignUp() {
+  const history = useHistory()
 
   return (
     <>
@@ -16,19 +18,19 @@ function LoginWithSignUp() {
       </div>
       <span className='mt-10px col-darkslategrey'>
         Not a member?
-        <a
-          href='/register'
-          className='posRelative login__text-dec-none login__col-navajowhite ml-10px'
+        <div
+          onClick={()=>{history.push('/register')}}
+          className='posRelative cursorPointer login__text-dec-none login__col-navajowhite ml-10px'
         >
           Sign up!
-        </a>
+        </div>
       </span>
-      <a
-        href='/forgotPassword'
-        className='posRelative login__text-dec-none login__col-navajowhite mt-10px mr-18px'
+      <div
+        onClick={()=>{history.push('/forgotPassword')}}
+        className='posRelative cursorPointer login__text-dec-none login__col-navajowhite mt-10px mr-18px'
       >
         Forgot your password?
-      </a>
+      </div>
     </>
   );
 }
