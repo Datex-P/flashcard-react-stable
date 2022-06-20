@@ -37,7 +37,12 @@ exports.handler = async (event, context, callback) => {
         <div style='height: 75px; margin-top: 40px; font-size:26px; font-weight:bold; color:seashell'>
           Please Confirm Registration
         </div>
-     
+        <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
+        <a href="${process.env.PROVIDER}/confirm_registration?token=${jwt.sign(
+        { name: process.env.EMAIL_HOLDER_NAME, email: process.env.EMAIL_RECEIVER_ADRESS },
+          process.env.SECRET
+        )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, verify my account.</a>
+        </button>
         <div style='color:seashell; margin-top: 30px'>If you received this email by mistake, simply delete it. You won't be
         registered, if you don't click the registration link above.
         <div style='margin-top:30px'>
