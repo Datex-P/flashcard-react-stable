@@ -2,6 +2,6 @@
 functions="/functions"
 
 [[redirects]]
-from="/confirm-registration/*"
+from="/.netlify/functions/confirm/*"
 to="/confirm-registration"
 
