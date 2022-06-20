@@ -62,6 +62,8 @@ console.log(data, 'data here')
   if(response.status === 200) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
+    setUser(name)
+
   } else if (response.status === 405) {
     alert('Please check your username and password!')
   }
@@ -71,6 +73,9 @@ console.log(data, 'data here')
   }
 }
 
+useEffect(()=>{
+  console.log(user, 'user here')
+},[setUser, user])
 
 
   //   if(data.user) {
