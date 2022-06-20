@@ -15,7 +15,7 @@ exports.handler = async (event, context, callback) => {
         }
     });
 
-    let info = transporter.sendMail(
+    let info = await transporter.sendMail(
       {
         from: `"Flashcard App 👋" ${process.env.AUTH_EMAIL}`, // sender address
         to: process.env.EMAIL_RECEIVER_ADRESS, // list of receivers
