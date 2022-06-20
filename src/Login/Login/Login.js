@@ -55,16 +55,11 @@ const result = elements.filter(callback)
       })
     });
 
-  //   if (r.Method == "OPTIONS") {
-  //     w.WriteHeader(http.StatusOK)
-  //     return
-  // }
-
   console.log(response,'hello from try')
 
   const data = await response.json()
 console.log(data, 'data here')
-  if(data.user) {
+  if(response.status === 200) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
   }
