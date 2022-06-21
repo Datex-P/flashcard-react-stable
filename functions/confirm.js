@@ -2,24 +2,24 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const User = require('../server/models/user');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 exports.handler = async (event) => {
+    
+    mongoose.connect(`${process.env.MONGO_URI}`,{
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   }
+ );
 
-   let token = event.queryStringParameters.token
+let token = event.queryStringParameters.token
    
-   mongoose.connect(`${process.env.MONGO_URI}`,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-
 const decoded = jwt.verify(token, process.env.SECRET);
-const { email } = decoded;
+const { email, name, password } = decoded;
 
   if (decoded) {
  
-    await User.findOneAndUpdate({email: email}, {verified: 'true'});
+    await User.create({email: email, name:name, password:password});
     
     return {
         statusCode: 302,

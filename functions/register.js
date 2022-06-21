@@ -2,7 +2,9 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
-exports.handler = async (event, context, callback) => {
+exports.handler = async (event) => {
+
+  let {email, name, password} = JSON.parse(event.body);
 
     const transporter = nodemailer.createTransport({
         //host: process.env.MAIL_HOST,
@@ -28,7 +30,7 @@ exports.handler = async (event, context, callback) => {
     let info = await transporter.sendMail(
       {
         from: `"Flashcard App 👋" ${process.env.AUTH_EMAIL}`, // sender address
-        to: process.env.EMAIL_RECEIVER_ADRESS, // list of receivers
+        to: `${email}`, // list of receivers
         subject: "FlashcardApp Registration", // Subject line
         text: "Hello world?", // plain text body
         html: `<div style='background:rgb(90, 170, 149); width:100%; height: 620px; overflow:auto'>
@@ -39,7 +41,7 @@ exports.handler = async (event, context, callback) => {
         </div>
         <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
         <a href="${process.env.PROVIDER}/confirm/registration?token=${jwt.sign(
-        { name: process.env.EMAIL_HOLDER_NAME, email: process.env.EMAIL_RECEIVER_ADRESS },
+        { name: name, email: email, password:password },
           process.env.SECRET
         )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, verify my account.</a>
         </button>
