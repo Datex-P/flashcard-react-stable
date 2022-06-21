@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const User = require('../server/models/user');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs')
 
 exports.handler = async (event) => {
     
@@ -16,10 +17,11 @@ let token = event.queryStringParameters.token
    
 const decoded = jwt.verify(token, process.env.SECRET);
 const { email, name, password } = decoded;
-
-  if (decoded) {
+const cryptedPassword = await bcrypt.hash(password, 10)
  
-    await User.create({email: email, name:name, password:password});
+if (decoded) {
+ 
+    await User.create({email: email, name:name, password:cryptedPassword});
     
     return {
         statusCode: 302,

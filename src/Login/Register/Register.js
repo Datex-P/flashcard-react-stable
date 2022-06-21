@@ -44,14 +44,14 @@ function Register() {
     });
     const data = await response.json();
 
-    if (data.statusCode === 200) {
+    if (data.status === 200) {
       history.push("/checkemail");
     } 
 
-    if (data.statusCode === 400) {
+    if (data.status === 400) {
       alert('Something went wrong')
     }
-    console.log(data);
+    console.log(data,'data here');
   }
 
   return (
