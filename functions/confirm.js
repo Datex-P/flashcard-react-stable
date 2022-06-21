@@ -23,11 +23,11 @@ exports.handler = async (event, context, callback) => {
 
 //   console.log('confirm registration route triggered',decoded)
   
+const { email } = decoded;
   if (decoded) {
-    const { email } = decoded;
     console.log(decoded, 'decoded here')
 
-    User.findOneAndUpdate({email: email}, {verified: 'true' },(...e)=>{
+    await User.findOneAndUpdate({email: email}, {verified: 'true' },(...e)=>{
       console.log(e)
     });
   } else {
@@ -39,7 +39,7 @@ exports.handler = async (event, context, callback) => {
 //     console.log('confirm registration got invoked')
 return {
     statusCode: 400,
-    body:JSON.stringify(decoded)
+    body:JSON.stringify(email)
    // body: event.queryStringParameters
 }
   
