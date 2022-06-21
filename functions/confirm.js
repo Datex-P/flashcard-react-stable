@@ -7,11 +7,11 @@ exports.handler = async (event, context, callback) => {
 
    let url = event.path
    let index = url.indexOf("=");
-   let token = url.slice(index+1)
-//test
+   let token = event.queryStringParameters.token
+
    return {
     statusCode: 400,
-    body:JSON.stringify(event.queryStringParameters)
+    body:JSON.stringify(token)
    // body: event.queryStringParameters
 }
 
