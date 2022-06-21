@@ -3,11 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const UserSchema = new Schema({
-  email: { required: false},
-  // email: {type: String, required: false},
-  verified: { required: false}
-  // password: {type: String, required: false},
-  // background: {type:String, required:false}
+  email: {type: String, required: true},
+  name: {type: String, required: true},
+  password: {type:String, required:true}
 },{timestamps:true}
 )
 mongoose.pluralize(null);
