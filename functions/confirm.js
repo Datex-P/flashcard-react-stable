@@ -11,7 +11,7 @@ exports.handler = async (event, context, callback) => {
 //test
    return {
     statusCode: 400,
-    body:url
+    body:JSON.stringify(event.queryStringParameters)
    // body: event.queryStringParameters
 }
 
