@@ -69,6 +69,6 @@ exports.handler = async (event) => {
   
     return {
         statusCode: 400,
-        body: "Oops"
+        body: "Something went wrong"
     }
 };
