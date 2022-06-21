@@ -22,8 +22,11 @@ const { email } = decoded;
     await User.findOneAndUpdate({email: email}, {verified: 'true'});
     
     return {
-        statusCode: 200,
-        body:JSON.stringify('Updated in Database')
+        statusCode: 302,
+        headers: {
+            "Location": "https://cool-gnome-d84e5e.netlify.app"
+        },
+        body:'Redirect in place'
     }
   } else {
    
