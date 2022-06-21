@@ -11,7 +11,7 @@ exports.handler = async (event, context, callback) => {
 
    return {
     statusCode: 400,
-    body: url
+    body: event.queryStringParameters
 }
 
 //    console.log(token, 'token here')
