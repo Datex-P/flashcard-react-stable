@@ -4,8 +4,8 @@ require('dotenv').config();
 const User = require('../server/models/user');
 
 exports.handler = async (event, context, callback) => {
-  if (typeof window !== 'undefined') {
-   let url = window.location.href
+
+   let url = event.path
    let index = url.indexOf("=");
    let token = url.slice(index+1)
    console.log(token, 'token here')
@@ -26,9 +26,7 @@ exports.handler = async (event, context, callback) => {
     //and proposal to register again
   }
 
-  
     console.log('confirm registration got invoked')
-}
     return {
         statusCode: 400,
         body: "Oops"
