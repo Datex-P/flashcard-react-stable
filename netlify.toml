@@ -2,6 +2,7 @@
 functions="/functions"
 
 [[redirects]]
-from="/confirm/:splat"
+from="/.netlify/functions/confirm/:splat"
 to="/login"
+conditions={status=200}
 
