@@ -35,14 +35,15 @@ function Register() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin" : "*"
       },
       body: JSON.stringify({
         name:name,
         password:password,
         email:email
-      }),
+      })
     });
-    const data = await response.json();
+    const data = await response
 
     if (data.status === 200) {
       history.push("/checkemail");
