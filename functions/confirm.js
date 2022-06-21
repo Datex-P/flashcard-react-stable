@@ -27,9 +27,7 @@ const { email } = decoded;
   if (decoded) {
     console.log(decoded, 'decoded here')
 
-    await User.findOneAndUpdate({email: email}, {verified: 'true' },(...e)=>{
-      console.log(e)
-    });
+    await User.findOneAndUpdate({email: email}, {verified: 'true'});
   } else {
     console.log('could not update user')
     //redirect user to page with message about email confirmation link expiration
