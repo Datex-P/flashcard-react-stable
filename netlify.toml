@@ -2,6 +2,6 @@
 functions="/functions"
 
 [[redirects]]
-from="/confirm/*"
-to="/confirm-registration"
+from="/confirm/:splat"
+to="/login"
 

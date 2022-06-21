@@ -4,10 +4,8 @@ require('dotenv').config();
 const User = require('../server/models/user');
 const mongoose = require("mongoose");
 
-exports.handler = async (event, context, callback) => {
+exports.handler = async (event) => {
 
-   let url = event.path
-   let index = url.indexOf("=");
    let token = event.queryStringParameters.token
    
    mongoose.connect(`${process.env.MONGO_URI}`,{
@@ -16,29 +14,22 @@ exports.handler = async (event, context, callback) => {
   }
 );
 
- 
-
-//    console.log(token, 'token here')
-   const decoded = jwt.verify(token, process.env.SECRET);
-
-//   console.log('confirm registration route triggered',decoded)
-  
+const decoded = jwt.verify(token, process.env.SECRET);
 const { email } = decoded;
+
   if (decoded) {
-    console.log(decoded, 'decoded here')
-
+ 
     await User.findOneAndUpdate({email: email}, {verified: 'true'});
+    
+    return {
+        statusCode: 200,
+        body:JSON.stringify('Updated in Database')
+    }
   } else {
-    console.log('could not update user')
-    //redirect user to page with message about email confirmation link expiration
-    //and proposal to register again
-  }
-
-//     console.log('confirm registration got invoked')
-return {
-    statusCode: 400,
-    body:JSON.stringify(email)
-   // body: event.queryStringParameters
-}
-  
+   
+    return {
+        statusCode: 500,
+        body:JSON.stringify('Could not be updated in Database')
+    }
+  }  
 };
