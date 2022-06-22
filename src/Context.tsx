@@ -26,6 +26,7 @@ export default function ContextProvider({ children }:any) {
   });
 
    let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+  //let colors = ['green','blue','black','red', 'pink']
 
   useEffect(() => {
     let dB:any = {
