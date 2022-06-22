@@ -99,9 +99,9 @@ const options = {
    
   // },
 },
-  tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
+  //tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
   hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights
-
+  tooltips:{enabled:false},
 
   
   cutoutPercentage: 81,
@@ -123,7 +123,6 @@ const options = {
       
        } else if (dataBase.userPreferences.backgroundColor === 'dark') {
    
-         //  config.data.datasets[0].backgroundColor = []
            backgroundColorData.push("#5aaaff")
            backgroundColorData.push("#FF6384")
          } else {
