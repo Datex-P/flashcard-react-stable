@@ -16,7 +16,7 @@ function ShowProgressDiagram() {
           </div>
         </div>
         <div>
-           {/* <PieDiagramm />  */}
+           <PieDiagramm /> 
         </div>     
     </div>
   )

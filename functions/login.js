@@ -28,15 +28,16 @@ exports.handler = async (event, context) => {
       } else {
 
         const match = bcrypt.compare(data.password, user.password);
-
-        let statusCode = user ?200:405
+        //bcrypt does not run locally
+     //   return match
+        let statusCode = user && match?200:405
         res({
           statusCode,
           headers: {
             "Access-Control-Allow-Origin": "*", 
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({data.password, user.password}),
+          body: JSON.stringify({ user}),
         });
       }
     }

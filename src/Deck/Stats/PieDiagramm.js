@@ -1,5 +1,6 @@
 import React, {useEffect,useState, useContext} from 'react'
 import {Context} from '../../Context'
+import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 
 export default function ChartComp() {
@@ -53,7 +54,6 @@ let borderColorData = []
 let dataData = [3,4,5,5,10]
 let hoverBackgroundColorData = []
 
-
 for (let deck in dataBase.DeckNames) {
 
   let deckItem = dataBase.DeckNames[deck]
@@ -66,10 +66,8 @@ for (let deck in dataBase.DeckNames) {
       }
     }})
     let date = new Date()
-
     // todayCardsStudiedCounter++
   if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString())) {
-
   //  cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() == date)).length
   //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
     labelsData.push(deckItem.name)
@@ -82,17 +80,17 @@ for (let deck in dataBase.DeckNames) {
 
 useEffect(()=>{
   setChartData({
-      labels:[],
+      labels:labelsData,
       datasets: [
         {
-    data: dataData,
-    backgroundColor: backgroundColorData,
-    borderColor: borderColorData,
-     borderWidth: 0,
-    hoverBackgroundColor: hoverBackgroundColorData
-  }
-]
-})
+        data: dataData,
+        backgroundColor: backgroundColorData,
+        borderColor: borderColorData,
+        borderWidth: 0,
+        hoverBackgroundColor: hoverBackgroundColorData
+      }
+      ]
+  })
 },[])
 
 useEffect(()=>{
@@ -100,7 +98,6 @@ useEffect(()=>{
 },[chartData])
 
 return (
-  
   <Doughnut
       datasetIdKey='id'
       data={chartData}
