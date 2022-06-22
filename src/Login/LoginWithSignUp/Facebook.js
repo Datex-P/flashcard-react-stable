@@ -50,6 +50,7 @@ function Facebook() {
         }}
         onSuccess={(response) => {
           console.log('hello from on success', response);
+          history.push('/main')
         }}
         onFail={(error) => {
           console.log('Login Failed!', error);
@@ -57,10 +58,11 @@ function Facebook() {
         onProfileSuccess={(response) => {
           facebookUser(response);
           console.log('Get Profile Success!', response);
+          history.push('/main')
         }}
       />
     </div>
   );
 }
-
+//test test
 export default Facebook;
