@@ -3,22 +3,22 @@ import {useEffect} from 'react'
 // documentation google for login
 
 function Google () {
-  // useEffect(()=>{
-  //   setTimeout(()=>{
-  //   let element = document.querySelector('.abcRioButton')
-  //   let wrapper = document.querySelector('.abcRioButtonContentWrapper')
-  //   console.log(element, 'element here')
+  useEffect(()=>{
+    setTimeout(()=>{
+    let element = document.querySelector('.abcRioButton')
+    let wrapper = document.querySelector('.abcRioButtonContentWrapper')
+    console.log(element, 'element here')
 
-  //   if(element) {
-  //     element.style.height = '39px'
-  //     element.style.width = '159px'
-  //     element.style.borderRadius = '5px'
-  //     wrapper.style.display = 'flex'
-  //     wrapper.style.alignItems = 'center'
-  //     wrapper.style.paddingLeft = '20px'
-  //   }
-  // },3000)
-  // },[])
+    if(element) {
+      element.style.height = '39px'
+      element.style.width = '159px'
+      element.style.borderRadius = '5px'
+      wrapper.style.display = 'flex'
+      wrapper.style.alignItems = 'center'
+      wrapper.style.paddingLeft = '20px'
+    }
+  },3000)
+  },[])
 
   return (
      <div 

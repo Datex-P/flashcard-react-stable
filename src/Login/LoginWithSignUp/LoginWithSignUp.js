@@ -16,14 +16,14 @@ function LoginWithSignUp() {
           <Google />
         </div>
       </div>
-      <span className='mt-10px col-darkslategrey'>
+      <span className='mt-15px col-darkslategrey'>
         Not a member?
-        <div
+        <span
           onClick={()=>{history.push('/register')}}
           className='posRelative cursorPointer login__text-dec-none login__col-navajowhite ml-10px'
         >
           Sign up!
-        </div>
+        </span>
       </span>
       <div
         onClick={()=>{history.push('/forgotPassword')}}
