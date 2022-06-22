@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const Test = require('../server/models/test');
+const bcrypt = require('bcryptjs')
 
 exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -25,14 +26,17 @@ exports.handler = async (event, context) => {
           body: JSON.stringify({ msg: err.message }),
         });
       } else {
-        let statusCode = user?200:405
+
+        const match = bcrypt.compare(data.password, user.password);
+
+        let statusCode = user && match?200:405
         res({
           statusCode,
           headers: {
             "Access-Control-Allow-Origin": "*", 
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user}),
+          body: JSON.stringify({ match}),
         });
       }
     }
