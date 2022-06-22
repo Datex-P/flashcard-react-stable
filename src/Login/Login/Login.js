@@ -38,9 +38,8 @@ const result = elements.filter(callback)
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
 
-     console.log(name, 'name')
-     console.log(password, 'password')
      //http://localhost:4000/login
+     //https://cool-gnome-d84e5e.netlify.app/
    const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/login", {
     method:"POST",
     headers: {
@@ -54,7 +53,7 @@ const result = elements.filter(callback)
     });
 
   console.log(response,'hello from try')
-///00000
+
   const data = await response.json()
 console.log(data, 'data here')
   if(response.status === 200) {

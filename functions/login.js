@@ -29,14 +29,14 @@ exports.handler = async (event, context) => {
 
         const match = bcrypt.compare(data.password, user.password);
 
-        let statusCode = user && match?200:405
+        let statusCode = user ?200:405
         res({
           statusCode,
           headers: {
             "Access-Control-Allow-Origin": "*", 
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ match}),
+          body: JSON.stringify({data.password, user.password}),
         });
       }
     }
