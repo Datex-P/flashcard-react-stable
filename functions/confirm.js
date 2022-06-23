@@ -17,11 +17,11 @@ let token = event.queryStringParameters.token
    
 const decoded = jwt.verify(token, process.env.SECRET);
 const { email, name, password } = decoded;
-const cryptedPassword = await bcrypt.hash(password, 10)
+//const cryptedPassword = await bcrypt.hash(password, 10)
  
 if (decoded) {
  
-    await User.create({email: email, name:name, password:cryptedPassword});
+    await User.create({email: email, name:name, password:password});
     
     return {
         statusCode: 302,
