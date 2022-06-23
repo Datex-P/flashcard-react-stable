@@ -5,6 +5,7 @@ require('dotenv').config();
 exports.handler = async (event) => {
 
   let {email, name, password} = JSON.parse(event.body);
+  console.log(email, name, password)
 
     const transporter = nodemailer.createTransport({
         //host: process.env.MAIL_HOST,
@@ -42,7 +43,7 @@ exports.handler = async (event) => {
         <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
         <a href="${process.env.PROVIDER}/confirm/registration?token=${jwt.sign(
         { name: name, email: email, password:password },
-          process.env.SECRET
+        process.env.SECRET
         )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, verify my account.</a>
         </button>
         <div style='color:seashell; margin-top: 30px'>If you received this email by mistake, simply delete it. You won't be
