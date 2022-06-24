@@ -37,7 +37,8 @@ function Register() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin" : "*"
+        "Access-Control-Allow-Origin" : "*",
+        'Access-Control-Allow-Credentials': 'true'
       },
       body: JSON.stringify({
         name:name,
@@ -50,7 +51,6 @@ function Register() {
     if (data.status === 200) {
       history.push("/checkemail");
     } 
-
     if (data.status === 400) {
       alert('Something went wrong')
     }
