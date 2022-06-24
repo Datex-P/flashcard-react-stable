@@ -16,6 +16,14 @@ export default function ContextProvider({ children }:any) {
   const [emailAdress, setEmailAdress] = useState(null)
   const [user, setUser] = useState('pp')
   const [nameOfTopDeck, setNameOfTopDeck] = useState(null)
+  const [apiURL, setAPIURL] = useState('')
+
+  useEffect(()=>{
+  process.env.NODE_ENV === 'production' ? 
+  setAPIURL('https://cool-gnome-d84e5e.netlify.app/.netlify/functions') : 
+  setAPIURL('http://localhost:8888/.netlify/functions')
+  }, [])
+
 
   const [styles, setStyles] = useState({
     backgroundColor: {
@@ -141,6 +149,7 @@ export default function ContextProvider({ children }:any) {
         hideCreateDeckBtn, setHideCreateDeckBtn,
         showProgressDiagram, setShowProgressDiagram,
         styles, setStyles,
+        apiURL, setAPIURL,
         showThreeDots, setShowThreeDots,
         threeDotsOpen, setThreeDotsOpen,
         user, setUser,

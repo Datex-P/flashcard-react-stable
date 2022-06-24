@@ -1,23 +1,24 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const Test = require('../server/models/test');
+const User = require('../server/models/user');
 const bcrypt = require('bcryptjs')
 
 exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   
   mongoose.connect(`${process.env.MONGO_URI}`,{
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
   );
-
-  let data = JSON.parse(event.body);
-  console.log(data, "data here");
- let fd = await new Promise((res,rej)=>Test.findOne(
+  
+  //let {name, password} = JSON.parse(event.body);
+  //console.log(name, password, "data here");
+  let {name, password} = JSON.parse(event.body);
+ let fd = await new Promise((res,rej)=>User.findOne(
     {
-      name: data.name,
-      password: data.password,
+      name: name,
+      password: password,
     },
     (err, user) => {
       if (err) {
@@ -27,10 +28,10 @@ exports.handler = async (event, context) => {
         });
       } else {
 
-        const match = bcrypt.compare(data.password, user.password);
+        const match = bcrypt.compare(password, user.password);
         //bcrypt does not run locally
      //   return match
-        let statusCode = user && match?200:405
+        let statusCode = user && match ?200:405
         res({
           statusCode,
           headers: {

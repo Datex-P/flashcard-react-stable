@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import '../../styles.scss';
 import '../login.css';
 import ParticleBackground from '../Particles/ParticlesBackground';
@@ -7,6 +7,7 @@ import Password from './Password';
 import Email from './Email';
 import UserName from './UserName';
 import FlashcardLogo from '../FlashcardLogo';
+import { Context } from '../../Context';
 
 
 
@@ -15,6 +16,7 @@ function Register() {
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
   const history = useHistory();
+  const {apiURL} = useContext(Context)
 
   function signUpHandler() {
     // setRegister(false);
@@ -31,7 +33,7 @@ function Register() {
     let password = passwordRef.current.value;
     let email = emailRef.current.value;
 
-    const response = await fetch(`https://cool-gnome-d84e5e.netlify.app/.netlify/functions/register`, {
+    const response = await fetch(`${apiURL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

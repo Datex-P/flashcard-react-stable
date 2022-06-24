@@ -13,20 +13,10 @@ import { useHistory } from 'react-router-dom'
 
 function Login() {
 
-  const {dataBase, setUser, user, setDataBase} = useContext(Context)
+  const {dataBase, setUser, user, setDataBase, apiURL} = useContext(Context)
 
-  let facebook = document.querySelectorAll("input[type=button]") 
-  console.log(facebook, 'facebook here')
   const history = useHistory()
-  const callback = element => element.innerHTML === 'Login with Facebook'
-  const elements = Array.from(document.getElementsByTagName('button'))
-  console.log(elements, 'elements here')
 
-const result = elements.filter(callback)
-      result.innerHTML = 'Facebook'
-
-      console.log(result, 'result here facebook')
-  
   const userNameRef = useRef(null)
   const passwordRef = useRef(null)
 
@@ -38,9 +28,8 @@ const result = elements.filter(callback)
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
 
-     //http://localhost:4000/login
-     //https://cool-gnome-d84e5e.netlify.app/
-   const response =  await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/login", {
+
+   const response =  await fetch(`${apiURL}/login`, {
     method:"POST",
     headers: {
        "Access-Control-Allow-Origin": "*",     
@@ -122,7 +111,6 @@ useEffect(()=>{
   //   } catch (error) {
   //     console.log(error, 'error here')
   //   }
-
 
   return (
 

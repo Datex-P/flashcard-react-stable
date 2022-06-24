@@ -17,16 +17,18 @@ let token = event.queryStringParameters.token
    
 const decoded = jwt.verify(token, process.env.SECRET);
 const { email, name, password } = decoded;
-//const cryptedPassword = await bcrypt.hash(password, 10)
- 
+const cryptedPassword = await bcrypt.hash(password, 10)
+console.log(cryptedPassword, 'crypted password here') 
+
 if (decoded) {
  
-    await User.create({email: email, name:name, password:password});
+    await User.create({email: email, name:name, password:cryptedPassword});
     
     return {
         statusCode: 302,
         headers: {
-            "Location": "https://cool-gnome-d84e5e.netlify.app"
+            "Location": `${process.env.NODE_ENV === 'production' ? 
+            'https://cool-gnome-d84e5e.netlify.app': 'http://localhost:8888'}`
         },
         body:'Redirect in place'
     }
