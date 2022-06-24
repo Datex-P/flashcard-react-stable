@@ -11,37 +11,25 @@ exports.handler = async (event, context) => {
     useUnifiedTopology: true,
   }
   );
-  
-  //let {name, password} = JSON.parse(event.body);
-  //console.log(name, password, "data here");
-  let {name, password} = JSON.parse(event.body);
- let fd = await new Promise((res,rej)=>User.findOne(
-    {
-      name: name,
-      password: password,
-    },
-    (err, user) => {
-      if (err) {
-        rej({
-          statusCode: 500,
-          body: JSON.stringify({ msg: err.message }),
-        });
-      } else {
 
-        const match = bcrypt.compare(password, user.password);
-        //bcrypt does not run locally
-     //   return match
-        let statusCode = user && match ?200:405
-        res({
-          statusCode,
-          headers: {
-            "Access-Control-Allow-Origin": "*", 
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ user}),
-        });
-      }
+  const {name, password} = JSON.parse(event.body);
+  const user = await User.findOne({name}).exec();
+  const match = user && await bcrypt.compare(password, user.password.toString())
+
+  if (!match) {
+    return {
+      statusCode: 405,
+      body: "Invalid user or password",
     }
-  ));
-  return fd
+  }
+
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*", 
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ user}),
+  };
+  
 };

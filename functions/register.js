@@ -32,7 +32,7 @@ exports.handler = async (event) => {
       {
         from: `"Flashcard App 👋" ${process.env.AUTH_EMAIL}`, // sender address
         to: `${email}`, // list of receivers
-        subject: "FlashcardApp Registration", // Subject line
+        subject: "FlashcardApp -Registration-", // Subject line
         text: "Hello world?", // plain text body
         html: `<div style='background:rgb(90, 170, 149); width:100%; height: 620px; overflow:auto'>
         <div style='margin-left:50px;margin-top:70px'>

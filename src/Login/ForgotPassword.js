@@ -1,4 +1,4 @@
-import { React, useRef, useState } from "react";
+import { React, useRef, useState, useContext } from "react";
 import "../styles.scss";
 import "./login.css";
 import ParticleBackground from "./Particles/ParticlesBackground";
@@ -7,12 +7,14 @@ import Email from "./Register/Email";
 import FlashcardLogo from "./FlashcardLogo";
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
+import { Context } from '../Context';
 
 function ForgotPassword() {
   const emailRef = useRef(null);
   const [pwdLinkActive, setPwdLinkActive] = useState(null);
   const [emailNotInDB, setEmailNotInDB] = useState(false);
   const history = useHistory();
+  const {apiURL} = useContext(Context)
 
   async function pwdReset(e) {
     e.preventDefault();
@@ -20,7 +22,7 @@ function ForgotPassword() {
       //e preventDefault is needed because forms
       //have a standard behaviour of redirecting
       let email = emailRef.current.value;
-      const response = await fetch("http://localhost:4000/password_reset", {
+      const response = await fetch(`${apiURL}/password_reset`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -29,7 +29,7 @@ async function pwdreset() {
     {
       from: `"Flashcard App 👋" ${process.env.AUTH_EMAIL}`, // sender address
       to: process.env.EMAIL_RECEIVER_ADRESS, // list of receivers
-      subject: "FlashcardApp Password Reset", // Subject line
+      subject: "FlashcardApp -Password Reset-", // Subject line
       text: "Hello world?", // plain text body
       attachments: [
         // { filename: 'profile.png', path: 'https://m.media-amazon.com/images/I/814XeDdJPCL._AC_SX425_.jpg',
