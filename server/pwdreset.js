@@ -1,6 +1,11 @@
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken')
-require('dotenv').config();
+//require('dotenv').config();
+//require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+console.log(path.resolve(__dirname, '../.env'), 'path')
+//https://stackoverflow.com/questions/42335016/dotenv-file-is-not-loading-environment-variables
 
 async function pwdreset() {
 
@@ -39,7 +44,7 @@ async function pwdreset() {
      ], 
       html: `<div style='background:rgb(90, 170, 149); width:100%; height: 620px; overflow:auto'>
       <div style='margin-left:50px;margin-top:70px'>
-      <img src="${process.env.FlASHCARD_LOGO}" alt ='flashcards logo'/>
+      <img src="${process.env.FLASHCARD_LOGO}" alt ='flashcards logo'/>
       <div style='height: 75px; margin-top: 40px; font-size:26px; font-weight:bold; color:seashell'>
         Password Reset
       </div>

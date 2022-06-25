@@ -43,7 +43,7 @@ export default function App() {
           <Route path='/logout'>
             <Login />  
           </Route>
-          <Route path='/new_password/:token'>
+          <Route path='/new_password'>
             <NewPwd />  
           </Route>
         </Switch>

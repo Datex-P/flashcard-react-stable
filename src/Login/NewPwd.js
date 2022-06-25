@@ -57,7 +57,7 @@ function NewPwd() {
   }
 
   return (
-    <ParticleBackground>
+    // <ParticleBackground>
       <div className='login'>
         <div className='align-center flex-column login__container'>
           <FlashcardLogo register />
@@ -87,7 +87,7 @@ function NewPwd() {
           )}
         </div>
       </div>
-    </ParticleBackground>
+    // </ParticleBackground>
   );
 }
 

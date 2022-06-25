@@ -1,10 +1,10 @@
 import { React, useRef, useState, useContext } from "react";
-import '../styles.scss';
-import './login.css';
-import ParticleBackground from './Particles/ParticlesBackground';
-import Button from './Button';
-import Email from './Register/Email';
-import FlashcardLogo from './FlashcardLogo';
+import "../styles.scss";
+import "./login.css";
+import ParticleBackground from "./Particles/ParticlesBackground";
+import Button from "./Button";
+import Email from "./Register/Email";
+import FlashcardLogo from "./FlashcardLogo";
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
 import { Context } from '../Context';
@@ -32,16 +32,16 @@ function ForgotPassword() {
           email,
         }),
       });
-
-      const data = await response;
-
-      if (data.status === 200) {
+      const data = await response.json();
+      console.log(data, "data in forgot here");
+      if (data.status === "email exists") {
+        console.log("email exists in database");
         setPwdLinkActive(true);
         setTimeout(() => {
           setPwdLinkActive(false);
-          history.push('/login')
         }, 4000);
       } else {
+        console.log("email does not exist in database");
         setEmailNotInDB(true);
         setTimeout(() => {
           setEmailNotInDB(false);
@@ -60,10 +60,7 @@ function ForgotPassword() {
         <div className='login__register__text  login__col-navajowhite'>
           Reset your Password
         </div>
-        <form 
-            className='zIndex-5 width12rem' 
-            onSubmit={pwdReset}
-        >
+        <form className='zIndex-5 width12rem' onSubmit={pwdReset}>
           <div className='login__reset-col'>
             Lost your password? You will receive a link to create a new
             password.
@@ -73,7 +70,7 @@ function ForgotPassword() {
             <div className='login__button__container login__field-distance justify-between-align-center flex-column width100pc height75px mt-20px'>
               <Button text='Reset password' />
               <div
-                onClick={() => {history.push('/login')}}
+                onClick={() => {history.push("/login")}}
                 className='zIndex-5 justify-center login__link font-13px login__col-navajowhite cursorPointer'
               >
                 Back to Login
@@ -84,13 +81,12 @@ function ForgotPassword() {
         {(pwdLinkActive || emailNotInDB) && (
           <div className='bs-5'>
             <Alert
-              variant={`${emailNotInDB ? 'danger' : 'info'}`}
-              className='height35px'
+              variant={`${emailNotInDB ? "danger" : "info"}`}
+              className={"height35px"}
             >
               {emailNotInDB
-                ? 'Email does not exist in database.'
-                : 'We have e-mailed your password reset link.'
-              }
+                ? "Email does not exist in database."
+                : "We have e-mailed your password reset link."}
             </Alert>
           </div>
         )}
