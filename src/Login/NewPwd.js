@@ -1,49 +1,60 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import "../styles.scss";
 import "./login.css";
 import ParticleBackground from "./Particles/ParticlesBackground";
 import { useHistory } from "react-router-dom";
 import FlashcardLogo from "./FlashcardLogo";
 import Password from "./Register/Password";
-import jwt_decode from "jwt-decode";
 import Alert from "react-bootstrap/Alert";
+import { Context } from '../Context';
 
 function NewPwd() {
+  
+  const {apiURL} = useContext(Context)
+  
   const passwordRef1 = useRef(null);
   const passwordRef2 = useRef(null);
   const [pwdDifferent, setPwdDifferent] = useState(false);
+  const [updatedPassword, setUpdatedPassword] = useState(false)
+  const [tokenCorrupted, setTokenCorrupted] = useState(false)
   
   const history = useHistory();
 
   async function resetPwdHandler(e) {
     if (passwordRef1.current.value === passwordRef2.current.value) {
       try {
-        console.log("got triggered");
         e.preventDefault();
         //e preventDefault is needed because forms
         //have a standard behaviour of redirecting
-        // console.log(name, "name in ref");
-        let password = passwordRef1.current.value;
-        let url = window.location.href.lastIndexOf("/");
+        let new_password = passwordRef1.current.value;
+        let url = window.location.href.indexOf("=");
         let token = window.location.href.slice(url + 1);
-
-        let decoded = jwt_decode(token);
-        let { email } = decoded;
-
-        const response = await fetch("http://localhost:4000/confirm_new_pwd", {
+   
+        const response = await fetch(`${apiURL}/confirm_new_pwd`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email,
-            password,
+            token,
+            new_password,
           }),
         });
-        const data = await response.json();
+        const data = await response
 
-        if (data.status === "ok") {
-          history.push("/login");
+        if (data.status === 200) {
+          setUpdatedPassword(true)
+          setTimeout(()=>{
+          history.push('/login');
+          setUpdatedPassword(false)
+          },6000)
+        }
+        if (data.status === 500) {
+          setTokenCorrupted(true)
+          setTimeout(()=>{
+          history.push('/forgotpassword');
+          setTokenCorrupted(false)
+          },6000)
         }
       } catch (error) {
         console.log(error, "error here");
@@ -63,7 +74,7 @@ function NewPwd() {
           <FlashcardLogo register />
           <div className='flex-column align-center mb-25px'>
             <div className='login__register__text login__col-navajowhite'>
-              Reset
+              New Password
             </div>
             <div className='login__reset-col '>Type your new password.</div>
           </div>
@@ -78,13 +89,19 @@ function NewPwd() {
               </div>
             </div>
           </form>
-          {pwdDifferent && (
+          {
+            (pwdDifferent || updatedPassword) && 
             <div className='bs-5'>
-              <Alert variant={"danger"} className={"height35px"}>
-                Passwords are different.
+              <Alert variant={(pwdDifferent || tokenCorrupted)? 'danger': 'success'} className='height35px'>
+                {pwdDifferent?
+                'Passwords are different.':
+                updatedPassword?
+                'Password updated successfully.':
+                'Server Error. Please resend email.'
+                }
               </Alert>
-            </div>
-          )}
+            </div>         
+          }
         </div>
       </div>
     // </ParticleBackground>

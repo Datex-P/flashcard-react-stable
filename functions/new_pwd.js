@@ -24,8 +24,9 @@ if (decoded) {
         headers: {
             "Location": 
             //`${process.env.NODE_ENV === 'production' ? 
-           // `https://cool-gnome-d84e5e.netlify.app/new_password/${token}`:
-             `http://localhost:8888/new_password/${token}`
+            `https://cool-gnome-d84e5e.netlify.app/new_password/${token}`
+            //:
+           //  `http://localhost:8888/new_password/${token}`
             //}`
         },
         body:decoded

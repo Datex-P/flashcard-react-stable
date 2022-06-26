@@ -9,12 +9,14 @@ import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
 import { Context } from '../Context';
 
-function ForgotPassword() {
+function NewPassword() {
+
+  const {apiURL} = useContext(Context)
+  
   const emailRef = useRef(null);
   const [pwdLinkActive, setPwdLinkActive] = useState(null);
   const [emailNotInDB, setEmailNotInDB] = useState(false);
   const history = useHistory();
-  const {apiURL} = useContext(Context)
 
   async function pwdReset(e) {
     e.preventDefault();
@@ -33,7 +35,7 @@ function ForgotPassword() {
         }),
       });
       const data = await response.json();
-      console.log(data, "data in forgot here");
+
       if (data.status === "email exists") {
         console.log("email exists in database");
         setPwdLinkActive(true);
@@ -70,7 +72,7 @@ function ForgotPassword() {
             <div className='login__button__container login__field-distance justify-between-align-center flex-column width100pc height75px mt-20px'>
               <Button text='Reset password' />
               <div
-                onClick={() => {history.push("/login")}}
+                onClick={() => {history.push('/login')}}
                 className='zIndex-5 justify-center login__link font-13px login__col-navajowhite cursorPointer'
               >
                 Back to Login
@@ -96,4 +98,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default NewPassword;

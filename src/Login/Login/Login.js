@@ -28,7 +28,6 @@ function Login() {
      let name = userNameRef.current.value;
      let password = passwordRef.current.value;
 
-
    const response =  await fetch(`${apiURL}/login`, {
     method:"POST",
     headers: {
@@ -41,10 +40,8 @@ function Login() {
       })
     });
 
-  console.log(response,'hello from try')
+   await response.json()
 
-  const data = await response.json()
-console.log(data, 'data here')
   if(response.status === 200) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
