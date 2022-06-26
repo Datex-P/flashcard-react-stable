@@ -12,9 +12,11 @@ exports.handler = async (event) => {
 
 let {email} = JSON.parse(event.body)
 console.log(email, 'email here')
-const user = await User.findOne({email}).exec();
-const match = user && await User.updateOne({email: decodeURI(email)}, {yeah: 'user found'})
-const match2 = !user && await User.create({email: decodeURI(email)}); 
+let decoded_email = decodeURI(email)
+
+const user = await User.findOne({email:decoded_email}).exec();
+const match = user && await User.updateOne({email: decoded_email}, {yeah: 'user found'})
+const match2 = !user && await User.create({email: decoded_email}); 
 
 if (!match && !match2) {
   return {
