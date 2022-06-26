@@ -11,7 +11,7 @@ exports.handler = async (event) => {
  );
 
 let {email} = JSON.parse(event.body)
-
+console.log(email, 'email here')
 const user = await User.findOne({email}).exec();
 const match = user && await User.updateOne({email: email}, {yeah: 'user found'})
 const match2 = !user && await User.create({email: email}); 
@@ -30,7 +30,7 @@ return {
     "Content-Type": "application/json",
   },
   //pass user data along as well
- // body: JSON.stringify({ user}),
+  body: email,
 };
 
 

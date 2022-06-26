@@ -22,6 +22,8 @@ function Facebook() {
           email,
         }),
       });
+      console.log(name, email, 'name and email here')
+      
        await response
 
       if (response.status === 200) {
