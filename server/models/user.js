@@ -8,6 +8,7 @@ const UserSchema = new Schema({
   password: {required:false}
 },{timestamps:true}
 )
+
 mongoose.pluralize(null);
 const User = mongoose.model('user-data', UserSchema)
  module.exports = User;

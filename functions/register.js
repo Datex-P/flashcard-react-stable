@@ -41,7 +41,7 @@ exports.handler = async (event) => {
           Please Confirm Registration
         </div>
         <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
-        <a href="${process.env.PROVIDER}/confirm/registration?token=${jwt.sign(
+        <a href="${process.env.PROVIDER}/confirm?token=${jwt.sign(
         { name: name, email: email, password:password },
         process.env.SECRET
         )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, verify my account.</a>

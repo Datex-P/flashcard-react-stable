@@ -23,7 +23,7 @@ function Facebook() {
         }),
       });
       console.log(name, email, 'name and email here')
-      
+
        await response
 
       if (response.status === 200) {
@@ -65,5 +65,5 @@ function Facebook() {
     </div>
   );
 }
-//test test
+
 export default Facebook;

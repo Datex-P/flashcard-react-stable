@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 
 const DeckSchema = new Schema({
-      userName: String,
-      deckName: String,
+      userName: {type:String,required:false},
+      deckName: {type:String,required:false},
+      email: {type:String,required:false},
 //       data: [{}],
 //       cardsToday: Number,
 //    //   color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
@@ -23,7 +24,7 @@ userPreferences: {
 },{timestamps:true}, {collection: 'decks'}
 )
 
-const Deck = mongoose.model('UserDecks', DeckSchema)
+const Deck = mongoose.model('user-decks', DeckSchema)
  module.exports = Deck
 
  //module helps you to directly access

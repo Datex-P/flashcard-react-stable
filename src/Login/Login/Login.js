@@ -40,12 +40,15 @@ function Login() {
       })
     });
 
-   await response.json()
+  const data=  await response.json()
+  //way to directly access user.email without saving it?
+  //console.log(data, 'data here')
+ // console.log(response.user.email, 'email data here')
 
   if(response.status === 200) {
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
-    setUser(name)
+    setUser(data.user.email)
   } else if (response.status === 405) {
     alert('Please check your username and password!')
   }  
