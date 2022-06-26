@@ -5,32 +5,32 @@ import { Context } from "../../Context";
 
 function Facebook() {
   let history = useHistory();
-  const { setUser } = useContext(Context);
+  const { setUser, apiURL } = useContext(Context);
   let FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID
 
   async function facebookUser(value) {
-    // try {
-    //   let { email, name } = value;
-    //   let response = await fetch("https://cool-gnome-d84e5e.netlify.app/.netlify/functions/facebook", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       name,
-    //       email,
-    //     }),
-    //   });
-    //   const data = await response.json();
+    try {
+      let { email, name } = value;
+      let response = await fetch(`${apiURL}/facebook_login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+        }),
+      });
+       await response
 
-    //   if (data.status === 'user created' || data.status === 'user found') {
-    //     history.push('/main');
-    //     setUser(email); //current logged in user is primary key in database
-    //   }
-    // } catch (err) {
-    //   console.log(err, 'err here');
-    // }
+      if (response.status === 200) {
+        history.push('/main');
+        setUser(email); //current logged in user is primary key in database
+      }
+    } catch (err) {
+      console.log(err, 'err here');
+    }
   }
 
   return (
