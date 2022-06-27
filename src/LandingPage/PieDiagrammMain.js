@@ -11,8 +11,8 @@ export default function ChartComp() {
   })
 
   let dataData = []
-  let backgroundColorData=[]
-  let borderColorData = []
+  let backgroundColorData=["#FF6384","#5aaa95"]
+  let borderColorData = ["#FF6384","#5aaa95"]
 
 //  var config = {
 //   type: 'doughnut',
@@ -99,12 +99,11 @@ const options = {
    
   // },
 },
-  //tooltips: false, //removes the tooltips from the diagram that are present in the diagram in stats
+plugins:{
+  tooltip: {enabled:false}, //https://www.chartjs.org/docs/latest/configuration/tooltip.html
+},
   hover: {mode: null}, //when hovered over the diagram sections, nothing flashes or highlights
-  tooltips:{enabled:false},
-
-  
-  cutoutPercentage: 81,
+  cutout: 27, //https://stackoverflow.com/questions/21014123/how-to-vary-the-thickness-of-doughnut-chart-using-chartjs
   maintainAspectRatio: false,
   layout: {
     padding: {
@@ -157,7 +156,7 @@ const options = {
   return (
     <div style={{width: '200px', height:'100px', 
     position: 'relative',
-    left: '40px'
+    left: '-45px'
     }}>
     <Doughnut
       datasetIdKey='id'

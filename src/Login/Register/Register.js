@@ -10,8 +10,8 @@ import FlashcardLogo from '../FlashcardLogo';
 import { Context } from '../../Context';
 
 
-
 function Register() {
+  
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
@@ -28,7 +28,6 @@ function Register() {
     e.preventDefault();
     //e preventDefault is needed because forms
     //have a standard behaviour of redirecting
-   // console.log(name, "name in ref");
     let name = userNameRef.current.value;
     let password = passwordRef.current.value;
     let email = emailRef.current.value;

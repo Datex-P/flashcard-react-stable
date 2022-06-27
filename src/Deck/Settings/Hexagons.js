@@ -4,15 +4,18 @@ import hexagonWhite from '../../icons/hexagon.svg'
 import hexagonGreen from '../../icons/hexagonGreen.svg'
 
 
-export default function Hexagons({ idx, editHex, setEditHex }) {
+export default function Hexagons({ idx, 
+        editHex, setEditHex, 
+        setWeeklyGoal,
+        weeklyTargetHandler }) {
 
-  const { dataBase, setDataBase } = useContext(Context)
+  const { dataBase, setDataBase} = useContext(Context)
   const [showDay, setShowDay] = useState(false)
 
-
-  function setIndex() {
+  function indexHandler() {
     let newDataBase = { ...dataBase }
     newDataBase.userPreferences.days = idx
+    setWeeklyGoal(idx)
     setDataBase(newDataBase)
     setShowDay(true)
   }
@@ -28,7 +31,7 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
       {
         editHex?
         <img
-          style={{ cursor: 'default'}}     
+          style={{cursor: 'default'}}     
           draggable={false}
           src={srcHandler()}
           alt='hexagon'
@@ -36,27 +39,25 @@ export default function Hexagons({ idx, editHex, setEditHex }) {
         />
         :
         <img
-          style={{cursor: 'pointer'}}     
+          style={{cursor:'pointer'}}     
           draggable={false}
           src={srcHandler()}
           alt='hexagon'
-          onClick={()=>setEditHex(true) }
-          onMouseEnter={()=>setIndex(true)}
+          onClick={()=>{
+            weeklyTargetHandler() 
+            setEditHex(true)}
+          }
+          onMouseEnter={indexHandler}
           onMouseLeave={()=>setShowDay(false)}
         />
       }
-      {
-        ((editHex && 
-          
-          (showDay || idx === dataBase?.userPreferences?.days)) || idx === dataBase?.userPreferences?.days) 
-        &&
-            
+      {((editHex &&          
+       (showDay || idx === dataBase?.userPreferences?.days)) || idx === dataBase?.userPreferences?.days) &&
+
         <div className='settings__editHex'>
             <div className='settings__blackArrow'></div>           
             <span className='fontBold'>
-                {
-                  idx <= dataBase?.userPreferences?.days ? 
-
+                {idx <= dataBase?.userPreferences?.days ? 
                       `${idx + 1}` 
                         : 
                       `${idx - 1}`

@@ -55,7 +55,7 @@ function Stats({ history }:any) {
         menu={
           <ThreeDotsBtn
             text={'stats'}
-            className='stats__resetButtonStyling'
+            className='stats__resetButtonStyling posAbsolute'
             editButtonClicked
             setThreeDotsOpen={setThreeDotsOpen}
          //   threeDotsOpen={threeDotsOpen}
@@ -81,7 +81,7 @@ function Stats({ history }:any) {
           <div className='stats__study-breakdown mt-15px-imp mb-15px-imp'>
             Today's study breakdown
           </div>
-          <div className='stats__dateDiagram'>
+          <div className='stats__dateDiagram posAbsolute'>
              {!dataBase?.openedToday
               ? 'No cards studied today'
               :  `Data from: ${new Date().toLocaleDateString().replace(/\//g,'.')}`         

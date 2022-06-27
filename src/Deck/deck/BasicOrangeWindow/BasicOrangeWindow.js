@@ -79,6 +79,8 @@ export default function BasicOrangeWindow({
       setTimeout(()=>{document.addEventListener('click', saveIconBlinks)},500)
       setTimeout(()=>{document.addEventListener('scroll', saveIconBlinks)},500)
     }
+    //best way to remove handler for settings?
+
     return ()=>{
       document.removeEventListener('click', saveIconBlinks);
       document.removeEventListener('scroll', saveIconBlinks);

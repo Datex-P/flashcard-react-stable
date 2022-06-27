@@ -87,30 +87,6 @@ useEffect(()=>{
   //   console.log(user, 'user here')
   // },[user, setUser])
 
-  // async function getColor() {
-  //   try{
-  //  const response =  await fetch(`http://localhost:4000/colors/kkkk`, {
-  //   method:'POST',
-  //   headers: {
-  //     // "Access-Control-Allow-Origin": "*",
-  //     // "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-  //     // "Access-Control-Allow-Headers": "X-Token, append,delete,entries,foreach,get,has,keys,set,values,Authorization",
-  //     // "Access-Control-Allow-Credentials": "true",
-  //     "Content-Type":"application/json",
-  //     "Accept":"application/json"
-  //    // "Access-Control-Max-Age": "2592000"
-  //   },
-  //     body: JSON.stringify({
-  //      name,
-  //     password
-  //   })
-      
-  // //  const data =  await response.json()
-  // //  console.log(data, 'data in colors')
-  // //  window.location.href = '/main';
-  //   } catch (error) {
-  //     console.log(error, 'error here')
-  //   }
 
   return (
 

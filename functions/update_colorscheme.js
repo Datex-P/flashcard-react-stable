@@ -1,6 +1,7 @@
 require('dotenv').config();
-const Decks = require('../server/models/deck');
+const User = require('../server/models/user');
 const mongoose = require('mongoose');
+
 
 exports.handler = async (event) => {
     
@@ -9,21 +10,22 @@ exports.handler = async (event) => {
      useUnifiedTopology: true,
    }
  );
+ let {color, user} = JSON.parse(event.body)
 
- let {email} = JSON.parse(event.body);
+//rewrite that part
 
-if (email) {
-  let deleted = await Decks.deleteMany({email: email});
+if (color) {
+ 
+    await User.findOneAndUpdate({email:user}, {backgroundColor:color});
     
     return {
-        statusCode: 200,
-        body:JSON.stringify(deleted)
+        statusCode: 200      
     }
   } else {
    
     return {
         statusCode: 500,
-        body:JSON.stringify('Token corrupted')
+        body:JSON.stringify('Could not be updated in Database')
     }
   }  
 };

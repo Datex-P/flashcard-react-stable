@@ -32,13 +32,16 @@ const options =  {
     lineHeight: 19, 
   }
 },
+plugins:{
   legend: {
     position: 'bottom',
     labels: {
       fontColor: 'black'
     }
-  },
-  cutoutPercentage: 81,
+  }
+}
+,
+  cutout: 43,
   maintainAspectRatio: false,
   layout: {
     padding: {
@@ -80,7 +83,14 @@ for (let deck in dataBase.DeckNames) {
 
 useEffect(()=>{
   setChartData({
-      labels:labelsData,
+       labels:labelsData,
+      // legend:{
+      //   labels:{
+      //     generateLabels: function(){
+      //       return ''
+      //     }
+      //   }
+      // },
       datasets: [
         {
         data: dataData,

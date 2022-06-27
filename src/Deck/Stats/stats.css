@@ -101,9 +101,8 @@
 .stats__dateDiagram {
   width: 90px;
   height: 50px;
-  position: absolute;
-  top: 152px;
-  left: 131px;
+  top: 137px;
+  left: 134px;
   text-align: center;
 }
 
@@ -139,7 +138,6 @@
 }
 
 .stats__resetButtonStyling {
-  position: absolute;
   top: 17px;
   right: 26px;
   z-index: 2000;

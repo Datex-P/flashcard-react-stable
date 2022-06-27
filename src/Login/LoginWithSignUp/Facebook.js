@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Context } from "../../Context";
 
 function Facebook() {
+  
   let history = useHistory();
   const { setUser, apiURL } = useContext(Context);
   let FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID
@@ -14,15 +15,14 @@ function Facebook() {
       let response = await fetch(`${apiURL}/facebook_login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          name,
-          email,
+          name: name,
+          email: email
         }),
       });
-      console.log(name, email, 'name and email here')
 
        await response
 

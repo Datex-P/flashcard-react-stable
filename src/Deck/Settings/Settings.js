@@ -18,7 +18,8 @@ function Settings({ history }) {
   const [editRepActive, setEditRepActive] = useState(false)
   const [saveOrEditGoal, setSaveOrEditGoal] = useState(false)
   const [editHex, setEditHex] = useState(true)
-  const { dataBase, setDataBase, setShowProgressDiagram } = useContext(Context)
+  const [weeklyGoal, setWeeklyGoal] = useState(null)
+  const { apiURL, dataBase, setDataBase, setShowProgressDiagram, user } = useContext(Context)
   const [userTimePreferences, setUserTimePreferences] = useState({})
 
   useEffect(() => {
@@ -45,11 +46,34 @@ function Settings({ history }) {
     setEditHex(!editHex)
   }
 
+  async function weeklyTargetHandler() {
+    console.log('weekly target handler fired in settings')
+    let weeklyTarget = weeklyGoal
+    try{
+     await fetch(`${apiURL}/update_weekly_target`, {
+       method:'POST',
+       headers: {
+         "Content-Type":"application/json",
+         "Accept":"application/json"
+       },
+         body: JSON.stringify({
+           weeklyTarget:weeklyTarget+1,
+           user:user
+         })
+       });
+      //better to store color in localstorage
+    //  setEditHex(true) not needed in settings
+   } catch (err){
+     console.log(err, 'err here')
+   }
+ }
+
   function repetitionHandler(){
     setEditModeActive(!editModeActive)
     setEditRepActive(!editRepActive)
     saveTimeNumberChanges()
   }
+
 
   return (
 
@@ -89,7 +113,7 @@ function Settings({ history }) {
           <img
             src={editRepActive ? save : edit}
             alt={editRepActive ? 'save' : 'edit'}
-            className= 'nonDraggableIcon outline-none'
+            className='nonDraggableIcon outline-none'
             onClick={repetitionHandler}
           />   
         </div>
@@ -103,7 +127,7 @@ function Settings({ history }) {
              Current Weekly Target
           </div>
         </div>
-        <div className='justify-between-align-center border border-dark  settings__container-hexagon'>
+        <div className='justify-between-align-center border border-dark settings__container-hexagon'>
           {
             Array(7).fill('').map((_, idx) =>
               <Hexagon
@@ -111,7 +135,9 @@ function Settings({ history }) {
                 idx={idx}
                 editHex={editHex}
                 setEditHex={setEditHex}
+                setWeeklyGoal={setWeeklyGoal}
                 saveOrEditGoal={saveOrEditGoal}
+                weeklyTargetHandler={weeklyTargetHandler}
               />
             )
           }
@@ -121,7 +147,10 @@ function Settings({ history }) {
             src={editHex ? edit : save}
             alt={editHex ? 'edit' : 'save'}
             className='nonDraggableIcon outline-none'
-            onClick={goalHandler}
+            onClick={()=>{
+              goalHandler() 
+              weeklyTargetHandler()
+            }}
           /> 
         </div>
         <div className='settings__weekly-target justify-center mt-3px'>

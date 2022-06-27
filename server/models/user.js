@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 
 const UserSchema = new Schema({
-  email: {required: false},
-  name: { required: false},
-  password: {required:false}
+  email: {type:String, required: false},
+  name: {type:String, required: false},
+  password: {type:String, required:false},
+  backgroundColor: {type:String, required:false},
+  weeklyTarget: {type:Number, required:false}
 },{timestamps:true}
 )
 
