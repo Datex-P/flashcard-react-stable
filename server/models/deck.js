@@ -3,10 +3,20 @@ const Schema = mongoose.Schema;
 
 
 const DeckSchema = new Schema({
-      userName: {type:String,required:false},
+      name: {type:String,required:false},
       deckName: {type:String,required:false},
       email: {type:String,required:false},
-//       data: [{}],
+      data: [{}],
+      backgroundColor:{type:String, required:false},
+      thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+      color: {type:String,required:false},
+      toStudyValue:{type:Number,required:false},
+      cardsToday: {type:Number,required:false},
+      paused:{type:Boolean,required:false},
+      skipPausedCards: {type:Number,required:false},
+      pauseMode:{type:Boolean,required:false},   //when active the pause switch can be clicked in question answers when cards are paused
+      editModeActive:{type:Boolean,required:false},
+
 //       cardsToday: Number,
 //    //   color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
 //       paused: Boolean,

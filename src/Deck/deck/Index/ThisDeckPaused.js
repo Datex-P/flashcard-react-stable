@@ -2,17 +2,31 @@ import React, { useContext}  from 'react';
 import play from "../../../icons/play.svg";
 import { Context } from "../../../Context";
 
-
 export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}) {
 
-  const { dataBase, setDataBase } = useContext(Context);
+  const { dataBase, setDataBase, apiURL, user, nameOfTopDeck } = useContext(Context);
   let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
-  function handlePause() { 
+ async function handlePause() { 
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].paused = false;
     setDataBase(newDataBase);
     setShowThreeDots(!showThreeDots) //three dots get hidden commented out for now
+
+    let email = user
+    let deckName = nameOfTopDeck
+
+    await fetch(`${apiURL}/pause_deck`, {
+      method:"POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",     
+        "Content-Type":"application/json",
+      },
+        body: JSON.stringify({
+        email:email,
+        deckName:deckName
+        })
+      });
   }
   
   return (

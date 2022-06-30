@@ -61,26 +61,25 @@ export default function BasicOrangeWindow({
       .classList.remove('pointer');
     }
   }
+  
+  function saveIconBlinks(event) {
+    let element = document.querySelector('.mod')
+    if (element && !element.contains(event.target)) {
+      console.log('clicked outside')
+      setBlinkingSaveIcon(true) 
+      setTimeout(()=>{
+        setBlinkingSaveIcon(false)
+      }, 2000)  
+    }
+  }
 
   useEffect(()=>{
-    let element = document.querySelector('.mod')
-
-    function saveIconBlinks(event) {
-      if (element && !element.contains(event.target)) {
-        console.log('clicked outside')
-        setBlinkingSaveIcon(true) 
-        setTimeout(()=>{
-          setBlinkingSaveIcon(false)
-        }, 2000)  
-      }
-    }
 
     if(show){
       setTimeout(()=>{document.addEventListener('click', saveIconBlinks)},500)
       setTimeout(()=>{document.addEventListener('scroll', saveIconBlinks)},500)
     }
     //best way to remove handler for settings?
-
     return ()=>{
       document.removeEventListener('click', saveIconBlinks);
       document.removeEventListener('scroll', saveIconBlinks);

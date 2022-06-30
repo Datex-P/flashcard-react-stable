@@ -4,30 +4,48 @@ import { Context } from '../../../Context'
 
 
 export default function NoAndYes({ data: {
+  card,
   deleteCurrentCard,
-  setEditBtnClicked,
+  deleteWindow,
   index,
+  setEditBtnClicked,
   setShowAnswerBtn,
+  randomQuestion,
   trashEvent,
   pauseCardinQuestionAnswer,
-  randomQuestion,
-  deleteWindow,
   setPauseOrDeleteText
 } }) {
 
-  const { dataBase, setDataBase } = useContext(Context)
+  const { dataBase, setDataBase, apiURL, user, nameOfTopDeck } = useContext(Context)
 
-  function yesHandler() {
+  async function yesHandler() {
+    const email = user
+    let deckName = nameOfTopDeck
     trashEvent()
     deleteCurrentCard()
     // setShowRepeatBtn(false) not sure if needed
     setShowAnswerBtn(true)
-    setEditBtnClicked(false)
+   // setEditBtnClicked(false) ==>maybe not needed, unsure
 
     if (pauseCardinQuestionAnswer) {
       let newDataBase = { ...dataBase }
       dataBase.DeckNames[index].data[randomQuestion].paused = true
       setDataBase(newDataBase)
+    }
+
+    if (card === 'deck') {
+      console.log('fired inside threedots')
+      const response =  await fetch(`${apiURL}/delete_deck`, {
+        method:"POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",     
+          "Content-Type":"application/json",
+        },
+          body: JSON.stringify({
+          email:email,
+          deckName:deckName
+          })
+        });
     }
   }
 
@@ -43,6 +61,7 @@ export default function NoAndYes({ data: {
               onClick={() => {
                 if (el === 'Yes') {
                   yesHandler()
+                  console.log('invoked in yes yeah yeah yeah')
                 }
                 deleteWindow()
                 // setPauseOrDeleteText(true) not sure if needed

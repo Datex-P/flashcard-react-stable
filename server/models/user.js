@@ -7,7 +7,16 @@ const UserSchema = new Schema({
   name: {type:String, required: false},
   password: {type:String, required:false},
   backgroundColor: {type:String, required:false},
-  weeklyTarget: {type:Number, required:false}
+  weeklyTarget: {type:Number, required:false},
+  studyTime:{type:Number, required:false},
+  hourlyBreakdown:{type:String, required:false},
+  userPreferences:{
+    days:{type:Number, required:false},
+    backgroundColor:{type:String, required:false},
+    weeksInRow:{type:Number, required:false},
+    toReview:{type:Number, required:false}
+  }
+
 },{timestamps:true}
 )
 

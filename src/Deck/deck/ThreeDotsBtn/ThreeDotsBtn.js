@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
+
 import { withRouter } from "react-router-dom";
 import { Context } from "../../../Context";
 import trashimg from "../../../icons/trash.svg";
@@ -31,21 +32,29 @@ function ThreeDotsBtn({
   pauseEvent = () => {},
   type,
 }) {
+
   const {
+    apiURL,
     dataBase,setDataBase,
     editButtonClicked,setEditButtonClicked,
+    nameOfTopDeck,
     threeDotsOpen,setThreeDotsOpen,
     showThreeDots,setShowThreeDots,
-    nameOfTopDeck,
+    user
   } = useContext(Context);
+
+  useEffect(()=>{
+    console.log(nameOfTopDeck, 'anme of top deck hee')
+  },[nameOfTopDeck])
  
   const threeDotsOpenRef = useRef(null);
   console.log(input, "input in three dots");
 
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false); //blinks when deck name in input mode and clicked outside
   const [pauseIsActive, setPauseIsActive] = useState(true);
+  const [deckName, setDeckName] = useState('')
 
-  function trashHandler() {
+   function trashHandler() {
     setEditButtonClicked(true); //input field gets closed on landing page
     setThreeDotsOpen(false); //three dots menu gets closed
     trashEvent(); //just invoke once when in question answer
@@ -65,6 +74,14 @@ function ThreeDotsBtn({
     // debugger
   };
 
+  useEffect(()=>{
+
+    if (!editButtonClicked) {
+    debugger
+      setDeckName(nameOfTopDeck)
+    }
+  },[editButtonClicked])
+
   useEffect(() => {
     console.log(threeDotsOpen, "three dots open here");
   }, [threeDotsOpen]);
@@ -72,7 +89,6 @@ function ThreeDotsBtn({
   const threeDotsRef = useRef(null);
 
   useEffect(() => {
-    console.log(threeDotsRef, "three dots ref here");
     function saveIconBlinks(event) {
       if (
         threeDotsRef.current &&
@@ -89,6 +105,7 @@ function ThreeDotsBtn({
           }
         }
     }
+    console.log(threeDotsRef, "three dots ref here");
     document.addEventListener("click", saveIconBlinks);
     return () => {
       document.removeEventListener("click", saveIconBlinks);
@@ -105,11 +122,11 @@ function ThreeDotsBtn({
     setDataBase(newDataBase);
   }
 
-  function handleEdit() {
+  async function handleEdit() {
     console.log("edit event fired");
     //  setEditBtnClicked(true)
     editEvent();
-    if (type === "card") {
+    if (text === "card") { //deleted type === 'card'
       setThreeDotsOpen(!threeDotsOpen);
     }
     // !editName && setShow(false)
@@ -118,6 +135,22 @@ function ThreeDotsBtn({
     //   // setThreeDotsOpen(false)
     //   handleDeckname()
     // }
+    if(!editButtonClicked) {
+      let newDeckName = nameOfTopDeck
+      let email = user
+      await fetch(`${apiURL}/edit_deckname`, {
+        method:"POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",     
+          "Content-Type":"application/json",
+        },
+          body: JSON.stringify({
+          email:email,
+          deckName:deckName, //always has current value of input from deckorcardname.js
+          newDeckName:newDeckName
+          })
+        });
+    }
   }
 
   useEffect(()=>{
@@ -140,7 +173,9 @@ function ThreeDotsBtn({
       };
   }, [threeDotsOpen, setThreeDotsOpen, questionAnswerWindow])
 
-  function handlePause() {
+  async function handlePause() {
+    let email = user
+    let deckName = nameOfTopDeck
     pauseEvent(index);
     //  let newDataBase = {...dataBase}
     let savePausedState = !pauseIsActive;
@@ -154,7 +189,21 @@ function ThreeDotsBtn({
     setThreeDotsOpen(false); //menu is closed
     setShowThreeDots(!showThreeDots); //three dots get hidden commented out for now
     //setNameOfTopDeck(name)
-  }
+    if (text === 'deck') {
+      console.log('fired inside threedots')
+       await fetch(`${apiURL}/pause_deck`, {
+        method:"POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",     
+          "Content-Type":"application/json",
+        },
+          body: JSON.stringify({
+          email:email,
+          deckName:deckName
+          })
+        });
+      }
+    }
 
   useEffect(() => {
     console.log(showThreeDots, "show three dots triggered");

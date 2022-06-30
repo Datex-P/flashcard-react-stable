@@ -17,16 +17,19 @@ const LandingPage = () => {
   const [scrollbarVisible, setScrollbarVisible] = useState(true)
   const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
   const [arrowDown, setArrowDown] = useState(true);
+  const [inputField, setInputField] = useState('');
 
   
   const {
     active,
+    apiURL,
     colors, //colors array for the decks
     dataBase,
     styles,
     editButtonClicked,
     hideCreateDeckBtn, setHideCreateDeckBtn,
-    setShowProgressDiagram
+    setShowProgressDiagram,
+    user
   } = useContext(Context);
 
   useEffect(() => {
@@ -87,14 +90,12 @@ const LandingPage = () => {
     })
   }
 
-  function createDeckHandler() {
-    if (editButtonClicked) { //input field of deck is not active see InputSelectField.js
-      setAddNewDeckWindow(true); //open the pop up to add a new deck
-      setDecksAreVisible(false); // all the decks in the back are not visible
-      setShowProgressDiagram(false);
-      setArrowDown(false); //create new deck and arrow down not visible
-      setHideCreateDeckBtn(true) //the button create Deck gets hidden
-  }
+function createDeckHandler() {
+        setAddNewDeckWindow(true); //open the pop up to add a new deck
+        setDecksAreVisible(false); // all the decks in the back are not visible
+        setShowProgressDiagram(false);
+        setArrowDown(false); //create new deck and arrow down not visible
+        setHideCreateDeckBtn(true) //the button create Deck gets hidden
 }
 
   function closeHandler() {
@@ -178,6 +179,8 @@ const LandingPage = () => {
           addNewDeckWindow={addNewDeckWindow}
           createDeckHandler={createDeckHandler}
           closeHandler={closeHandler}
+          inputField={inputField}
+          setInputField={setInputField}
           decksAreVisible={decksAreVisible}
           editButtonClicked={editButtonClicked}
           setArrowDown={setArrowDown}

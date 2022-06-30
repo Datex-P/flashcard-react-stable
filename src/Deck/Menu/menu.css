@@ -33,7 +33,7 @@
 .menu__menuIcon {
   font-weight: bold;
   border: 2px black solid;
-  width: 32%;
+  width: 100%;
   margin-bottom: 3px;
   border-radius: 12px;
   position: absolute;

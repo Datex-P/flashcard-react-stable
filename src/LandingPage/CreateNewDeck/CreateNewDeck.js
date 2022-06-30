@@ -10,12 +10,14 @@ export default function CreateNewDeck({
   closeHandler,
   editButtonClicked,
   setArrowDown,
+  inputField,
+  setInputField,
   setScrollbarVisible, // scrollbar dissapear when stats or settings are open
 }) 
 {
   const {setShowProgressDiagram, hideCreateDeckBtn,setHideCreateDeckBtn} = useContext(Context);
 
-  const [inputField, setInputField] = useState('');
+  
   const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
   const inputRef = useRef(null);
   const okRef = useRef(null);

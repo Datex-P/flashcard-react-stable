@@ -33,6 +33,7 @@ export default function DeleteCardQuestionBox({
     setShowAnswerBtn:setShowAnswerBtn,
     pauseCardinQuestionAnswer:pauseCardinQuestionAnswer,
     index:index,
+    card: card,
     randomQuestion:randomQuestion,
   }
 
@@ -69,7 +70,7 @@ return (
             />
         </Modal.Body>
         <Modal.Footer className='deck__bg-white'>
-          <NoAndYes data={noAndYesProps}/>            
+          <NoAndYes data={noAndYesProps} />            
         </Modal.Footer>
         <ShowMessage showMessageAgain={showMessageAgain}/>         
       </Modal>

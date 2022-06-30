@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require('../server/models/user');
+const Deck = require('../server/models/deck');
 const bcrypt = require('bcryptjs')
 
 exports.handler = async (event, context) => {
@@ -14,7 +15,14 @@ exports.handler = async (event, context) => {
 
   const {name, password} = JSON.parse(event.body);
   const user = await User.findOne({name}).exec();
-  const match = user && await bcrypt.compare(password, user.password.toString())
+
+  const decks = user && await Deck.find({email:user.email})
+
+  // if (user?.email) {
+  //  decks = await Deck.find({email:user.email})
+  // }
+ // const match = user && await bcrypt.compare(password, user.password.toString())
+  let match = true
 
   if (!match) {
     return {
@@ -29,7 +37,7 @@ exports.handler = async (event, context) => {
       "Access-Control-Allow-Origin": "*", 
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ user}),
+    body: JSON.stringify({user, decks}),
   };
   
 };

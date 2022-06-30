@@ -36,14 +36,15 @@ function Hamburger({
   return (
     <div
       className='menu__menu align-center flex-column'
-      style={{cursor: editButtonClicked && !hideCreateDeckBtn ? 'pointer': 'default'}} //cursor is default when edit input field is activated
       ref={menuRef}
     >
       <div className='font-18px'>
           Menu
       </div>
       <div 
-        className='zIndex-5 top-59px posAbsolute width87px align-center flex-column'
+        className='zIndex-5 top-59px posAbsolute width28px height20px align-center flex-column'
+       //cursor is default when edit input field is activated
+        style={{cursor: editButtonClicked && !hideCreateDeckBtn ? 'pointer': 'default'}} 
         onClick={triggerDiagramAndState}
       >
         <div className={`menu__menuIcon ${menuOpen ? 'menu__transPlus top-8px' : ''}`}>

@@ -40,15 +40,82 @@ function Login() {
       })
     });
 
-  const data=  await response.json()
+  const {user}= await response.json()
+
+  //console.log(data, 'data here')
   //way to directly access user.email without saving it?
   //console.log(data, 'data here')
  // console.log(response.user.email, 'email data here')
 
   if(response.status === 200) {
+    console.log('response status 200 here')
+    setDataBase({
+     // DeckNames: [data.decks.map(x=>x.deckName)]
+     DeckNames:[{
+      name:`Literajjj`,
+      backgroundColor: 'blue',
+      data: [1,2,3],
+      thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+      color: 'blue',
+      toStudyValue:0,
+      cardsToday: 0,
+      paused:false,
+      skipPausedCards: 0,
+      pauseMode:false,   //when active the pause switch can be clicked in question answers when cards are paused
+      editModeActive:false //when editModeActive is true, pause switch can t be clicked
+    }],
+     active:2,
+      queue: [],
+      checkboxClicked: false,
+      showDeleteFrame: true,
+      openedToday: true,
+      deckCompleted: 2,
+      timeValues: {
+        left: 2,
+        middle: 5,
+        right: 10
+      },
+      breakdownIntervals: [
+        {month: 1},
+        {month: 3},
+        {month: 12}
+      ],
+      userTimePreferences: [
+        {
+          name: 'again',
+          amount: 3,
+          unit: 'm'
+        },
+        {
+          name: 'good',
+          amount: 5,
+          unit: 'h'
+        },
+        {
+          name: 'easy',
+          amount: 10,
+          unit: 'd'
+        }
+      ],
+      userPreferences: {
+        days: user.userPreferences.days,
+        backgroundColor: user.userPreferences.backgroundColor,
+        weeksInRow: user.userPreferences.weeksInRow,
+        toReview: user.userPreferences.toReview
+      },
+      hourlyBreakdown: user.hourlyBreakdown,
+      studyTime: user.studyTime,
+      calendarReset: false,
+      weeklyTarget: user.weeklyTarget,
+      daysOfStudy: {
+        day: 4
+      },
+      studied: [new Date()],
+    
+    })
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
-    setUser(data.user.email)
+    setUser(user.email)
   } else if (response.status === 405) {
     alert('Please check your username and password!')
   }  
@@ -58,8 +125,105 @@ function Login() {
 }
 
 useEffect(()=>{
-  console.log(user, 'user here')
-},[setUser, user])
+  console.log(dataBase, 'data base hewre')
+},[dataBase, setDataBase])
+
+// useEffect(() => {
+//   let dB = {
+
+//     DeckNames: [],
+//     active:2,
+//     queue: [],
+//     checkboxClicked: false,
+//     showDeleteFrame: true,
+//     openedToday: true,
+//     deckCompleted: 2,
+//     timeValues: {
+//       left: 2,
+//       middle: 5,
+//       right: 10
+//     },
+//     breakdownIntervals: [
+//       {month: 1},
+//       {month: 3},
+//       {month: 12}
+//     ],
+//     userTimePreferences: [
+//       {
+//         name: 'again',
+//         amount: 3,
+//         unit: 'm'
+//       },
+//       {
+//         name: 'good',
+//         amount: 5,
+//         unit: 'h'
+//       },
+//       {
+//         name: 'easy',
+//         amount: 10,
+//         unit: 'd'
+//       }
+//     ],
+//     userPreferences: {
+//       days: 0,
+//       backgroundColor: 'default',
+//       weeksInRow: 0,
+//       toReview: 0
+//     },
+//     hourlyBreakdown: '1 month',
+//     studyTime: 0,
+//     calendarReset: false,
+//     weeklyTarget: 1,
+//     daysOfStudy: {
+//       day: 4
+//     },
+//     studied: [new Date()],
+//   };
+
+//   // for (let i = 100; i < 103; i++) {
+//   //   let arr:{}[] = [];
+
+//   //   for (let i = 1; i < 5; i++) {
+      
+//   //     if(i===3 || i ===2) {
+//   //       arr.push({
+//   //         question: `question${i}`,
+//   //         answer: `answer${i}`,
+//   //         paused: false
+//   //       })
+//   //     } else {
+//   //       arr.push({
+//   //         question: `question${i}`,
+//   //         answer: `answer${i}`,
+//   //         paused: true
+//   //       })
+//   //     }
+//   //   };
+//   //   dB.DeckNames.push(
+//   //     {
+//   //       name:`Litera${i}`,
+//   //       backgroundColor: colors[-100+i],
+//   //       data: arr,
+//   //       thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+//   //       color: colors[i%colors.length],
+//   //       toStudyValue:0,
+//   //       cardsToday: 0,
+//   //       paused:false,
+//   //       skipPausedCards: 0,
+//   //       pauseMode:false,   //when active the pause switch can be clicked in question answers when cards are paused
+//   //       editModeActive:false //when editModeActive is true, pause switch can t be clicked
+//   //     }
+//   //    );
+//   //   dB.active++
+//   // }
+//   setDataBase(dB)
+// }, []);
+
+
+useEffect(()=>{
+  console.log(dataBase, 'database here')
+},[setDataBase, dataBase])
 
 
   //   if(data.user) {

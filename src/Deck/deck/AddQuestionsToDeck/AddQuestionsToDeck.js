@@ -22,30 +22,32 @@ export default function AddQuestionsToDeck({
   const {
     dataBase,
     user,
+    apiURL,
     editButtonClicked,
     nameOfTopDeck, //name of the deck that is currently open
     setShowProgressDiagram,
   } = useContext(Context);
 
   async function addToDeck() {
+    let email = user
     if (card.question.trim().length !== 0 && 
         card.answer.trim().length !== 0) {
       try {
-        let response = await fetch("http://localhost:4000/add_to_deck", {
+        let response = await fetch(`${apiURL}/add_to_deck`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            "Accept": "application/json",
           },
           body: JSON.stringify({
-            deckname: nameOfTopDeck,
-            username: user,
+            deckName: nameOfTopDeck,
+            email: email,
             data: [{ question: card.question, answer: card.answer }],
           }),
         });
-        const data = await response.json();
+        await response
 
-        if (data.status === 200) {
+        if (response.status === 200) {
           setNewCardAdded(true);
           setTimeout(() => {
             setCard({question: '', answer: ''});

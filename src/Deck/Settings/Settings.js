@@ -154,8 +154,7 @@ function Settings({ history }) {
           /> 
         </div>
         <div className='settings__weekly-target justify-center mt-3px'>
-          {/* Target met: {dataBase.userPreferences.weeksInRow} weeks in a row */}
-          Target met : 0 weeks in a row.
+          Target met : {dataBase.userPreferences.weeksInRow} weeks in a row.
         </div>
       </div>
       <ColorScheme />
