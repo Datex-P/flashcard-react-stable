@@ -20,16 +20,16 @@ export default function AddQuestionsToDeck({
   const [error, setError] = useState(false)
 
   const {
-    dataBase,
-    user,
     apiURL,
+    dataBase,
+    email,
     editButtonClicked,
     nameOfTopDeck, //name of the deck that is currently open
     setShowProgressDiagram,
   } = useContext(Context);
 
   async function addToDeck() {
-    let email = user
+    
     if (card.question.trim().length !== 0 && 
         card.answer.trim().length !== 0) {
       try {

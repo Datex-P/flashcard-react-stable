@@ -14,8 +14,13 @@ exports.handler = async (event, context) => {
   );
 
   const {email, deckName} = JSON.parse(event.body);
-  await Deck.findOneAndUpdate({email:email, deckName:deckName},null, (err, deck)=>{
-    if(deck) {
+  Deck.findOneAndUpdate({email:email, deckName:deckName}, (err, deck)=>{
+    if (err) {
+      return {
+          statusCode: 500,
+          body: JSON.stringify(err)
+        }
+    }else if(deck) {
       if (deck.pauseMode === true) {
         deck.pauseMode = false
       } else {
@@ -31,11 +36,6 @@ exports.handler = async (event, context) => {
         },
         body: 'Save successful',
       };
-    } else if (err) {
-      return {
-          statusCode: 500,
-          body: JSON.stringify(err)
-        }
-    }
+    }  
   })
 };

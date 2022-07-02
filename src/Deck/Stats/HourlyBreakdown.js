@@ -16,7 +16,7 @@ export default function HourlyBreakdown() {
           Hourly Breakdown
       </div>
       <div className='stats__hourlyBreakdown__month-container justify-evenly'>
-        {['1 month', '3 month', '12 month'].map((comp, index) => (
+        {['1 month', '3 months', '12 months'].map((comp, index) => (
           <React.Fragment key={index}>
             <input
               className='stats__hourlyBreakdown__input'
@@ -27,7 +27,7 @@ export default function HourlyBreakdown() {
               checked={dataBase?.hourlyBreakdown === comp} //how to combine checked and handleColor accurately?
               onChange={handleMonths}
             />
-            <label className='m-5px pt-4px'>
+            <label className='m-4px pt-4px'>
               {comp}
             </label>
           </React.Fragment>

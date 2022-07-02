@@ -5,10 +5,9 @@ import { useHistory } from "react-router-dom";
 
 function Button ({setDeleteAccountPrompt, ok=false}) {
 
-const {user, apiURL} = useContext(Context);
+const {apiURL, email} = useContext(Context);
 let history = useHistory();
 
-console.log(user, 'user here')
   function cancelHandler () {
     setDeleteAccountPrompt(false)
   }
@@ -21,7 +20,7 @@ console.log(user, 'user here')
         "Accept":"application/json",
         "Access-Control-Allow-Origin": "*",
     },
-    body: JSON.stringify({email:user})
+    body: JSON.stringify({email:email})
   })
    const data =  await response.json()
    console.log(data, 'data here')

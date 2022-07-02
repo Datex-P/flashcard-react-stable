@@ -5,7 +5,7 @@ import { Context } from '../../Context'
 
 export default function ColorScheme () {
 
-  const { dataBase, setDataBase, user, apiURL} = useContext(Context)
+  const { apiURL, email, dataBase, setDataBase} = useContext(Context)
 
   async function handleColor(e) {
     let color = e.target.value
@@ -18,7 +18,7 @@ export default function ColorScheme () {
         },
           body: JSON.stringify({
             color:color,
-            user:user
+            email:email
           })
         });
        let newDataBase = { ...dataBase }

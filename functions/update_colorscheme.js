@@ -10,13 +10,13 @@ exports.handler = async (event) => {
      useUnifiedTopology: true,
    }
  );
- let {color, user} = JSON.parse(event.body)
+ let {color, email} = JSON.parse(event.body)
 
 //rewrite that part
 
 if (color) {
  
-    await User.findOneAndUpdate({email:user}, {backgroundColor:color});
+    await User.findOneAndUpdate({email:email}, {backgroundColor:color});
     
     return {
         statusCode: 200      

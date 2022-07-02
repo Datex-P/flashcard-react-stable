@@ -12,16 +12,23 @@ import PauseModeHandler from './PauseModeHandler'
 import OpenDeckBtn from './OpenDeckBtn';
 import QuestionAnswerForm from './QuestionAnswerForm'
 import '../deck.css'
+import Alert from 'react-bootstrap/Alert'
 
 export default function QuestAnswerTrainOverv({
         setDecksAreVisible,
         setScrollbarVisible,
         pauseIsActive, setPauseIsActive,
         data,
-        index,
+        index, //the index of the deck that is currently open
         name,
         paused,
     }) {
+
+  useEffect(()=>{
+  console.log(data, 'data in questanswer here')
+  }, [data])
+
+
 
   const [editModeActive, setEditModeActive] = useState(false);
   const [randomQuestion, setRandomQuestion] = useState(null);
@@ -36,11 +43,15 @@ export default function QuestAnswerTrainOverv({
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
   const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
+  const [deckFinished, setDeckFinished] = useState(false)
 
   const {
+    apiURL,
+    email,
     dataBase, setDataBase, 
+    nameOfTopDeck,
     setShowProgressDiagram,
-     setShowThreeDots,
+    setShowThreeDots
     } = useContext(Context);
 
 
@@ -77,9 +88,10 @@ export default function QuestAnswerTrainOverv({
       //pause mode is activated when the switch is pressed and cards are paused
       if (data.filter((item) => item.paused === true).length > 0) {
         data = data.filter((item) => item.paused === true);
+       // console.log(data, 'data in generate random here')
       }
     }
-    if (data.length === 0) {
+    if (data.length === 0) { //triggers in case all cards inside deck are paused
       alert('add questions to deck');
       setDeckLengthNotZero(false);
     } else {
@@ -90,16 +102,31 @@ export default function QuestAnswerTrainOverv({
         newRandomQuestion = dataBase.queue.shift().index;
       } else {
         newRandomQuestion = Math.floor(Math.random() * data.length);
-        // console.log(randomQuestion, "randomQuestion");
+         console.log(newRandomQuestion, "randomQuestion");
         let newDataBase = { ...dataBase };
+
+        // if((dataBase.DeckNames[index].data.filter(x=>'openHistory' in x === false)).length ===0) {
+        //  // alert('no more cards to study')
+        //   setDeckFinished(true)
+        //   setShowRepeatBtn(false)    //=>unsure why stackcallsize exceeded
+        //   debugger
+        //   setTimeout(()=>{
+        //     debugger
+        //     setDeckFinished(false)
+        //     setShowRepeatBtn(true)
+        //     // setShow(false)
+        //   },[8000])
+        //   //set deck completed to true ==> thisDeckCompleted
+        //   //might have to check for paused cards
+        // }
+
+       // dataBase.DeckNames[index].data.filter(x=>)
 
         if (!newDataBase.DeckNames[index].data[newRandomQuestion]?.openHistory) {
           //if card was not opend before  a new array is made
           newDataBase.DeckNames[index].data[newRandomQuestion].openHistory = [];
         }
-        newDataBase.DeckNames[index].data[newRandomQuestion].openHistory.push(
-       new Date()
-        );
+        newDataBase.DeckNames[index].data[newRandomQuestion].openHistory.push(new Date());
         setDataBase(newDataBase);
       }
       if(newRandomQuestion === randomQuestion){
@@ -111,6 +138,10 @@ export default function QuestAnswerTrainOverv({
       }    
     }
   }
+
+  useEffect(()=>{
+    console.log(dataBase, 'database here')
+  },[dataBase])
 
   function saveHandler() {
     let newDataBase = { ...dataBase };
@@ -164,7 +195,25 @@ export default function QuestAnswerTrainOverv({
     // eslint-disable-next-line
   }, [show]);
 
-  function deleteCurrentCard() {
+  async function deleteCurrentCard() {
+    try{
+      let deckName = nameOfTopDeck
+       await fetch(`${apiURL}/delete_current_card`, {
+        method:"POST",
+        headers: {
+           "Access-Control-Allow-Origin": "*",     
+          "Content-Type":"application/json",
+        },
+          body: JSON.stringify({
+           email:email,
+           deckName:deckName,
+           index:index,
+           randomQuestion:randomQuestion
+          })
+        });
+    } catch (error) {
+      console.log(error, 'error here')
+    }
     let newDataBase = { ...dataBase };
     newDataBase.DeckNames[index].data.splice(randomQuestion, 1);
     setDataBase(newDataBase);
@@ -223,6 +272,7 @@ export default function QuestAnswerTrainOverv({
       />      
       {deckLengthNotZero && !paused && (
         <BasicOrangeWindow
+          deckFinished={deckFinished}
           questionViewActive
           questionAnswerWindow
           show={show}
@@ -298,14 +348,23 @@ export default function QuestAnswerTrainOverv({
                 randomQuestion={randomQuestion}
               />
               } 
-              {showRepeatBtn && 
+               {showRepeatBtn && 
                !dataBase.DeckNames[index].pauseMode &&
+               !deckFinished &&
                 <RepeatButtons 
                   showAnswerBtn={showAnswerBtn}
                   setShowAnswerBtn={setShowAnswerBtn}
                   setShowRepeatBtn={setShowRepeatBtn}
                   generateRandom={generateRandom}
                 />
+              } 
+              { deckFinished &&
+                <Alert
+                  variant='success'
+                  className='height35px'
+                >
+                  <span className='width140px'>You finished the deck!</span>
+                </Alert>
               }
               {cardModified && 
                 <CardModified/>
@@ -323,6 +382,8 @@ export default function QuestAnswerTrainOverv({
                     generateRandom={generateRandom}
                     setCardModified={setCardModified}
                     cardModified={cardModified}
+                    index={index}
+                    randomQuestion={randomQuestion}
                     saveEvent={saveHandler}
                     discardEvent={discardHandler}
                     refresh={refreshHandler}

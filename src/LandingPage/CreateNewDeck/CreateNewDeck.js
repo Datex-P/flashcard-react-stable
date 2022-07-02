@@ -10,12 +10,18 @@ export default function CreateNewDeck({
   closeHandler,
   editButtonClicked,
   setArrowDown,
-  inputField,
-  setInputField,
+  inputField, setInputField,
   setScrollbarVisible, // scrollbar dissapear when stats or settings are open
 }) 
 {
-  const {setShowProgressDiagram, hideCreateDeckBtn,setHideCreateDeckBtn} = useContext(Context);
+  const {
+    apiURL, 
+    email, 
+    colors,
+    dataBase, setDataBase,
+    hideCreateDeckBtn,setHideCreateDeckBtn,
+    setShowProgressDiagram 
+  } = useContext(Context);
 
   
   const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
@@ -46,7 +52,71 @@ useEffect(()=>{
 }
 },[addNewDeckWindow])
 
+
+function addNewDeckName() {
+  let newDataBase = { ...dataBase };
+
+ // const data =  await response.json()
+  let index = newDataBase.DeckNames.push({
+    name: inputField,
+    data: [],
+    cardsToday: 0,
+    color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
+    paused: false,
+    thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+    skipPausedCards: 0,
+    pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
+    editModeActive: false, //when editModeActive is true, pause switch can t be clicked
+  });
+
+  if (
+    dataBase?.DeckNames?.length === 1 ||
+    dataBase?.DeckNames?.length === 0
+  ) {
+    setScrollbarVisible(false); //scrollbar on the side is not visible when zero or only one deck on the stack
+  } else {
+    setScrollbarVisible(true);
+  }
+ // setActive(index - 1);
+  setInputField("");
+  setDataBase(newDataBase);
+ // close(); not sure if needed
+}
+
+async function addDeckHandler() {
+  console.log('hello from add deck handler')
+  let backgroundColor = colors[Object.keys(dataBase?.DeckNames).length % colors?.length]
+    try{
+     let deckName = inputField
+      const response =  await fetch(`${apiURL}/create_deck`, {
+        method:"POST",
+      headers: {
+         "Access-Control-Allow-Origin": "*",     
+        "Content-Type":"application/json",
+      },
+      body: JSON.stringify({
+        email:email,
+        deckName: deckName,
+        backgroundColor:backgroundColor
+      })
+    });
+    let data = await response
+    console.log(data, 'data create deck')
+
+    if (data.status === 200) {
+      console.log('worked fine')
+    }
+} catch(error) {
+console.log(error, 'error here')
+}
+setHideCreateDeckBtn(false)
+setNameTooShortOrLong(false)
+addNewDeckName()
+closeHandler()
+}
+
   const deckProps = {
+    addDeckHandler:addDeckHandler,
     setArrowDown: setArrowDown,
     inputField: inputField,
     setInputField: setInputField,

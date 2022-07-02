@@ -12,11 +12,11 @@ import { Context } from '../../Context';
 
 function Register() {
   
+  const {apiURL} = useContext(Context)
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
   const history = useHistory();
-  const {apiURL} = useContext(Context)
 
   function signUpHandler() {
     // setRegister(false);
@@ -48,7 +48,7 @@ function Register() {
     const data = await response
 
     if (data.status === 200) {
-      history.push("/checkemail");
+      history.push('/checkemail');
     } 
     if (data.status === 400) {
       alert('Something went wrong')

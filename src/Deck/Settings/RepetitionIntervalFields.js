@@ -62,7 +62,9 @@ function RepetitionIntervalFields(
             <div className='widthFitContent'>{inputNumber}</div>
           }
         </form>
-        {editRepActive && <div className='settings__redDot width10px height10px cursorPointer'></div>}
+        {editRepActive && 
+        <div className='settings__redDot width10px height10px cursorPointer'></div>
+        }
         <div className='fontBold'>
           {unit}
         </div>

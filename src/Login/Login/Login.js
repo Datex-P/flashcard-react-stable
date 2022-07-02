@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom'
 
 function Login() {
 
-  const {dataBase, setUser, user, setDataBase, apiURL} = useContext(Context)
+  const {apiURL, dataBase, setDataBase, setEmail} = useContext(Context)
 
   const history = useHistory()
 
@@ -42,19 +42,19 @@ function Login() {
 
   const {user}= await response.json()
 
-  //console.log(data, 'data here')
-  //way to directly access user.email without saving it?
-  //console.log(data, 'data here')
- // console.log(response.user.email, 'email data here')
-
   if(response.status === 200) {
     console.log('response status 200 here')
     setDataBase({
      // DeckNames: [data.decks.map(x=>x.deckName)]
      DeckNames:[{
       name:`Literajjj`,
-      backgroundColor: 'blue',
-      data: [1,2,3],
+      backgroundColor: 'default',
+      data: [{
+              question: `question5`,
+              answer: `answer5`,
+              paused: false
+      }
+    ],
       thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
       color: 'blue',
       toStudyValue:0,
@@ -82,24 +82,24 @@ function Login() {
       ],
       userTimePreferences: [
         {
-          name: 'again',
-          amount: 3,
-          unit: 'm'
+          name: user.userTimePreferences[0].name,
+          amount: user.userTimePreferences[0].amount,
+          unit: user.userTimePreferences[0].unit
         },
         {
-          name: 'good',
-          amount: 5,
-          unit: 'h'
+          name: user.userTimePreferences[1].name,
+          amount: user.userTimePreferences[1].amount,
+          unit: user.userTimePreferences[1].unit
         },
         {
-          name: 'easy',
-          amount: 10,
-          unit: 'd'
+          name: user.userTimePreferences[2].name,
+          amount: user.userTimePreferences[2].amount,
+          unit: user.userTimePreferences[2].unit
         }
       ],
       userPreferences: {
         days: user.userPreferences.days,
-        backgroundColor: user.userPreferences.backgroundColor,
+        backgroundColor: user.userPreferences.backgroundColor || 'default',
         weeksInRow: user.userPreferences.weeksInRow,
         toReview: user.userPreferences.toReview
       },
@@ -115,7 +115,7 @@ function Login() {
     })
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
-    setUser(user.email)
+    setEmail(user.email)
   } else if (response.status === 405) {
     alert('Please check your username and password!')
   }  

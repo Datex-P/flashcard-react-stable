@@ -1,7 +1,10 @@
-import React from "react";
+import React, {  useContext} from "react";
+import { Context } from "../../../Context";
 
 export default function SaveAndDiscard({
   saveEvent,
+  index, //index of the deck
+  randomQuestion, //index of question that is currently open inside deck
   generateRandom,
   setCardModified,
   discardEvent,
@@ -9,18 +12,38 @@ export default function SaveAndDiscard({
   setShowThreeDots
 }) {
 
+  const {
+    apiURL,
+    email,
+    dataBase, setDataBase, 
+    nameOfTopDeck,
+    setShowProgressDiagram,
+    //setShowThreeDots,
+    stopRedCrossListener,
+    setStopRedCrossListener
+    } = useContext(Context);
+
+  function stopRedCross () {
+    setStopRedCrossListener(true)
+    setTimeout(()=>{
+    setStopRedCrossListener(false)
+    },2000)
+  }
+
   function saveHandler() {
     generateRandom();
     saveEvent();
     setCardModified(true);
     refresh();
     setShowThreeDots(true)
+    stopRedCross()
   }
 
   function discardHandler() {
      discardEvent()
      refresh()
      setShowThreeDots(true)
+    stopRedCross()
   }
 
   return (

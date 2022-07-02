@@ -4,7 +4,7 @@ import { Context } from "../../../Context";
 
 export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}) {
 
-  const { dataBase, setDataBase, apiURL, user, nameOfTopDeck } = useContext(Context);
+  const { apiURL, dataBase, setDataBase, email, nameOfTopDeck } = useContext(Context);
   let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
 
  async function handlePause() { 
@@ -13,7 +13,6 @@ export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}
     setDataBase(newDataBase);
     setShowThreeDots(!showThreeDots) //three dots get hidden commented out for now
 
-    let email = user
     let deckName = nameOfTopDeck
 
     await fetch(`${apiURL}/pause_deck`, {

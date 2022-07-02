@@ -8,7 +8,12 @@ const Button = forwardRef ((
 console.log(props, 'props in button')
 const {dataBase, setDataBase, setActive, colors, user} = useContext(Context);
 
-let {setArrowDown, inputField, setInputField, closeHandler, setHideCreateDeckBtn,setNameTooShortOrLong, setScrollbarVisible} = props.data
+let {addDeckHandler, 
+    closeHandler, 
+    inputField, setInputField, 
+    setArrowDown, 
+    setHideCreateDeckBtn,
+    setNameTooShortOrLong, setScrollbarVisible} = props.data
 
 
    function addNewDeckName() {
@@ -53,38 +58,38 @@ let {setArrowDown, inputField, setInputField, closeHandler, setHideCreateDeckBtn
     }
   }
 
-  async function okHandler(){
-    try{
-      let req = await fetch('http://localhost:4000/generate_deck', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          deckname: inputField,
-          username: user
-        })
-      }
-    ) 
-    let res = await req.json()
-    if(res.status==='deck-created'){
-      setHideCreateDeckBtn(false)
-      setNameTooShortOrLong(false)
-      addNewDeckName()
-      closeHandler()
-    }
-    } catch(error) {
-      console.log(error, 'error here')
-    } 
-  }
+  // async function okHandler(){
+  //   try{
+  //     let req = await fetch('http://localhost:4000/generate_deck', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         deckname: inputField,
+  //         username: user
+  //       })
+  //     }
+  //   ) 
+  //   let res = await req.json()
+  //   if(res.status==='deck-created'){
+  //     setHideCreateDeckBtn(false)
+  //     setNameTooShortOrLong(false)
+  //     addNewDeckName()
+  //     closeHandler()
+  //   }
+  //   } catch(error) {
+  //     console.log(error, 'error here')
+  //   } 
+  // }
 
   return (
       props.ok? (
       <button
         className='landing__okCancelButton'
         key={'Ok'}
-        onClick={okHandler}
+        onClick={addDeckHandler}
         ref={okRef}
       >
         Ok

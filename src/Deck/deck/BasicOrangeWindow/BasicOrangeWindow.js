@@ -7,6 +7,7 @@ import { Context } from "../../../Context";
 export default function BasicOrangeWindow({
               children,
               index,
+              deckFinished,
               generateRandom,
               setScrollbarVisible,
               show,setShow,
@@ -22,7 +23,9 @@ export default function BasicOrangeWindow({
 
   const {dataBase, setDataBase, 
         setHideCreateDeckBtn,
-        setShowProgressDiagram} = useContext(Context);
+        setShowProgressDiagram,
+        stopRedCrossListener
+      } = useContext(Context);
 
   const basicOrangeRef = useRef(null)
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
@@ -46,6 +49,13 @@ export default function BasicOrangeWindow({
       setDataBase(newDataBase)
     }
   }
+
+  useEffect(()=>{
+    if (deckFinished) {
+    console.log('red cross handler invoked')
+    redCrossHandler()
+    }
+  },[deckFinished])
 
   function mouseEnterHandler () {
     if (someCardsPaused && !dataBase.DeckNames[index].editModeActive) {
@@ -74,16 +84,18 @@ export default function BasicOrangeWindow({
   }
 
   useEffect(()=>{
-
-    if(show){
-      setTimeout(()=>{document.addEventListener('click', saveIconBlinks)},500)
-      setTimeout(()=>{document.addEventListener('scroll', saveIconBlinks)},500)
-    }
-    //best way to remove handler for settings?
-    return ()=>{
-      document.removeEventListener('click', saveIconBlinks);
-      document.removeEventListener('scroll', saveIconBlinks);
-      setBlinkingSaveIcon(false);console.log('got unmounted')}
+    // if (!stopRedCrossListener) {
+    //   console.log('noitce from red cross here')
+    //   if(show){
+    //     setTimeout(()=>{document.addEventListener('click', saveIconBlinks)},500)
+    //     setTimeout(()=>{document.addEventListener('scroll', saveIconBlinks)},500)
+    //   }
+    //   //best way to remove handler for settings?
+    //   return ()=>{
+    //     document.removeEventListener('click', saveIconBlinks);
+    //     document.removeEventListener('scroll', saveIconBlinks);
+    //     setBlinkingSaveIcon(false);console.log('got unmounted')}
+    // }
   },[show])
 
   useEffect(()=>{

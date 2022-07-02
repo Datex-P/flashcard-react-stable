@@ -35,6 +35,7 @@ export default function DeleteCardQuestionBox({
     index:index,
     card: card,
     randomQuestion:randomQuestion,
+    resetQuestionText: resetQuestionText
   }
 
 return (

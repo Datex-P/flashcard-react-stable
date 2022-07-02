@@ -10,16 +10,16 @@ export default function NoAndYes({ data: {
   index,
   setEditBtnClicked,
   setShowAnswerBtn,
+  resetQuestionText, //text that is active in stats.js
   randomQuestion,
   trashEvent,
   pauseCardinQuestionAnswer,
   setPauseOrDeleteText
 } }) {
 
-  const { dataBase, setDataBase, apiURL, user, nameOfTopDeck } = useContext(Context)
+  const { apiURL, dataBase, setDataBase, email, nameOfTopDeck } = useContext(Context)
 
   async function yesHandler() {
-    const email = user
     let deckName = nameOfTopDeck
     trashEvent()
     deleteCurrentCard()
@@ -35,7 +35,7 @@ export default function NoAndYes({ data: {
 
     if (card === 'deck') {
       console.log('fired inside threedots')
-      const response =  await fetch(`${apiURL}/delete_deck`, {
+      await fetch(`${apiURL}/delete_deck`, {
         method:"POST",
         headers: {
           "Access-Control-Allow-Origin": "*",     
@@ -44,6 +44,18 @@ export default function NoAndYes({ data: {
           body: JSON.stringify({
           email:email,
           deckName:deckName
+          })
+        });
+    }
+    if (resetQuestionText) {
+      await fetch(`${apiURL}/reset_progress`, {
+        method:"POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",     
+          "Content-Type":"application/json",
+        },
+          body: JSON.stringify({
+          email:email
           })
         });
     }
@@ -61,7 +73,6 @@ export default function NoAndYes({ data: {
               onClick={() => {
                 if (el === 'Yes') {
                   yesHandler()
-                  console.log('invoked in yes yeah yeah yeah')
                 }
                 deleteWindow()
                 // setPauseOrDeleteText(true) not sure if needed

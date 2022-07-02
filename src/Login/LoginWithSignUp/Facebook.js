@@ -6,7 +6,7 @@ import { Context } from "../../Context";
 function Facebook() {
   
   let history = useHistory();
-  const { setUser, apiURL } = useContext(Context);
+  const { apiURL, setEmail } = useContext(Context);
   let FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID
 
   async function facebookUser(value) {
@@ -28,7 +28,7 @@ function Facebook() {
 
       if (response.status === 200) {
         history.push('/main');
-        setUser(email); //current logged in user is primary key in database
+        setEmail(email); //current logged in user is primary key in database
       }
     } catch (err) {
       console.log(err, 'err here');

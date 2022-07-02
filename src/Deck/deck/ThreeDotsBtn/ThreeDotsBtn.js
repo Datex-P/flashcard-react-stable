@@ -37,15 +37,16 @@ function ThreeDotsBtn({
     apiURL,
     dataBase,setDataBase,
     editButtonClicked,setEditButtonClicked,
+    email,
     nameOfTopDeck,
-    threeDotsOpen,setThreeDotsOpen,
     showThreeDots,setShowThreeDots,
-    user
+    stopRedCrossListener,
+    threeDotsOpen,setThreeDotsOpen,
   } = useContext(Context);
 
   useEffect(()=>{
     console.log(nameOfTopDeck, 'anme of top deck hee')
-  },[nameOfTopDeck])
+  },[])
  
   const threeDotsOpenRef = useRef(null);
   console.log(input, "input in three dots");
@@ -75,9 +76,12 @@ function ThreeDotsBtn({
   };
 
   useEffect(()=>{
+    console.log(threeDotsOpen, 'trheed tos open hee')
+  },[threeDotsOpen])
+
+  useEffect(()=>{
 
     if (!editButtonClicked) {
-    debugger
       setDeckName(nameOfTopDeck)
     }
   },[editButtonClicked])
@@ -88,23 +92,28 @@ function ThreeDotsBtn({
 
   const threeDotsRef = useRef(null);
 
-  useEffect(() => {
-    function saveIconBlinks(event) {
-      if (
-        threeDotsRef.current &&
-        !threeDotsRef.current.contains(event.target)
-      ) {
-          if (editButtonClicked) {
-            //    setThreeDotsOpen(false) need to be imported
-          } else {
-            console.log("I fired");
-            setBlinkingSaveIcon(true);
-            setTimeout(() => {
-              setBlinkingSaveIcon(false);
-            }, 2000);
-          }
+  function saveIconBlinks(event) {
+    if (
+      threeDotsRef.current &&
+      !threeDotsRef.current.contains(event.target)
+    ) {
+        if (editButtonClicked) {
+          //    setThreeDotsOpen(false) need to be imported
+        } else {
+          if (!stopRedCrossListener) {
+          console.log("I fired");
+          setBlinkingSaveIcon(true);
+          setTimeout(() => {
+            setBlinkingSaveIcon(false);
+          }, 2000);
         }
-    }
+        }
+      }
+  }
+  
+  useEffect(() => {
+    console.log('use effect triggered')
+
     console.log(threeDotsRef, "three dots ref here");
     document.addEventListener("click", saveIconBlinks);
     return () => {
@@ -137,7 +146,7 @@ function ThreeDotsBtn({
     // }
     if(!editButtonClicked) {
       let newDeckName = nameOfTopDeck
-      let email = user
+
       await fetch(`${apiURL}/edit_deckname`, {
         method:"POST",
         headers: {
@@ -154,27 +163,30 @@ function ThreeDotsBtn({
   }
 
   useEffect(()=>{
+    console.log(threeDotsOpen, 'trhee dots open here')
+  },[threeDotsOpen])
 
-    //threeDots broken, unsure why exactly
-    function threeDotsClose(event) {
-      if (
-      //  questionAnswerWindow &&
-        threeDotsOpen &&
-        threeDotsOpenRef.current &&
-        !threeDotsOpenRef.current.contains(event.target)
-      ) {
-          setThreeDotsOpen(false)
-        }
-    }
-      document.addEventListener('click', threeDotsClose);
-      return () => {
-        document.removeEventListener('click', threeDotsClose);
-        console.log('three dots not listenening anymore')
-      };
-  }, [threeDotsOpen, setThreeDotsOpen, questionAnswerWindow])
+  // function threeDotsClose(event) {
+  //   if (
+  //   //  questionAnswerWindow &&
+  //     threeDotsOpen &&
+  //     threeDotsOpenRef.current &&
+  //     !threeDotsOpenRef.current.contains(event.target)
+  //   ) {
+  //       setThreeDotsOpen(false)
+  //     }
+  // }
+  // useEffect(()=>{
+
+  //   //threeDots broken, unsure why exactly
+  //     document.addEventListener('click', threeDotsClose);
+  //     return () => {
+  //       document.removeEventListener('click', threeDotsClose);
+  //       console.log('three dots not listenening anymore')
+  //     };
+  // }, [threeDotsOpen, setThreeDotsOpen, questionAnswerWindow])
 
   async function handlePause() {
-    let email = user
     let deckName = nameOfTopDeck
     pauseEvent(index);
     //  let newDataBase = {...dataBase}

@@ -11,7 +11,7 @@ exports.handler = async (event) => {
  );
 
  let {email, deckName, newDeckName} = JSON.parse(event.body);
- await Deck.findOneAndUpdate({email:email, deckName:deckName},null, (err, deck)=>{
+ Deck.findOneAndUpdate({email:email, deckName:deckName},null, (err, deck)=>{
   if(deck) {
     deck.deckName = newDeckName
     deck.save()

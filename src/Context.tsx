@@ -14,9 +14,10 @@ export default function ContextProvider({ children }:any) {
   const [threeDotsOpen, setThreeDotsOpen] = useState(false);
   const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
   const [emailAdress, setEmailAdress] = useState(null)
-  const [user, setUser] = useState('pp')
+  const [email, setEmail] = useState('pp')
   const [nameOfTopDeck, setNameOfTopDeck] = useState(null)
   const [apiURL, setAPIURL] = useState('')
+  const [stopRedCrossListener, setStopRedCrossListener] = useState(false) 
 
   useEffect(()=>{
   process.env.NODE_ENV === 'production' ? 
@@ -132,27 +133,28 @@ export default function ContextProvider({ children }:any) {
   },[dataBase])
 
   useEffect(()=>{
-    console.log(user, 'user here')
-  },[user, setUser])
+    console.log(email, 'user here')
+  },[email, setEmail])
   
   return (
 
     <Context.Provider  
       value={{ 
-        active, setActive,
+        active, setActive, 
+        apiURL, setAPIURL,
         colors,
         changeDeckNameOpen, setChangeDeckNameOpen,
         dataBase, setDataBase, 
-        editButtonClicked, setEditButtonClicked, 
-        hideCreateDeckBtn, setHideCreateDeckBtn,
-        showProgressDiagram, setShowProgressDiagram,
-        styles, setStyles,
-        apiURL, setAPIURL,
-        showThreeDots, setShowThreeDots,
-        threeDotsOpen, setThreeDotsOpen,
-        user, setUser,
+        editButtonClicked, setEditButtonClicked,
+        email, setEmail,
         emailAdress, setEmailAdress,
-        nameOfTopDeck, setNameOfTopDeck
+        hideCreateDeckBtn, setHideCreateDeckBtn,
+        nameOfTopDeck, setNameOfTopDeck,
+        showProgressDiagram, setShowProgressDiagram,
+        styles, setStyles,     
+        showThreeDots, setShowThreeDots,
+        stopRedCrossListener, setStopRedCrossListener,
+        threeDotsOpen, setThreeDotsOpen,               
         }} 
      >
       {children}
