@@ -27,10 +27,9 @@ function Facebook() {
       const {createUser, deck}= await response.json()
       let user = createUser
       console.log(createUser, 'create user')
-      console.log(deck, 'deck here')
+      //console.log(deck, 'deck here')
       if (response.status === 200) {
-        debugger
-        history.push('/main');
+      //  debugger
         setEmail(email); //current logged in user is primary key in database
         setDataBase({
           DeckNames: deck.map((el,index, arr)=> ({name:el.deckName,
@@ -83,6 +82,7 @@ function Facebook() {
            daysOfStudyThisWeek: user.daysOfStudyThisWeek, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
            studied: [new Date()],       
          })
+        history.push('/main');
       }
     } catch (err) {
       console.log(err, 'err here');
@@ -113,7 +113,7 @@ function Facebook() {
         onProfileSuccess={(response) => {
           facebookUser(response);
           console.log('Get Profile Success!', response);
-          history.push('/main')
+        //  history.push('/main')
         }}
       />
     </div>
