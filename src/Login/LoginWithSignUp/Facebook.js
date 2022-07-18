@@ -32,9 +32,9 @@ function Facebook() {
       //  debugger
         setEmail(email); //current logged in user is primary key in database
         setDataBase({
-          DeckNames: deck && deck.map((el,index, arr)=> ({name:el.deckName,
+          DeckNames: deck?.map((el,index, arr)=> ({name:el.deckName,
              backgroundColor:el.backgroundColor,
-             data:el.data}))
+             data:el.data})) || []
              ,
           active:2,
            queue: [],
@@ -70,16 +70,16 @@ function Facebook() {
              }
            ],
            userPreferences: {
-             days: user.userPreferences.days, //days that user wants to study
-             backgroundColor: user.backgroundColor,
-             weeksInRow: user.userPreferences.weeksInRow, //weeks in a row where user reached study goal
-             toReview: user.userPreferences.toReview
+             days: user?.userPreferences.days || 0, //days that user wants to study
+             backgroundColor: user?.backgroundColor || 'default',
+             weeksInRow: user?.userPreferences?.weeksInRow || 0, //weeks in a row where user reached study goal
+             toReview: user?.userPreferences?.toReview || 0
            },
-           hourlyBreakdown: user.hourlyBreakdown,
-           studyTime: user.studyTime,
+           hourlyBreakdown: user?.hourlyBreakdown || '1 month',
+           studyTime: user?.studyTime || 0,
            calendarReset: false,
-           weeklyTarget: user.weeklyTarget,
-           daysOfStudyThisWeek: user.daysOfStudyThisWeek, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
+           weeklyTarget: user?.weeklyTarget || 0,
+           daysOfStudyThisWeek: user?.daysOfStudyThisWeek || 0, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
            studied: [new Date()],       
          })
         history.push('/main');
