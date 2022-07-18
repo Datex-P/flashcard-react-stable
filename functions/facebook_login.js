@@ -1,5 +1,6 @@
 require('dotenv').config();
 const User = require('../server/models/user');
+const Deck = require('../server/models/deck');
 const mongoose = require('mongoose');
 
 exports.handler = async (event, context) => {
@@ -25,11 +26,13 @@ exports.handler = async (event, context) => {
   //     }
   //   })
   // );
-  const findUser = await User.findOne({decoded_email}).exec();
-  //const  = user && await User.findOneAndUpdate({email:decoded_email}, {name:'found'});
-  const createUser = !findUser && await User.create({email:decoded_email});
-
-  //user-decks has to be created or loaded as well
+  console.log(decoded_email, 'decoded email here')
+  const findUser = await User.findOne({email: decoded_email}).exec();
+  const deck = findUser && await Deck.find({email:decoded_email})
+ 
+  console.log(findUser, 'find user here')
+  const createUser = !findUser && await User.create({email:decoded_email, backgroundColor:'default'});
+  console.log(createUser, 'create user here')
 
   if (!findUser && !createUser) {
     return {
@@ -37,13 +40,14 @@ exports.handler = async (event, context) => {
       body: "server error",
     };
   }
-
+if (createUser) {
   return {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
-    body:JSON.stringify({email:decoded_email})
-  };
+    body:JSON.stringify({createUser, deck})
+  }
+}
 };

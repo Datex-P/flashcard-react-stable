@@ -38,18 +38,25 @@ export default function CreateNewDeck({
 
 
 useEffect(()=>{
+  //debugger
+console.log(addNewDeckWindow, 'add new deck window')
   if(addNewDeckWindow){
+    //debugger
     const createDeckElem = window.document.getElementById('createDeck');
   if (createDeckElem) {
+   // debugger
     var createDeckElement = createDeckElem.parentElement;
   }
   if (createDeckElement) {
+    //debugger
     createDeckElement.style.display = "flex";
     createDeckElement.style.justifyContent = "center";
     createDeckElement.style.alignItems = "center";
     createDeckElement.style.height = "651px";
+   // debugger
   }
 }
+//debugger
 },[addNewDeckWindow])
 
 
@@ -100,7 +107,7 @@ async function addDeckHandler() {
         backgroundColor:backgroundColor
       })
     });
-    let data = await response
+    let data = await response.json()
     console.log(data, 'data create deck')
 
     if (data.status === 200) {
@@ -109,8 +116,8 @@ async function addDeckHandler() {
 } catch(error) {
 console.log(error, 'error here')
 }
-setHideCreateDeckBtn(false)
-setNameTooShortOrLong(false)
+ setHideCreateDeckBtn(false)
+ setNameTooShortOrLong(false)
 addNewDeckName()
 closeHandler()
 }
@@ -142,7 +149,8 @@ closeHandler()
       }
       <div className='mt-40px'>
         <Modal
-          show={addNewDeckWindow}
+          show={true}
+          //show={addNewDeckWindow}
           backdrop='static'
           keyboard={false}
           id='createDeck'

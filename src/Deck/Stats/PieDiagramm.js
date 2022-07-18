@@ -54,7 +54,7 @@ plugins:{
 let labelsData = []
 let backgroundColorData = []
 let borderColorData = []
-let dataData = [3,4,5,5,10]
+let dataData = []
 let hoverBackgroundColorData = []
 
 for (let deck in dataBase.DeckNames) {
@@ -62,10 +62,25 @@ for (let deck in dataBase.DeckNames) {
   let deckItem = dataBase.DeckNames[deck]
   /*when card of deck was opened today, the label is pushed to the diagram 
   in stats -->*/
-  deckItem.data.filter((item) => {
-    if(new Date(item?.openHistory?.[0]).toDateString() === new Date().toDateString()) {
-      if(!labelsData.includes(deckItem.name)) {
-        labelsData.push(deckItem.name)
+  dataBase.DeckNames[deck].data.filter((item,index,arr) => {
+    console.log(item, 'item')
+    console.log(index, 'index')
+    let value = new Date(item?.openHistory).toDateString()
+    console.log(value, 'value here')
+    //debugger
+    if(value === new Date().toDateString()) {
+      // if(!labelsData.includes(deckItem.name)) {
+      //   labelsData.push(deckItem.name)
+      // }
+      labelsData.push(deckItem.name)
+      backgroundColorData.push(deckItem.backgroundColor)
+      borderColorData.push(deckItem.backgroundColor)
+      hoverBackgroundColorData.push(deckItem.backgroundColor)
+
+      let dataAmount = dataBase.DeckNames[deck].data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === new Date().toDateString())).length 
+
+      if(dataAmount >0) {
+     dataData.push(dataAmount)
       }
     }})
     let date = new Date()
@@ -73,15 +88,17 @@ for (let deck in dataBase.DeckNames) {
   if (deckItem.data.find((item) => new Date(item?.openHistory?.[0]).toDateString())) {
   //  cardsStudiedCounter += deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() == date)).length
   //console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString())).length, 'opened cards today')
-    labelsData.push(deckItem.name)
-    dataData.push(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === date)).length)
-    backgroundColorData.push(deckItem.color)
-    borderColorData.push(deckItem.color)
-    hoverBackgroundColorData.push(deckItem.color)
+    //  dataData.push(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === new Date())).length)
+    //  console.log(deckItem.data.filter((item) => item?.openHistory?.some(item => new Date(item).toDateString() === new Date())).length)
+    //  debugger
+    //  backgroundColorData.push(deckItem.color)
+    //  borderColorData.push(deckItem.color)
+    //  hoverBackgroundColorData.push(deckItem.color)
   }
 }
 
 useEffect(()=>{
+  console.log('chart data triggered')
   setChartData({
        labels:labelsData,
       // legend:{

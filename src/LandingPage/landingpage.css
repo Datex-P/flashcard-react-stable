@@ -6,6 +6,7 @@
   height: 651px !important;
   width: 440px !important;
   position: absolute;
+  overflow:hidden;
 }
 
 .landing__Btn-col {

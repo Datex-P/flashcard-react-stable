@@ -66,9 +66,6 @@ const TimeAndProgress = () => {
     setWidthAdjusted(widthAdjusted);
   }, [dataBase]);
 
-  useEffect(()=>{
-    console.log(timeObj, 'time obj here')
-  },[timeObj])
 
   return (
     <div className='stats__breakdownContainer justify-around flex-column'>

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
-
 import { withRouter } from "react-router-dom";
 import { Context } from "../../../Context";
 import trashimg from "../../../icons/trash.svg";
@@ -44,12 +43,7 @@ function ThreeDotsBtn({
     threeDotsOpen,setThreeDotsOpen,
   } = useContext(Context);
 
-  useEffect(()=>{
-    console.log(nameOfTopDeck, 'anme of top deck hee')
-  },[])
- 
   const threeDotsOpenRef = useRef(null);
-  console.log(input, "input in three dots");
 
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false); //blinks when deck name in input mode and clicked outside
   const [pauseIsActive, setPauseIsActive] = useState(true);
@@ -60,11 +54,9 @@ function ThreeDotsBtn({
     setThreeDotsOpen(false); //three dots menu gets closed
     trashEvent(); //just invoke once when in question answer
     //trashEvent()()
-    console.log("trash handler fired");
   }
 
   const handleClick = () => {
-    console.log("click on three dots button");
     setThreeDotsOpen(!threeDotsOpen);
     // if(true) {
     //   console.log('triggered in handle click')
@@ -86,10 +78,6 @@ function ThreeDotsBtn({
     }
   },[editButtonClicked])
 
-  useEffect(() => {
-    console.log(threeDotsOpen, "three dots open here");
-  }, [threeDotsOpen]);
-
   const threeDotsRef = useRef(null);
 
   function saveIconBlinks(event) {
@@ -100,22 +88,25 @@ function ThreeDotsBtn({
         if (editButtonClicked) {
           //    setThreeDotsOpen(false) need to be imported
         } else {
+          setTimeout(()=>{
           if (!stopRedCrossListener) {
-          console.log("I fired");
+          //  debugger
           setBlinkingSaveIcon(true);
+        //  debugger
           setTimeout(() => {
             setBlinkingSaveIcon(false);
+          //  debugger
           }, 2000);
         }
+        }, 1000)
         }
       }
   }
   
   useEffect(() => {
-    console.log('use effect triggered')
-
-    console.log(threeDotsRef, "three dots ref here");
+    if(!stopRedCrossListener) {
     document.addEventListener("click", saveIconBlinks);
+    }
     return () => {
       document.removeEventListener("click", saveIconBlinks);
       setBlinkingSaveIcon(false);
@@ -162,9 +153,6 @@ function ThreeDotsBtn({
     }
   }
 
-  useEffect(()=>{
-    console.log(threeDotsOpen, 'trhee dots open here')
-  },[threeDotsOpen])
 
   // function threeDotsClose(event) {
   //   if (
@@ -217,10 +205,6 @@ function ThreeDotsBtn({
       }
     }
 
-  useEffect(() => {
-    console.log(showThreeDots, "show three dots triggered");
-  }, [showThreeDots]);
-
   return (
     <>
       {/* !dataBase?.DeckNames?.[index]?.paused || !editBtnClicked) && */}
@@ -248,7 +232,7 @@ function ThreeDotsBtn({
                   <img
                     alt='edit'
                     className={`mr-3px ${
-                      blinkingSaveIcon ? "deck__blinkingIcon" : ""
+                      blinkingSaveIcon ? 'deck__blinkingIcon' : ''
                     }`}
                     src={editButtonClicked ? editimg : saveimg}
                   />

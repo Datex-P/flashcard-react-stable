@@ -19,9 +19,9 @@ const { email, name, password } = decoded;
 const cryptedPassword = await bcrypt.hash(password, 10)
 console.log(cryptedPassword, 'crypted password here') 
 
-if (decoded) {
+if (decoded) { //token is correct and user gets created
  
-    await User.create({email: email, name:name, password:cryptedPassword});
+    await User.create({email: email, name:name, password:cryptedPassword, backgroundColor:'default'});
     
     return {
         statusCode: 302,

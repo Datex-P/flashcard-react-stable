@@ -15,19 +15,22 @@ export default function DeckOrCardName({ data: {
   const {
     dataBase, setDataBase, 
     setThreeDotsOpen, 
-    nameOfTopDeck,setNameOfTopDeck
+    nameOfTopDeck,setNameOfTopDeck,
+    setStopRedCrossListener
   } = useContext(Context);
 
   function handleChangeName(e) {
-
+   
     if (e.target.value.length > 3 && e.target.value.length < 12) {
       setDeckNameLengthRight(true)
       setThreeDotsMenuOpen(true)
       setNameTooLongOrShort(false)
       setThreeDotsOpen(true)
+    //  debugger
     } else {
       setNameTooLongOrShort(true)
       setDeckNameLengthRight(false)
+    //  debugger
     }
 
     let newDataBase = {...dataBase}
@@ -38,8 +41,11 @@ export default function DeckOrCardName({ data: {
   }
 
   useEffect(() => {
-    console.log('deck name length changed')
-  }, [setDeckNameLengthRight])
+    if(!editButtonClicked) {
+      setStopRedCrossListener(true)
+    //  debugger
+    }
+  }, [editButtonClicked])
 
 
   return (

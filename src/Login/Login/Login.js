@@ -40,36 +40,36 @@ function Login() {
       })
     });
 
-  const {user}= await response.json()
+  const {user, deck}= await response.json()
+
+
+   // DeckNames: [data.decks.map(x=>x.deckName)]
+  //  DeckNames:deck.map((el,index, arr)=> ({name:el.deckName,
+  //   backgroundColor:el.backgroundColor,
+  //   data:el.data})),
+      //name: deck.map(el=>),
+      // backgroundColor: 'default',
+      // data: [{
+      //         question: `question5`,
+      //         answer: `answer5`,
+      //         paused: false
+      //       }],
+
+  //console.log(decks, 'decks here')
 
   if(response.status === 200) {
     console.log('response status 200 here')
     setDataBase({
-     // DeckNames: [data.decks.map(x=>x.deckName)]
-     DeckNames:[{
-      name:`Literajjj`,
-      backgroundColor: 'default',
-      data: [{
-              question: `question5`,
-              answer: `answer5`,
-              paused: false
-      }
-    ],
-      thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
-      color: 'blue',
-      toStudyValue:0,
-      cardsToday: 0,
-      paused:false,
-      skipPausedCards: 0,
-      pauseMode:false,   //when active the pause switch can be clicked in question answers when cards are paused
-      editModeActive:false //when editModeActive is true, pause switch can t be clicked
-    }],
+     DeckNames: deck.map((el,index, arr)=> ({name:el.deckName,
+        backgroundColor:el.backgroundColor,
+        data:el.data}))
+        ,
      active:2,
       queue: [],
       checkboxClicked: false,
       showDeleteFrame: true,
       openedToday: true,
-      deckCompleted: 2,
+      deckCompleted: user.deckCompleted, //decks where user reached study goal
       timeValues: {
         left: 2,
         middle: 5,
@@ -98,18 +98,16 @@ function Login() {
         }
       ],
       userPreferences: {
-        days: user.userPreferences.days,
-        backgroundColor: user.userPreferences.backgroundColor || 'default',
-        weeksInRow: user.userPreferences.weeksInRow,
+        days: user.userPreferences.days, //days that user wants to study
+        backgroundColor: user.backgroundColor,
+        weeksInRow: user.userPreferences.weeksInRow, //weeks in a row where user reached study goal
         toReview: user.userPreferences.toReview
       },
       hourlyBreakdown: user.hourlyBreakdown,
       studyTime: user.studyTime,
       calendarReset: false,
       weeklyTarget: user.weeklyTarget,
-      daysOfStudy: {
-        day: 4
-      },
+      daysOfStudyThisWeek: user.daysOfStudyThisWeek, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
       studied: [new Date()],
     
     })

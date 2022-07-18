@@ -16,7 +16,7 @@ exports.handler = async (event, context) => {
   const {name, password} = JSON.parse(event.body);
   const user = await User.findOne({name}).exec();
 
-  const decks = user && await Deck.find({email:user.email})
+  const deck = user && await Deck.find({email:user.email})
 
   // if (user?.email) {
   //  decks = await Deck.find({email:user.email})
@@ -37,7 +37,7 @@ exports.handler = async (event, context) => {
       "Access-Control-Allow-Origin": "*", 
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({user, decks}),
+    body: JSON.stringify({user, deck}),
   };
   
 };

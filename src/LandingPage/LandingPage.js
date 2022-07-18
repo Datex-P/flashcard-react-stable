@@ -16,9 +16,12 @@ const LandingPage = () => {
   const [spinnerIsVisible, setSpinnerIsVisible] = useState(true); //spinner that is shown when application loads
   const [scrollbarVisible, setScrollbarVisible] = useState(true)
   const [decksAreVisible, setDecksAreVisible] = useState(true); //decks are shown on the deck stack if this is set to true  
-  const [arrowDown, setArrowDown] = useState(true);
+  const [arrowDown, setArrowDown] = useState(false); //change 
   const [inputField, setInputField] = useState('');
 
+  useEffect(()=>{
+    console.log(addNewDeckWindow, 'add new deck window here')
+  },[addNewDeckWindow])
   
   const {
     active,
@@ -91,6 +94,7 @@ const LandingPage = () => {
   }
 
 function createDeckHandler() {
+  //debugger
         setAddNewDeckWindow(true); //open the pop up to add a new deck
         setDecksAreVisible(false); // all the decks in the back are not visible
         setShowProgressDiagram(false);
@@ -143,7 +147,7 @@ function createDeckHandler() {
                           transform={`rotate(0deg)`}
                           zIndex={2}
                           bg={colorHandler}
-                          background={colors[active % colors.length]}
+                          background={deck.backgroundColor}
                           {...deckProps}
                         />
                       );
@@ -157,7 +161,7 @@ function createDeckHandler() {
                           transform={`rotate(${-accum.index * 2}deg)`}
                           zIndex={0}
                           bg={colorHandler}
-                          background={colorHandler}
+                          background={deck.backgroundColor}
                           {...deckProps}
                         />
                       );

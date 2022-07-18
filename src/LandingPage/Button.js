@@ -10,7 +10,7 @@ const {dataBase, setDataBase, setActive, colors, user} = useContext(Context);
 
 let {addDeckHandler, 
     closeHandler, 
-    inputField, setInputField, 
+    setInputField, 
     setArrowDown, 
     setHideCreateDeckBtn,
     setNameTooShortOrLong, setScrollbarVisible} = props.data
@@ -56,6 +56,7 @@ let {addDeckHandler,
         setArrowDown(true);
         // setDecksAreVisible(false); 
     }
+    //debugger
   }
 
   // async function okHandler(){

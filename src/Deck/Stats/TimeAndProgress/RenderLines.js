@@ -9,10 +9,8 @@ function RenderLines({timeObj}) {
   for (let i = 6; i <= 24; i += 6) {
    if (timeObj !== null ) {
     if (i in timeObj) {
-      console.log(timeObj, 'timeObj here')
       let widthVar = ((timeObj[i] || 0) / studyGoal) * 100;
       previousWidthVar += widthVar;
-      console.log(previousWidthVar, 'previous width var here')
       let timeSlots = ['6 - 12', '12 - 18', '18 - 24', '24 - 06']
 
       arr.push( 

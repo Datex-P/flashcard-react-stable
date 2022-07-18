@@ -17,11 +17,15 @@ exports.handler = async (event, context) => {
 
   //delete open history from decks
 
-  const {email} = JSON.parse(event.body);
+  const {email, deckName, newRandomQuestion} = JSON.parse(event.body);
+  console.log(email, 'email')
+  console.log(deckName, 'deckname')
+  console.log(newRandomQuestion, 'new random quesiton')
+  //delete open history here4
+  //how to use set correctly?
 
-  //delete open history here
-  const user = await User.findOneAndUpdate({email:email}, {date:[{}]})
-
+ const user = await Deck.findOneAndUpdate({email:email, deckName:deckName}, {$set:{["data."+newRandomQuestion+".openHistory"]:['hi']}})
+//const user = true
 
     if (user) {
       return {

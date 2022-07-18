@@ -6,7 +6,10 @@ const DeckSchema = new Schema({
       name: {type:String,required:false},
       deckName: {type:String,required:false},
       email: {type:String,required:false},
-      data: [{}],
+      data: [{question: {type:String, required:false},
+            answer: {type:String, required:false},
+            paused: {type: Boolean, required:false},
+            openHistory: [] }],
       backgroundColor:{type:String, required:false},
       thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
       color: {type:String,required:false},
@@ -27,7 +30,7 @@ const DeckSchema = new Schema({
      // backgroundColor: String
 userPreferences: {
       //  days: {type:Number,required: false},
-       backgroundColor: {type:String, required:false},
+    //   backgroundColor: {type:String, required:false},
       //  weeksInRow: {type:Number,required: false},
       //   toReview: {type:Number, required: false}
           }

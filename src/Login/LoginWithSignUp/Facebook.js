@@ -6,7 +6,7 @@ import { Context } from "../../Context";
 function Facebook() {
   
   let history = useHistory();
-  const { apiURL, setEmail } = useContext(Context);
+  const { apiURL, setEmail, setDataBase } = useContext(Context);
   let FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID
 
   async function facebookUser(value) {
@@ -24,11 +24,65 @@ function Facebook() {
         }),
       });
 
-       await response
-
+      const {createUser, deck}= await response.json()
+      let user = createUser
+      console.log(createUser, 'create user')
+      console.log(deck, 'deck here')
       if (response.status === 200) {
+        debugger
         history.push('/main');
         setEmail(email); //current logged in user is primary key in database
+        setDataBase({
+          DeckNames: deck.map((el,index, arr)=> ({name:el.deckName,
+             backgroundColor:el.backgroundColor,
+             data:el.data}))
+             ,
+          active:2,
+           queue: [],
+           checkboxClicked: false,
+           showDeleteFrame: true,
+           openedToday: true,
+           deckCompleted: user.deckCompleted, //decks where user reached study goal
+           timeValues: {
+             left: 2,
+             middle: 5,
+             right: 10
+           },
+           breakdownIntervals: [
+             {month: 1},
+             {month: 3},
+             {month: 12}
+           ],
+           userTimePreferences: [
+             {
+               name: user.userTimePreferences[0].name,
+               amount: user.userTimePreferences[0].amount,
+               unit: user.userTimePreferences[0].unit
+             },
+             {
+               name: user.userTimePreferences[1].name,
+               amount: user.userTimePreferences[1].amount,
+               unit: user.userTimePreferences[1].unit
+             },
+             {
+               name: user.userTimePreferences[2].name,
+               amount: user.userTimePreferences[2].amount,
+               unit: user.userTimePreferences[2].unit
+             }
+           ],
+           userPreferences: {
+             days: user.userPreferences.days, //days that user wants to study
+             backgroundColor: user.backgroundColor,
+             weeksInRow: user.userPreferences.weeksInRow, //weeks in a row where user reached study goal
+             toReview: user.userPreferences.toReview
+           },
+           hourlyBreakdown: user.hourlyBreakdown,
+           studyTime: user.studyTime,
+           calendarReset: false,
+           weeklyTarget: user.weeklyTarget,
+           daysOfStudyThisWeek: user.daysOfStudyThisWeek, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
+           studied: [new Date()],       
+         })
       }
     } catch (err) {
       console.log(err, 'err here');

@@ -21,9 +21,9 @@ export default function AddQuestionsToDeck({
 
   const {
     apiURL,
-    dataBase,
-    email,
+    dataBase,setDataBase,
     editButtonClicked,
+    email,
     nameOfTopDeck, //name of the deck that is currently open
     setShowProgressDiagram,
   } = useContext(Context);
@@ -48,6 +48,9 @@ export default function AddQuestionsToDeck({
         await response
 
         if (response.status === 200) {
+          let newDataBase = { ...dataBase }
+          newDataBase.DeckNames[index].data.push(card)
+          setDataBase(newDataBase)
           setNewCardAdded(true);
           setTimeout(() => {
             setCard({question: '', answer: ''});

@@ -82,7 +82,7 @@ export default function QuestAnswerTrainOverv({
    // debugger
   },[editModeActive])
 
-  function generateRandom() {
+  async function generateRandom() {
     let newRandomQuestion = null;
     if (dataBase.DeckNames[index].pauseMode) {
       //pause mode is activated when the switch is pressed and cards are paused
@@ -105,9 +105,11 @@ export default function QuestAnswerTrainOverv({
          console.log(newRandomQuestion, "randomQuestion");
         let newDataBase = { ...dataBase };
 
-        // if((dataBase.DeckNames[index].data.filter(x=>'openHistory' in x === false)).length ===0) {
-        //  // alert('no more cards to study')
-        //   setDeckFinished(true)
+         if((dataBase.DeckNames[index].data.filter(x=>'openHistory' in x === false)).length ===0) {
+           alert('no more cards to study')
+           setDeckFinished(true)
+           setShow(false)
+         }
         //   setShowRepeatBtn(false)    //=>unsure why stackcallsize exceeded
         //   debugger
         //   setTimeout(()=>{
@@ -128,8 +130,23 @@ export default function QuestAnswerTrainOverv({
         }
         newDataBase.DeckNames[index].data[newRandomQuestion].openHistory.push(new Date());
         setDataBase(newDataBase);
+        console.log('open history call gets invoked')
+       // let deckName= 
+         await fetch(`${apiURL}/open_history`, {
+          method:"POST",
+          headers: {
+             "Access-Control-Allow-Origin": "*",     
+            "Content-Type":"application/json",
+          },
+            body: JSON.stringify({
+             email:email,
+             deckName:dataBase.DeckNames[index].name,
+             newRandomQuestion:newRandomQuestion
+            })
+          });
+
       }
-      if(newRandomQuestion === randomQuestion){
+      if(newRandomQuestion === randomQuestion && dataBase.DeckNames[index].data.length !== 1){
         generateRandom()
       } else {
         setRandomQuestion(newRandomQuestion);
@@ -170,6 +187,11 @@ export default function QuestAnswerTrainOverv({
 
   //   setDataBase(newDataBase)
   // }
+
+  setTimeout(()=>{
+    setShow(false)
+    console.log('set show set to fale')
+  },10000)
 
   useEffect(() => {
     let timeLeft=null
@@ -270,7 +292,9 @@ export default function QuestAnswerTrainOverv({
           setDecksAreVisible={setDecksAreVisible}
           setScrollbarVisible={setScrollbarVisible}
       />      
-      {deckLengthNotZero && !paused && (
+      {deckLengthNotZero  //deck needs more than one card to be opened
+      && !paused &&  //not able to open Deck when in paused Mode
+      (
         <BasicOrangeWindow
           deckFinished={deckFinished}
           questionViewActive
@@ -359,12 +383,11 @@ export default function QuestAnswerTrainOverv({
                 />
               } 
               { deckFinished &&
-                <Alert
-                  variant='success'
-                  className='height35px'
-                >
-                  <span className='width140px'>You finished the deck!</span>
+                <div className='bs-5 height50px mt-20px justify-center-align-center'>
+                <Alert variant="success">
+                  You finished the deck!
                 </Alert>
+                </div>
               }
               {cardModified && 
                 <CardModified/>
