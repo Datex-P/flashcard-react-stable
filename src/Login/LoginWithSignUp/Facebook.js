@@ -32,7 +32,7 @@ function Facebook() {
       //  debugger
         setEmail(email); //current logged in user is primary key in database
         setDataBase({
-          DeckNames: deck.map((el,index, arr)=> ({name:el.deckName,
+          DeckNames: deck && deck.map((el,index, arr)=> ({name:el.deckName,
              backgroundColor:el.backgroundColor,
              data:el.data}))
              ,
