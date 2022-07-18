@@ -34,13 +34,10 @@ exports.handler = async (event, context) => {
   const createUser = !findUser && await User.create({email:decoded_email, backgroundColor:'default'});
   console.log(createUser, 'create user here')
 
-  if (!findUser && !createUser) {
-    return {
-      statusCode: 500,
-      body: "server error",
-    };
-  }
-if (createUser) {
+  // if (!findUser && !createUser) {
+   
+  // }
+if (createUser || findUser) {
   return {
     statusCode: 200,
     headers: {
@@ -49,5 +46,10 @@ if (createUser) {
     },
     body:JSON.stringify({createUser, deck})
   }
+} else {
+  return {
+    statusCode: 500,
+    body: JSON.stringify({1:"server error"})
+  };
 }
 };
