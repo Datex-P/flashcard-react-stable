@@ -70,7 +70,7 @@ function Facebook() {
              }
            ],
            userPreferences: {
-             days: user?.userPreferences.days || 0, //days that user wants to study
+             days: user?.userPreferences?.days || 0, //days that user wants to study
              backgroundColor: user?.backgroundColor || 'default',
              weeksInRow: user?.userPreferences?.weeksInRow || 0, //weeks in a row where user reached study goal
              toReview: user?.userPreferences?.toReview || 0
