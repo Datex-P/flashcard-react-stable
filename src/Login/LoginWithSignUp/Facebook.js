@@ -41,7 +41,7 @@ function Facebook() {
            checkboxClicked: false,
            showDeleteFrame: true,
            openedToday: true,
-           deckCompleted: user.deckCompleted, //decks where user reached study goal
+           deckCompleted: user?.deckCompleted || 0, //decks where user reached study goal
            timeValues: {
              left: 2,
              middle: 5,
@@ -54,19 +54,19 @@ function Facebook() {
            ],
            userTimePreferences: [
              {
-               name: user.userTimePreferences[0].name,
-               amount: user.userTimePreferences[0].amount,
-               unit: user.userTimePreferences[0].unit
+               name: user?.userTimePreferences[0]?.name || 'again',
+               amount: user?.userTimePreferences[0]?.amount || 2,
+               unit: user?.userTimePreferences[0]?.unit || 'min'
              },
              {
-               name: user.userTimePreferences[1].name,
-               amount: user.userTimePreferences[1].amount,
-               unit: user.userTimePreferences[1].unit
+               name: user?.userTimePreferences[1]?.name || 'good',
+               amount: user?.userTimePreferences[1]?.amount || 5,
+               unit: user?.userTimePreferences[1]?.unit || 'min'
              },
              {
-               name: user.userTimePreferences[2].name,
-               amount: user.userTimePreferences[2].amount,
-               unit: user.userTimePreferences[2].unit
+               name: user?.userTimePreferences[2]?.name || 'easy',
+               amount: user?.userTimePreferences[2]?.amount || 10,
+               unit: user?.userTimePreferences[2]?.unit || 'min'
              }
            ],
            userPreferences: {
