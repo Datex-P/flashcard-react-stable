@@ -2,14 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { Context } from "../../../Context";
 import "../../../styles.scss";
-import AlertComponent from "./AlertComponent";
+import QuestionAnswerComp from "./QuestionAnsw";
 import closeWindow from "../../../icons/closeWindow.svg";
 
 export default function AddQuestionsToDeck({
   index,
   name,
-  show,
-  setShow,
+  show,setShow,
   setScrollbarVisible,
   setHideCreateDeckBtn,
 }) {
@@ -18,6 +17,7 @@ export default function AddQuestionsToDeck({
   const [newCardAdded, setNewCardAdded] = useState(false);
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false);
   const [error, setError] = useState(false)
+  const [addToDeckButton, setAddToDeckButton] = useState(false) //when active message like input needed appears
 
   const {
     apiURL,
@@ -25,12 +25,15 @@ export default function AddQuestionsToDeck({
     editButtonClicked,
     email,
     nameOfTopDeck, //name of the deck that is currently open
-    setShowProgressDiagram,
+    setShowProgressDiagram // diagram that is shown on main page (landing page)
   } = useContext(Context);
 
   async function addToDeck() {
-    
-    if (card.question.trim().length !== 0 && 
+
+    setAddToDeckButton(true)
+    setTimeout(()=>{setAddToDeckButton(false)}, 2000)
+
+    if (card.question.trim().length !== 0 &&  //don't trigger call when no value in question or answer field
         card.answer.trim().length !== 0) {
       try {
         let response = await fetch(`${apiURL}/add_to_deck`, {
@@ -55,6 +58,7 @@ export default function AddQuestionsToDeck({
           setTimeout(() => {
             setCard({question: '', answer: ''});
             setNewCardAdded(false);
+            setAddToDeckButton(false)
           }, 650);
         }
       } catch (error) {
@@ -73,19 +77,13 @@ export default function AddQuestionsToDeck({
     setScrollbarVisible(true);
   }
 
-  useEffect(() => {
-    console.log(card, "card");
-    console.log(card.question, "card question");
-    console.log(card.question.trim().length, "length in card trim");
-  }, [card]);
 
   // plusHandler gets triggered when User clicks on plus Icon
   // is deactivated when the deck is paused, so User has to unpause
   //the deck to add cards to the deck
 
   function plusHandler() {
-    if (editButtonClicked) {
-      //see CardOrDeckName Input field not active
+    if (editButtonClicked) { //see CardOrDeckName.js Input field not active
       if (!dataBase?.DeckNames[index]?.paused || editButtonClicked) {
         setHideCreateDeckBtn(true);
         setShow(true);
@@ -129,7 +127,7 @@ export default function AddQuestionsToDeck({
   }
 
   useEffect(() => {
-    let element = document.querySelector(".modAddToDeck");
+    let element = document.querySelector('.modAddToDeck');
 
     function saveIconBlinks(event) {
       if (element && !element.contains(event.target)) {
@@ -160,8 +158,7 @@ export default function AddQuestionsToDeck({
         style={{
           cursor:
             dataBase.DeckNames[index]?.paused || !editButtonClicked
-              ? "default"
-              : "pointer",
+              ? 'default' : 'pointer',
         }}
         onClick={plusHandler}
         title='Add questions to this deck'
@@ -174,16 +171,7 @@ export default function AddQuestionsToDeck({
           contentClassName={"modAddToDeck"}
           backdrop='static'
           onHide={hideHandler}
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-            borderRadius: "12px",
-            display: "flex",
-            justifyContent: "center",
-            zIndex: "5",
-            width: "98%",
-            height: "651px",
-            position: "relative",
-          }}
+          dialogClassName='deck__addQuestion-modal posRelative justify-center'
         >
           <Modal.Header className='border-bottom-0'>
             <Modal.Title className='justify-between-align-center mod-title'>
@@ -196,17 +184,19 @@ export default function AddQuestionsToDeck({
                   src={closeWindow}
                   alt='redCross'
                   className={`nonDraggableIcon width16px height16px 
-                          ${blinkingSaveIcon ? "deck__blinkingIcon" : ""}`}
+                            ${blinkingSaveIcon ? 'deck__blinkingIcon' : ''}`
+                  }
                 />
               </button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AlertComponent
+            <QuestionAnswerComp
+              addToDeckButton={addToDeckButton}
               card={card}
               setCard={setCard}
-              newCardAdded={newCardAdded}
               error={error}
+              newCardAdded={newCardAdded}
             />
             <button
               onClick={addToDeck}

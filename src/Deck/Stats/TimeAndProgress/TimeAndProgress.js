@@ -41,7 +41,6 @@ const TimeAndProgress = () => {
         middayVal.push(timeHorizon(deckItem, 12,18))
         eveningVal.push(timeHorizon(deckItem, 18,14))
         nightVal.push(timeHorizon(deckItem, 0,6))
-       // debugger
       }
     }
     

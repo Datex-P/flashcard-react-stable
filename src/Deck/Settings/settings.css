@@ -19,8 +19,8 @@ textarea {
 .settings__saveoredit {
   cursor: pointer;
   position: absolute;
-  left: 324px;
-  top: 275px;
+  left: 83%;
+  top: 54%;
 }
 
 .settings__padding {
@@ -60,8 +60,8 @@ textarea {
 
 .settings__save-or-edit-cont {
   position: absolute;
-  right: 8px;
-  top: 115px;
+  right: 3%;
+  top: 25%;
   cursor: pointer;
 }
 

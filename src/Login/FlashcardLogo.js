@@ -7,7 +7,9 @@ function FlashcardLogo ({register=false}) {
       <img
         src={flashcard}
         alt='flashcard'
-        className={`${register? 'login__flashcardBackground-top width100px height100px':'width100px height100px'}`}
+        className={`width100px height100px 
+                  ${register? 'login__flashcardBackground-top':''}`
+        }
       />
   </div>
   )

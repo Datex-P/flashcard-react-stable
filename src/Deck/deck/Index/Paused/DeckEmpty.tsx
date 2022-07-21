@@ -1,6 +1,8 @@
-import plusimg from "../../../../icons/plus.svg";
+import React from 'react'
 import {Context} from '../../../../Context';
 import {useContext} from 'react'
+const plusLogo: string = require('../../../../icons/plus.svg').default;
+// https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript
 
 export default function DeckEmpty({ setShow }) {
   
@@ -24,7 +26,7 @@ export default function DeckEmpty({ setShow }) {
             className='posRelative top-5px ml-10px cursorPointer'
             onClick={clickHandler}
           >
-            <img src={plusimg} alt='plus' />
+            <img src={plusLogo} alt='plus' />
           </span>
         </div>
       </div>

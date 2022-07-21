@@ -13,6 +13,7 @@ let history = useHistory();
   }
 
   async function deleteHandler() {
+    console.log(email, 'email here')
     const response = await fetch(`${apiURL}/delete_account`, {
       method:'POST',
       headers:{

@@ -76,7 +76,7 @@ function NewPwd() {
             <div className='login__register__text login__col-navajowhite'>
               New Password
             </div>
-            <div className='login__reset-col '>Type your new password.</div>
+            <div className='login__reset-col'>Type your new password.</div>
           </div>
           <form onSubmit={resetPwdHandler}>
             <div className='align-center flex-column posRelative'>
@@ -92,7 +92,10 @@ function NewPwd() {
           {
             (pwdDifferent || updatedPassword) && 
             <div className='bs-5'>
-              <Alert variant={(pwdDifferent || tokenCorrupted)? 'danger': 'success'} className='height35px'>
+              <Alert 
+                  variant={(pwdDifferent || tokenCorrupted)? 'danger': 'success'} 
+                  className='height35px'
+              >
                 {pwdDifferent?
                 'Passwords are different.':
                 updatedPassword?

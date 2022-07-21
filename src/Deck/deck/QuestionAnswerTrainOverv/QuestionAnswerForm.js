@@ -7,8 +7,8 @@ function QuestionAnswerForm({
   changeHandler 
  }) {
   return (
-    <div className="mt-40px mb-30px">
-        <p className="deck__questionAnswer fontBold">
+    <div className='mt-40px mb-30px'>
+        <p className='deck__questionAnswer fontBold'>
           {
           answer?'Answer':'Question'
           }

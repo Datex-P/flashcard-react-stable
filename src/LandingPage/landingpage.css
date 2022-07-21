@@ -25,6 +25,17 @@
   cursor: pointer;
 }
 
+.landing__createDeckModal {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 651px;
+  position: absolute;
+  border-radius: 10px;
+  width: 440px;
+  display: flex;
+  margin: auto;
+  justify-content:center;
+}
+
 .landing__row__btn-create-deck {
   /*background color of create deck button*/
   z-index: 4;

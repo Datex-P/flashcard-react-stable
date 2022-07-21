@@ -497,6 +497,23 @@
   animation-iteration-count: 2;
 }
 
+.deck__valueTooBig {
+    left: 78%;
+    top: 30%;
+    width: fit-content;
+    background: red;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.deck__addQuestion-modal {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    z-index: 5;
+    width: 98%;
+    height: 651px;
+}
+
 .deck__bg-white {
   background-color:white;
 }

@@ -31,19 +31,21 @@ export default function QuestAnswerTrainOverv({
 
 
   const [editModeActive, setEditModeActive] = useState(false);
-  const [randomQuestion, setRandomQuestion] = useState(null);
-  const [cardModified, setCardModified] = useState(false);
-  const [pauseOrDeleteText, setPauseOrDeleteText] = useState(true);
-  const [show, setShow] = useState(false);
-  const [showDeleteWindow, setShowDeleteWindow] = useState(true);
-  const [timer, setTimer] = useState(null);
-  const [trash, setTrash] = useState(false);
-  const [deckLengthNotZero, setDeckLengthNotZero] = useState(true);
   const [card, setCard] = useState({ answer: "", question: "" });
-  const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
+  const [cardModified, setCardModified] = useState(false);
+  const [deckFinished, setDeckFinished] = useState(false)
+  
+  const [pauseOrDeleteText, setPauseOrDeleteText] = useState(true);
+  const [randomQuestion, setRandomQuestion] = useState(null);
+  const [show, setShow] = useState(false);
+  
+  const [showDeleteWindow, setShowDeleteWindow] = useState(true);
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name
   const [showRepeatBtn, setShowRepeatBtn] = useState(false); //repeatbtn that is shown in questionanswertrain file
-  const [deckFinished, setDeckFinished] = useState(false)
+  
+  const [timer, setTimer] = useState(null);
+  const [trash, setTrash] = useState(false);
+  const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
 
   const {
     apiURL,
@@ -79,7 +81,6 @@ export default function QuestAnswerTrainOverv({
 
   useEffect(()=>{
     console.log('edit btn was clicked')
-   // debugger
   },[editModeActive])
 
   async function generateRandom() {
@@ -91,12 +92,10 @@ export default function QuestAnswerTrainOverv({
        // console.log(data, 'data in generate random here')
       }
     }
-    if (data.length === 0) { //triggers in case all cards inside deck are paused
+    if (data?.length === 0) { //triggers in case all cards inside deck are paused
       alert('add questions to deck');
-      setDeckLengthNotZero(false);
     } else {
-      setDeckLengthNotZero(true);
-      if (dataBase.queue[0] && dataBase.queue[0].timeLeft === 0) {
+      if (dataBase?.queue[0] && dataBase?.queue[0]?.timeLeft === 0) {
         //need to have algorithm to filter s in queue related onlz for this deck
         //also not tot forget add decremental time algorith for all crads no matter waht deck
         newRandomQuestion = dataBase.queue.shift().index;
@@ -104,8 +103,8 @@ export default function QuestAnswerTrainOverv({
         newRandomQuestion = Math.floor(Math.random() * data.length);
          console.log(newRandomQuestion, "randomQuestion");
         let newDataBase = { ...dataBase };
-
-         if((dataBase.DeckNames[index].data.filter(x=>'openHistory' in x === false)).length ===0) {
+      
+         if(dataBase.DeckNames[index].data.filter(x=> x?.openHistory?.length ===0).length ===0) { //checks whether there are cards that were not opened in specific time frame
            alert('no more cards to study')
            setDeckFinished(true)
            setShow(false)
@@ -146,7 +145,7 @@ export default function QuestAnswerTrainOverv({
           });
 
       }
-      if(newRandomQuestion === randomQuestion && dataBase.DeckNames[index].data.length !== 1){
+      if(newRandomQuestion === randomQuestion && dataBase?.DeckNames[index].data.length !== 1){
         generateRandom()
       } else {
         setRandomQuestion(newRandomQuestion);
@@ -191,7 +190,7 @@ export default function QuestAnswerTrainOverv({
   setTimeout(()=>{
     setShow(false)
     console.log('set show set to fale')
-  },10000)
+  },800)
 
   useEffect(() => {
     let timeLeft=null
@@ -211,7 +210,7 @@ export default function QuestAnswerTrainOverv({
       setShowProgressDiagram(false);
     } else {
       clearInterval(timer);
-      setShowProgressDiagram(true);
+     // setShowProgressDiagram(true); deactivated because always shown on front page
     }
     return function () {clearInterval(timeLeft)}
     // eslint-disable-next-line
@@ -292,19 +291,20 @@ export default function QuestAnswerTrainOverv({
           setDecksAreVisible={setDecksAreVisible}
           setScrollbarVisible={setScrollbarVisible}
       />      
-      {deckLengthNotZero  //deck needs more than one card to be opened
-      && !paused &&  //not able to open Deck when in paused Mode
+      {
+        data?.length > 0 &&
+       !paused &&  //not able to open Deck when in paused Mode
       (
         <BasicOrangeWindow
           deckFinished={deckFinished}
+          index={index}
+          id='questionAnswerOverview'
           questionViewActive
           questionAnswerWindow
           show={show}
           setShow={setShow}
           generateRandom={generateRandom}
-          index={index}
           setScrollbarVisible={setScrollbarVisible}
-          id='questionAnswerOverview'
           setEditModeActive={setEditModeActive}
           title={`Deck: ${name}`}
           showFromParent={threeDotsMenuOpen}

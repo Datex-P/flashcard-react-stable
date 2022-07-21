@@ -27,7 +27,7 @@ export default function Deck({
   const [show, setShow] = useState(false);
   const [threeDotsMenuOpen, setThreeDotsMenuOpen] = useState(false);
   const [deckNameLengthRight, setDeckNameLengthRight] = useState(true) //deckname length is not too short and not too long
-  const [nameTooLongOrShort, setNameTooLongOrShort] = useState(false) //if true deckname is too long or too short
+  
   const [showDeleteWindow, setShowDeleteWindow] = useState(true); //if true and triggered the delete window with yes and no button is shown
   const [trash, setTrash] = useState(false);
   const [pauseIsActive, setPauseIsActive] = useState(true);
@@ -37,9 +37,9 @@ export default function Deck({
     dataBase, setDataBase,
     editButtonClicked, setEditButtonClicked,
     setHideCreateDeckBtn,
+    nameTooLongOrShort, setNameTooLongOrShort,
     threeDotsOpen, setThreeDotsOpen,
-    setNameOfTopDeck,
-    setChangeDeckNameOpen
+    setNameOfTopDeck
   } = useContext(Context);
 
   useEffect(()=>{
@@ -58,11 +58,6 @@ export default function Deck({
       //console.log(cIndex)
       // eslint-disable-next-line
     }, [trigger]);*/
-
-  useEffect(() => {
-    setChangeDeckNameOpen(!editButtonClicked); //when input field of deck name is open it is set to false
-    // eslint-disable-next-line
-  }, [editButtonClicked]);
 
   useEffect(() => {
     console.log(showDeleteWindow, 'show delete window')
@@ -228,7 +223,6 @@ export default function Deck({
                 deleteWindow={() => {
                   setShowDeleteWindow(false); 
                   setThreeDotsOpen(false) //not sure if needed here
-                  console.log('I triggered delete window')
                 }}
                 trashEvent={() => {
                   deleteDeck();
@@ -243,27 +237,26 @@ export default function Deck({
             index={index}
             setShow={setShow}
             paused={paused}
-            name={name}
             style={style}
           />
           <QuestAnswerTrainOverv
-            setHideCreateDeckBtn={setHideCreateDeckBtn}
-            name={name}
-            index={index}
             data={data}
+            index={index}
+            name={name}
             paused={paused}
             setDecksAreVisible={setDecksAreVisible}
+            setHideCreateDeckBtn={setHideCreateDeckBtn}
+            setScrollbarVisible={setScrollbarVisible}
             pauseIsActive={pauseIsActive}
             setPauseIsActive={setPauseIsActive}
-            setScrollbarVisible={setScrollbarVisible}
           />
           {active === index && (
             <AddQuestionsToDeck
-              setHideCreateDeckBtn={setHideCreateDeckBtn}
+              index={index}
               background={style.background}
+              setHideCreateDeckBtn={setHideCreateDeckBtn}
               setScrollbarVisible={setScrollbarVisible}
               name={name}
-              index={index}
               show={show}
               setShow={setShow}
             />

@@ -42,27 +42,12 @@ function Login() {
 
   const {user, deck}= await response.json()
 
-
-   // DeckNames: [data.decks.map(x=>x.deckName)]
-  //  DeckNames:deck.map((el,index, arr)=> ({name:el.deckName,
-  //   backgroundColor:el.backgroundColor,
-  //   data:el.data})),
-      //name: deck.map(el=>),
-      // backgroundColor: 'default',
-      // data: [{
-      //         question: `question5`,
-      //         answer: `answer5`,
-      //         paused: false
-      //       }],
-
-  //console.log(decks, 'decks here')
-
   if(response.status === 200) {
     console.log('response status 200 here')
     setDataBase({
-     DeckNames: deck.map((el,index, arr)=> ({name:el.deckName,
+     DeckNames: deck?.map((el)=> ({name:el.deckName,
         backgroundColor:el.backgroundColor,
-        data:el.data}))
+        data:el.data})) || []
         ,
      active:2,
       queue: [],
@@ -82,34 +67,33 @@ function Login() {
       ],
       userTimePreferences: [
         {
-          name: user.userTimePreferences[0].name,
-          amount: user.userTimePreferences[0].amount,
-          unit: user.userTimePreferences[0].unit
+          name: user?.userTimePreferences?.[0].name || 'again',
+          amount: user?.userTimePreferences?.[0].amount || 2,
+          unit: user?.userTimePreferences?.[0].unit || 'min'
         },
         {
-          name: user.userTimePreferences[1].name,
-          amount: user.userTimePreferences[1].amount,
-          unit: user.userTimePreferences[1].unit
+          name: user?.userTimePreferences?.[1].name || 'good',
+          amount: user?.userTimePreferences?.[1].amount || 5,
+          unit: user?.userTimePreferences?.[1].unit || 'min'
         },
         {
-          name: user.userTimePreferences[2].name,
-          amount: user.userTimePreferences[2].amount,
-          unit: user.userTimePreferences[2].unit
+          name: user?.userTimePreferences?.[2].name || 'easy',
+          amount: user?.userTimePreferences?.[2].amount || 10,
+          unit: user?.userTimePreferences?.[2].unit || 'min'
         }
       ],
       userPreferences: {
-        days: user.userPreferences.days, //days that user wants to study
-        backgroundColor: user.backgroundColor,
-        weeksInRow: user.userPreferences.weeksInRow, //weeks in a row where user reached study goal
-        toReview: user.userPreferences.toReview
+        days: user?.userPreferences?.days || 0, //days that user wants to study
+        backgroundColor: user?.backgroundColor || 'default',
+        weeksInRow: user?.userPreferences?.weeksInRow || 0, //weeks in a row where user reached study goal
+        toReview: user?.userPreferences?.toReview || 0
       },
-      hourlyBreakdown: user.hourlyBreakdown,
-      studyTime: user.studyTime,
+      hourlyBreakdown: user?.hourlyBreakdown || '1 month',
+      studyTime: user?.studyTime || 0,
       calendarReset: false,
-      weeklyTarget: user.weeklyTarget,
-      daysOfStudyThisWeek: user.daysOfStudyThisWeek, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
-      studied: [new Date()],
-    
+      weeklyTarget: user?.weeklyTarget || 1,
+      daysOfStudyThisWeek: user?.daysOfStudyThisWeek || 0, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
+      studied: [new Date()]
     })
     //     localStorage.setItem('token', data.user) //store token so it can be used
     history.push('/main')
@@ -125,98 +109,6 @@ function Login() {
 useEffect(()=>{
   console.log(dataBase, 'data base hewre')
 },[dataBase, setDataBase])
-
-// useEffect(() => {
-//   let dB = {
-
-//     DeckNames: [],
-//     active:2,
-//     queue: [],
-//     checkboxClicked: false,
-//     showDeleteFrame: true,
-//     openedToday: true,
-//     deckCompleted: 2,
-//     timeValues: {
-//       left: 2,
-//       middle: 5,
-//       right: 10
-//     },
-//     breakdownIntervals: [
-//       {month: 1},
-//       {month: 3},
-//       {month: 12}
-//     ],
-//     userTimePreferences: [
-//       {
-//         name: 'again',
-//         amount: 3,
-//         unit: 'm'
-//       },
-//       {
-//         name: 'good',
-//         amount: 5,
-//         unit: 'h'
-//       },
-//       {
-//         name: 'easy',
-//         amount: 10,
-//         unit: 'd'
-//       }
-//     ],
-//     userPreferences: {
-//       days: 0,
-//       backgroundColor: 'default',
-//       weeksInRow: 0,
-//       toReview: 0
-//     },
-//     hourlyBreakdown: '1 month',
-//     studyTime: 0,
-//     calendarReset: false,
-//     weeklyTarget: 1,
-//     daysOfStudy: {
-//       day: 4
-//     },
-//     studied: [new Date()],
-//   };
-
-//   // for (let i = 100; i < 103; i++) {
-//   //   let arr:{}[] = [];
-
-//   //   for (let i = 1; i < 5; i++) {
-      
-//   //     if(i===3 || i ===2) {
-//   //       arr.push({
-//   //         question: `question${i}`,
-//   //         answer: `answer${i}`,
-//   //         paused: false
-//   //       })
-//   //     } else {
-//   //       arr.push({
-//   //         question: `question${i}`,
-//   //         answer: `answer${i}`,
-//   //         paused: true
-//   //       })
-//   //     }
-//   //   };
-//   //   dB.DeckNames.push(
-//   //     {
-//   //       name:`Litera${i}`,
-//   //       backgroundColor: colors[-100+i],
-//   //       data: arr,
-//   //       thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
-//   //       color: colors[i%colors.length],
-//   //       toStudyValue:0,
-//   //       cardsToday: 0,
-//   //       paused:false,
-//   //       skipPausedCards: 0,
-//   //       pauseMode:false,   //when active the pause switch can be clicked in question answers when cards are paused
-//   //       editModeActive:false //when editModeActive is true, pause switch can t be clicked
-//   //     }
-//   //    );
-//   //   dB.active++
-//   // }
-//   setDataBase(dB)
-// }, []);
 
 
 useEffect(()=>{

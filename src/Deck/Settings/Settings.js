@@ -82,6 +82,7 @@ function Settings({ history }) {
     <BasicOrangeWindow
       questionViewActive
       show
+      settings
       setShow={setShow}
       title={<div className='fontBold font-22px'>Settings</div>}
     >
@@ -154,7 +155,7 @@ function Settings({ history }) {
           /> 
         </div>
         <div className='settings__weekly-target justify-center mt-3px'>
-          Target met: {dataBase.userPreferences.weeksInRow} weeks in a row.
+          Target met: {dataBase?.userPreferences?.weeksInRow} weeks in a row.
         </div>
       </div>
       <ColorScheme />

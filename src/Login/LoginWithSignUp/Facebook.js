@@ -26,17 +26,15 @@ function Facebook() {
 
       const {createUser, deck}= await response.json()
       let user = createUser
-      console.log(createUser, 'create user')
-      //console.log(deck, 'deck here')
-      if (response.status === 200) {
-      //  debugger
+ 
+      if (response.status === 200) { 
         setEmail(email); //current logged in user is primary key in database
         setDataBase({
-          DeckNames: deck?.map((el,index, arr)=> ({name:el.deckName,
+          DeckNames: deck?.map((el)=> ({name:el.deckName,
              backgroundColor:el.backgroundColor,
              data:el.data})) || []
              ,
-          active:2,
+           active:2,
            queue: [],
            checkboxClicked: false,
            showDeleteFrame: true,
@@ -78,9 +76,9 @@ function Facebook() {
            hourlyBreakdown: user?.hourlyBreakdown || '1 month',
            studyTime: user?.studyTime || 0,
            calendarReset: false,
-           weeklyTarget: user?.weeklyTarget || 0,
+           weeklyTarget: user?.weeklyTarget || 1,
            daysOfStudyThisWeek: user?.daysOfStudyThisWeek || 0, //days the user actually studied this week, as soon as he interacts with deck it counts as studied
-           studied: [new Date()],       
+           studied: [new Date()]      
          })
         history.push('/main');
       }

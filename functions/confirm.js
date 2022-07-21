@@ -21,7 +21,7 @@ console.log(cryptedPassword, 'crypted password here')
 
 if (decoded) { //token is correct and user gets created
  
-    await User.create({email: email, name:name, password:cryptedPassword, backgroundColor:'default'});
+    await User.create({email: email, name:name, password:cryptedPassword, backgroundColor:'default', weeklyTarget: 1});
     
     return {
         statusCode: 302,

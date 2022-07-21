@@ -6,12 +6,12 @@ const Button = forwardRef ((
  okRef
 )=> {
 console.log(props, 'props in button')
-const {dataBase, setDataBase, setActive, colors, user} = useContext(Context);
+const {dataBase, setDataBase, setActive, colors, user, setArrowDown} = useContext(Context);
 
 let {addDeckHandler, 
     closeHandler, 
     setInputField, 
-    setArrowDown, 
+   // setArrowDown, 
     setHideCreateDeckBtn,
     setNameTooShortOrLong, setScrollbarVisible} = props.data
 
@@ -56,7 +56,7 @@ let {addDeckHandler,
         setArrowDown(true);
         // setDecksAreVisible(false); 
     }
-    //debugger
+ //   debugger
   }
 
   // async function okHandler(){

@@ -90,12 +90,9 @@ function ThreeDotsBtn({
         } else {
           setTimeout(()=>{
           if (!stopRedCrossListener) {
-          //  debugger
           setBlinkingSaveIcon(true);
-        //  debugger
           setTimeout(() => {
             setBlinkingSaveIcon(false);
-          //  debugger
           }, 2000);
         }
         }, 1000)

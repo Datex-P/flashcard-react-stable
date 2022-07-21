@@ -377,6 +377,10 @@ input[type="number"] {
   margin-top: 290px;
 }
 
+.mt-325px {
+  margin-top: 325px;
+}
+
 .ml-5px {
   margin-left: 5px;
 }
@@ -475,6 +479,10 @@ input[type="number"] {
 
 .height100px {
   height: 100px;
+}
+
+.heightFitContent {
+  height: fit-content;
 }
 
 .width20px {
@@ -912,7 +920,7 @@ a {
 
 #createDeck {
   position: absolute;
-  top: 170px;
+ // top: 170px;
 }
 
 .close {
@@ -998,6 +1006,8 @@ a {
   background-color: rgba(200, 168, 115) !important;
   margin: auto;
   padding: 15px;
+  top: 25%;
+  position: absolute;
 }
 
 .modal-footer {

@@ -21,23 +21,21 @@ exports.handler = async (event, context) => {
   // if (user?.email) {
   //  decks = await Deck.find({email:user.email})
   // }
- // const match = user && await bcrypt.compare(password, user.password.toString())
-  let match = true
+  const match = user && await bcrypt.compare(password, user.password.toString())
+  //let match = true
 
-  if (!match) {
+  if (match) {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", 
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({user, deck}),
+    };
+  }
     return {
       statusCode: 405,
       body: "Invalid user or password",
     }
-  }
-
-  return {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*", 
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({user, deck}),
-  };
-  
 };

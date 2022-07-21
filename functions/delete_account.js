@@ -1,5 +1,6 @@
 require('dotenv').config();
 const Decks = require('../server/models/deck');
+const User = require('../server/models/user');
 const mongoose = require('mongoose');
 
 exports.handler = async (event) => {
@@ -12,8 +13,10 @@ exports.handler = async (event) => {
 
  let {email} = JSON.parse(event.body);
 
-if (email) {
-  let deleted = await Decks.deleteMany({email: email});
+ let deleted = await Decks.deleteMany({email:email}) && 
+               await User.deleteOne({email:email})
+
+if (deleted) {
     
     return {
         statusCode: 200,
@@ -23,7 +26,7 @@ if (email) {
    
     return {
         statusCode: 500,
-        body:JSON.stringify('Token corrupted')
+        body:JSON.stringify('Network error')
     }
   }  
 };

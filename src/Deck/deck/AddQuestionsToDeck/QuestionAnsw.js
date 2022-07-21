@@ -3,7 +3,9 @@ import { FormControl } from 'react-bootstrap';
 import CardAddedOrInput from './CardAddedOrInput';
 import '../deck.css';
 
-function AlertComponent({ card, setCard, newCardAdded, error }) {
+function QuestionAnsw({ 
+  addToDeckButton, 
+  card, setCard, newCardAdded, error }) {
  
   function changeHandler(e) {
     let newCard = { ...card };
@@ -26,7 +28,7 @@ function AlertComponent({ card, setCard, newCardAdded, error }) {
           onChange={changeHandler}
           className='deck__formControl posRelative'
         />
-        {newCardAdded && 
+        {addToDeckButton && 
           <CardAddedOrInput 
             card={card} 
             error={error}
@@ -50,4 +52,4 @@ function AlertComponent({ card, setCard, newCardAdded, error }) {
   );
 }
 
-export default AlertComponent;
+export default QuestionAnsw;

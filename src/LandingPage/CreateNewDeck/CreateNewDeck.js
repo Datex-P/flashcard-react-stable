@@ -1,29 +1,26 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
-import { Modal, Row } from 'react-bootstrap';
-import { Context } from '../../Context';
-import InputSelectField from './InputSelectField';
-import ButtonContainer from './ButtonContainer';
+import React, { useContext, useState, useRef, useEffect } from "react";
+import { Modal, Row } from "react-bootstrap";
+import { Context } from "../../Context";
+import InputSelectField from "./InputSelectField";
+import ButtonContainer from "./ButtonContainer";
 
 export default function CreateNewDeck({
   addNewDeckWindow,
   createDeckHandler,
   closeHandler,
   editButtonClicked,
-  setArrowDown,
   inputField, setInputField,
   setScrollbarVisible, // scrollbar dissapear when stats or settings are open
-}) 
-{
+}) {
   const {
-    apiURL, 
-    email, 
+    apiURL,
+    email, //the primary key in the database of the active user
     colors,
     dataBase, setDataBase,
-    hideCreateDeckBtn,setHideCreateDeckBtn,
-    setShowProgressDiagram 
+    hideCreateDeckBtn, setHideCreateDeckBtn,
+    setShowProgressDiagram,
   } = useContext(Context);
 
-  
   const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
   const inputRef = useRef(null);
   const okRef = useRef(null);
@@ -36,138 +33,106 @@ export default function CreateNewDeck({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addNewDeckWindow]);
 
+  function addNewDeckName() {
+    let newDataBase = { ...dataBase };
 
-useEffect(()=>{
-  //debugger
-console.log(addNewDeckWindow, 'add new deck window')
-  if(addNewDeckWindow){
-    //debugger
-    const createDeckElem = window.document.getElementById('createDeck');
-  if (createDeckElem) {
-   // debugger
-    var createDeckElement = createDeckElem.parentElement;
-  }
-  if (createDeckElement) {
-    //debugger
-    createDeckElement.style.display = "flex";
-    createDeckElement.style.justifyContent = "center";
-    createDeckElement.style.alignItems = "center";
-    createDeckElement.style.height = "651px";
-   // debugger
-  }
-}
-//debugger
-},[addNewDeckWindow])
-
-
-function addNewDeckName() {
-  let newDataBase = { ...dataBase };
-
- // const data =  await response.json()
-  let index = newDataBase.DeckNames.push({
-    name: inputField,
-    data: [],
-    cardsToday: 0,
-    color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length],
-    paused: false,
-    thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
-    skipPausedCards: 0,
-    pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
-    editModeActive: false, //when editModeActive is true, pause switch can t be clicked
-  });
-
-  if (
-    dataBase?.DeckNames?.length === 1 ||
-    dataBase?.DeckNames?.length === 0
-  ) {
-    setScrollbarVisible(false); //scrollbar on the side is not visible when zero or only one deck on the stack
-  } else {
-    setScrollbarVisible(true);
-  }
- // setActive(index - 1);
-  setInputField("");
-  setDataBase(newDataBase);
- // close(); not sure if needed
-}
-
-async function addDeckHandler() {
-  console.log('hello from add deck handler')
-  let backgroundColor = colors[Object.keys(dataBase?.DeckNames).length % colors?.length]
-    try{
-     let deckName = inputField
-      const response =  await fetch(`${apiURL}/create_deck`, {
-        method:"POST",
-      headers: {
-         "Access-Control-Allow-Origin": "*",     
-        "Content-Type":"application/json",
-      },
-      body: JSON.stringify({
-        email:email,
-        deckName: deckName,
-        backgroundColor:backgroundColor
-      })
+    // const data =  await response.json()
+    let index = newDataBase.DeckNames.push({
+      name: inputField,
+      data: [],
+      cardsToday: 0, //cards that were studied today of this deck
+      color: colors[Object.keys(dataBase?.DeckNames).length % colors?.length], //probably not needed
+      backgroundColor: colors[Object.keys(dataBase?.DeckNames).length % colors?.length], 
+      paused: false,
+      thisDeckCompleted: false, //shows whether the study goal of the particular deck is reached
+      skipPausedCards: 0,
+      pauseMode: false, //when active the pause switch can be clicked in question answers when cards are paused
+      editModeActive: false, //when editModeActive is true, pause switch can t be clicked
     });
-    let data = await response.json()
-    console.log(data, 'data create deck')
 
-    if (data.status === 200) {
-      console.log('worked fine')
+    if (
+      dataBase?.DeckNames?.length === 1 ||
+      dataBase?.DeckNames?.length === 0
+    ) {
+      setScrollbarVisible(false); //scrollbar on the side is not visible when zero or only one deck on the stack
+    } else {
+      setScrollbarVisible(true);
     }
-} catch(error) {
-console.log(error, 'error here')
-}
- setHideCreateDeckBtn(false)
- setNameTooShortOrLong(false)
-addNewDeckName()
-closeHandler()
-}
+    // setActive(index - 1);
+    setInputField("");
+    setDataBase(newDataBase);
+    // close(); not sure if needed
+  }
+
+  async function addDeckHandler() {
+    let backgroundColor =
+      colors[Object.keys(dataBase?.DeckNames).length % colors?.length];
+    try {
+      let deckName = inputField;
+      const response = await fetch(`${apiURL}/create_deck`, {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          deckName: deckName,
+          backgroundColor: backgroundColor,
+        }),
+      });
+      let data = await response.json();
+      console.log(data, "data create deck");
+
+      if (data.status === 200) {
+        console.log("worked fine");
+      }
+    } catch (error) {
+      console.log(error, "error here");
+    }
+    setHideCreateDeckBtn(false);
+    setNameTooShortOrLong(false);
+    addNewDeckName();
+    closeHandler();
+  }
 
   const deckProps = {
-    addDeckHandler:addDeckHandler,
-    setArrowDown: setArrowDown,
+    addDeckHandler: addDeckHandler,
     inputField: inputField,
     setInputField: setInputField,
     closeHandler: closeHandler,
     setHideCreateDeckBtn: setHideCreateDeckBtn,
     setNameTooShortOrLong: setNameTooShortOrLong,
-    setScrollbarVisible:setScrollbarVisible
+    setScrollbarVisible: setScrollbarVisible,
   };
 
   return (
-    
-    <Row className='justify-center mt-290px'>
-      {!hideCreateDeckBtn && 
+    <Row className='justify-center mt-325px'>
+      {!hideCreateDeckBtn && (
         <button
-          className={`landing__row__btn-create-deck posAbsolute ${
-            editButtonClicked ? 'cursorPointer' : ''
-          }`}
+          className={`landing__row__btn-create-deck posAbsolute 
+                    ${editButtonClicked ? 'cursorPointer' : ''}`
+          }
           onClick={createDeckHandler}
           title='Click to create a new deck'
         >
           Create Deck
         </button>
-      }
-      <div className='mt-40px'>
+      )}
+      <div className='mt-40px width100pc heightFitContent'>
         <Modal
-          show={true}
-          //show={addNewDeckWindow}
+          show={addNewDeckWindow}
           backdrop='static'
           keyboard={false}
           id='createDeck'
           centered
-          style={{
-            backgroundColor:'rgba(0, 0, 0, 0.6)',
-            height: '651px !important',
-            width:'98%',
-            position: 'relative',
-            borderRadius: '10px'
-          }}
+          dialogClassName='landing__createDeckModal'
         >
           <Modal.Header>
             <Modal.Title>Name for new deck</Modal.Title>
           </Modal.Header>
           <Modal.Body className='align-center flex-column'>
-            <InputSelectField 
+            <InputSelectField
               inputField={inputField}
               setInputField={setInputField}
               nameTooShortOrLong={nameTooShortOrLong}
@@ -175,10 +140,7 @@ closeHandler()
               ref={okRef}
             />
           </Modal.Body>
-             <ButtonContainer 
-              data={deckProps} 
-              ref={okRef}
-            /> 
+          <ButtonContainer data={deckProps} ref={okRef} />
         </Modal>
       </div>
     </Row>

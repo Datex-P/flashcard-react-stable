@@ -5,19 +5,22 @@ export const Context = React.createContext(null as any)
 
 export default function ContextProvider({ children }:any) {
 
-  const [changeDeckNameOpen, setChangeDeckNameOpen] = useState(false); //input field to change deckname is open
-  const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
   const [active, setActive] = useState(0);
+  const [arrowDown, setArrowDown] = useState(false); //visible when no decks in stack
+  const [apiURL, setAPIURL] = useState('') //either localhost or netlify
   const [dataBase, setDataBase] = useState<any>([]);
-  const [showProgressDiagram, setShowProgressDiagram] = useState(false)
-  const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
-  const [threeDotsOpen, setThreeDotsOpen] = useState(false);
-  const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
-  const [emailAdress, setEmailAdress] = useState(null)
+ 
+  const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
   const [email, setEmail] = useState('pp')
-  const [nameOfTopDeck, setNameOfTopDeck] = useState(null)
-  const [apiURL, setAPIURL] = useState('')
+  const [emailAdress, setEmailAdress] = useState(null)
+  const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
+  
+  const [showProgressDiagram, setShowProgressDiagram] = useState(false)
+  const [showThreeDots, setShowThreeDots] = useState(true) //three dots menu gets hidden in edit mode etc.
   const [stopRedCrossListener, setStopRedCrossListener] = useState(false) 
+  const [threeDotsOpen, setThreeDotsOpen] = useState(false);
+  const [nameOfTopDeck, setNameOfTopDeck] = useState(null) //name of the deck that is on top of the deck stack
+  const [nameTooLongOrShort, setNameTooLongOrShort] = useState(false) //if true deckname is too long or too short
 
   useEffect(()=>{
   process.env.NODE_ENV === 'production' ? 
@@ -142,14 +145,15 @@ export default function ContextProvider({ children }:any) {
       value={{ 
         active, setActive, 
         apiURL, setAPIURL,
+        arrowDown, setArrowDown,
         colors,
-        changeDeckNameOpen, setChangeDeckNameOpen,
         dataBase, setDataBase, 
         editButtonClicked, setEditButtonClicked,
         email, setEmail,
         emailAdress, setEmailAdress,
         hideCreateDeckBtn, setHideCreateDeckBtn,
         nameOfTopDeck, setNameOfTopDeck,
+        nameTooLongOrShort, setNameTooLongOrShort,
         showProgressDiagram, setShowProgressDiagram,
         styles, setStyles,     
         showThreeDots, setShowThreeDots,

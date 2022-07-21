@@ -26,11 +26,9 @@ export default function DeckOrCardName({ data: {
       setThreeDotsMenuOpen(true)
       setNameTooLongOrShort(false)
       setThreeDotsOpen(true)
-    //  debugger
     } else {
       setNameTooLongOrShort(true)
       setDeckNameLengthRight(false)
-    //  debugger
     }
 
     let newDataBase = {...dataBase}
@@ -43,7 +41,6 @@ export default function DeckOrCardName({ data: {
   useEffect(() => {
     if(!editButtonClicked) {
       setStopRedCrossListener(true)
-    //  debugger
     }
   }, [editButtonClicked])
 

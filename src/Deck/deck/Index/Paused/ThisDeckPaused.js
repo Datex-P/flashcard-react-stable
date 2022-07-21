@@ -1,11 +1,16 @@
 import React, { useContext}  from 'react';
-import play from "../../../icons/play.svg";
-import { Context } from "../../../Context";
+import play from '../../../../icons/play.svg';
+import { Context } from '../../../../Context';
 
-export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}) {
+export default function ThisDeckPaused ({index}) {
 
-  const { apiURL, dataBase, setDataBase, email, nameOfTopDeck } = useContext(Context);
-  let colors = ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'];
+  const { 
+          apiURL, 
+          colors, email, 
+          dataBase, setDataBase, 
+          nameOfTopDeck,
+          showThreeDots, setShowThreeDots
+  } = useContext(Context);
 
  async function handlePause() { 
     let newDataBase = { ...dataBase };
@@ -31,7 +36,7 @@ export default function ThisDeckPaused ({index, setShowThreeDots, showThreeDots}
   return (
       <div
         className='deck__deckEmptyCont justify-evenly-align-center flex-column'
-        style={{ background: colors[index % 5] }}
+        style={{background: colors[index % 5]}}
       >
         <div>
         This deck is paused.

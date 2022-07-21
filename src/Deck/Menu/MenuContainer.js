@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import Hamburger from './Hamburger';
 import '../../styles.scss';
@@ -12,9 +12,15 @@ import logoutIcon from '../../icons/logout.svg'
 
 
 export default function MenuContainer() {
-  const {editButtonClicked, showProgressDiagram} = useContext(Context);
+  const {dataBase, editButtonClicked, showProgressDiagram} = useContext(Context);
   const [menuOpen, setMenuOpen] = useState(false); //opens the Menu when set to true
   const handleClose = () => {setMenuOpen(false)}; // closes the Menu when handleclos is triggered
+
+  useEffect(()=>{
+    console.log(showProgressDiagram, 'show progress here')
+  },[showProgressDiagram])
+
+
 
   return (
     <div className='mt-25px height100px justify-between pl-20px pr-10px'>
@@ -89,7 +95,9 @@ export default function MenuContainer() {
          </div> 
         }
        {
-        showProgressDiagram &&
+        showProgressDiagram && //dissapears when stats or settings page is open
+        dataBase?.DeckNames?.length > 0  //handle case that deck but no cards
+          &&
           <ShowProgressD/>
           }  
     </div>
