@@ -12,7 +12,7 @@ export default function ContextProvider({ children }:any) {
  
   const [editButtonClicked, setEditButtonClicked] = useState(true); //active when editButton next to DeckName is clicked
   const [email, setEmail] = useState('pp')
-  const [emailAdress, setEmailAdress] = useState(null)
+  const [emailAddress, setEmailAddress] = useState(null)
   const [hideCreateDeckBtn, setHideCreateDeckBtn] = useState(false)
   
   const [showProgressDiagram, setShowProgressDiagram] = useState(false)
@@ -150,7 +150,7 @@ export default function ContextProvider({ children }:any) {
         dataBase, setDataBase, 
         editButtonClicked, setEditButtonClicked,
         email, setEmail,
-        emailAdress, setEmailAdress,
+        emailAddress, setEmailAddress,
         hideCreateDeckBtn, setHideCreateDeckBtn,
         nameOfTopDeck, setNameOfTopDeck,
         nameTooLongOrShort, setNameTooLongOrShort,

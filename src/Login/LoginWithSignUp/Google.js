@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+
 // https://developers.google.com/identity/sign-in/web
 // documentation google for login
 

@@ -1,9 +1,9 @@
 import React, {useState, useEffect,useContext} from "react";
 import { withRouter } from 'react-router-dom';
-import { Context } from "../../Context";
+import { Context } from '../../Context';
 import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow';
 import ThreeDotsBtn from '../deck/ThreeDotsBtn/ThreeDotsBtn';
-import PieDiagramm from './PieDiagramm';
+import PieDiagram from './PieDiagram';
 import CalAndButtons from './CalAndButtons';
 import TimeAndProgress from './TimeAndProgress/TimeAndProgress';
 import HourlyBreakdown from './HourlyBreakdown';
@@ -50,6 +50,8 @@ function Stats({ history }:any) {
         questionViewActive
         stats
         show
+        index = {0}
+        setScrollbarVisible={()=>{}}
         setShow={setShowFunc}
         title={<div className='stats__header'>Stats</div>}
         menu={
@@ -88,19 +90,22 @@ function Stats({ history }:any) {
                 }
           </div>
           <div className='align-center marginAuto flex-column width95pc stats__DeleteCardQuestionBox__cont'>
-            <PieDiagramm />
+            <PieDiagram />
             
             {showDeleteFrame && 
               <DeleteCardQuestionBox
-                resetQuestionText
-                showMessageAgain
-                card='card'
-                checked={checked}
-                setChecked={setChecked}
-                showDeleteWindow={showDeleteFrame}
-                deleteWindow={deleteWindowHandler}
-                trashEvent={trashEventHandler}
-                onHide={() => {}}
+              resetQuestionText
+              showMessageAgain
+              card='card'
+              // checked={checked}
+              //  setChecked={setChecked}
+              showDeleteWindow={()=>{}}
+              deleteWindow={()=>{}}
+              trashEvent={()=>{}} 
+              pauseOrDelete={()=>{}} 
+              randomQuestion={()=>{}} 
+              index={()=>{}}             
+              //  onHide={() => {}}
               />
             }
           </div>

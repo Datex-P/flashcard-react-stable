@@ -1,15 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { Context } from "../../../Context";
 import { Card } from "react-bootstrap";
 import "../../../styles.scss";
-
 import NameLongOrShort from './NameLongOrShort'
-import ThreeDotsBtn from "../ThreeDotsBtn/ThreeDotsBtn";
-import AddQuestionsToDeck from "../AddQuestionsToDeck/AddQuestionsToDeck";
-import QuestAnswerTrainOverv from "../QuestionAnswerTrainOverv/QuestAnswerTrainOverv";
-
-import DeckOrCardName from "./DeckOrCardName";
-import DeleteCardQuestionBox from "../DeleteCardQuestionBox/DeleteCardQuestionBox";
+import ThreeDotsBtn from '../ThreeDotsBtn/ThreeDotsBtn';
+import AddQuestionsToDeck from '../AddQuestionsToDeck/AddQuestionsToDeck';
+import QuestAnswerTrainOverv from '../QuestionAnswerTrainOverv/QuestAnswerTrainOverv';
+import DeckOrCardName from './DeckOrCardName';
+import DeleteCardQuestionBox from '../DeleteCardQuestionBox/DeleteCardQuestionBox';
 import Paused from './Paused/Paused'
 
 export default function Deck({
@@ -36,7 +35,6 @@ export default function Deck({
     active, setActive,
     dataBase, setDataBase,
     editButtonClicked, setEditButtonClicked,
-    setHideCreateDeckBtn,
     nameTooLongOrShort, setNameTooLongOrShort,
     threeDotsOpen, setThreeDotsOpen,
     setNameOfTopDeck
@@ -163,8 +161,7 @@ export default function Deck({
           <NameLongOrShort nameTooLongOrShort={nameTooLongOrShort}/>
           <Card.Title className="deck__index-card-title justify-between-align-center">
             <DeckOrCardName
-              data={deckOrCardNameProps}
-              className="deck__deckOrCardName justify-center posRelative"
+              data={deckOrCardNameProps}          
             />
             {
               deckNameLengthRight &&
@@ -217,8 +214,8 @@ export default function Deck({
             {trash && showDeleteWindow && !paused && (
               <DeleteCardQuestionBox
                 pauseOrDelete="Delete"
+                randomQuestion={()=>{}}
                 card="deck"
-                threeDotsMenuOpen={threeDotsMenuOpen}
                 index={index}
                 deleteWindow={() => {
                   setShowDeleteWindow(false); 
@@ -244,8 +241,6 @@ export default function Deck({
             index={index}
             name={name}
             paused={paused}
-            setDecksAreVisible={setDecksAreVisible}
-            setHideCreateDeckBtn={setHideCreateDeckBtn}
             setScrollbarVisible={setScrollbarVisible}
             pauseIsActive={pauseIsActive}
             setPauseIsActive={setPauseIsActive}
@@ -253,8 +248,6 @@ export default function Deck({
           {active === index && (
             <AddQuestionsToDeck
               index={index}
-              background={style.background}
-              setHideCreateDeckBtn={setHideCreateDeckBtn}
               setScrollbarVisible={setScrollbarVisible}
               name={name}
               show={show}
