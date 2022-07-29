@@ -9,40 +9,30 @@ import TimeAndProgress from './TimeAndProgress/TimeAndProgress';
 import HourlyBreakdown from './HourlyBreakdown';
 import DeleteCardQuestionBox from '../deck/DeleteCardQuestionBox/DeleteCardQuestionBox';
 import './stats.css'
-
+import {StatsLogic} from './StatsLogic'
 
 function Stats({ history }:any) {
  
   const { 
-    dataBase, setDataBase, 
+    dataBase,
     setShowProgressDiagram, 
     setThreeDotsOpen } = useContext(Context);
   const [showDeleteFrame, setShowDeleteFrame] = useState(false);
-  const [checked, setChecked] = useState(false);
-  const [show, setShow] = useState(false);
+  // const [checked, setChecked] = useState(false);
+  // const [show, setShow] = useState(false);
  
-  function setShowFunc() {
-    history.push('/main');
-    setShowProgressDiagram(true);
-  }
+ 
 
   useEffect(() => {
     setShowProgressDiagram(false);
     // eslint-disable-next-line
   }, []);
 
-  function deleteWindowHandler() {
-    setShowDeleteFrame(false); 
-    setThreeDotsOpen(false)
-  }
+  const { deleteWindowHandler,
+    setShowFunc,
+    trashEventHandler} = StatsLogic ({history,setShowDeleteFrame})
 
-  function trashEventHandler() {
-      let DeckNames = [...dataBase.DeckNames]
-      DeckNames.forEach(deckItem=>
-        deckItem.data.forEach(item => item?.openHistory&&delete item?.openHistory)
-      )
-      setDataBase({...dataBase,DeckNames})
-  }
+
 
   return (
     <div className='stats__BasicOrangeWindow__cont'>

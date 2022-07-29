@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { Button} from "react-bootstrap";
 import { Context } from '../../../../context/Context';
+import {OpenLogic} from './OpenLogic'
 
 export default function OpenDeckBtn ({
   data, 
@@ -9,26 +10,19 @@ export default function OpenDeckBtn ({
   setScrollbarVisible
 }) {
 
-  const {
-    dataBase, setDataBase, 
-    editButtonClicked, 
-    setHideCreateDeckBtn,
-    setThreeDotsOpen,
-    setShowProgressDiagram //progressDiagram is shown in the back of main 
-  } = useContext(Context);
+  const {editButtonClicked} = useContext(Context);
 
-  function openDeckHandler () {
-    if (editButtonClicked && !paused) {
-      generateRandom();
-      setThreeDotsOpen(false)
-      let newDataBase = { ...dataBase };
-      newDataBase.openedToday = true; //important for stats
-      setShowProgressDiagram(false); //progress diagram gets why not at this place??
-      setDataBase(newDataBase);
-      setScrollbarVisible(false) //as long as deck is open, scrollbar is not visible
-      setHideCreateDeckBtn(true) //create Deck Btn gets hidden
-    }
-  }
+  const {openDeckHandler} = OpenLogic({
+    paused, 
+    generateRandom,
+    setScrollbarVisible})
+
+  // let styleHandler = { 
+  //   backgroundColor: 'rgb(108, 117, 125)',
+  //   pointerEvents: editButtonClicked? 'auto':'none',
+  //   cursor: paused || data.length === 0 || editButtonClicked ? 'pointer': 'default',
+  //   opacity: paused || data.length === 0 ? '0' : '1' //open deck button is not visible when length is zero
+  //   }
 
   return (
    
@@ -38,12 +32,11 @@ export default function OpenDeckBtn ({
       size='sm'
       onClick={openDeckHandler}
       title='Click to open this deck'
-      style={{
-        backgroundColor: 'rgb(108, 117, 125)',
-        pointerEvents: editButtonClicked? 'auto':'none',
-        cursor: paused || data.length === 0 || editButtonClicked ? 'pointer': 'default',
-        opacity: paused || data.length === 0 ? '0' : '1' //open deck button is not visible when length is zero
-      }}
+      style={{ backgroundColor: 'rgb(108, 117, 125)',
+      pointerEvents: editButtonClicked? 'auto':'none',
+      cursor: paused || data.length === 0 || editButtonClicked ? 'pointer': 'default',
+      opacity: paused || data.length === 0 ? '0' : '1' //open deck button is not visible when length is zero
+    }}
     >
       Open Deck
   </Button>

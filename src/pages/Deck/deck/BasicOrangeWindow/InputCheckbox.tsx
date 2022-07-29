@@ -4,7 +4,8 @@ import {InputLogic} from './InputLogic'
 export default function InputCheckbox({ 
   index, 
   setShowAnswerBtn, 
-  generateRandom }) {
+  generateRandom 
+}) {
 
   const {cardsPaused, handleChecked, switchOnOrOff} = InputLogic({
     index, 

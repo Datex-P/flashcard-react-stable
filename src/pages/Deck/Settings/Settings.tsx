@@ -11,6 +11,7 @@ import BasicOrangeWindow from '../deck/BasicOrangeWindow/BasicOrangeWindow'
 import DeleteAccount from './DeleteAccount'
 import edit from '../../../icons/edit.svg';
 import save from'../../../icons/save.svg';
+import {SettingsLogic} from './SettingsLogic'
 
 function Settings({ history }) {
 
@@ -18,7 +19,7 @@ function Settings({ history }) {
   const [editRepActive, setEditRepActive] = useState(false)
   const [editHex, setEditHex] = useState(true)
   const [weeklyGoal, setWeeklyGoal] = useState(null)
-  const { apiURL, dataBase, setDataBase, setShowProgressDiagram, user } = useContext(Context)
+  const { dataBase,  setShowProgressDiagram } = useContext(Context)
   const [userTimePreferences, setUserTimePreferences] = useState({})
 
   useEffect(() => {
@@ -29,47 +30,18 @@ function Settings({ history }) {
     setShowProgressDiagram(false)
   }, [])
 
-  function setShow() {
-    history.push('/main')
-    setShowProgressDiagram(true)
-  }
-
-  function saveTimeNumberChanges() {
-    let newDataBase = { ...dataBase }
-    newDataBase.userTimePreferences = userTimePreferences
-    setDataBase(newDataBase)
-  }
-
-  function goalHandler() {
-    setEditHex(!editHex)
-  }
-
-  async function weeklyTargetHandler() {
-    let weeklyTarget:number = weeklyGoal || 0
-    try{
-     await fetch(`${apiURL}/update_weekly_target`, {
-       method:'POST',
-       headers: {
-         "Content-Type":"application/json",
-         "Accept":"application/json"
-       },
-         body: JSON.stringify({
-           weeklyTarget:weeklyTarget+1,
-           user:user
-         })
-       });
-      //better to store color in localstorage
-    //  setEditHex(true) not needed in settings
-   } catch (err){
-     console.log(err, 'err here')
-   }
- }
-
-  function repetitionHandler(){
-    setEditModeActive(!editModeActive)
-    setEditRepActive(!editRepActive)
-    saveTimeNumberChanges()
-  }
+  const {
+    goalHandler, 
+    repetitionHandler, 
+    setShow,
+    weeklyTargetHandler} =SettingsLogic({
+    editModeActive, setEditModeActive,
+    editRepActive, setEditRepActive,
+    editHex, setEditHex,
+    history,
+    userTimePreferences,
+    weeklyGoal
+  })
 
 
   return (

@@ -27,31 +27,22 @@ export default function BasicOrangeWindow({
               title
 }: BasicProps) {
 
-  const { dataBase} = useContext(Context);
-
-const {redCrossHandler,mouseLeaveHandler, mouseEnterHandler} = BasicLogic({
-  generateRandom,
-  setScrollbarVisible,
-  show,setShow,
-  questionAnswerWindow : false,
-  menu,
-  stats:false,
-  settings:false,
-  questionViewActive=false,
-  setShowAnswerBtn = () => {},
-  setEdit = () => {},
-  setEditModeActive = () => {},
-  title
-})
-
+  const {dataBase} = useContext(Context);
   const basicOrangeRef = useRef(null)
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false)
-
-  let someCardsPaused = dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0
   
+  let someCardsPaused = dataBase?.DeckNames[index]?.data.filter((x) => x.paused === true).length > 0
 
-
-
+const {redCrossHandler,mouseLeaveHandler, mouseEnterHandler} = BasicLogic({
+  stats,
+  setBlinkingSaveIcon,
+  setScrollbarVisible,
+  setShow,
+  setShowAnswerBtn,
+  setEdit,
+  setEditModeActive,
+  title
+})
 
   useEffect(()=>{
     // if (!stopRedCrossListener) {
@@ -67,8 +58,6 @@ const {redCrossHandler,mouseLeaveHandler, mouseEnterHandler} = BasicLogic({
     //     setBlinkingSaveIcon(false);console.log('got unmounted')}
     // }
   },[show])
-
-
 
   return (
     <Modal

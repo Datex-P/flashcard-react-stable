@@ -10,6 +10,7 @@ import QuestAnswerTrainOverv from '../QuestionAnswerTrainOverv/QuestAnswerTrainO
 import DeckOrCardName from './DeckOrCardName';
 import DeleteCardQuestionBox from '../DeleteCardQuestionBox/DeleteCardQuestionBox';
 import Paused from './Paused/Paused'
+import {IndexLogic} from './IndexLogic'
 
 export default function Deck({
   deck,
@@ -32,8 +33,8 @@ export default function Deck({
   const [pauseIsActive, setPauseIsActive] = useState(true);
 
   const {
-    active, setActive,
-    dataBase, setDataBase,
+    active, 
+    dataBase, 
     editButtonClicked, setEditButtonClicked,
     nameTooLongOrShort, setNameTooLongOrShort,
     threeDotsOpen, setThreeDotsOpen,
@@ -47,6 +48,13 @@ export default function Deck({
   useEffect(()=>{
     console.log(index, 'index in use effect')
   },[index])
+
+  const {deleteDeck, handlePause} = IndexLogic({
+    deck,
+    index,
+    setArrowDown,
+    setDecksAreVisible
+    })
 
   //const [index, setIndex] = useState(0);
 
@@ -63,13 +71,6 @@ export default function Deck({
 
   let input = useRef(null);
 
-  function handlePause(index) {
-    let newDataBase = { ...dataBase };
-    console.log(index, 'index in handle pause index.js')
-    newDataBase.DeckNames[index].paused = true;
-    setDataBase(newDataBase);
-
-  }
 
   const deckOrCardNameProps = {
     bg: bg,
@@ -121,32 +122,6 @@ export default function Deck({
           setShowDeleteWindow(true);
 
         }
-    }
-  }
-
-  useEffect(() => {
-    setNameOfTopDeck(name);
-    console.log(name);
-  }, [name]);
-
-  function deleteDeck() {
-    let newDataBase = { ...dataBase };
-    //newDataBase.DeckNames[index].deleted = true; //index where delete starts second para is delete count
-
-    newDataBase.DeckNames.splice(index, 1)
-
-    if (newDataBase.DeckNames.filter(item => !item.deleted).length === 0) {
-      setDecksAreVisible(false);
-      setArrowDown(true);
-    } else {
-
-      setDataBase(newDataBase);
-
-      if (index === 0) {
-        setActive(1);
-      } else {
-        setActive(active - 1);
-      }
     }
   }
 

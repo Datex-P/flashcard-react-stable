@@ -3,6 +3,7 @@ import resetimg  from '../../../../icons/reset.svg';
 import flashcards from '../../../../icons/flashcards.svg';
 
 function FlashcardTextOrReset({resetQuestionText, pauseOrDelete, card}) {
+  
   return(
     <div className='height85pc width100pc justify-center-align-center'>
       <div>

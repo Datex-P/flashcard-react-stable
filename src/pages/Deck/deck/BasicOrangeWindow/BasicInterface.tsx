@@ -1,4 +1,5 @@
-export interface BasicProps{
+
+export interface BasicProps {
   children?: JSX.Element |JSX.Element[];
   deckFinished?: boolean;
   index: number;

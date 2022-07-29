@@ -1,5 +1,6 @@
 import React,  {useState, useEffect, useContext, useRef} from "react";
 import { Context } from '../../../context/Context';
+import {RenderLogic} from './RenderLogic'
 
 function RenderDays({year}) {
 
@@ -10,6 +11,7 @@ function RenderDays({year}) {
   const [right,setRight]=useState(0)
   const [studiedOnThisDay, setStudiedOnThisDay] = useState<boolean | number>(false)
 
+  const {clickHandler} = RenderLogic({calBoxWidth, days, setRight, setStudiedOnThisDay})
 
   useEffect(() => {
     let date: {day?: string, cardsStudied?:number}[]  = [];
@@ -56,22 +58,6 @@ function RenderDays({year}) {
 
   /*method checks whether the index that was triggered via the clickhandler
   is a day where cards where studied*/
-
-  function clickHandler(e, index) {
-    let inner = e.target.getBoundingClientRect();
-    let day = index;
-    let findday = days.findIndex((el, index)=>day ===index && el.cardsStudied)
-    console.log(findday, 'findday here')
-    setStudiedOnThisDay(findday) //find day inside {day: 'Sat Jan 01 2022', cardsStudied: 0} that matches clicked index
-  //  if (calBoxWidth !== null) {
-      let element:any = calBoxWidth.current
-    const calendarDimension = element.getBoundingClientRect().right
-    //calendarDimension => most right position of calendarBox  
-    if((calendarDimension- inner.right) < 126) {
-      setRight(calendarDimension - inner.right - 126)    
-    }   
-//  }
-  }
 
   return (
     <div 

@@ -1,35 +1,21 @@
 import React, { useState, useContext} from 'react';
 import { Context } from '../../../context/Context'
-import hexagonWhite from '../../../icons/hexagon.svg'
-import hexagonGreen from '../../../icons/hexagonGreen.svg'
-
+import {HexagonLogic} from './HexagonLogic'
 
 export default function Hexagons({ idx, 
         editHex, setEditHex, 
         setWeeklyGoal,
         weeklyTargetHandler }) {
 
-  const { dataBase, setDataBase} = useContext(Context)
+  const { dataBase} = useContext(Context)
   const [showDay, setShowDay] = useState(false)
 
-  function indexHandler() {
-    let newDataBase = { ...dataBase }
-    newDataBase.userPreferences.days = idx
-    setWeeklyGoal(idx)
-    setDataBase(newDataBase)
-    setShowDay(true)
-  }
-
-  function srcHandler () {
-    return idx <= dataBase?.userPreferences?.days ? 
-    hexagonGreen : hexagonWhite
-  }
-
-  function clickHandler () {
-    weeklyTargetHandler() 
-    setEditHex(true)
-  }
-
+  const {clickHandler, srcHandler, indexHandler} = HexagonLogic({
+    idx, 
+    setEditHex, 
+    setWeeklyGoal,
+    weeklyTargetHandler})
+ 
   return (
     
     <div className='settings__hexagons justify-center-align-center flex-column'>

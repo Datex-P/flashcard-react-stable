@@ -1,5 +1,5 @@
-import React, {  useContext} from "react";
-import { Context } from '../../../../context/Context';
+import React from "react";
+import {SaveLogic} from './SaveLogic'
 
 export default function SaveAndDiscard({
   discardEvent,
@@ -10,30 +10,15 @@ export default function SaveAndDiscard({
   setShowThreeDots
 }) {
 
-  const { setStopRedCrossListener } = useContext(Context);
+  const {discardHandler, saveHandler, 
+   // stopRedCross
+  } = SaveLogic({ discardEvent,
+    generateRandom,
+    refresh,
+    saveEvent,
+    setCardModified,
+    setShowThreeDots})
 
-  function stopRedCross () {
-    setStopRedCrossListener(true)
-    setTimeout(()=>{
-    setStopRedCrossListener(false)
-    },2000)
-  }
-
-  function saveHandler() {
-    generateRandom();
-    saveEvent();
-    setCardModified(true);
-    refresh();
-    setShowThreeDots(true)
-    stopRedCross()
-  }
-
-  function discardHandler() {
-     discardEvent()
-     refresh()
-     setShowThreeDots(true)
-    stopRedCross()
-  }
 
   return (
     <div className='d-flex justify-center'>

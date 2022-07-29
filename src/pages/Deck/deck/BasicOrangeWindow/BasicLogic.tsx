@@ -2,12 +2,14 @@
 import  { useContext, useEffect} from "react";
 import { Context } from '../../../../context/Context';
 
+
 export const BasicLogic = ({
   index,
   deckFinished,
   setScrollbarVisible,
   setShow,
   stats=false,
+  setBlinkingSaveIcon,
   setShowAnswerBtn = (e) => {},
   setEdit = (e) => {},
   setEditModeActive = (e) => {},

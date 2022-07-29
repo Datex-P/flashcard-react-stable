@@ -9,10 +9,10 @@ import resetimg from '../../../../icons/reset.svg'
 import saveimg from '../../../../icons/save.svg'
 import playimg from '../../../../icons/play.svg'
 // https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript
-
   // https://www.dev-eth0.de/2019/09/10/using-withrouter-in-a-typescript-react-component/
   /*link showed how to use typescript with reactrouter */
-function ThreeDotsBtn({
+
+  function ThreeDotsBtn({
   reset = false,
   edit = false,
   trash = false,
@@ -38,7 +38,7 @@ function ThreeDotsBtn({
 
   const {
     apiURL,
-    dataBase,setDataBase,
+    dataBase,
     editButtonClicked,setEditButtonClicked,
     email,
     nameOfTopDeck,
@@ -115,13 +115,13 @@ function ThreeDotsBtn({
     };
   }, [threeDotsOpen, setThreeDotsOpen, editButtonClicked, setBlinkingSaveIcon]);
 
-  function handleDeckname() {
-    let newDataBase = { ...dataBase };
-    newDataBase.DeckNames[index].name = nameOfTopDeck;
-    //delete newDataBase.DeckNames[name]
-    console.log(newDataBase);
-    setDataBase(newDataBase);
-  }
+  // function handleDeckname() {
+  //   let newDataBase = { ...dataBase };
+  //   newDataBase.DeckNames[index].name = nameOfTopDeck;
+  //   //delete newDataBase.DeckNames[name]
+  //   console.log(newDataBase);
+  //   setDataBase(newDataBase);
+  // }
 
   async function handleEdit() {
     console.log("edit event fired");

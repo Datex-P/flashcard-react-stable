@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import { Context } from '../../../../context/Context';
-
+import {DeckOrCardLogic} from './DeckOrCardLogic'
 
 export default function DeckOrCardName({ data: {
   bg,
@@ -14,38 +14,15 @@ export default function DeckOrCardName({ data: {
   setNameTooLongOrShort
 } }) {
 
-  const {
-    dataBase, setDataBase, 
-    setThreeDotsOpen, 
-    nameOfTopDeck,setNameOfTopDeck,
-    setStopRedCrossListener
-  } = useContext(Context);
+  const {nameOfTopDeck} = useContext(Context);
 
-  function handleChangeName(e) {
-   
-    if (e.target.value.length > 3 && e.target.value.length < 12) {
-      setDeckNameLengthRight(true)
-      setThreeDotsMenuOpen(true)
-      setNameTooLongOrShort(false)
-      setThreeDotsOpen(true)
-    } else {
-      setNameTooLongOrShort(true)
-      setDeckNameLengthRight(false)
-    }
-
-    let newDataBase = {...dataBase}
-    let index = newDataBase.DeckNames.findIndex(x=> x.name === name)
-    newDataBase.DeckNames[index].name = e.target.value
-    setDataBase(newDataBase)
-    setNameOfTopDeck(e.target.value);
-  }
-
-  useEffect(() => {
-    if(!editButtonClicked) {
-      setStopRedCrossListener(true)
-    }
-  }, [editButtonClicked])
-
+  const {handleChangeName} = DeckOrCardLogic({
+    editButtonClicked,
+    name,
+    setDeckNameLengthRight,
+    setThreeDotsMenuOpen,
+    setNameTooLongOrShort
+  })
 
   return (
     <>
@@ -53,7 +30,7 @@ export default function DeckOrCardName({ data: {
         (
           <div
             className='deck__deckOrCardName justify-center posRelative'
-            style={{ background: bg }}
+            style={{background:bg}}
           >
             {name}
           </div>
