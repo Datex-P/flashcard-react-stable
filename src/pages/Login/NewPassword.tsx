@@ -1,13 +1,15 @@
 import React, { useRef, useState, useContext } from "react";
 import '../../styles.scss';
 import './login.css';
-import ParticleBackground from "./Particles/ParticlesBackground";
+//import ParticleBackground from "./Particles/ParticlesBackground";
 import Button from './Button';
 import Email from './Register/Email';
 import FlashcardLogo from './FlashcardLogo';
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
 import { Context } from '../../context/Context';
+import {NewPasswordLogic} from './NewPasswordLogic'
+
 
 function NewPassword() {
 
@@ -18,44 +20,13 @@ function NewPassword() {
   const [emailNotInDB, setEmailNotInDB] = useState(false);
   const history = useHistory();
 
-  async function pwdReset(e) {
-    e.preventDefault();
-    try {
-      //e preventDefault is needed because forms
-      //have a standard behaviour of redirecting
-      if (emailRef.current) {
-        let email = emailRef.current.value;
+  const {pwdReset} = NewPasswordLogic({
+    apiURL, 
+    emailRef,
+    setEmailNotInDB, 
+    setPwdLinkActive
+  })
 
-      const response = await fetch(`${apiURL}/password_reset`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          email,
-        }),
-      });
-      const data = await response.json();
-
-      if (data.status === "email exists") {
-        console.log("email exists in database");
-        setPwdLinkActive(true);
-        setTimeout(() => {
-          setPwdLinkActive(false);
-        }, 4000);
-      } else {
-        console.log("email does not exist in database");
-        setEmailNotInDB(true);
-        setTimeout(() => {
-          setEmailNotInDB(false);
-        }, 4000);
-      }
-      }
-    } catch (err) {
-      console.log(err, "err here");
-    }
-  }
 
   return (
     // <ParticleBackground>

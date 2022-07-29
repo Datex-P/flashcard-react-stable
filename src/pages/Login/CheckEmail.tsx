@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import '../../styles.scss';
 import './login.css';
-import ParticleBackground from "./Particles/ParticlesBackground";
+//import ParticleBackground from "./Particles/ParticlesBackground";
 import Button from './Button';
 import FlashcardLogo from './FlashcardLogo';
 import { Context } from '../../context/Context';

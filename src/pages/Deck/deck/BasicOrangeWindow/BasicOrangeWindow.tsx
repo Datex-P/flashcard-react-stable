@@ -40,8 +40,7 @@ const {redCrossHandler,mouseLeaveHandler, mouseEnterHandler} = BasicLogic({
   setShow,
   setShowAnswerBtn,
   setEdit,
-  setEditModeActive,
-  title
+  setEditModeActive
 })
 
   useEffect(()=>{

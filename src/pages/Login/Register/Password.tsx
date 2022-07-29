@@ -2,6 +2,7 @@ import React, {  useState, forwardRef } from 'react';
 import eyesClosed from '../../../icons/eye-closed-pwd.png';
 import eyesOpened from '../../../icons/eye-opened-pwd.svg';
 
+
 const  Password = forwardRef<HTMLInputElement>((_, passwordRef) => {
   const [showPassword, setShowPassword] = useState(false)
 

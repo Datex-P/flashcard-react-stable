@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from '../../context/Context';
 import { Container, Row, Spinner } from "react-bootstrap";
@@ -7,7 +8,8 @@ import CreateNewDeck from './CreateNewDeck/CreateNewDeck';
 import MenuContainer from '../Deck/Menu/MenuContainer'
 import Scrollbar from './Scrollbar'
 import StartFirstDeck from './StartFirstDeck'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
+import {LandingLogic} from './LandingLogic'
 
 const LandingPage = () => {
   const [addNewDeckWindow, setAddNewDeckWindow] = useState(false);
@@ -23,16 +25,17 @@ const LandingPage = () => {
   const {
     active,
     arrowDown, setArrowDown, //'create first deck' arrow when no deck is present
-    colors, //colors array for the decks
     editButtonClicked,
     dataBase,
-    hideCreateDeckBtn, setHideCreateDeckBtn,
+    hideCreateDeckBtn,
     styles,
-    setShowProgressDiagram,
   } = useContext(Context);
 
 
-  const history = useHistory()
+  //const history = useHistory()
+
+  const {closeHandler, createDeckHandler, colorHandler} = LandingLogic({  setDecksAreVisible,
+    setAddNewDeckWindow})
 
 
   // async function dosome() {
@@ -76,32 +79,6 @@ const LandingPage = () => {
   //   }, 2000);
   // }, []);
 
-  function colorHandler() {
-    colors.map((i, k, ar) => {
-      if (active === k) {
-        return ar[ar.length % (k || 1)];
-      } else {
-        return i;
-      }
-    })
-  }
-
-  function createDeckHandler() {
-    if (editButtonClicked) { //input field in deckorcardname.js is not active
-          setAddNewDeckWindow(true); //open the pop up to add a new deck
-          setDecksAreVisible(false); // all the decks in the back are not visible
-          setShowProgressDiagram(false);
-          setArrowDown(false); //create new deck and arrow down not visible
-          setHideCreateDeckBtn(true) //the button create Deck gets hidden
-  }
-}
-
-  function closeHandler() {
-    setDecksAreVisible(true);
-    setAddNewDeckWindow(false);
-    setShowProgressDiagram(true); //diagram on main page is shown again
-    setHideCreateDeckBtn(false) //button create deck is shown again
-  }
 
   //    background={colors[active % colors.length]}
   const deckProps = {
@@ -114,6 +91,7 @@ const LandingPage = () => {
   useEffect(() => {
     console.log(hideCreateDeckBtn, 'hidecreatedeck')
   }, [hideCreateDeckBtn])
+
   // !spinnerIsVisible && dataBase 
   return spinnerIsVisible ? (
     <>
