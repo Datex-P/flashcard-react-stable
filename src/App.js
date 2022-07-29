@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-dom'
-import LandingPage from './LandingPage/LandingPage'
-import Login from './Login/Login/Login'
-import CheckEmail from './Login/CheckEmail'
-import Register from './Login/Register/Register'
-import NewPwd from './Login/NewPwd'
-import Settings from './Deck/Settings/Settings'
-import Stats from './Deck/Stats/Stats'
-import ForgotPassword from './Login/ForgotPassword'
+import LandingPage from './pages/LandingPage/LandingPage'
+import Login from './pages/Login/Login/Login'
+import CheckEmail from './pages/Login/CheckEmail'
+import Register from './pages/Login/Register/Register'
+import NewPwd from './pages/Login/NewPwd'
+import Settings from './pages/Deck/Settings/Settings'
+import Stats from './pages/Deck/Stats/Stats'
+import ForgotPassword from './pages/Login/ForgotPassword'
 
 
 export default function App() {

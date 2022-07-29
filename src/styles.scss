@@ -337,6 +337,10 @@ input[type="number"] {
   margin-right: 4px;
 }
 
+.mt-10px {
+  margin-top: 10px;
+}
+
 .mt-15px {
   margin-top:15px;
 }
@@ -441,6 +445,10 @@ input[type="number"] {
   width: fit-content !important;
 }
 
+.width15px {
+  width:15px;
+}
+
 .width16px {
   width:16px;
 }
@@ -459,6 +467,10 @@ input[type="number"] {
 
 .height16px {
   height:16px;
+}
+
+.height20px {
+  height:20px;
 }
 
 .height27px {
@@ -829,12 +841,12 @@ a {
   width:20px;
   height:20px;
   // border-radius: 50%;
-   padding: 3px;
+  //  padding: 3px;
 }
 
 .redCross:active, .redCross:hover {
   background: #b07d62;
-  padding: 3px;
+  // padding: 3px;
   border-radius: 50%;
 }
 

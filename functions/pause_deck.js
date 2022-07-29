@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
           statusCode: 500,
           body: JSON.stringify(err)
         }
-    }else if(deck) {
+    } else if(deck) {
       if (deck.pauseMode === true) {
         deck.pauseMode = false
       } else {

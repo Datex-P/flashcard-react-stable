@@ -6,12 +6,15 @@ const bcrypt = require('bcryptjs')
 
 exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
+
   
   mongoose.connect(`${process.env.MONGO_URI}`,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
   );
+
+  console.log('i invoked in login.js')
 
   const {name, password} = JSON.parse(event.body);
   const user = await User.findOne({name}).exec();
