@@ -61,13 +61,13 @@ export default function AddQuestionsToDeck({
             <Modal.Title className='justify-between-align-center mod-title'>
               <span className='align-center'>Deck: {name}</span>
               <button
-                className='redCross pointer deck__bg-orange'
+                className='deck__redCross-mod pointer deck__bg-orange'
                 onClick={closeHandler}
               >
                 <img
                   src={closeWindow}
                   alt='redCross'
-                  className={`nonDraggableIcon width16px height16px 
+                  className={`nonDraggableIcon deck__addquestion-img width20px height20px 
                             ${blinkingSaveIcon ? 'deck__blinkingIcon' : ''}`
                   }
                 />

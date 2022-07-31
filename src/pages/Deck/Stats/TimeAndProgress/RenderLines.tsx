@@ -2,7 +2,7 @@ import React from "react";
 
 function RenderLines({timeObj}) {
  
-  let arr: any = [];
+  let arr:any = [];
   let studyGoal = 80;
   let previousWidthVar = 0;
   let index = 0
@@ -24,8 +24,8 @@ function RenderLines({timeObj}) {
   return arr;
 }
 
-function rowContainer (key: any, previousWidthVar: any, 
-  widthVar: any, x: any): JSX.Element
+function rowContainer (key: number, previousWidthVar: number, 
+  widthVar: number, x: string): JSX.Element
 {
   
   return (

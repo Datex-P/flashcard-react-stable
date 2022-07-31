@@ -40,7 +40,7 @@ return (
         <RepeatBtn
           btn={col.name}
           key={index}
-          label={"< " + col.amount + col.unit}
+          label={"< " + col.amount + ' ' + col.unit}
           onClick={repeatHandler}
           />
         ))}

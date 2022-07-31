@@ -13,7 +13,7 @@ const {handlePause} = ThisDeckLogic({index})
   return (
       <div
         className='deck__deckEmptyCont justify-evenly-align-center flex-column'
-        style={{background: colors[index % 5]}}
+    //    style={{background: colors[index % 5]}}
       >
         <div>
         This deck is paused.

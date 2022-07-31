@@ -3,7 +3,7 @@ import React, {useContext, useState, useRef} from "react";
 import { Context } from '../../context/Context'; 
 import {ScrollLogic} from './ScrollLogic'
 
-function Scrollbar({scrollbarVisible}) {
+function Scrollbar({scrollbarVisible}){
 
   const [scrollPosition, setScrollPosition] = useState(0)
   const scroller = useRef<HTMLInputElement>(null);

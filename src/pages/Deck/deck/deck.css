@@ -334,6 +334,20 @@
   position: relative;
 }
 
+.deck__addquestion-img:hover {
+    background: #b07d62; 
+    border-radius: 50%
+}
+
+.deck__redCross-mod {
+  cursor:pointer;
+  color: red !important;
+  border: none !important;
+  outline: none !important;
+  width:20px;
+  height:20px;
+}
+
 .deck__redCross-cont {
   width: 20px;
   height: 20px;

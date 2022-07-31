@@ -10,8 +10,9 @@ import HourlyBreakdown from './HourlyBreakdown';
 import DeleteCardQuestionBox from '../deck/DeleteCardQuestionBox/DeleteCardQuestionBox';
 import './stats.css'
 import {StatsLogic} from './StatsLogic'
+import { RouteComponentProps } from "react-router-dom";
 
-function Stats({ history }:any) {
+function Stats({ history }:RouteComponentProps) {
  
   const { 
     dataBase,

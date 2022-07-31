@@ -1,17 +1,15 @@
-import React,{useContext} from 'react';
+import React, { useContext} from 'react';
 import { Nav } from 'react-bootstrap'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import {Context} from '../../../context/Context'
+import { Context } from '../../../context/Context';
 
   // https://www.dev-eth0.de/2019/09/10/using-withrouter-in-a-typescript-react-component/
   /*link showed how to use typescript with reactrouter */
 
- function Icon({ src, alt, href, style = null,history }
-  
+ function Icon({ src, alt, href, style = null, history }  
   :RouteComponentProps | any): JSX.Element
-  
    {
-  const {setShowProgressDiagram} = useContext(Context)
+    const {setShowProgressDiagram} = useContext(Context);
 
   function clickHandler () {
     setShowProgressDiagram(false)

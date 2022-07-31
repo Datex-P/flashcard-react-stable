@@ -7,7 +7,7 @@ function Hamburger({
 }) {
 
   const { editButtonClicked, hideCreateDeckBtn, showProgressDiagram, setShowProgressDiagram} = useContext(Context);
-    const menuRef = useRef<HTMLDivElement | null>(null)
+  const menuRef = useRef<HTMLDivElement | null>(null)
 
 
   function triggerDiagramAndState() {

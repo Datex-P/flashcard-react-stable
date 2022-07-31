@@ -12,29 +12,38 @@ import playimg from '../../../../icons/play.svg'
   // https://www.dev-eth0.de/2019/09/10/using-withrouter-in-a-typescript-react-component/
   /*link showed how to use typescript with reactrouter */
 
+interface ThreeDotsProps extends RouteComponentProps {
+  reset:boolean;
+  edit: boolean;
+  trash: boolean;
+  pause: boolean;
+  index:any;
+  threeDotsContainer:any;
+  text:any;
+  style:any;
+  editEvent:(prop?:boolean) => void;
+  trashEvent:(prop?:boolean) => void;
+  resetEvent:(prop?:boolean) => void;
+  pauseEvent:(prop?:boolean) => void;
+
+
+}
+
   function ThreeDotsBtn({
   reset = false,
   edit = false,
   trash = false,
   pause = false,
-  questionAnswerWindow=false,
-  className,
-  editBtnClicked, //is the editBtn in the main Question/Answer Overview
-  setEditBtnClicked,
-  data,
   index,
-  input,
   threeDotsContainer,
   text,
-  // showFromParent,
-  classValue,
   style,
   editEvent = () => {},
   trashEvent = () => {},
   resetEvent = () => {},
   pauseEvent = () => {},
-  type,
-}:RouteComponentProps | any): JSX.Element {
+
+}:any| RouteComponentProps) {
 
   const {
     apiURL,

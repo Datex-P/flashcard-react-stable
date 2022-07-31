@@ -1,18 +1,16 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef} from 'react';
 import '../../../styles.scss';
 import '../login.css';
-import ParticleBackground from '../Particles/ParticlesBackground';
+//import ParticleBackground from '../Particles/ParticlesBackground';
 import { useHistory } from "react-router-dom";
 import Password from './Password';
 import Email from './Email';
 import UserName from './UserName';
 import FlashcardLogo from '../FlashcardLogo';
-import { Context } from '../../../context/Context';
-
+import {RegisterLogic} from './RegisterLogic'
 
 function Register() {
   
-  const {apiURL} = useContext(Context)
   const userNameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -23,39 +21,7 @@ function Register() {
     // setUser(true);
   }
 
-  async function registerUser(e) {
-    e.preventDefault();
-    if (userNameRef.current && passwordRef.current && emailRef.current) {
-    //e preventDefault is needed because forms
-    //have a standard behaviour of redirecting
-    let name = userNameRef.current.value;
-    let password = passwordRef.current.value;
-    let email = emailRef.current.value;
-
-    const response = await fetch(`${apiURL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin" : "*",
-        'Access-Control-Allow-Credentials': 'true'
-      },
-      body: JSON.stringify({
-        name:name,
-        password:password,
-        email:email
-      })
-    });
-    const data = await response
-
-    if (data.status === 200) {
-      history.push('/checkemail');
-    } 
-    if (data.status === 400) {
-      alert('Something went wrong')
-    }
-    console.log(data,'data here');
-  }
-}
+  const {registerUser} = RegisterLogic({userNameRef, passwordRef, history})
 
   return (
     // <ParticleBackground>

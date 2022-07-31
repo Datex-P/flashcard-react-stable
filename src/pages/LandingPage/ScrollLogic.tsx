@@ -10,6 +10,7 @@ export const ScrollLogic = ({
     dataBase,setDataBase, 
     editButtonClicked,
     setActive,
+    setShowThreeDots //three dots that are shown next to input field
   } = useContext(Context);
 
 
@@ -20,7 +21,7 @@ export const ScrollLogic = ({
     setDataBase(newDataBase);
   }
   
-  function scrollHandler(event:any) {
+  function scrollHandler(event: { target: HTMLElement; }) {
     if (editButtonClicked) { //input field in deckorcardname.js is not active)
       let step = (1000 - 220) / (dataBase.DeckNames.length - 1);
       const scroll = (event.target as HTMLElement).scrollTop
@@ -29,6 +30,11 @@ export const ScrollLogic = ({
       handleActive(index);
       let position = event.target.scrollTop;
       setScrollPosition(position);
+      if(dataBase.DeckNames[index].paused!== true) { //deck that is scrolled is not in pause mode
+        setShowThreeDots(true)
+      } else {
+        setShowThreeDots(false) //three dots are hidden because scrolled deck is paused
+      }
    }
   }
   

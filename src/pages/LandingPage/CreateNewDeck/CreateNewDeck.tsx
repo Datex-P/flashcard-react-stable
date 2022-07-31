@@ -23,7 +23,7 @@ export default function CreateNewDeck({
 
   const [nameTooShortOrLong, setNameTooShortOrLong] = useState(false);
   const inputRef = useRef<HTMLButtonElement>(null);
-  const okRef = useRef<any>(null);
+  const okRef = useRef(null);
 
   useEffect(() => {
     if (addNewDeckWindow) {
@@ -37,7 +37,7 @@ export default function CreateNewDeck({
     let newDataBase = { ...dataBase };
 
     // const data =  await response.json()
-    let index = newDataBase.DeckNames.push({
+      newDataBase.DeckNames.push({
       name: inputField,
       data: [],
       cardsToday: 0, //cards that were studied today of this deck

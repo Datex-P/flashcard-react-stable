@@ -97,7 +97,7 @@ export default function ChartComp() {
 //   }
 // };
 
-const options:any = {
+const options: any = {
   elements: {
   // center:{
   //       text:null,

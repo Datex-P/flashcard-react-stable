@@ -9,9 +9,11 @@ export default function PauseModeHandler({
   randomQuestion,
 }) {
 
-  const {unpauseHandler, keepPausedHandler} = PauseLogic({ generateRandom,
+  const {unpauseHandler, keepPausedHandler} = PauseLogic({ 
+    generateRandom,
     index,
-    randomQuestion,})
+    randomQuestion
+  })
 
 
   return (

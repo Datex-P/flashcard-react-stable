@@ -17,7 +17,7 @@ export const PauseLogic = ({
       newDataBase.DeckNames[index].data.filter((item) => item.paused)[randomQuestion].paused = false;
       setDataBase(newDataBase);
    //   generateRandom();
-    } else if(newDataBase.DeckNames[index].data.filter((item) => item.paused).length === 1){
+    } else if (newDataBase.DeckNames[index].data.filter((item) => item.paused).length === 1){
       newDataBase.DeckNames[index].data.filter((item) => item.paused)[randomQuestion].paused = false;
       newDataBase.DeckNames[index].pauseMode = false
       setDataBase(newDataBase);

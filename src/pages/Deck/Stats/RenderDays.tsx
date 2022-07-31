@@ -44,12 +44,18 @@ function RenderDays({year}) {
           let indexOfCurrentDay = date.findIndex((day) => day.day === today); // find index 0-364 of the current day inside newDays
           
  
-          let newDays: any = [...date] //array of objs of current year  {day: 'Sat Jan 01 2022', cardsStudied: 0}, {day: 'Sat Jan 02 2022', cardsStudied: 0}
-
-            if (todaysAmount >0 && newDays?.[indexOfCurrentDay]?.cardsStudied !== undefined) {     
-            newDays[indexOfCurrentDay].cardsStudied += todaysAmount;           
-            setDays(newDays);
+          let newDays:any = [...date] //array of objs of current year  {day: 'Sat Jan 01 2022', cardsStudied: 0}, {day: 'Sat Jan 02 2022', cardsStudied: 0}
+          if(indexOfCurrentDay>=0){
+            if(!newDays[indexOfCurrentDay]){
+              newDays[indexOfCurrentDay]={cardsStudied:0}
             }
+            newDays[indexOfCurrentDay].cardsStudied += todaysAmount;           
+              //if (todaysAmount >0 && newDays[indexOfCurrentDay]) {  
+              
+                
+                setDays(newDays);
+              //}
+          }
       }
    }
   // eslint-disable-next-line react-hooks/exhaustive-deps

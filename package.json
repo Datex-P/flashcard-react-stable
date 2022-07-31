@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/bootstrap": "^5.1.10",
     "@types/react": "^18.0.7",
+    "@types/react-chartjs-2": "^2.5.7",
     "@types/react-dom": "^18.0.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.1.3",

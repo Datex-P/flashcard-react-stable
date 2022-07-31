@@ -7,7 +7,7 @@ export interface NoAndYesProps {
   pauseCardinQuestionAnswer:boolean;
   randomQuestion:number;
   resetQuestionText: boolean;
-  setEditModeActive:any | undefined;
+  setEditModeActive:(prop:boolean) => void;
   setShowAnswerBtn:(prop?:boolean) => void;
   trashEvent:Function,
 }

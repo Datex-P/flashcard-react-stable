@@ -38,8 +38,9 @@ function RepetitionIntervalFields(
                 backgroundColor: editRepActive ? '#545863' : 'transparent',
                 cursor: editRepActive ? 'pointer' : 'default',
                 color: editRepActive ? 'white' : 'black',
+                textAlign: 'center'
               }}
-              className='height20px width15px'
+              className='height15px width15px'
               disabled={!editModeActive}
               value={inputNumber}
               onChange={handleInputNumbers}
