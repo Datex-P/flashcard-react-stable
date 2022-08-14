@@ -21,7 +21,7 @@ function Register() {
     // setUser(true);
   }
 
-  const {registerUser} = RegisterLogic({userNameRef, passwordRef, history})
+  const {registerUser} = RegisterLogic({emailRef, history, passwordRef, userNameRef })
 
   return (
     // <ParticleBackground>

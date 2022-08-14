@@ -11,7 +11,7 @@ export default function AddQuestionsToDeck({
   index,
   name,
   show,setShow,
-  setScrollbarVisible
+//  setScrollbarVisible
 }) {
   const {
     dataBase,

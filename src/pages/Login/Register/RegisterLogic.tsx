@@ -4,13 +4,15 @@ import '../login.css';
 import { Context } from '../../../context/Context';
 
 
-export const RegisterLogic = ({passwordRef, userNameRef, history}) => {
+export const RegisterLogic = ({passwordRef, userNameRef, emailRef, history}) => {
 
   const {apiURL} = useContext(Context)
 
   async function registerUser(e) {
+    console.log('triggered in register')
     e.preventDefault();
-    if (userNameRef.current && passwordRef.current && emailRef.current) {
+    if (userNameRef?.current && passwordRef?.current && emailRef?.current) {
+      console.log('triggered in register 2 time')
     //e preventDefault is needed because forms
     //have a standard behaviour of redirecting
     let name = userNameRef.current.value;

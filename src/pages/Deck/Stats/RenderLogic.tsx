@@ -10,7 +10,7 @@ export const RenderLogic = ({
     console.log(findday, 'findday here')
     setStudiedOnThisDay(findday) //find day inside {day: 'Sat Jan 01 2022', cardsStudied: 0} that matches clicked index
   //  if (calBoxWidth !== null) {
-      let element:any = calBoxWidth.current
+      let element = calBoxWidth.current
     const calendarDimension = element.getBoundingClientRect().right
     //calendarDimension => most right position of calendarBox  
     if((calendarDimension- inner.right) < 126) {

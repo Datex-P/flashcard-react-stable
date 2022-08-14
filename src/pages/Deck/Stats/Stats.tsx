@@ -39,10 +39,12 @@ function Stats({ history }:RouteComponentProps) {
     <div className='stats__BasicOrangeWindow__cont'>
       <BasicOrangeWindow
         questionViewActive
+       // setEditModeActive={()=>{}}
         stats
         show
         index = {0}
         setScrollbarVisible={()=>{}}
+
         setShow={setShowFunc}
         title={<div className='stats__header'>Stats</div>}
         menu={

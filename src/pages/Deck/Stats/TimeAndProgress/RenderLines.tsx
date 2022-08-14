@@ -2,10 +2,12 @@ import React from "react";
 
 function RenderLines({timeObj}) {
  
-  let arr:any = [];
+  let arr:JSX.Element[] = [];
   let studyGoal = 80;
   let previousWidthVar = 0;
   let index = 0
+
+
 
   for (let i = 6; i <= 24; i += 6) {
    if (timeObj !== null ) {

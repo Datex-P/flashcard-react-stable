@@ -1,4 +1,4 @@
-import  { useContext } from 'react';
+import  { useContext, useEffect } from 'react';
 import { Context } from '../../../../context/Context'
 
 
@@ -11,10 +11,21 @@ export const InputLogic = ({
   const { dataBase, setDataBase } = useContext(Context)
   let newDataBase = {...dataBase}  
 
+  
+
 
   function cardsPaused() {
-    return dataBase.DeckNames[index].data.filter(x => x.paused === true).length || 0
+    debugger
+    //dataBase.DeckNames[item].data.filter(x => x.pause === true).length || 0
+
+    return dataBase.DeckNames[index].data.filter(x => x.paused === true).length 
   }
+
+  useEffect(()=>{
+    debugger
+    console.log(index, 'index here')
+  },[index])
+
     // https://bobbyhadz.com/blog/typescript-property-checked-not-exist-on-type-htmlelement#:~:text=The%20error%20%22Property%20'checked',This%20is%20the%20index.
       //Type assertions are used when we have information about the type of a value that TypeScript can't know about.
  

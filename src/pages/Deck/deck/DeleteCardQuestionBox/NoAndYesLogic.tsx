@@ -29,7 +29,8 @@ export const NoAndYesLogic = ({
 
   if (pauseCardinQuestionAnswer) {
     let newDataBase = { ...dataBase }
-    dataBase.DeckNames[index].data[randomQuestion].paused = true
+    newDataBase.DeckNames[index].data[randomQuestion].paused = true
+    debugger
     setDataBase(newDataBase)
   }
 

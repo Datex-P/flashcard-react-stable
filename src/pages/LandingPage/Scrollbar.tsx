@@ -23,7 +23,7 @@ function Scrollbar({scrollbarVisible}){
     <div
       ref={scroller}
       className='landing__scrollbar'
-      onScroll={scrollHandler}
+      onScroll={e=>scrollHandler({target:scroller.current as HTMLElement})}
     >
       <div className='scrollbar-inner'></div>
     </div>

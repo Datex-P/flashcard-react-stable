@@ -53,6 +53,7 @@ function Settings({ history }) {
       show
       settings
       index={0}
+      setEditModeActive={()=>{}}
       setScrollbarVisible={()=>{}}
       setShow={setShow}
       title={<div className='fontBold font-22px'>Settings</div>}

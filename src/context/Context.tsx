@@ -133,6 +133,7 @@ export default function ContextProvider({ children }:any) {
 
   useEffect(()=>{
     console.log(dataBase, 'database here')
+   // debugger
   },[dataBase])
 
   useEffect(()=>{

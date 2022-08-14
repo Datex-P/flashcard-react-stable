@@ -8,12 +8,14 @@ import editimg from '../../../../icons/edit.svg'
 import resetimg from '../../../../icons/reset.svg'
 import saveimg from '../../../../icons/save.svg'
 import playimg from '../../../../icons/play.svg'
+import {ThreeLogic} from './ThreeLogic'
 // https://stackoverflow.com/questions/44717164/unable-to-import-svg-files-in-typescript
   // https://www.dev-eth0.de/2019/09/10/using-withrouter-in-a-typescript-react-component/
   /*link showed how to use typescript with reactrouter */
 
 interface ThreeDotsProps extends RouteComponentProps {
   reset:boolean;
+  data:any;
   edit: boolean;
   trash: boolean;
   pause: boolean;
@@ -25,13 +27,14 @@ interface ThreeDotsProps extends RouteComponentProps {
   trashEvent:(prop?:boolean) => void;
   resetEvent:(prop?:boolean) => void;
   pauseEvent:(prop?:boolean) => void;
-
+  editModeActive:(prop?:boolean) => void;
 
 }
 
   function ThreeDotsBtn({
   reset = false,
   edit = false,
+  data,
   trash = false,
   pause = false,
   index,
@@ -42,8 +45,8 @@ interface ThreeDotsProps extends RouteComponentProps {
   trashEvent = () => {},
   resetEvent = () => {},
   pauseEvent = () => {},
-
-}:any| RouteComponentProps) {
+  editModeActive = () => {},
+}:ThreeDotsProps) {
 
   const {
     apiURL,
@@ -55,19 +58,35 @@ interface ThreeDotsProps extends RouteComponentProps {
     stopRedCrossListener,
     threeDotsOpen,setThreeDotsOpen,
   } = useContext(Context);
-
+  
+  const threeDotsRef = useRef<HTMLDivElement>(null);
   const threeDotsOpenRef = useRef(null);
 
   const [blinkingSaveIcon, setBlinkingSaveIcon] = useState(false); //blinks when deck name in input mode and clicked outside
   const [pauseIsActive, setPauseIsActive] = useState(true);
   const [deckName, setDeckName] = useState('')
 
-   function trashHandler() {
-    setEditButtonClicked(true); //input field gets closed on landing page
-    setThreeDotsOpen(false); //three dots menu gets closed
-    trashEvent(); //just invoke once when in question answer
-    //trashEvent()()
-  }
+  const {handlePause, handleEdit, saveIconBlinks, trashHandler} = ThreeLogic({ 
+    apiURL,
+    deckName,
+    editButtonClicked,
+    editEvent,
+    email,
+    nameOfTopDeck,
+    setBlinkingSaveIcon,
+    setEditButtonClicked,
+    setPauseIsActive,
+    setShowThreeDots,
+    setThreeDotsOpen,
+    showThreeDots,
+    stopRedCrossListener,
+    threeDotsOpen, 
+    threeDotsRef,
+    trashEvent,
+    pauseIsActive,
+    pauseEvent,
+    text
+  })
 
   const handleClick = () => {
     setThreeDotsOpen(!threeDotsOpen);
@@ -91,27 +110,6 @@ interface ThreeDotsProps extends RouteComponentProps {
     }
   },[editButtonClicked])
 
-  const threeDotsRef = useRef<HTMLDivElement>(null);
-
-  function saveIconBlinks(event) {
-    if (
-      threeDotsRef.current &&
-      !threeDotsRef.current.contains(event.target)
-    ) {
-        if (editButtonClicked) {
-          //    setThreeDotsOpen(false) need to be imported
-        } else {
-          setTimeout(()=>{
-          if (!stopRedCrossListener) {
-          setBlinkingSaveIcon(true);
-          setTimeout(() => {
-            setBlinkingSaveIcon(false);
-          }, 2000);
-        }
-        }, 1000)
-        }
-      }
-  }
   
   useEffect(() => {
     if(!stopRedCrossListener) {
@@ -131,38 +129,6 @@ interface ThreeDotsProps extends RouteComponentProps {
   //   console.log(newDataBase);
   //   setDataBase(newDataBase);
   // }
-
-  async function handleEdit() {
-    console.log("edit event fired");
-    //  setEditBtnClicked(true)
-    editEvent();
-    if (text === 'card') { //deleted type === 'card'
-      setThreeDotsOpen(!threeDotsOpen);
-    }
-    // !editName && setShow(false)
-    // other way of writing it
-    // if (!editButtonClicked) { //open input field when deckname is triggered
-    //   // setThreeDotsOpen(false)
-    //   handleDeckname()
-    // }
-    if(!editButtonClicked) {
-      let newDeckName = nameOfTopDeck
-
-      await fetch(`${apiURL}/edit_deckname`, {
-        method:"POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",     
-          "Content-Type":"application/json",
-        },
-          body: JSON.stringify({
-          email:email,
-          deckName:deckName, //always has current value of input from deckorcardname.js
-          newDeckName:newDeckName
-          })
-        });
-    }
-  }
-
 
   // function threeDotsClose(event) {
   //   if (
@@ -184,37 +150,6 @@ interface ThreeDotsProps extends RouteComponentProps {
   //     };
   // }, [threeDotsOpen, setThreeDotsOpen, questionAnswerWindow])
 
-  async function handlePause() {
-    let deckName = nameOfTopDeck
-    pauseEvent(); //before pauseEvent(index) => typescript complained
-    //  let newDataBase = {...dataBase}
-    let savePausedState = !pauseIsActive;
-    setPauseIsActive(savePausedState);
-    setEditButtonClicked(true); //if input field in edit mode is active that it switches back
-    //  dataBase.DeckNames[index].paused = !dataBase.DeckNames[index].paused
-    //  let key = newDataBase.DeckNames.findIndex(deck=>deck.name === name)
-    // newDataBase.DeckNames[key].paused = true //does not work for some reason
-    //  setDataBase(newDataBase)
-    //  setEditButtonClicked(true)
-    setThreeDotsOpen(false); //menu is closed
-    setShowThreeDots(!showThreeDots); //three dots get hidden commented out for now
-    //setNameOfTopDeck(name)
-    if (text === 'deck') {
-      console.log('fired inside threedots')
-       await fetch(`${apiURL}/pause_deck`, {
-        method:"POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",     
-          "Content-Type":"application/json",
-        },
-          body: JSON.stringify({
-          email:email,
-          deckName:deckName
-          })
-        });
-      }
-    }
-
   return (
     <>
       {/* !dataBase?.DeckNames?.[index]?.paused || !editBtnClicked) && */}
@@ -231,7 +166,6 @@ interface ThreeDotsProps extends RouteComponentProps {
           {threeDotsOpen && (
             <div 
               ref={threeDotsOpenRef} 
-            //  className={`${classValue}`}
               style={style}
             >
               {edit && (
@@ -249,7 +183,9 @@ interface ThreeDotsProps extends RouteComponentProps {
                   {text}
                 </button>
               )}
-              {pause && (
+              {pause && 
+               data? data?.length !==0: true && 
+              (
                 <button
                   className={`deck__threeDotsBtn_btn_pause deck__threeDotsBtn__btn align-center  p-1 ${
                     dataBase.DeckNames[index]?.paused ? 'deck__threeDotsBtn__conditional': ''
@@ -266,7 +202,7 @@ interface ThreeDotsProps extends RouteComponentProps {
               )}
               {trash && (
                 <button
-                  className='deck__threeDotsBtn__btn align-center  p-1'
+                  className={`deck__threeDotsBtn__btn align-center  p-1 ${data?.length === 0? 'deck__empty-border-top':''}`}
                   onClick={trashHandler}
                 >
                   <img src={trashimg} alt='trash' className='mr-3px' />
@@ -276,7 +212,7 @@ interface ThreeDotsProps extends RouteComponentProps {
               {reset && (
                 <button
                   className='deck__threeDotsBtn__btn align-center outline-none p-1'
-                  onClick={resetEvent}
+                  onClick={()=>resetEvent(true)}
                 >
                   <img
                     src={resetimg}

@@ -33,11 +33,11 @@ export default function QuestAnswerTrainOverv({
   const [card, setCard] = useState<{answer?:string, question?:string}>({ answer: "", question: "" });
   const [cardModified, setCardModified] = useState(false);
   const [deckFinished, setDeckFinished] = useState(false)
-  const [editModeActive, setEditModeActive] = useState<any>(false);
+  const [editModeActive, setEditModeActive] = useState<boolean>(false);
   
   const [pauseOrDeleteText, setPauseOrDeleteText] = useState(true);
-  const [randomQuestion, setRandomQuestion] = useState<any>(null);
-  const [show, setShow] = useState<any>(false);
+  const [randomQuestion, setRandomQuestion] = useState<null | number>(null);
+  const [show, setShow] = useState<boolean>(false);
   
   const [showDeleteWindow, setShowDeleteWindow] = useState(true);
   const [showAnswerBtn, setShowAnswerBtn] = useState(true); //button in questionAnswerTrainOverView with that name

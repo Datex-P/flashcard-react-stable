@@ -254,6 +254,10 @@
   border-radius: 0px;
 }
 
+.deck__empty-border-top {
+  border-top: 1px solid black !important;
+}
+
 .deck__threeDotsBtn__btn {
   background-color: white !important;
   border: none;

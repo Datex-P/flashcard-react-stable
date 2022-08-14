@@ -8,10 +8,10 @@ export interface BasicProps {
   questionAnswerWindow?: boolean;
   questionViewActive?: boolean;
   setEdit?:(prop?:boolean) => void;
-  setEditModeActive?:(prop?:boolean) => void;
+  setEditModeActive?:(prop:boolean) => void;
   setScrollbarVisible: (prop?:boolean) => void;
   settings?: boolean;
-  setShow: (prop?:boolean) => void;
+  setShow: (prop:boolean) => void;
   setShowAnswerBtn?:(prop?:boolean) => void;
   show?: boolean;
   showFromParent?: boolean;
