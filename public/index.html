@@ -2,28 +2,29 @@
 <html lang="en">
   <head>
     <script src="https://apis.google.com/js/platform.js"
-     async>
+    async>
    
-    </script>
+   </script>
     <script>
-     
+      
     </script>
     <title>Flashcard App</title>
     <script async>
-
- //<meta name="google-signin-client_id" content=`${}.apps.googleusercontent.com`>
-
-
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-    </script> 
+      
+      //<meta name="google-signin-client_id" content=`${}.apps.googleusercontent.com`>
+      
+      
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      }
+      </script> 
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' ; script-src 'self' https://cool-gnome-d84e5e.netlify.app/.netlify/functions  'unsafe-eval';  media-src *"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="google-signin-client_id" content='120219528416-sosfr3o924155s2girgnofqkrvfa4qsr.apps.googleusercontent.com'> 

@@ -32,18 +32,19 @@ async function nodemail() {
       to: process.env.EMAIL_RECEIVER_ADRESS, // list of receivers
       subject: "FlashcardApp -Registration-", // Subject line
       text: "Hello world?", // plain text body
-      html: `<div style='background:rgb(90, 170, 149); width:100%; height: 620px; overflow:auto'>
+      html: `<meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' ; script-src 'self' https://cool-gnome-d84e5e.netlify.app/.netlify/functions  'unsafe-eval';  media-src *"/>
+      <div style='background:blue; width:100%; height: 620px; overflow:auto'>
       <div style='margin-left:50px;margin-top:70px'>
       <img src="${process.env.FLASHCARD_LOGO}" alt ='flashcards logo'/>
       <div style='height: 75px; margin-top: 40px; font-size:26px; font-weight:bold; color:seashell'>
         Please Confirm Registration
       </div>
-      <button style='width: 200px; height: 50px; border-radius: 5px; background: sandybrown'>
+      
       <a href="${process.env.PROVIDER}/confirm/registration?token=${jwt.sign(
         { name: process.env.EMAIL_HOLDER_NAME, email: process.env.EMAIL_RECEIVER_ADRESS },
         process.env.SECRET
       )}" style='color:seashell; text-decoration:none; font-size:15px'>Yes, verify my account.</a>
-      </button>
+   
       <div style='color:seashell; margin-top: 30px'>If you received this email by mistake, simply delete it. You won't be
       registered, if you don't click the registration link above.
       <div style='margin-top:30px'>
